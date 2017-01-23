@@ -3,69 +3,63 @@ package com.ddit.dto;
 import java.sql.Date;
 
 public class MemberVO {
-	private String id;
-	private String pwd;
-	private String nm;
-	private String email;
-	private String phone;
-	private String wtd;
-	private Date date;
+	private String mem_id;
+	private String mem_pwd;
+	private String mem_nm;
+	private String mem_email;
+	private String mem_phone;
+	private String mem_wtd;
+	private Date mem_date;
 	private String mem_group_lice;
 	
-	public String getId() {
-		return id;
+	
+	public String getMem_id() {
+		return mem_id;
 	}
-	public void setId(String id) {
-		this.id = id;
+	public void setMem_id(String mem_id) {
+		this.mem_id = mem_id;
 	}
-	public String getPwd() {
-		return pwd;
+	public String getMem_pwd() {
+		return mem_pwd;
 	}
-	public void setPwd(String pwd) {
-		this.pwd = pwd;
+	public void setMem_pwd(String mem_pwd) {
+		this.mem_pwd = mem_pwd;
 	}
-	public String getNm() {
-		return nm;
+	public String getMem_nm() {
+		return mem_nm;
 	}
-	public void setNm(String nm) {
-		this.nm = nm;
+	public void setMem_nm(String mem_nm) {
+		this.mem_nm = mem_nm;
 	}
-	public String getEmail() {
-		return email;
+	public String getMem_email() {
+		return mem_email;
 	}
-	public void setEmail(String email) {
-		this.email = email;
+	public void setMem_email(String mem_email) {
+		this.mem_email = mem_email;
 	}
-	public String getPhone() {
-		return phone;
+	public String getMem_phone() {
+		return mem_phone;
 	}
-	public void setPhone(String phone) {
-		this.phone = phone;
+	public void setMem_phone(String mem_phone) {
+		this.mem_phone = mem_phone;
 	}
-	public String getWtd() {
-		return wtd;
+	public String getMem_wtd() {
+		return mem_wtd;
 	}
-	public void setWtd(String wtd) {
-		this.wtd = wtd;
+	public void setMem_wtd(String mem_wtd) {
+		this.mem_wtd = mem_wtd;
 	}
-	public Date getDate() {
-		return date;
+	public Date getMem_date() {
+		return mem_date;
 	}
-	public void setDate(Date date) {
-		this.date = date;
+	public void setMem_date(Date mem_date) {
+		this.mem_date = mem_date;
 	}
 	public String getMem_group_lice() {
 		return mem_group_lice;
 	}
 	public void setMem_group_lice(String mem_group_lice) {
 		this.mem_group_lice = mem_group_lice;
-	}
-	
-	@Override
-	public String toString() {
-		return "MemberVO [id=" + id + ", pwd=" + pwd + ", nm=" + nm
-				+ ", email=" + email + ", phone=" + phone + ", wtd=" + wtd
-				+ ", date=" + date + ", mem_group_lice=" + mem_group_lice + "]";
 	}
 	
 	
