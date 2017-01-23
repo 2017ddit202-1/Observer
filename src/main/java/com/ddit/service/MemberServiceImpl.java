@@ -25,7 +25,7 @@ public class MemberServiceImpl implements MemberService{
 
 	@Override
 	public int deleteMember(String userid) throws SQLException {
-		int result =memberIbatis.deleteMember(userid);
+		int result = memberIbatis.deleteMember(userid);
 		return result;
 	}
 
