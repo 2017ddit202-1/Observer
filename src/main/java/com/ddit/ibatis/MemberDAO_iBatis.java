@@ -2,7 +2,6 @@ package com.ddit.ibatis;
 
 import java.sql.SQLException;
 
-
 import com.ddit.dao.MemberDAO;
 import com.ddit.dto.MemberVO;
 import com.ibatis.sqlmap.client.SqlMapClient;
@@ -36,6 +35,20 @@ public class MemberDAO_iBatis implements MemberDAO{
 	@Override
 	public int deleteMember(String userid) throws SQLException {
 		int result=client.delete("deleteMember", userid);
+		return result;
+	}
+
+
+	@Override
+	public int confirmID(String userid) throws SQLException {
+		int result= -1;
+		MemberVO memberVO = (MemberVO)client.queryForObject("confirmID", userid);
+		if(memberVO != null){
+			result = 1;
+		}else{
+			result = -1; 
+		}
+		
 		return result;
 	}
 

@@ -9,6 +9,6 @@
 	<bean id="memberDao" class="com.ddit.ibatis.MemberDAO_iBatis"
 		p:client-ref="SqlMapClient" />
 	<bean id="memberService" class="com.ddit.service.MemberServiceImpl"
-		p:memberIbatis-ref="memberDao" />		
+		p:memberIbatis-ref="memberDao" />	
 		
 </beans>

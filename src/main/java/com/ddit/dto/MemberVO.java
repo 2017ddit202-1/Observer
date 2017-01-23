@@ -62,6 +62,16 @@ public class MemberVO {
 		this.mem_group_lice = mem_group_lice;
 	}
 	
+	@Override
+	public String toString() {
+		return "MemberVO [mem_id=" + mem_id + ", mem_pwd=" + mem_pwd
+				+ ", mem_nm=" + mem_nm + ", mem_email=" + mem_email
+				+ ", mem_phone=" + mem_phone + ", mem_wtd=" + mem_wtd
+				+ ", mem_date=" + mem_date + ", mem_group_lice="
+				+ mem_group_lice + "]";
+	}
+	
+	
 	
 	
 }

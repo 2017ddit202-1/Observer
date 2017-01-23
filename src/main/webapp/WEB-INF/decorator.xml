@@ -6,7 +6,7 @@
 	</decorator>
 	
 	<excludes>	
-		<pattern>/admin/adminLoginForm</pattern>	
+		<pattern>/idCheckForm*</pattern>	
 	</excludes>
 	
 </decorators>

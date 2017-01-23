@@ -29,4 +29,12 @@ public class MemberServiceImpl implements MemberService{
 		return result;
 	}
 
+	@Override
+	public int confirmID(String userid) throws SQLException {
+		int result =memberIbatis.confirmID(userid);
+		return result;
+	}
+	
+	
+
 }
