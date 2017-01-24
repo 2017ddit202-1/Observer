@@ -4,5 +4,7 @@
     
   <sqlMapConfig>
   	<sqlMap resource="com/ddit/sqlmaps/Member.xml"/>
+  	<sqlMap resource="com/ddit/sqlmaps/Qna.xml"/>
+  	
 	
   </sqlMapConfig>
