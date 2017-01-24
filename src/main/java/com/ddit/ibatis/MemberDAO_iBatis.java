@@ -52,4 +52,12 @@ public class MemberDAO_iBatis implements MemberDAO{
 		return result;
 	}
 
+
+	@Override
+	public MemberVO selectMember(String userid) throws SQLException {
+		MemberVO memberVO = (MemberVO) client.queryForObject("selectMember", userid);
+		
+		return memberVO;
+	}
+
 }

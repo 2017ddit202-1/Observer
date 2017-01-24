@@ -168,9 +168,30 @@
 
         </div>
         <!-- /.container -->
-  
+		<div class="modal fade" id="login-modal" tabindex="-1" role="dialog"
+			aria-labelledby="myModalLabel" aria-hidden="true"
+			style="display: none;">
+			<div class="modal-dialog">
+				<div class="loginmodal-container">
+					<h1>Login to Your Account</h1>
+					<br>
+					<form>
+						<input type="text" name="mem_id" placeholder="Username"> <input
+							type="password" name="mem_pwd" placeholder="Password"> <input
+							type="button" name="login" class="login loginmodal-submit"
+							value="Login" onclick="login_go(this.form)">
+					</form>
 
-    <!-- jQuery -->
+					<div class="login-help">
+						<a href="#">Register</a> - <a href="#">Forgot Password</a>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+
+		<!-- jQuery -->
     <script src="<%=request.getContextPath()%>/resources/js/jquery.js"></script>
 
     <!-- Bootstrap Core JavaScript -->

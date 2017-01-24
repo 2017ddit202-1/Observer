@@ -34,6 +34,11 @@ public class MemberServiceImpl implements MemberService{
 		int result =memberIbatis.confirmID(userid);
 		return result;
 	}
+
+	@Override
+	public MemberVO selectMember(String userid) throws SQLException {
+		return memberIbatis.selectMember(userid);
+	}
 	
 	
 

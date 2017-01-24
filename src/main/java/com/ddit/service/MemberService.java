@@ -10,4 +10,5 @@ public interface MemberService {
 	public void updateMember(MemberVO memberVO)throws SQLException;
 	public int deleteMember(String userid)throws SQLException;
 	public int confirmID(String userid) throws SQLException;
+	MemberVO selectMember(String userid) throws SQLException;
 }

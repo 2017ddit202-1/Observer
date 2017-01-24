@@ -39,6 +39,7 @@
     <!-- Bootstrap Core CSS -->
     
 	<link href="<%=request.getContextPath()%>/resources/css/bootstrap.min.css"rel="stylesheet">
+	<link href="<%=request.getContextPath()%>/resources/css/modal.css"rel="stylesheet">
 	
     <!-- Custom CSS -->
     
@@ -78,7 +79,7 @@
                         <a href="#about">About</a>
                     </li>
                     <li>
-                        <a href="#services">Log in</a>
+                        <a href="" data-toggle="modal" data-target="#login-modal">Login</a>
                     </li>
                     <li>
                         <a href="<%=request.getContextPath() %>/join">Sign Up</a>
@@ -108,6 +109,12 @@
 
    
 </head>
-
+<script type="text/javascript">
+	function login_go(form){
+		form.action = "<%=request.getContextPath()%>/user/login";
+		form.method = "POST";
+		form.submit();
+	}
+</script>
 
 </html>
