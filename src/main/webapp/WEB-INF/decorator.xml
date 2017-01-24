@@ -5,6 +5,10 @@
 		<pattern>/</pattern>
 	</decorator>
 	
+	<decorator name="user" page="user_decorator.jsp">
+			<pattern>/user/*</pattern>
+	</decorator>
+	
 	<excludes>	
 		<pattern>/idCheckForm*</pattern>	
 	</excludes>

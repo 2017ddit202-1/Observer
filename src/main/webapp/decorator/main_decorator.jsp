@@ -14,7 +14,7 @@
 
 <!DOCTYPE html>
 <html>
-<title>NewEye<decorator:title /></title>
+<title>OBSERVER<decorator:title /></title>
 <decorator:head />
 
 <head>
