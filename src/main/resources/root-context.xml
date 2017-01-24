@@ -11,4 +11,11 @@
 	<bean id="memberService" class="com.ddit.service.MemberServiceImpl"
 		p:memberIbatis-ref="memberDao" />	
 		
+	<bean id="qnaDAO" class="com.ddit.ibatis.QnaDAO_iBatis" >
+		<property name="client" ref="SqlMapClient"/>
+	</bean>	
+	<bean id="QnaService" class="com.ddit.service.QnaServiceImpl" >
+		<property name="qnaDAO" ref="qnaDAO" />		
+	</bean>
+		
 </beans>
