@@ -17,13 +17,21 @@
    
    <insert id="insertqna" parameterClass="qna">
    	insert into qna(qseq, qna_subject, qna_content, qna_id)
-   		values(qna_seq.nextval, #qna_subject#, #qna_content#, #qna_id#)
+   		values(qseq.nextval, #qna_subject#, #qna_content#, #qna_id#)
    </insert>
    
    <select id="listAllQna" resultClass="qna">
    		select * from qna order by indate desc
    </select>
    
+   <select id="listQnalist" parameterClass="str" resultClass="qna">
+   		select * from qna where qna_id like '%'||#qna_id#||'%' order by qna_date desc
+   </select>
+   
+   
+   <select id="totalQna" parameterClass="str" resultClass="int">
+   		select count(*) from qna where qna_id like '%'||#qna_id#||'%'
+   </select>
    
    </sqlMap> 
     

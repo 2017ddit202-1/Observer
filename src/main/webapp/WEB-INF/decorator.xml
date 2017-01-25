@@ -4,21 +4,22 @@
 	<decorator name="main" page="main_decorator.jsp">
 		<pattern>/</pattern>
 	</decorator>
-	
+
 	<decorator name="user" page="user_decorator.jsp">
-			<pattern>/user/*</pattern>
+		<pattern>/user/*</pattern>
 	</decorator>
-	
-	<decorator name="user" page="user_decorator.jsp">
-			<pattern>/user/*</pattern>
+
+	<decorator name="qna" page="user_decorator.jsp">
+		<pattern>/qna/*</pattern>
 	</decorator>
-	
+
 	<decorator name="article" page="user_decorator.jsp">
-			<pattern>/article/*</pattern>
+		<pattern>/article/*</pattern>
 	</decorator>
-	
+
 	<excludes>
 		<pattern>/idCheckForm*</pattern>
+		<pattern>/index.jsp</pattern>
 	</excludes>
-	
+
 </decorators>

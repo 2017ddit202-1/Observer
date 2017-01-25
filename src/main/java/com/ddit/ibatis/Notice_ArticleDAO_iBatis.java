@@ -36,6 +36,19 @@ public class Notice_ArticleDAO_iBatis implements Notice_ArticleDAO{
 		Notice_ArticleVO articleVO=(Notice_ArticleVO) client.queryForObject("detailArticle",noar_seq);
 		return articleVO;
 	}
+
+	@Override
+	public int deleteArticle(int noar_seq) throws SQLException {
+		int result=client.delete("deleteArticle",noar_seq);
+		return result;
+	}
+
+	@Override
+	public void updateArticle(Notice_ArticleVO articleVO)
+			throws SQLException {
+		client.update("updateArticle", articleVO);
+		
+	}
 	
 
 
