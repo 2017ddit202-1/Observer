@@ -10,6 +10,7 @@ public interface MemberDAO {
 	public int deleteMember(String userid)throws SQLException;
 	public int confirmID(String userid) throws SQLException;
 	MemberVO selectMember(String userid) throws SQLException;
+	public void deleteuseMember(MemberVO memberVO) throws SQLException;
 	
 
 }

@@ -9,8 +9,16 @@
 			<pattern>/user/*</pattern>
 	</decorator>
 	
-	<excludes>	
-		<pattern>/idCheckForm*</pattern>	
+	<decorator name="user" page="user_decorator.jsp">
+			<pattern>/user/*</pattern>
+	</decorator>
+	
+	<decorator name="article" page="user_decorator.jsp">
+			<pattern>/article/*</pattern>
+	</decorator>
+	
+	<excludes>
+		<pattern>/idCheckForm*</pattern>
 	</excludes>
 	
 </decorators>

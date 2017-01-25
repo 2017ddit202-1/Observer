@@ -5,6 +5,8 @@
   <sqlMapConfig>
   	<sqlMap resource="com/ddit/sqlmaps/Member.xml"/>
   	<sqlMap resource="com/ddit/sqlmaps/Qna.xml"/>
+  	<sqlMap resource="com/ddit/sqlmaps/Notice_Article.xml"/>
+  	
   	
 	
   </sqlMapConfig>
