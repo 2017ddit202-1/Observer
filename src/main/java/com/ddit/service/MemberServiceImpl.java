@@ -39,6 +39,12 @@ public class MemberServiceImpl implements MemberService{
 	public MemberVO selectMember(String userid) throws SQLException {
 		return memberIbatis.selectMember(userid);
 	}
+
+	@Override
+	public void deleteuseMember(MemberVO memberVO) throws SQLException {
+		memberIbatis.deleteuseMember(memberVO);
+		
+	}
 	
 	
 

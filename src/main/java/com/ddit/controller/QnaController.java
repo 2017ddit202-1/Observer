@@ -36,5 +36,5 @@ public class QnaController {
 		model.addAttribute("qnaVO", qnaVO);
 		return url;
 	}
-	
+
 }

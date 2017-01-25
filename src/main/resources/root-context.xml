@@ -1,21 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
-	
+
 	<!-- Root Context: defines shared resources visible to all other web components -->
-		
+
 	<bean id="memberDao" class="com.ddit.ibatis.MemberDAO_iBatis"
 		p:client-ref="SqlMapClient" />
 	<bean id="memberService" class="com.ddit.service.MemberServiceImpl"
-		p:memberIbatis-ref="memberDao" />	
-		
-	<bean id="qnaDAO" class="com.ddit.ibatis.QnaDAO_iBatis" >
-		<property name="client" ref="SqlMapClient"/>
-	</bean>	
-	<bean id="QnaService" class="com.ddit.service.QnaServiceImpl" >
-		<property name="qnaDAO" ref="qnaDAO" />		
+		p:memberIbatis-ref="memberDao" />
+
+	<bean id="qnaDAO" class="com.ddit.ibatis.QnaDAO_iBatis">
+		<property name="client" ref="SqlMapClient" />
 	</bean>
-		
+	<bean id="QnaService" class="com.ddit.service.QnaServiceImpl">
+		<property name="qnaDAO" ref="qnaDAO" />
+	</bean>
+
+	<bean id="articleDAO" class="com.ddit.ibatis.Notice_ArticleDAO_iBatis">
+		<property name="client" ref="SqlMapClient" />
+	</bean>
+	<bean id="ArticleService" class="com.ddit.service.Notice_ArticleServiceImpl">
+		<property name="articleDAO" ref="articleDAO" />
+	</bean>
+
+
+
+
+
 </beans>

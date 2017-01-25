@@ -60,4 +60,11 @@ public class MemberDAO_iBatis implements MemberDAO{
 		return memberVO;
 	}
 
+
+	@Override
+	public void deleteuseMember(MemberVO memberVO) throws SQLException {
+		client.update("deleteuseMember", memberVO.getMem_pwd());
+		
+	}
+
 }
