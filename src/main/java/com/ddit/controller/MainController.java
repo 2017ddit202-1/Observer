@@ -1,6 +1,7 @@
 package com.ddit.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.SQLException;
 
 import javax.servlet.ServletException;
@@ -34,6 +35,21 @@ public class MainController {
 		String url = "index";
 
 		return url;
+	}
+	
+	@RequestMapping("/loginForm")
+	public void login(HttpServletResponse res){
+		String html="<script>alert(\"로그인 하세요\");history.go(-1);</script>";
+				
+		try {
+			res.setContentType("text/html;charset=utf-8");
+			PrintWriter out=res.getWriter();
+			out.println(html);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 	
 	//회원가입

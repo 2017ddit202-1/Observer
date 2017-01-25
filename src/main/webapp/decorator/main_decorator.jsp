@@ -109,12 +109,12 @@
 
    
 </head>
-<script type="text/javascript">
+<%-- <script type="text/javascript">
 	function login_go(form){
 		form.action = "<%=request.getContextPath()%>/user/login";
 		form.method = "POST";
 		form.submit();
 	}
-</script>
+</script> --%>
 
 </html>

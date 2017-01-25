@@ -29,7 +29,7 @@
 
     <!-- Custom Fonts -->
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="<%=request.getContextPath()%>/resources/font-awesome/css/font-awesome.min.css"rel="stylesheet">
+    <link href="<%=request.getContextPath()%>/resources/font-awesome/css/font-awesome.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -38,7 +38,51 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+		
+<script>
+   function get_msg(message){
+	  alert('라라라라라라안되');
+      var move = '70px';
+      jQuery('#message').text(message);
+      jQuery('#message').animate({
+         top : '+=' + move
+      }, 'slow',function(){
+         jQuery('#message').delay(1000).animate({
+            top : '-=' + move
+         }, 'slow');
+      });
+   }
+   <c:if test="${error =='true'}">
+   jQuery(function(){
+      get_msg("로그인 실패하였습니다.")
+   });
+   </c:if>
+   function login_go(){
+      $.ajax({
+         url : 'loginList',
+         data : $('form input').serialize(),
+         type : 'POST',
+         dataType : 'json',
+         beforeSend : function(xhr){
+            xhr.setRequestHeader("Accept","application/json");
+         }
+      }).done(function(body){
+         var message=body.response.message;
+         var error=body.response.error;
+         var returl=body.response.returl;
+         if(error)
+            get_msg(message);
+         if(error==false){
+            if(returl=='')
+               returl = '<c:url value="/user/mypage" />';
+            location.href = returl;
+         }
+      });
+   }
 
+</script>
+		
+		
 </head>
 
 <body>
@@ -175,11 +219,14 @@
 				<div class="loginmodal-container">
 					<h1>Login to Your Account</h1>
 					<br>
-					<form>
-						<input type="text" name="mem_id" placeholder="Username"> <input
-							type="password" name="mem_pwd" placeholder="Password"> <input
-							type="button" name="login" class="login loginmodal-submit"
-							value="Login" onclick="login_go(this.form)">
+					<form action="loginList">
+						<input type="text" name="mem_id" placeholder="Username"> 
+						<input type="password" name="mem_pwd" placeholder="Password"> 
+						
+						<input type="button" name="login" class="login loginmodal-submit"
+							value="Login" onclick="login_go()">
+						<!-- <input type="submit" name="login" class="login loginmodal-submit"
+							value="Login"> -->
 					</form>
 
 					<div class="login-help">
@@ -199,4 +246,8 @@
 
 </body>
 
+
+
 </html>
+
+
