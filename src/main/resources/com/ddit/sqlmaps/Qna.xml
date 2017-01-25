@@ -24,6 +24,14 @@
    		select * from qna order by indate desc
    </select>
    
+   <select id="listQnalist" parameterClass="str" resultClass="qna">
+   		select * from qna where qna_id like '%'||#qna_id#||'%' order by qna_date desc
+   </select>
+   
+   
+   <select id="totalQna" parameterClass="str" resultClass="int">
+   		select count(*) from qna where qna_id like '%'||#qna_id#||'%'
+   </select>
    
    </sqlMap> 
     

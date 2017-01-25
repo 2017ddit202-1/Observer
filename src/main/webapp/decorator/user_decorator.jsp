@@ -167,7 +167,7 @@
                                     <a href="panels-wells.html">공지사항</a>
                                 </li>
                                 <li>
-                                    <a href="buttons.html">QnA</a>
+                                    <a href="<%=request.getContextPath()%>/qna/qnaList">QnA</a>
                                 </li>
                                 <li>
                                     <a href="notifications.html">자유게시판</a> 
