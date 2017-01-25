@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ page trimDirectiveWhitespaces="true" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,6 +18,17 @@
 
 </script>
 
+
+<%-- 					 <sec:authorize access="hasRole('ROLE_SUPER')">
+							<li><a href="#">관리</a></li>
+						</sec:authorize>
+						
+					3	hasRole()         ==        1개
+						hasAnyRole        ==        2개
+						isAuthenticated() ==        모두
+ --%>
+
+
 </head>
 <body>
 <h1>detail page</h1>
@@ -27,7 +39,8 @@
     <table id="notice">
       <tr>
               <th>제목</th>
-              <td>${qnaVO.subject}</td> 
+              <td>${qnaVO.subject}</td>
+               
       </tr>
       <tr>
         <th>등록일</th>
@@ -44,8 +57,9 @@
     </table>
     <div class="clear"></div>
      <div id="buttons" style="float:right">
+     	 <sec:authorize access="hasRole('ROLE_SUPER')">
       <input type="button"  value="목록보기"     class="submit"  onclick="list_go()"> 
-       
+       </sec:authorize>
       </div>
     </form>
 
