@@ -5,6 +5,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="decorator"
 	uri="http://www.opensymphony.com/sitemesh/decorator"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>	
 <%
 	response.setHeader("Pragma", "No-cache");
 	response.setHeader("Cache-Control", "no-cache");
@@ -78,6 +79,7 @@
                     <li>
                         <a href="#about">About</a>
                     </li>
+                    
                     <li>
                         <a href="" data-toggle="modal" data-target="#login-modal">Login</a>
                     </li>

@@ -116,6 +116,13 @@ public class MainController {
 		
 		return url;
 	}
+	
+	@RequestMapping("/logout")
+	public String logout(HttpSession session){
+		String url = "redirect:/";
+		session.invalidate();
+		return url;
+	}
 }
 
 
