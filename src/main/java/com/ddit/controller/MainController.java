@@ -37,6 +37,14 @@ public class MainController {
 		return url;
 	}
 	
+	@RequestMapping("/index")
+	public String gomain() {
+
+		String url = "index";
+
+		return url;
+	}
+	
 	@RequestMapping("/loginForm")
 	public void login(HttpServletResponse res){
 		String html="<script>alert(\"로그인 하세요\");history.go(-1);</script>";

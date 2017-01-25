@@ -19,6 +19,7 @@
 
 	<excludes>
 		<pattern>/idCheckForm*</pattern>
+		<pattern>/index.jsp</pattern>
 	</excludes>
 
 </decorators>
