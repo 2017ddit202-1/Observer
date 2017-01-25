@@ -1,6 +1,7 @@
 package com.ddit.controller;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -60,19 +61,24 @@ public class NoticeArticleController {
 			HttpServletResponse response)throws ServletException, IOException{
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset=utf-8");
-		String url = "articleWrite";
+		String url = "articleView";
 		HttpSession session = request.getSession();
 		Notice_ArticleVO articleVO = new Notice_ArticleVO();
 		articleVO.setNoar_id(request.getParameter("noar_id"));
 		articleVO.setNoar_subject(request.getParameter("noar_subject"));
 		articleVO.setNoar_content(request.getParameter("noar_content"));
 		
+		
+		ArrayList<Notice_ArticleVO> articleList = null;
 		try {
 			articleService.insertArticle(articleVO);
+			articleList = articleService.listAllArticle();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		request.setAttribute("articleList", articleList);
 		
 		return url;
 	}
@@ -103,9 +109,9 @@ public class NoticeArticleController {
 	public String articleDelete(HttpServletRequest request,
 			HttpServletResponse response, HttpSession session){
 		String url ="articleView";
-		System.out.println("noar_seq전");
+	
 		String noar_seq=request.getParameter("noar_seq");
-		System.out.println("noar_seq후");
+	
 		Notice_ArticleVO articleVO=null;
 		System.out.println(noar_seq);
 		ArrayList<Notice_ArticleVO> articleList = null;
@@ -126,10 +132,37 @@ public class NoticeArticleController {
 		
 	}
 	
+	//공지사항 수정
+	@RequestMapping(value="/articleUpdate", method=RequestMethod.POST)
+	public String articleUpdate(HttpServletRequest request,
+			HttpServletResponse response, HttpSession session){
+		try {
+			request.setCharacterEncoding("utf-8");
+		} catch (UnsupportedEncodingException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		response.setContentType("text/html;charset=utf-8");
+		String url="articleView";
+		
+		Notice_ArticleVO articleVO = new Notice_ArticleVO();
+		articleVO.setNoar_subject(request.getParameter("noar_subject"));
+		articleVO.setNoar_content(request.getParameter("noar_content"));
+		articleVO.setNoar_seq(Integer.parseInt(request.getParameter("noar_seq")));
 	
-	@RequestMapping("/articleUpdate")
-	public String articleUpdate(){
-		String url="articleUpdate";
+		ArrayList<Notice_ArticleVO> articleList = null;
+		try {
+			articleService.updateArticle(articleVO);
+			articleList=articleService.listAllArticle();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		request.setAttribute("articleList", articleList);
+		
+	
+
 		return url;
 	}
 }

@@ -27,7 +27,7 @@
 <update id="updateArticle" parameterClass="article">
 update notice_article
 set
-noar_subject=#noar_subject#, noar_content=#noar_content#, noar_id=#noar_id#
+noar_subject=#noar_subject#, noar_content=#noar_content#
 where noar_seq=#noar_seq#
 </update>
 </sqlMap> 

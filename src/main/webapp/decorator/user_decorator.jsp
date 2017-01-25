@@ -178,7 +178,8 @@
                             <a href="#"><i class="fa fa-wrench fa-fw"></i> 게시판<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="panels-wells.html">공지사항</a>
+                         
+                                    <a href="<%=request.getContextPath()%>/article/articleView">공지사항</a>
                                 </li>
                                 <li>
                                     <a href="<%=request.getContextPath()%>/qna/qnaList">QnA</a>
