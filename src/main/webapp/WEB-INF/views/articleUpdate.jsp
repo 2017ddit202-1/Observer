@@ -29,5 +29,4 @@ function go_articleWrite(){
 	document.formm.action = "<%=request.getContextPath()%>/article/articleWrite";
     document.formm.submit();
 }
-
 </script>
