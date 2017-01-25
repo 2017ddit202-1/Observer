@@ -33,7 +33,7 @@
 	<http pattern="/**" use-expressions="true">
 		<request-cache ref="nullReuqestCache" />
 		<intercept-url pattern="/loginForm" access="permitAll"/>
-		<intercept-url pattern="/user/**" access="hasAnyRole('ROLE_USER,ROLE_ADMIN')"/>
+		<intercept-url pattern="/user/**" access="hasAnyRole('ROLE_USER,ROLE_SUPER')"/>
 		<intercept-url pattern="/qna/**" access="hasAnyRole('ROLE_USER,ROLE_ADMIN')"/>
 		<intercept-url pattern="/**" access="permitAll"/>
 	
