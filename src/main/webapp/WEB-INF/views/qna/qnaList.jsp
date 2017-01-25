@@ -29,7 +29,6 @@ function writeForm_go(){
 				<th>게시글번호</th>
 				<th>작성자</th>
 				<th>제목</th>
-				<th>내용</th>
 				<th>등록날짜</th>
 			</tr>
 			<br>
@@ -46,10 +45,9 @@ function writeForm_go(){
 				<tr>
 					<td>${qnaVO.qseq}</td>
 					<td>${qnaVO.qna_id}</td>
-					<td>${qnaVO.qna_subject}</td>
-					<td>${qnaVO.qna_content}</td>
-					<td>${qnaVO.qna_date}</td>
-
+					<%-- <a href="detailArticle?noar_seq=${articleVO.noar_seq}"> --%>
+					<td><a href="detailQna?qna_qseq=${qnaVO.qseq}">${qnaVO.qna_subject}</a></td>
+					<td><fmt:formatDate value="${qnaVO.qna_date}" pattern="yyyy-MM-dd"/></td>
 				</tr>
 			</c:forEach>
 			<tr>
