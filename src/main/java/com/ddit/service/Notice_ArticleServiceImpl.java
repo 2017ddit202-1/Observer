@@ -45,4 +45,21 @@ public class Notice_ArticleServiceImpl implements Notice_ArticleService{
 
 
 
+	@Override
+	public int deleteArticle(int noar_seq) throws SQLException {
+		int result=articleDAO.deleteArticle(noar_seq);
+		return result;
+	}
+
+
+
+	@Override
+	public void updateArticle(Notice_ArticleVO articleVO)
+			throws SQLException {
+	articleDAO.updateArticle(articleVO);
+		
+	}
+
+
+
 }

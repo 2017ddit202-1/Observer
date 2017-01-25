@@ -11,7 +11,7 @@
 		<h4> ARTICLE WRITE</h4>
 	</div>
 	<form id="formm" name="formm" method="post">
-	아이디:<input type="text" name="noar_id"><br>
+	아이디:<input type="text" name="noar_id" value="${loginUser}"><br>
 	제목:<input type="text" name="noar_subject"><br>
 	내용:<textarea rows="5" cols="30" name="noar_content"></textarea><br>
 	
