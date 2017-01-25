@@ -5,6 +5,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="decorator"
 	uri="http://www.opensymphony.com/sitemesh/decorator"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%
 	response.setHeader("Pragma", "No-cache");
 	response.setHeader("Cache-Control", "no-cache");
@@ -98,20 +99,33 @@
                         <li class="divider"></li>
                         <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> 회원탈퇴</a>
                         </li>
-                    </ul>
+                        
+			</ul>
                
                 </li>
-                
+                <%-- <sec:authorize access="isAuthenticated()">
+							<li><a href="#">관리</a></li>
+					</sec:authorize> --%>
                 <!-- /.dropdown -->
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                         <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
                     </a>
-                    <ul class="dropdown-menu dropdown-user">
-                        <li class="divider"></li>
-                        <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                    <!-- <ul class="dropdown-menu dropdown-user"> -->
+                        <!-- <li class="divider"></li> -->
+                        <sec:authorize access="isAuthenticated()">
+                        	<span>${loginUser }님 어서오세요.</span>
+                        </sec:authorize>
+                        
+                        
+                        <sec:authorize access="hasRole('ROLE_SUPER')">
+							<li><a href="#">관리</a></li>
+						</sec:authorize>
+						<sec:authorize access="isAuthenticated()">
+                       		<li><a href="<%=request.getContextPath()%>/logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                         </li>
-                    </ul>
+                        </sec:authorize>
+                    <!-- </ul> -->
                     <!-- /.dropdown-user -->
                 </li>
                 <!-- /.dropdown -->

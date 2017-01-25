@@ -230,7 +230,7 @@
 					</form>
 
 					<div class="login-help">
-						<a href="#">Register</a> - <a href="#">Forgot Password</a>
+						<a href="#">ID</a> / <a href="#">PASSWORD</a>
 					</div>
 				</div>
 			</div>
