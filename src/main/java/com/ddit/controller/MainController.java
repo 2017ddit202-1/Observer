@@ -123,6 +123,14 @@ public class MainController {
 		session.invalidate();
 		return url;
 	}
+	
+	@RequestMapping("/idSearch")
+	public String idSearch(){
+		String url = "idSearch";
+		System.out.println("controller");
+		return url;
+	}
+	
 }
 
 

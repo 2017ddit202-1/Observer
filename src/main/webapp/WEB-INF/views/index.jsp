@@ -192,26 +192,33 @@
     </div>
     <!-- /.content-section-a -->
 
-	
 
-    <div class="content-section-b">
 
-        <div class="container">
+	<div class="content-section-b">
 
-            <div class="row">
-                <div class="col-lg-5 col-lg-offset-1 col-sm-push-6  col-sm-6">
-                    <hr class="section-heading-spacer">
-                    <div class="clearfix"></div>
-                    <h2 class="section-heading">Observer SMS<br><br>다양한 관점의 분석을 통한 인사이트를 제공합니다.</h2><br>
-                    <a href="file/menu" class="btn btn-default btn-lg"><i class="fa fa-twitter fa-fw"></i> <span class="network-name">메뉴얼 다운로드</span></a>
-                </div>
-                <div class="col-lg-5 col-sm-pull-6  col-sm-6">
-                    <img class="img-responsive" src="<%=request.getContextPath()%>/resources/img/Monitoring2.png" alt="">
-                </div>
-            </div>
+		<div class="container">
 
-        </div>
-        <!-- /.container -->
+			<div class="row">
+				<div class="col-lg-5 col-lg-offset-1 col-sm-push-6  col-sm-6">
+					<hr class="section-heading-spacer">
+					<div class="clearfix"></div>
+					<h2 class="section-heading">
+						Observer SMS<br>
+						<br>다양한 관점의 분석을 통한 인사이트를 제공합니다.
+					</h2>
+					<br> <a href="file/menu" class="btn btn-default btn-lg"><i
+						class="fa fa-twitter fa-fw"></i> <span class="network-name">메뉴얼
+							다운로드</span></a>
+				</div>
+				<div class="col-lg-5 col-sm-pull-6  col-sm-6">
+					<img class="img-responsive"
+						src="<%=request.getContextPath()%>/resources/img/Monitoring2.png"
+						alt="">
+				</div>
+			</div>
+
+		</div>
+		<!-- /.container -->
 		<div class="modal fade" id="login-modal" tabindex="-1" role="dialog"
 			aria-labelledby="myModalLabel" aria-hidden="true"
 			style="display: none;">
@@ -220,25 +227,28 @@
 					<h1>Login to Your Account</h1>
 					<br>
 					<form action="loginList">
-						<input type="text" name="mem_id" placeholder="Username"> 
-						<input type="password" name="mem_pwd" placeholder="Password"> 
-						
-						<input type="button" name="login" class="login loginmodal-submit"
-							value="Login" onclick="login_go()">
+						<input type="text" name="mem_id" placeholder="I D"> <br>
+						<br> <input type="password" name="mem_pwd"
+							placeholder="Password"><br><br> <input type="button"
+							name="login" class="login loginmodal-submit" value="Login"
+							onclick="login_go()">
 						<!-- <input type="submit" name="login" class="login loginmodal-submit"
 							value="Login"> -->
+							
+						<div class = "login-help">
+						<br>                                                                                                                                                                                                                         
+						<a href="<%=request.getContextPath()%>/idSearch" data-toggle="modal" data-target="#id-modal">I D </a>&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;<a
+							href="#">PASSWORD 찾기</a>
+						</div>	
 					</form>
-
-					<div class="login-help">
-						<a href="#">ID</a> / <a href="#">PASSWORD</a>
-					</div>
 				</div>
 			</div>
 		</div>
+	</div>
 
 
 
-		<!-- jQuery -->
+	<!-- jQuery -->
     <script src="<%=request.getContextPath()%>/resources/js/jquery.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
