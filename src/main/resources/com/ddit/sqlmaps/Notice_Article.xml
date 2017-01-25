@@ -20,7 +20,17 @@
   select * from notice_article where noar_seq=#noar_seq#
 </select>
 
-</sqlMap>
+<delete id="deleteArticle" parameterClass="int">
+ delete from notice_article where noar_seq=#noar_seq#
+</delete>
+
+<update id="updateArticle" parameterClass="article">
+update notice_article
+set
+noar_subject=#noar_subject#, noar_content=#noar_content#, noar_id=#noar_id#
+where noar_seq=#noar_seq#
+</update>
+</sqlMap> 
 
 
 

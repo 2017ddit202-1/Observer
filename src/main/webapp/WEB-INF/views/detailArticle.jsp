@@ -14,17 +14,23 @@
 	아이디:<input type="text" name="noar_id" value="${articleVO.noar_id}"><br>
 	제목:<input type="text" name="noar_subject" value="${articleVO.noar_subject}"><br>
 	내용:<textarea rows="5" cols="30" name="noar_content" >${articleVO.noar_content}</textarea><br>
-	
+	 <input type="hidden" name="noar_seq" value="${articleVO.noar_seq}"> 
 
 	<button type="button" id="btnContactUs" onclick="go_articleWrite()">수정하기</button>
-	<button type="button" id="btnContactUs" onclick="history.go(-1);">삭제하기</button>
+	<button type="button" id="btnContactUs" onclick="go_articleDelete()">삭제하기</button>
 	</form>
 	
 </article>
 
 <script>
 function go_articleWrite(){
-	document.formm.action = "<%=request.getContextPath()%>/article/articleWrite";
+	document.formm.action = "<%=request.getContextPath()%>/article/articleUpdate";
     document.formm.submit();
+}
+function go_articleDelete(){
+	document.formm.action = "<%=request.getContextPath()%>/article/articleDelete";
+    document.formm.submit();
+    
+    
 }
 </script>
