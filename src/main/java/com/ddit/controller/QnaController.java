@@ -18,43 +18,36 @@ import com.ddit.dto.MemberVO;
 import com.ddit.dto.QnaVO;
 import com.ddit.service.QnaService;
 
-
 @Controller
 @RequestMapping("/qna")
 public class QnaController {
 	@Autowired
 	QnaService qnaService;
-	
-	
-	
-	
 
-	
-	
-	/*@RequestMapping(value="/qnaList", method=RequestMethod.GET)*/
+	/* @RequestMapping(value="/qnaList", method=RequestMethod.GET) */
 	@RequestMapping("/qnaList")
-	public String qnaList(/*@RequestParam("qseq") int qseq,*/
-			HttpSession session, Model model, HttpServletRequest request){
-		
+	public String qnaList(/* @RequestParam("qseq") int qseq, */
+	HttpSession session, Model model, HttpServletRequest request) {
+
 		String url = "qna/qnaList";
 		String key = "";
 		String tpage = request.getParameter("tpage");
 		if (request.getParameter("key") != null) {
 			key = request.getParameter("key");
 		}
-		
+
 		if (tpage == null) {
 			tpage = "1"; // ���� ������ (default 1)
 		} else if (tpage.equals("")) {
 			tpage = "1";
 		}
-		
-		String id =  (String) session.getAttribute("loginUser");
-		
-		ArrayList<QnaVO> qnaList=null;
+
+		String id = (String) session.getAttribute("loginUser");
+
+		ArrayList<QnaVO> qnaList = null;
 		String paging = null;
 		//
-		
+
 		try {
 			qnaList = qnaService.listqnalist(Integer.parseInt(tpage), key);
 			paging = qnaService.totalPage(Integer.parseInt(tpage), key);
@@ -63,54 +56,58 @@ public class QnaController {
 			e.printStackTrace();
 		}
 		int n = qnaList.size();
-		
+
 		model.addAttribute("qnaList", qnaList);
 		model.addAttribute("qnaListSize", n);
-		model.addAttribute("paging", paging); 
-		
+		model.addAttribute("paging", paging);
+
 		return url;
 	}
-	
-	//qna 글 쓰기
+
+	// qna 글 쓰기
 	@RequestMapping("/qnaWriteForm")
-	public String qnaWriteForm(HttpSession session, Model model
-			 , HttpServletRequest request){
-		
+	public String qnaWriteForm(HttpSession session, Model model,
+			HttpServletRequest request) {
+
 		String url = "/qna/qnaWriteForm";
 		String id = (String) session.getAttribute("loginUser");
 		return url;
 	}
-	
-	
+
 	@RequestMapping("/qnaWrite")
-	public String qnaWrite(HttpSession session, Model model, HttpServletRequest request, HttpServletResponse response){
-		String url="redirect:/qna/qnaList";
+	public String qnaWrite(HttpSession session, Model model,
+			HttpServletRequest request, HttpServletResponse response) {
+		String url = "redirect:/qna/qnaList";
 		try {
 			request.setCharacterEncoding("utf-8");
 		} catch (UnsupportedEncodingException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		
+
 		response.setCharacterEncoding("utf-8");
 		QnaVO qnaVO = new QnaVO();
-		qnaVO.setQna_subject(((String)request.getParameter("subject")));
-		qnaVO.setQna_content(((String)request.getParameter("content")));
-		qnaVO.setQna_id(((String)request.getParameter("id")));
+		qnaVO.setQna_subject(((String) request.getParameter("subject")));
+		qnaVO.setQna_content(((String) request.getParameter("content")));
+		qnaVO.setQna_id(((String) request.getParameter("id")));
 		System.out.println(qnaVO.getQna_subject());
 		System.out.println(qnaVO.getQna_content());
-		
+
 		try {
 			qnaService.insertQna(qnaVO);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			//아직 못함
+			// 아직 못함
 		}
+		return url;
+	}
+
+	@RequestMapping("/detailQna")
+	public String detailQna() {
+		String url = "/qna/detailQna";
 		
 		return url;
-		
 	}
-	
-	
+
 }
