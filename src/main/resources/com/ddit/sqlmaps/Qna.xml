@@ -17,7 +17,7 @@
    
    <insert id="insertqna" parameterClass="qna">
    	insert into qna(qseq, qna_subject, qna_content, qna_id)
-   		values(qna_seq.nextval, #qna_subject#, #qna_content#, #qna_id#)
+   		values(qseq.nextval, #qna_subject#, #qna_content#, #qna_id#)
    </insert>
    
    <select id="listAllQna" resultClass="qna">

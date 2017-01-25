@@ -49,8 +49,8 @@ public class QnaController {
 			tpage = "1";
 		}
 		
-		MemberVO memberVO = (MemberVO) session.getAttribute("loginUser");
-		System.out.println(memberVO.getMem_id());
+		String id =  (String) session.getAttribute("loginUser");
+		
 		ArrayList<QnaVO> qnaList=null;
 		String paging = null;
 		//
@@ -77,7 +77,7 @@ public class QnaController {
 			 , HttpServletRequest request){
 		
 		String url = "/qna/qnaWriteForm";
-		MemberVO memberVO = (MemberVO) session.getAttribute("loginUser");
+		String id = (String) session.getAttribute("loginUser");
 		return url;
 	}
 	

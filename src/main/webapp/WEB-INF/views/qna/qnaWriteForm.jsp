@@ -28,7 +28,7 @@
 				<legend>Q&A</legend>		
 			    <label>제목</label>
 			    <input type="text" name="subject"  size="64" ><br>
-			    <input type="text" name="id" value="${loginUser.mem_id }"  size="64" ><br>
+			    <input type="text" name="id" value="${loginUser }"  size="64" ><br>
 			    
 				<label>질문내용</label>
 			    <textarea rows="8" cols="65" name="content"></textarea><br>
