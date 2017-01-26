@@ -8,14 +8,44 @@
 <head>
 <meta charset="UTF-8">
 <title></title>
-
+	<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script>
 	function list_go(){
 		document.formm.action = "<%=request.getContextPath()%>" + "/qna/qnaList";
 		document.formm.submit();
 		
 	}
-
+	
+	
+	
+	   $(document).ready(function() {
+		      $('#forget').click(function() {
+		          $("#hiddenDiv").show();
+		         })
+			});
+	
+	   
+	   $(function(){
+		   
+		$('#btn').click(function(){
+		
+			   $.ajax({
+			       	url : "<%=request.getContextPath()%>/qna/qAnswer",
+			       	type : "post",
+			       	dataType:'text',
+			       	data : ({
+			       		content:$("textarea[name=email]").val()
+			       	}),
+			       	success:function(data){
+			       		alert('완료!!');
+			       	}
+			});
+	   });
+	   });
+	   	
+ 
+	
 </script>
 
 
@@ -39,27 +69,57 @@
     <table id="notice">
       <tr>
               <th>제목</th>
-              <td>${qnaVO.subject}</td>
-               
+              <td>${qnaVO.qna_subject}</td>
       </tr>
+      작성자 : ${qnaVO.qna_id}
       <tr>
         <th>등록일</th>
-        <td> <fmt:formatDate value="${qnaVO.indate}" type="date"/></td>
+        <td> <fmt:formatDate value="${qnaVO.qna_date}" type="date"/></td>
       </tr>
       <tr>
         <th>질문내용</th>
-        <td>${qnaVO.content} 
+        <td>${qnaVO.qna_content} 
       </tr>
+    
       <tr>
         <th>답변 내용</th>
-        <td>${qnaVO.reply}  
+        <td>답변내용입니다. </td> 
       </tr>
     </table>
+<!--  -->
+	<div class="container" id="hiddenDiv" style="display: none">
+         <form>
+            <div class="form-group">
+               <label for="email">답변내용:</label> 
+            <!--    <input type="textarea"
+                  class="form-control" id="email" placeholder="Enter answer">
+             -->
+             <textarea rows="10" cols="100" name="email" placeholder="Enter answer"></textarea>
+            </div>
+            <button type="submit" id="btn" class="btn btn-default btn-block" onclick="qAnswer_go()">
+               답변등록</button>
+         </form>
+      </div>
+<!--  -->
+
     <div class="clear"></div>
+    
      <div id="buttons" style="float:right">
-     	 <sec:authorize access="hasRole('ROLE_SUPER')">
-      <input type="button"  value="목록보기"     class="submit"  onclick="list_go()"> 
-       </sec:authorize>
+     <input type="button"  value="목록보기"   class="submit"  onclick="list_go()">
+      <c:choose>
+      <c:when test="${memberVO.mem_id == qnaVO.qna_id}"> 
+      <input type="button"  value="수정"   class="submit"  onclick="list_go()"> 
+      <input type="button"  value="삭제"   class="submit"  onclick="list_go()">
+      </c:when> 
+	  <c:when test="${loginUserVO.mem_group_lice eq qnaWriterVO.mem_group_lice}"> 
+     <sec:authorize access="hasRole('ROLE_ADMIN')"> 
+      <input type="button"  value="답변하기" id="forget" > 
+      </sec:authorize>
+    	</c:when>
+    </c:choose>
+      
+    
+       
       </div>
     </form>
 

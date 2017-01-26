@@ -12,6 +12,8 @@
 <body>
 <form id="formm" name="formm" method="get">
 
+
+<h1>안녕</h1>
 </body>
 
 <script>
@@ -20,6 +22,7 @@ window.onload = function(){
     document.formm.submit();
 }
 </script>
+
 
 
 </html>
