@@ -12,17 +12,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ViewResolver;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ddit.dto.MemberVO;
 import com.ddit.dto.QnaVO;
+import com.ddit.service.MemberServiceImpl;
 import com.ddit.service.QnaService;
 
 @Controller
 @RequestMapping("/qna")
 public class QnaController {
 	@Autowired
-	QnaService qnaService;
+	private QnaService qnaService;
+	
+	@Autowired
+	private MemberServiceImpl memberService;
 
 	/* @RequestMapping(value="/qnaList", method=RequestMethod.GET) */
 	@RequestMapping("/qnaList")
@@ -104,10 +109,57 @@ public class QnaController {
 	}
 
 	@RequestMapping("/detailQna")
-	public String detailQna() {
+	public String detailQna(HttpSession session,
+					HttpServletRequest request,
+				HttpServletResponse response, Model model) {
 		String url = "/qna/detailQna";
+		MemberVO loginUserVO = null;
+		QnaVO qnaVO = null;
+		MemberVO qnaWriterVO = null;
+		String qseq =request.getParameter("qna_qseq");
+		int qnaSeq = Integer.parseInt(qseq);
+		
+		try {
+			loginUserVO = memberService.selectMember(
+						(String)session.getAttribute("loginUser")	);
+			qnaVO = qnaService.getQna(qnaSeq);
+			qnaWriterVO = memberService.selectMember(qnaVO.getQna_id());
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+		
+		//로그인한 유저 계정 정보
+		model.addAttribute("loginUserVO", loginUserVO);
+		
+		//게시글번호에 해당되는 qna정보
+		model.addAttribute("qnaVO", qnaVO);
+		
+		//qna작성자의 계정 정보
+		model.addAttribute("qnaWriterVO", qnaWriterVO);
+		
 		
 		return url;
+	}
+	
+	/* @RequestMapping(value="/qnaList", method=RequestMethod.GET) */
+	@RequestMapping(value="/qAnswer", method=RequestMethod.POST)
+	@ResponseBody
+	public void qAnswer(HttpSession session, Model model,
+			HttpServletRequest request, HttpServletResponse response){
+			try {
+				request.setCharacterEncoding("utf-8");
+			} catch (UnsupportedEncodingException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		String content = request.getParameter("content");
+		String loginUser = (String) session.getAttribute("loginUser");
+		
+		
+		System.out.println(loginUser);
+		System.out.println(content);
+		
 	}
 
 }
