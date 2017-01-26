@@ -162,6 +162,7 @@ public class QnaController {
             // TODO Auto-generated catch block
             e.printStackTrace();
          }
+         
       String content = request.getParameter("content");
       String seqNum = request.getParameter("seqNum");
       System.out.println(Integer.parseInt(seqNum));

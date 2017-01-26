@@ -40,7 +40,7 @@
       </tr>
       <tr>
         <th>질문내용</th>
-        <td>${qnaVO.qna_content} 
+        <td>${qnaVO.qna_content} .${qnaVO.qna_id}, ${loginUserVO.mem_id}
       </tr>
     <!--  -->
       <tr>
@@ -48,7 +48,7 @@
         <td><div id="sss">  </div></td>
       </tr>
       
-      <!--  -->
+      <!--  --> 
     </table>
     
 <!--  -->
@@ -72,7 +72,7 @@
      <div id="buttons" style="float:right">
      <input type="button"  value="목록보기"   class="submit"  onclick="list_go()">
       <c:choose>
-      <c:when test="${memberVO.mem_id == qnaVO.qna_id}"> 
+      <c:when test="${loginUserVO.mem_id eq qnaVO.qna_id}"> 
       <input type="button"  value="수정"   class="submit"  onclick="list_go()"> 
       <input type="button"  value="삭제"   class="submit"  onclick="list_go()">
       </c:when> 
