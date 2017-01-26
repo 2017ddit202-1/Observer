@@ -75,6 +75,9 @@ public class NoticeArticleController {
 		model.addAttribute("articleList", articleList);
 		model.addAttribute("qnaListSize", n);
 		model.addAttribute("paging", paging);
+		
+		session.getAttribute("loginUser");
+
 
 		return url;
 

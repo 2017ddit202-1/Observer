@@ -41,7 +41,7 @@
 			<c:forEach items="${articleList}" var="articleVO">
 				<tr>
 						<th>${articleVO.noar_seq}</th>
-						<th>${articleVO.noar_id}</th>
+						<th>${loginUser}</th> <!-- //////////articleVO.noar_id -->
 						<th><a href="detailArticle?noar_seq=${articleVO.noar_seq}">${articleVO.noar_subject}</a></th>
 						<th>${articleVO.noar_content}</th>
 						<th>${articleVO.noar_date}</th>
@@ -55,16 +55,16 @@
 		</c:choose>
 		<!--  -->
 		</table>
-		<input type="submit" value="질문하기" onclick="writeForm_go()" />
+	
 
 
 	</form>
 
 
-<%-- <hr>
+
 	<sec:authorize access="hasRole('ROLE_SUPER')">
 		<button type="button" onclick="location.href='articleWrite' ">글쓰기</button>
-	</sec:authorize> --%>
+	</sec:authorize> 
 
 
 

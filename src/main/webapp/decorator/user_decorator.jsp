@@ -114,7 +114,7 @@
                     <!-- <ul class="dropdown-menu dropdown-user"> -->
                         <!-- <li class="divider"></li> -->
                         <sec:authorize access="isAuthenticated()">
-                        	<span>${loginUser }님 어서오세요.</span>
+                        	<span>${sessionScope.loginUser }님 어서오세요.</span>
                         </sec:authorize>
                         
                         

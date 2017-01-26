@@ -3,6 +3,7 @@ package com.ddit.controller;
 import java.security.Provider.Service;
 import java.sql.SQLException;
 
+import javax.mail.Session;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -32,16 +33,28 @@ public class UserController {
 	public String detail() {
 
 		String url = "mypage";
+		
 
 		return url;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
 	}
 	
 	//회원정보 수정
 	@RequestMapping(value="/update", method=RequestMethod.GET)
-	public String update(HttpServletRequest request,
-			HttpServletResponse response){
-		
+	public String update1(HttpServletRequest request,
+			HttpServletResponse response, HttpSession session, Model model){
+
 		String url="update";
+
+		String mem_id=(String)session.getAttribute("loginUser");
+		MemberVO vo = null;
+		try {
+			vo=memberService.selectMember(mem_id);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		model.addAttribute("loginUser",vo);
 		
 		return url;
 	}
