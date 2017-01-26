@@ -13,11 +13,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ddit.dto.MemberVO;
+import com.ddit.dto.QanswerVO;
 import com.ddit.dto.QnaVO;
 import com.ddit.service.MemberServiceImpl;
+import com.ddit.service.QanswerService;
 import com.ddit.service.QnaService;
 
 @Controller
@@ -28,6 +31,9 @@ public class QnaController {
 	
 	@Autowired
 	private MemberServiceImpl memberService;
+	
+	@Autowired
+	private QanswerService qanswerService;
 
 	/* @RequestMapping(value="/qnaList", method=RequestMethod.GET) */
 	@RequestMapping("/qnaList")
@@ -65,6 +71,7 @@ public class QnaController {
 		model.addAttribute("qnaList", qnaList);
 		model.addAttribute("qnaListSize", n);
 		model.addAttribute("paging", paging);
+		System.out.println(paging+"!!!!!!!!!!!!!!!!!!!!!!!!!1");
 
 		return url;
 	}
@@ -143,9 +150,11 @@ public class QnaController {
 	}
 	
 	/* @RequestMapping(value="/qnaList", method=RequestMethod.GET) */
+	/*@RequestParam(value="qna_qseq")String qseq,*/
+/*@RequestParam(value="qna_qseq", defaultValue="1")int qna_qseq*/
 	@RequestMapping(value="/qAnswer", method=RequestMethod.POST)
 	@ResponseBody
-	public void qAnswer(HttpSession session, Model model,
+	public String qAnswer(HttpSession session, Model model,
 			HttpServletRequest request, HttpServletResponse response){
 			try {
 				request.setCharacterEncoding("utf-8");
@@ -154,12 +163,31 @@ public class QnaController {
 				e.printStackTrace();
 			}
 		String content = request.getParameter("content");
+		String seqNum = request.getParameter("seqNum");
+		System.out.println(Integer.parseInt(seqNum));
 		String loginUser = (String) session.getAttribute("loginUser");
 		
+		//게시글번호 유지 해야됨
+		QanswerVO qanswerVO = new QanswerVO();
+		
+		qanswerVO.setQans_id(loginUser);
+		qanswerVO.setQans_content(content);
+		qanswerVO.setQans_qseq(Integer.parseInt(seqNum));
+		
+		try {
+			qanswerService.insertQanswer(qanswerVO);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		System.out.println(loginUser);
 		System.out.println(content);
 		
-	}
+		
+		
+		return content;
+	} 
+
 
 }
