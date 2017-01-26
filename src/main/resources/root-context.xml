@@ -24,6 +24,12 @@
 		<property name="articleDAO" ref="articleDAO" />
 	</bean>
 
+	<bean id="qanswerDAO" class="com.ddit.ibatis.QanswerDAO_iBatis">
+		<property name="client" ref="SqlMapClient" />
+	</bean>
+	<bean id="qansertService" class="com.ddit.service.QanswerServiceImpl">
+		<property name="qanswerDAO" ref="qanswerDAO" />
+	</bean>
 
 
 

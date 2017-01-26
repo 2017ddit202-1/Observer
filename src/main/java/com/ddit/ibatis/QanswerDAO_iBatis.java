@@ -5,12 +5,19 @@ import java.util.ArrayList;
 
 import com.ddit.dao.QanswerDAO;
 import com.ddit.dto.QanswerVO;
+import com.ibatis.sqlmap.client.SqlMapClient;
 
 public class QanswerDAO_iBatis implements QanswerDAO{
 
+	private SqlMapClient client;
+	public void setClient(SqlMapClient client) {
+		this.client = client;
+	}
+	
+	
 	@Override
 	public int insertQanswer(QanswerVO QanswerVO) throws SQLException {
-		// TODO Auto-generated method stub
+		client.insert("insertqans", QanswerVO);
 		return 0;
 	}
 

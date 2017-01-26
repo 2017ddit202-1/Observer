@@ -12,7 +12,7 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script>
 	function list_go(){
-		document.formm.action = "<%=request.getContextPath()%>" + "/qna/qnaList";
+		document.formm.action = "<%=request.getContextPath()%>" + "/qna/qnaList?qna_seq="+"${qnaVO.qseq}";
 		document.formm.submit();
 		
 	}
@@ -24,7 +24,7 @@
 		          $("#hiddenDiv").show();
 		         })
 			});
-	
+	///////////////////////////////////////
 	   
 	   $(function(){
 		   
@@ -35,10 +35,15 @@
 			       	type : "post",
 			       	dataType:'text',
 			       	data : ({
-			       		content:$("textarea[name=email]").val()
+			       		content:$("textarea[name=email]").val(),
+			       		seqNum:${param.qna_qseq}
 			       	}),
 			       	success:function(data){
 			       		alert('완료!!');
+			       		alert(data);
+			       		alert('${param.qna_qseq}');
+			       		document.sss.value=data;
+			       		
 			       	}
 			});
 	   });
@@ -62,7 +67,6 @@
 </head>
 <body>
 <h1>detail page</h1>
-	
  <h2> 1:1 고객 게시판 </h2>
       <h3> 고객님의 질문에 대해서 운영자가 1:1 답변을 드립니다.</h3>    
     <form name="formm" method="post">
@@ -83,7 +87,7 @@
     
       <tr>
         <th>답변 내용</th>
-        <td>답변내용입니다. </td> 
+        <td name="sss"> </td> 
       </tr>
     </table>
 <!--  -->
