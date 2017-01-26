@@ -13,7 +13,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ddit.dto.MemberVO;
@@ -190,5 +189,29 @@ public class QnaController {
       return content;
    } 
 
+   //////////////////////////
+   
+   @RequestMapping("/qnaUpdate")
+   public String qnaUpdate(HttpSession session, HttpServletRequest request, HttpServletResponse response){
+	   String url = "qna/qnaUpdate";
+	   	System.out.println("글수정을 위한 컨트롤러");
+	   
+	   return url;
+   }
+  
+   @RequestMapping("/qnaDelete")
+   public String qnaDelete(HttpSession session, HttpServletRequest request, HttpServletResponse response){
+	   String url = "qna/qnaDelete";
+	   	System.out.println("글삭제를 위한 컨트롤러");
+	   
+	   return url;
+   }
+  
+   
+   
+   
+   
+   
+   
 
 }

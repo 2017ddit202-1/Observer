@@ -73,8 +73,8 @@
      <input type="button"  value="목록보기"   class="submit"  onclick="list_go()">
       <c:choose>
       <c:when test="${loginUserVO.mem_id eq qnaVO.qna_id}"> 
-      <input type="button"  value="수정"   class="submit"  onclick="list_go()"> 
-      <input type="button"  value="삭제"   class="submit"  onclick="list_go()">
+      <input type="button"  value="수정"   class="submit"  onclick="update_go()"> 
+      <input type="button"  value="삭제"   class="submit"  onclick="delete_go()">
       </c:when> 
 	  <c:when test="${loginUserVO.mem_group_lice eq qnaWriterVO.mem_group_lice}"> 
      <sec:authorize access="hasRole('ROLE_ADMIN')"> 
@@ -93,6 +93,17 @@
 		document.formm.submit();
 		
 	}
+	
+	function update_go(){
+		document.formm.action = "<%=request.getContextPath()%>" + "/qna/qnaUpdate?qna_seq="+"${qnaVO.qseq}";
+		document.formm.submit();
+	}
+	
+	function delete_go(){
+		document.formm.action = "<%=request.getContextPath()%>" + "/qna/qnaDelete?qna_seq="+"${qnaVO.qseq}";
+		document.formm.submit();
+	}
+	
 	
 	
 	
