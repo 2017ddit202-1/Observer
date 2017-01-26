@@ -32,4 +32,11 @@
       select * from member where mem_id=#mem_id#
    </select>
    
+   	<insert id="positionRole" parameterClass="str">
+		insert into
+		position_list(posl_id,posl_pos)
+		values(#posl_id#,'ROLE_USER')
+	</insert>
+   
+   
 </sqlMap>  

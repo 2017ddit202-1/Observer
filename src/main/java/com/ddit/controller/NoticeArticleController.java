@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.ddit.dto.Notice_ArticleVO;
+import com.ddit.dto.QnaVO;
 import com.ddit.service.Notice_ArticleService;
 import com.ddit.service.QnaService;
 
@@ -31,16 +32,49 @@ public class NoticeArticleController {
 	public String articleView(HttpServletRequest request,
 			HttpServletResponse response,HttpSession session, Model model) {
 		String url = "articleView";
+/////////////////페이징시작/////////////////////////
+		String key="";
+		String tpage = request.getParameter("tpage");
+		if(request.getParameter("key") != null){
+			key = request.getParameter("key");
+		}
+		if (tpage == null) {
+			tpage = "1"; // ���� ������ (default 1)
+		} else if (tpage.equals("")) {
+			tpage = "1";
+		}
+		String id = (String) session.getAttribute("loginUser");
 
 		ArrayList<Notice_ArticleVO> articleList = null;
+		String paging = null;
+		//
+		
+		
+		
+		//////////////////////////////////////////////////
+
+		
 		try {
-			articleList = articleService.listAllArticle();
+			/*articleList = articleService.listAllArticle();*/
+			articleList = articleService.listArticlelist(Integer.parseInt(tpage),key);
+			paging = articleService.totalPage(Integer.parseInt(tpage),key);
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		int n = articleList.size();
 		/*session.setAttribute("articleList", articleList);*/
-		request.setAttribute("articleList", articleList);
+		/*request.setAttribute("articleList", articleList);*/
+
+		System.out.println(paging+"&&@@");
+		System.out.println(n);
+		System.out.println(key);
+		System.out.println(tpage);
+		
+		model.addAttribute("articleList", articleList);
+		model.addAttribute("qnaListSize", n);
+		model.addAttribute("paging", paging);
 
 		return url;
 

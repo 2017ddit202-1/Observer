@@ -30,7 +30,8 @@ public class QnaController {
 	HttpSession session, Model model, HttpServletRequest request) {
 
 		String url = "qna/qnaList";
-		String key = "";
+		/////////////////페이징시작/////////////////////////
+		String key = ""; //id
 		String tpage = request.getParameter("tpage");
 		if (request.getParameter("key") != null) {
 			key = request.getParameter("key");
@@ -54,13 +55,13 @@ public class QnaController {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		} 
 		int n = qnaList.size();
 
 		model.addAttribute("qnaList", qnaList);
 		model.addAttribute("qnaListSize", n);
-		model.addAttribute("paging", paging);
-
+		model.addAttribute("pgaing", paging);
+		// ///페이징끝
 		return url;
 	}
 
@@ -106,7 +107,7 @@ public class QnaController {
 	@RequestMapping("/detailQna")
 	public String detailQna() {
 		String url = "/qna/detailQna";
-		
+
 		return url;
 	}
 

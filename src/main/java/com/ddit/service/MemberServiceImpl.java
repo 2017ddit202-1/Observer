@@ -45,6 +45,12 @@ public class MemberServiceImpl implements MemberService{
 		memberIbatis.deleteuseMember(memberVO);
 		
 	}
+
+	@Override
+	public void positionRole(String userid) throws SQLException {
+		memberIbatis.positionRole(userid);
+		
+	}
 	
 	
 

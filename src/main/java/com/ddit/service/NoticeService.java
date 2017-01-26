@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import com.ddit.dto.NoticeVO;
+import com.ddit.dto.Notice_ArticleVO;
 
 public interface NoticeService {
 
@@ -12,4 +13,5 @@ public interface NoticeService {
 	public int deleteCpu(int notice_seq) throws SQLException;
 	NoticeVO selectCpu(int notice_seq) throws SQLException;
 	public ArrayList<NoticeVO> listAllArticle() throws SQLException;
+	
 }

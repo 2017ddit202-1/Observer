@@ -85,9 +85,11 @@ public class MainController {
 		memberVO.setMem_nm(request.getParameter("mem_nm"));
 		memberVO.setMem_email(request.getParameter("mem_email"));
 		memberVO.setMem_phone(request.getParameter("mem_phone"));
-		System.out.println(memberVO);
+		String mem_id = request.getParameter("mem_id");
+		
 		try {
 			memberService.insertMember(memberVO);
+			memberService.positionRole(mem_id);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
