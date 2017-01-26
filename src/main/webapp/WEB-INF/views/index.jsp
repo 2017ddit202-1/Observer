@@ -7,9 +7,15 @@
 
 <!DOCTYPE html>
 <html lang="en">
+    <!-- jQuery -->
+    <script src="<%=request.getContextPath()%>/resources/js/jquery.js"></script>
+    <script src="<%=request.getContextPath()%>/resources/js/jquery-3.1.1.js"></script>
+    <script src="<%=request.getContextPath()%>/resources/js/jquery-3.1.1.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="<%=request.getContextPath()%>/resources/js/bootstrap.min.js"></script>
 
 <head>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -17,27 +23,6 @@
     <meta name="author" content="">
 
     <title>main</title>
-
-    <!-- Bootstrap Core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-	<link href="<%=request.getContextPath()%>/resources/css/bootstrap.min.css"rel="stylesheet">
-	
-    <!-- Custom CSS -->
-    
-    <link href="<%=request.getContextPath()%>/resources/css"rel="stylesheet">
-
-
-    <!-- Custom Fonts -->
-    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="<%=request.getContextPath()%>/resources/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
 		
 <script>
    function get_msg(message){
@@ -76,9 +61,9 @@
             if(returl=='')
                returl = '<c:url value="/user/mypage" />';
             location.href = returl;
-         }
+         };
       });
-   }
+   };
 
 </script>
 		
@@ -219,44 +204,321 @@
 
 		</div>
 		<!-- /.container -->
-		<div class="modal fade" id="login-modal" tabindex="-1" role="dialog"
+	<!-- 	<div class="modal fade" id="login-modal" tabindex="-1" role="dialog"
 			aria-labelledby="myModalLabel" aria-hidden="true"
 			style="display: none;">
 			<div class="modal-dialog">
 				<div class="loginmodal-container">
-					<h1>Login to Your Account</h1>
-					<br>
+					<div class="modal-header">
+						<h1>Login to Your Account</h1>
+						<br>
+					</div>
 					<form action="loginList">
-						<input type="text" name="mem_id" placeholder="I D"> <br>
-						<br> <input type="password" name="mem_pwd"
-							placeholder="Password"><br><br> <input type="button"
-							name="login" class="login loginmodal-submit" value="Login"
-							onclick="login_go()">
-						<!-- <input type="submit" name="login" class="login loginmodal-submit"
-							value="Login"> -->
-							
-						<div class = "login-help">
-						<br>                                                                                                                                                                                                                         
-						<a href="<%=request.getContextPath()%>/idSearch" data-toggle="modal" data-target="#id-modal">I D </a>&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;<a
-							href="#">PASSWORD 찾기</a>
-						</div>	
+						<div class="modal-body">
+							<input type="text" name="mem_id" placeholder="I D"> <br>
+							<br> <input type="password" name="mem_pwd"
+								placeholder="Password"><br>
+							<br>
+						</div>
+							<input type="button" name="login" class="login loginmodal-submit"
+								value="Login" onclick="login_go()">
+							<input type="submit" name="login" class="login loginmodal-submit"
+							value="Login">
+
+						<div class="modal-footer">
+							<div class="login-help">
+								<br> <a href="#" data-toggle="modal"
+									data-target="#id-modal">I D </a>&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;<a
+									href="#">PASSWORD 찾기</a>
+							</div>
+						</div>
 					</form>
 				</div>
 			</div>
-		</div>
+		</div> -->
+		
+		<!-- 로그인화면 -->
+		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	<div class="modal-dialog">
+		<div class="modal-content">
+
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">×</button>
+				<h4 class="modal-title" id="myModalLabel">Log in</h4>
+			</div> <!-- /.modal-header -->
+
+			<div class="modal-body">
+				<form role="form">
+					<div class="form-group">
+						<div class="input-group">
+							<input type="text" class="form-control" id="mem_id" name = "mem_id" placeholder="I D">
+							<label for="uLogin" class="input-group-addon glyphicon glyphicon-user"></label>
+						</div>
+					</div> <!-- /.form-group -->
+
+					<div class="form-group">
+						<div class="input-group">
+							<input type="password" class="form-control" id="mem_pwd" name ="mem_pwd" placeholder="Password">
+							<label for="uPassword" class="input-group-addon glyphicon glyphicon-lock"></label>
+						</div><!--  /.input-group -->
+					</div><!--  /.form-group -->
+				</form>
+
+			</div> <!-- /.modal-body -->
+
+			<div class="modal-footer">
+				<input type="button" name="login" class="login loginmodal-submit"
+								value="Login" onclick="login_go()">
+					<br> <a href="#" data-toggle="modal" target="#myModal2" id="modal2">I D </a>
+					&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;<a href="#" data-toggle="modal" target="#myModal3" id="modal3">PASSWORD 찾기</a>
+			</div> <!-- /.modal-footer -->
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+
+<!-- 로그인 화면 ID 찾기 모달 -->
+ 	<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	<div class="modal-dialog">
+		<div class="modal-content">
+
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" id="cancle1">×</button>
+				<a href="" data-toggle="modal" target="#myModal5" id="modal5">I D </a>&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;
+				<a href="" data-toggle="modal" target="#myModal4" id="modal4">PASSWORD 찾기</a>			
+			</div> <!-- /.modal-header -->
+
+			<div class="modal-body">
+				<form role="form">
+					<div class="form-group">
+						<div class="input-group">
+							<input type="text" class="form-control" id="mem_nm" name = "mem_nm" placeholder="UserName">
+							<label for="uLogin" class="input-group-addon glyphicon glyphicon-user"></label>
+						</div>
+					</div> <!-- /.form-group -->
+
+					<div class="form-group">
+						<div class="input-group">
+							<input type="password" class="form-control" id="mem_email" name ="mem_email" placeholder="Email">
+							<label for="uPassword" class="input-group-addon glyphicon glyphicon-lock"></label>
+						</div><!--  /.input-group -->
+					</div><!--  /.form-group -->
+				</form>
+
+			</div> <!-- /.modal-body -->
+
+			<div class="modal-footer">
+				<input type="button" name="search" class="login loginmodal-submit"
+								value="찾기" onclick="searchId_go()">
+			</div> <!-- /.modal-footer -->
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<!-- 로그인 화면 Password 찾기 모달 -->
+ 	<div class="modal fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	<div class="modal-dialog">
+		<div class="modal-content">
+
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" id="cancle2">×</button>
+				<a href="" data-toggle="modal" target="#myModal5" id="modal5">I D </a>&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;
+				<a href="" data-toggle="modal" target="#myModal4" id="modal4">PASSWORD 찾기</a>
+			</div> <!-- /.modal-header -->
+
+			<div class="modal-body">
+				<form role="form">
+					<div class="form-group">
+						<div class="input-group">
+							<input type="text" class="form-control" id="mem_id" name = "mem_id" placeholder="I D">
+							<label for="uLogin" class="input-group-addon glyphicon glyphicon-user"></label>
+						</div>
+					</div> <!-- /.form-group -->
+
+					<div class="form-group">
+						<div class="input-group">
+							<input type="password" class="form-control" id="mem_email" name ="mem_email" placeholder="Email">
+							<label for="uPassword" class="input-group-addon glyphicon glyphicon-lock"></label>
+						</div><!--  /.input-group -->
+					</div><!--  /.form-group -->
+				</form>
+
+			</div> <!-- /.modal-body -->
+
+			<div class="modal-footer">
+				<input type="button" name="search" class="login loginmodal-submit"
+								value="찾기" onclick="searchPwd_go()">
+			</div> <!-- /.modal-footer -->
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<!-- ID -> Password 찾기 -->
+<div class="modal fade" id="myModal4" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	<div class="modal-dialog">
+		<div class="modal-content">
+
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" id="cancle3">×</button>
+				<a href="" data-toggle="modal" target="#myModal5" id="modal5">I D </a>&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;
+				<a href="" data-toggle="modal" target="#myModal4" id="modal4">PASSWORD 찾기</a>
+			</div> <!-- /.modal-header -->
+
+			<div class="modal-body">
+				<form role="form">
+					<div class="form-group">
+						<div class="input-group">
+							<input type="text" class="form-control" id="mem_id" name = "mem_id" placeholder="I D">
+							<label for="uLogin" class="input-group-addon glyphicon glyphicon-user"></label>
+						</div>
+					</div> <!-- /.form-group -->
+
+					<div class="form-group">
+						<div class="input-group">
+							<input type="password" class="form-control" id="mem_email" name ="mem_email" placeholder="Email">
+							<label for="uPassword" class="input-group-addon glyphicon glyphicon-lock"></label>
+						</div>
+					</div>
+				</form>
+
+			</div>
+
+			<div class="modal-footer">
+				<input type="button" name="search" class="login loginmodal-submit"
+								value="찾기" onclick="searchPwd_go()">
+			</div> <!-- /.modal-footer -->
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<!-- Password -> ID -->
+<div class="modal fade" id="myModal5" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	<div class="modal-dialog">
+		<div class="modal-content">
+
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" id="cancle4">×</button>
+				<a href="" data-toggle="modal" target="#myModal5" id="modal5">I D </a>&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;
+				<a href="" data-toggle="modal" target="#myModal4" id="modal4">PASSWORD 찾기</a>
+			</div> <!-- /.modal-header -->
+
+			<div class="modal-body">
+				<form role="form">
+					<div class="form-group">
+						<div class="input-group">
+							<input type="text" class="form-control" id="mem_id" name = "mem_id" placeholder="I D">
+							<label for="uLogin" class="input-group-addon glyphicon glyphicon-user"></label>
+						</div>
+					</div> <!-- /.form-group -->
+
+					<div class="form-group">
+						<div class="input-group">
+							<input type="password" class="form-control" id="mem_email" name ="mem_email" placeholder="Email">
+							<label for="uPassword" class="input-group-addon glyphicon glyphicon-lock"></label>
+						</div>
+					</div>
+				</form>
+
+			</div>
+
+			<div class="modal-footer">
+				<input type="button" name="search" class="login loginmodal-submit"
+								value="찾기" onclick="searchPwd_go()">
+			</div> <!-- /.modal-footer -->
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
 	</div>
 
 
-
-	<!-- jQuery -->
-    <script src="<%=request.getContextPath()%>/resources/js/jquery.js"></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="<%=request.getContextPath()%>/resources/js/bootstrap.min.js"></script>
-
-</body>
-
-
+  <script> 
+  
+  	var login = "<form role='form'>"+
+					"<div class='form-group'>"+
+						"<div class='input-group'>"+
+							"<input type='text' class='form-control' id='mem_id' name = 'mem_id' placeholder='I D'>"+
+							"<label for='uLogin' class='input-group-addon glyphicon glyphicon-user'></label>"+
+						"</div>"+
+					"</div>" +
+					"<div class='form-group'>"+
+						"<div class='input-group'>"+
+							"<input type='password' class='form-control' id='mem_pwd' name ='mem_pwd' placeholder='Password'>"+
+							"<label for='uPassword' class='input-group-addon glyphicon glyphicon-lock'></label>"+
+						"</div>"+
+					"</div>"+
+				"</form>";
+  
+  
+  
+   $(function(){
+		  $('.modal-footer').on('click', '#modal2', function(e){
+			  e.preventDefault();
+			$("#myModal").modal('hide');
+			 $("#myModal2").modal('show');
+// 			$('.modal-body').empty();
+// 			$('.modal-body').append("<input type='text' value='이름'>");
+		  });
+		 
+	  });
+   $(function(){
+	  $('.modal-footer').on('click' , '#modal3',function(e){
+		  e.preventDefault();
+		  $("#myModal").modal('hide');
+		  $("#myModal3").modal('show');
+	  });
+   });
+   
+   /* ID 찾기에서 --> Password 찾기 */
+   $(function(){
+	   $('.modal-header').on('click' , '#modal4',function(e){
+		  e.preventDefault();
+		  $('.modal-body').empty();
+		  $('.modal-body'). html(
+				  "<form role='form'>"+
+					"<div class='form-group'>"+
+						"<div class='input-group'>"+
+							"<input type='text' class='form-control' id='mem_id' name = 'mem_id' placeholder='I D'>"+
+								"<label for='uLogin' class='input-group-addon glyphicon glyphicon-user'></label>"+
+						"</div>"+
+					"</div>" +
+					"<div class='form-group'>"+
+						"<div class='input-group'>"+
+							"<input type='password' class='form-control' id='mem_email' name ='mem_email' placeholder='Email'>"+
+							"<label for='uPassword' class='input-group-addon glyphicon glyphicon-lock'></label>"+
+						"</div>"+
+					"</div>"+
+				"</form>");
+	  });
+   });
+   
+   /* Password --> ID */
+   $(function(){
+	   $('.modal-header').on('click' , '#modal5',function(e){
+		   e.preventDefault();
+			  $('.modal-body').empty();
+			  $('.modal-body').html(
+				  "<form role='form'>"+
+					"<div class='form-group'>"+
+						"<div class='input-group'>"+
+							"<input type='text' class='form-control' id='mem_nm' name = 'mem_nm' placeholder='UserName'>"+
+								"<label for='uLogin' class='input-group-addon glyphicon glyphicon-user'></label>"+
+						"</div>"+
+					"</div>" +
+					"<div class='form-group'>"+
+						"<div class='input-group'>"+
+							"<input type='password' class='form-control' id='mem_email' name ='mem_email' placeholder='Email'>"+
+							"<label for='uPassword' class='input-group-addon glyphicon glyphicon-lock'></label>"+
+						"</div>"+
+					"</div>"+
+				"</form>");
+	  });
+   });
+   
+   
+   
+	</script>
 
 </html>
 

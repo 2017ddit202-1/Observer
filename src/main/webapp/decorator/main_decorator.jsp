@@ -29,11 +29,6 @@
 
 <!-- CSS -->
 <link href="<%=request.getContextPath()%>/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-  <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
 
     <title>Landing Page - Start Bootstrap Theme</title>
 
@@ -48,7 +43,7 @@
 
 
     <!-- Custom Fonts -->
-    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="<%=request.getContextPath()%>/resources/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="<%=request.getContextPath()%>/resources/font-awesome/css/font-awesome.min.css"rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
 
@@ -79,28 +74,27 @@
                     <li>
                         <a href="#about">About</a>
                     </li>
-                    
-                    <li>
-                        <a href="" data-toggle="modal" data-target="#login-modal">Login</a>
+
+				 <li>
+                        <a href="" data-toggle="modal" data-target="#myModal" id="modal1">Login</a>
                     </li>
-                    <li>
-                        <a href="<%=request.getContextPath() %>/join">Sign Up</a>
-                    </li>
-                </ul>
+				<!-- <li>
+					<button class="btn btn-primary" data-toggle="modal"
+						data-target="#myModal">Log in</button>
+				</li> -->
+				<li><a href="<%=request.getContextPath()%>/join">Sign Up</a></li>
+			</ul>
             </div>
             <!-- /.navbar-collapse -->
         </div>
         <!-- /.container -->
     </nav>
 
-
-
-	
     <!-- jQuery -->
-    <script src="js/jquery.js"></script>
+    <script src="<%=request.getContextPath()%>/resources/js/jquery.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
+    <script src="<%=request.getContextPath()%>/resources/js/bootstrap.min.js"></script>
 
 
 
@@ -118,5 +112,28 @@
 		form.submit();
 	}
 </script> --%>
+
+<script>
+	
+	
+$('#modal1').click(function(e){
+	  $('.modal-body').html(	
+			'<form role="form">'+
+			'<div class="form-group">'+
+				'<div class="input-group">'+
+					'<input type="text" class="form-control" id="mem_id" name = "mem_id" placeholder="I D">'+
+					'<label for="uLogin" class="input-group-addon glyphicon glyphicon-user"></label>'+
+				'</div>'+
+			'</div> <!-- /.form-group -->'+
+			
+			'<div class="form-group">'+
+				'<div class="input-group">'+
+				'<input type="password" class="form-control" id="mem_pwd" name ="mem_pwd" placeholder="Password">'+
+					'<label for="uPassword" class="input-group-addon glyphicon glyphicon-lock"></label>'+
+				'</div><!--  /.input-group -->'+
+			'</div><!--  /.form-group -->'+
+			'</form>');
+});
+</script>
 
 </html>
