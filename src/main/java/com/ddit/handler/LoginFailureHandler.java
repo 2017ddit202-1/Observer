@@ -56,7 +56,6 @@ public class LoginFailureHandler extends SimpleUrlAuthenticationFailureHandler {
 			String data = StringUtils.join(new String[] { " { \"response\" : {",
 					" \"error\" : ", error, ",",
 					" \"message\" : \"", message, "\" ", "} } " });
-			
 			PrintWriter out = response.getWriter();
 			out.print(data);
 			out.flush();

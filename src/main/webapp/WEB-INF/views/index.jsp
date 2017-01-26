@@ -26,20 +26,12 @@
 		
 <script>
    function get_msg(message){
-	  alert('라라라라라라안되');
       var move = '70px';
-      jQuery('#message').text(message);
-      jQuery('#message').animate({
-         top : '+=' + move
-      }, 'slow',function(){
-         jQuery('#message').delay(1000).animate({
-            top : '-=' + move
-         }, 'slow');
-      });
+      jQuery('#test').text(message);
    }
    <c:if test="${error =='true'}">
    jQuery(function(){
-      get_msg("로그인 실패하였습니다.")
+      get_msg("로그인 실패하였습니다. 정확히 입력해주세요.")
    });
    </c:if>
    function login_go(){
@@ -260,16 +252,17 @@
 						<div class="input-group">
 							<input type="password" class="form-control" id="mem_pwd" name ="mem_pwd" placeholder="Password">
 							<label for="uPassword" class="input-group-addon glyphicon glyphicon-lock"></label>
+							
 						</div><!--  /.input-group -->
 					</div><!--  /.form-group -->
 				</form>
-
 			</div> <!-- /.modal-body -->
-
-			<div class="modal-footer">
+				<div id="test"></div> 
+			<div class="modal-footer"><br><br>
 				<input type="button" name="login" class="login loginmodal-submit"
 								value="Login" onclick="login_go()">
-					<br> <a href="#" data-toggle="modal" target="#myModal2" id="modal2">I D </a>
+					<br>
+					<a href="" data-toggle="modal" target="#myModal2" id="modal2">I D </a>
 					&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;<a href="#" data-toggle="modal" target="#myModal3" id="modal3">PASSWORD 찾기</a>
 			</div> <!-- /.modal-footer -->
 		</div><!-- /.modal-content -->
