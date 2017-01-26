@@ -10,48 +10,6 @@
 <title></title>
 	<script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<script>
-	function list_go(){
-		document.formm.action = "<%=request.getContextPath()%>" + "/qna/qnaList?qna_seq="+"${qnaVO.qseq}";
-		document.formm.submit();
-		
-	}
-	
-	
-	
-	   $(document).ready(function() {
-		      $('#forget').click(function() {
-		          $("#hiddenDiv").show();
-		         })
-			});
-	///////////////////////////////////////
-	   
-	   $(function(){
-		   
-		$('#btn').click(function(){
-		
-			   $.ajax({
-			       	url : "<%=request.getContextPath()%>/qna/qAnswer",
-			       	type : "post",
-			       	dataType:'text',
-			       	data : ({
-			       		content:$("textarea[name=email]").val(),
-			       		seqNum:${param.qna_qseq}
-			       	}),
-			       	success:function(data){
-			       		alert('완료!!');
-			       		alert(data);
-			       		alert('${param.qna_qseq}');
-			       		document.sss.value=data;
-			       		
-			       	}
-			});
-	   });
-	   });
-	   	
- 
-	
-</script>
 
 
 <%-- 					 <sec:authorize access="hasRole('ROLE_SUPER')">
@@ -84,12 +42,15 @@
         <th>질문내용</th>
         <td>${qnaVO.qna_content} 
       </tr>
-    
+    <!--  -->
       <tr>
         <th>답변 내용</th>
-        <td name="sss"> </td> 
+        <td><div id="sss">  </div></td>
       </tr>
+      
+      <!--  -->
     </table>
+    
 <!--  -->
 	<div class="container" id="hiddenDiv" style="display: none">
          <form>
@@ -100,7 +61,7 @@
              -->
              <textarea rows="10" cols="100" name="email" placeholder="Enter answer"></textarea>
             </div>
-            <button type="submit" id="btn" class="btn btn-default btn-block" onclick="qAnswer_go()">
+            <button type="button" id="btn" class="btn btn-default btn-block" onclick="qAnswer_go()">
                답변등록</button>
          </form>
       </div>
@@ -126,6 +87,51 @@
        
       </div>
     </form>
+<script>
+	function list_go(){
+		document.formm.action = "<%=request.getContextPath()%>" + "/qna/qnaList?qna_seq="+"${qnaVO.qseq}";
+		document.formm.submit();
+		
+	}
+	
+	
+	
+	   $(document).ready(function() {
+		      $('#forget').click(function() {
+		          $("#hiddenDiv").show();
+		         })
+			});
+	///////////////////////////////////////
+	   
+	   $(function(){
+		   
+		$('#btn').click(function(){
+		
+			   $.ajax({
+			       	url : "<%=request.getContextPath()%>/qna/qAnswer",
+			       	type : "post",
+			       	dataType:'text',
+			       	data : ({
+			       		content:$("textarea[name=email]").val(),
+			       		seqNum:${param.qna_qseq}
+			       	}),
+			       	success:function(data){
+			       		document.getElementById("sss").innerHTML = data;
+			       		
+			       		
+			       	}
+			       	
+			});
+	   });
+	   });
+	   	
+ function qAnswer_go(){
+	 $('#btn').click(function() {
+         $("#hiddenDiv").hide();
+        }) 
+ }
+	
+</script>
 
 </body>
 </html>
