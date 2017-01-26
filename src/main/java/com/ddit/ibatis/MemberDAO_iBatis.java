@@ -67,4 +67,11 @@ public class MemberDAO_iBatis implements MemberDAO{
 		
 	}
 
+
+	@Override
+	public void positionRole(String userid) throws SQLException {
+		client.insert("positionRole",userid);
+		
+	}
+
 }

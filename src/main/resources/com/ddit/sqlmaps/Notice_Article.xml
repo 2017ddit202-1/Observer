@@ -7,29 +7,42 @@
 	<typeAlias alias="int" type="java.lang.Integer" />
 	<typeAlias alias="article" type="com.ddit.dto.Notice_ArticleVO" />
 
-<select id="listArticle" resultClass="article">
-   select * from notice_article order by noar_date desc 
-</select>
+	<select id="listArticle" resultClass="article">
+		select * from notice_article order by noar_date desc
+	</select>
 
-<insert id="insertArticle" parameterClass="article">
- insert into notice_article(noar_seq, noar_subject, noar_content, noar_id)
- values(noar_seq.nextval, #noar_subject#, #noar_content#, #noar_id#)
-</insert>
+	<insert id="insertArticle" parameterClass="article">
+		insert into notice_article(noar_seq, noar_subject, noar_content, noar_id)
+		values(noar_seq.nextval, #noar_subject#, #noar_content#, #noar_id#)
+	</insert>
 
-<select id="detailArticle" parameterClass="int" resultClass="article"> 
-  select * from notice_article where noar_seq=#noar_seq#
-</select>
+	<select id="detailArticle" parameterClass="int" resultClass="article">
+		select * from notice_article where noar_seq=#noar_seq#
+	</select>
 
-<delete id="deleteArticle" parameterClass="int">
- delete from notice_article where noar_seq=#noar_seq#
-</delete>
+	<delete id="deleteArticle" parameterClass="int">
+		delete from notice_article where noar_seq=#noar_seq#
+	</delete>
 
-<update id="updateArticle" parameterClass="article">
-update notice_article
-set
-noar_subject=#noar_subject#, noar_content=#noar_content#
-where noar_seq=#noar_seq#
-</update>
+	<update id="updateArticle" parameterClass="article">
+		update notice_article
+		set
+		noar_subject=#noar_subject#, noar_content=#noar_content#
+		where noar_seq=#noar_seq#
+	</update>
+
+
+	<select id="listArticlelist" parameterClass="str" resultClass="article">
+		select * from notice_article where noar_id like '%'||#noar_id#||'%' order by
+		noar_date desc
+	</select>
+
+
+
+	<select id="totalArticle" parameterClass="str" resultClass="int">
+		select count(*) from notice_article where noar_id like '%'||#noar_id#||'%'
+	</select>
+
 </sqlMap> 
 
 

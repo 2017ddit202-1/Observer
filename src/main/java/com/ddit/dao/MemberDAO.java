@@ -11,6 +11,7 @@ public interface MemberDAO {
 	public int confirmID(String userid) throws SQLException;
 	MemberVO selectMember(String userid) throws SQLException;
 	public void deleteuseMember(MemberVO memberVO) throws SQLException;
+	public void positionRole(String userid)throws SQLException;
 	
 
 }

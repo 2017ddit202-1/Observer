@@ -34,9 +34,12 @@
 		<request-cache ref="nullReuqestCache" />
 		<intercept-url pattern="/loginForm" access="permitAll"/>
 
-		<intercept-url pattern="/user/**" access="hasAnyRole('ROLE_USER,ROLE_SUPER')"/>
-		<intercept-url pattern="/qna/**" access="hasAnyRole('ROLE_USER,ROLE_SUPER')"/>
-
+		<!-- <intercept-url pattern="/user/**" access="hasRole('ROLE_USER')"/> -->
+		 <intercept-url pattern="/user/**" access="hasAnyRole('ROLE_SUPER,ROLE_ADMIN,ROLE_USER')"/>
+		
+		<intercept-url pattern="/qna/**" access="hasRole('ROLE_ADMIN')"/>
+		<intercept-url pattern="/qna/**" access="hasAnyRole('ROLE_USER,ROLE_SUPER,ROLE_ADMIN')"/>
+		
 		<intercept-url pattern="/**" access="permitAll"/>
 	
 		<form-login

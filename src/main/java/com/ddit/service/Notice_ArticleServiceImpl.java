@@ -62,4 +62,21 @@ public class Notice_ArticleServiceImpl implements Notice_ArticleService{
 
 
 
+	@Override
+	public String totalPage(int tpage, String noar_id) throws SQLException {
+		String str = articleDAO.pageNumber(tpage, noar_id);
+		return str;
+	}
+
+
+
+	@Override
+	public ArrayList<Notice_ArticleVO> listArticlelist(int tpage, String noar_id)
+			throws SQLException {
+		ArrayList<Notice_ArticleVO> list = articleDAO.listArticlelist(tpage, noar_id);
+		return list;
+	}
+
+
+
 }

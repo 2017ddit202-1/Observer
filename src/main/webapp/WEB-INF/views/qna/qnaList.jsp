@@ -33,6 +33,8 @@ function writeForm_go(){
 			</tr>
 			<br>
 			<br>
+			
+			<!-- ////////////////////////////////////////////////////////////// -->
 			<c:choose>
 				<c:when test="${qnaListSize<=0}">
 						<tr>
@@ -56,6 +58,7 @@ function writeForm_go(){
 
 		</c:otherwise>
 		</c:choose>
+		<!--  -->
 		</table>
 		<input type="submit" value="질문하기" onclick="writeForm_go()" />
 

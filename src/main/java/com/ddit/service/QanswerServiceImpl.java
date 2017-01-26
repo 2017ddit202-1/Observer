@@ -3,13 +3,23 @@ package com.ddit.service;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import com.ddit.dao.QanswerDAO;
 import com.ddit.dto.QanswerVO;
 
 public class QanswerServiceImpl implements QanswerService{
 
+	QanswerDAO qanswerDAO;
+
+	
+	public void setQanswerDAO(QanswerDAO qanswerDAO) {
+		this.qanswerDAO = qanswerDAO;
+	}
+
 	@Override
 	public int insertQanswer(QanswerVO QanswerVO) throws SQLException {
-		// TODO Auto-generated method stub
+
+		qanswerDAO.insertQanswer(QanswerVO);
+		
 		return 0;
 	}
 

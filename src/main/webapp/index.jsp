@@ -12,6 +12,8 @@
 <body>
 <form id="formm" name="formm" method="get">
 
+
+
 </body>
 
 <script>
@@ -20,6 +22,7 @@ window.onload = function(){
     document.formm.submit();
 }
 </script>
+
 
 
 </html>
