@@ -12,5 +12,11 @@
    	insert into Qanswer(qans_seq,  qans_content, qans_id, qans_qseq)
    		values(qans_seq.nextval, #qans_content#, #qans_id#, #qans_qseq#)
    </insert>
+	
+	<select id="selectQansVO" parameterClass="int" resultClass="qans">
+		select * from qanswer where qans_qseq=#qans_qseq#
+	</select>
+
+
     
     </sqlMap>

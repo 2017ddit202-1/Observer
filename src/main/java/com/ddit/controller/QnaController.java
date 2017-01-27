@@ -122,6 +122,7 @@ public class QnaController {
       MemberVO loginUserVO = null;
       QnaVO qnaVO = null;
       MemberVO qnaWriterVO = null;
+      QanswerVO qansVO = null;
       String qseq =request.getParameter("qna_qseq");
       int qnaSeq = Integer.parseInt(qseq);
       
@@ -130,10 +131,19 @@ public class QnaController {
                   (String)session.getAttribute("loginUser")   );
          qnaVO = qnaService.getQna(qnaSeq);
          qnaWriterVO = memberService.selectMember(qnaVO.getQna_id());
+        qansVO = qanswerService.selectQanswer(qnaSeq);
       } catch (SQLException e) {
          // TODO Auto-generated catch block
          e.printStackTrace();
       } 
+      
+      ////
+      System.out.println("답변자 아이디" + qansVO.getQans_id());
+      System.out.println("답변 내용" + qansVO.getQans_content());
+      /*답변여부 판단과 답변의 표시를 위해 사용하면 됨   */
+      ///
+      
+      
       
       //로그인한 유저 계정 정보
       model.addAttribute("loginUserVO", loginUserVO);
@@ -207,7 +217,7 @@ public class QnaController {
 	   return url;
    }
   
-   
+   ////////
    
    
    

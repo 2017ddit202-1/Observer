@@ -9,8 +9,6 @@ import com.ddit.dto.QanswerVO;
 public class QanswerServiceImpl implements QanswerService{
 
 	QanswerDAO qanswerDAO;
-
-	
 	public void setQanswerDAO(QanswerDAO qanswerDAO) {
 		this.qanswerDAO = qanswerDAO;
 	}
@@ -36,9 +34,9 @@ public class QanswerServiceImpl implements QanswerService{
 	}
 
 	@Override
-	public QanswerVO selectQanswer(int Qanswer_seq) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+	public QanswerVO selectQanswer(int qans_qseq) throws SQLException {
+		QanswerVO qnasVO = qanswerDAO.selectQansVO(qans_qseq);
+		return qnasVO;
 	}
 
 	@Override
