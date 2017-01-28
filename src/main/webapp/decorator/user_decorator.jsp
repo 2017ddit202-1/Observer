@@ -185,7 +185,7 @@
                                     <a href="<%=request.getContextPath()%>/qna/qnaList">QnA</a>
                                 </li>
                                 <li>
-                                    <a href="notifications.html">자유게시판</a> 
+                                    <a href="<%=request.getContextPath()%>/fb/fbList">자유게시판</a> 
                                 </li>
                                 <li>
                                     <a href="typography.html">자료실</a>
