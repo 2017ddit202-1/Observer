@@ -43,12 +43,31 @@
         <td>${qnaVO.qna_content} .${qnaVO.qna_id}, ${loginUserVO.mem_id}
       </tr>
     <!--  -->
+    <c:choose>
+    	<c:when test="${qansVO.qans_qseq != null }">
       <tr>
-        <th>답변 내용</th>
-        <td><div id="sss">  </div></td>
-      </tr>
+      <!-- 답변은 admin이고 lice번호가 qna작성자와 같아야만 달수 잇음 
+      	suadmin은 admin에 글에 답변을 달수 있음  
+      c:if를 이용해서 답변의 여부를 판단하여 표시 
+      	이미 답변이 달려 있다면 답변의 내용이 표시 되고 
+      	그렇지 않다면 빈공간 qna글 작성자 일때는 디테일 화면에서 답변내용이 확인 되게 하고 
+      -->
       
-      <!--  --> 
+        <th>답변 내용</th>
+        <td><div id="sss"> ${qansVO.qans_content} </div></td>
+      </tr>
+      </c:when>
+      <c:otherwise>
+      	<tr>
+      	
+      	<th>답변 내용</th>
+      		<td>
+      			<div>미완료</div>
+      		</td>
+      	</tr>
+      </c:otherwise>
+     </c:choose> 
+      
     </table>
     
 <!--  -->
@@ -87,6 +106,11 @@
        
       </div>
     </form>
+    
+    
+    
+    
+    
 <script>
 	function list_go(){
 		document.formm.action = "<%=request.getContextPath()%>" + "/qna/qnaList?qna_seq="+"${qnaVO.qseq}";
