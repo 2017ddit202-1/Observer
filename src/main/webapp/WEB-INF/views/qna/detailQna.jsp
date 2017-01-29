@@ -43,6 +43,8 @@
         <td>${qnaVO.qna_content} .${qnaVO.qna_id}, ${loginUserVO.mem_id}
       </tr>
     <!--  -->
+    <c:choose>
+    	<c:when test="${qansVO.qans_qseq != null }">
       <tr>
       <!-- 답변은 admin이고 lice번호가 qna작성자와 같아야만 달수 잇음 
       	suadmin은 admin에 글에 답변을 달수 있음  
@@ -52,10 +54,20 @@
       -->
       
         <th>답변 내용</th>
-        <td><div id="sss">  </div></td>
+        <td><div id="sss"> ${qansVO.qans_content} </div></td>
       </tr>
+      </c:when>
+      <c:otherwise>
+      	<tr>
+      	
+      	<th>답변 내용</th>
+      		<td>
+      			<div>미완료</div>
+      		</td>
+      	</tr>
+      </c:otherwise>
+     </c:choose> 
       
-      <!--  --> 
     </table>
     
 <!--  -->
@@ -94,6 +106,11 @@
        
       </div>
     </form>
+    
+    
+    
+    
+    
 <script>
 	function list_go(){
 		document.formm.action = "<%=request.getContextPath()%>" + "/qna/qnaList?qna_seq="+"${qnaVO.qseq}";

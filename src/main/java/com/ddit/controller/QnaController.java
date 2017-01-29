@@ -66,11 +66,11 @@ public class QnaController {
          e.printStackTrace();
       }
       int n = qnaList.size();
-
+      
       model.addAttribute("qnaList", qnaList);
       model.addAttribute("qnaListSize", n);
       model.addAttribute("paging", paging);
-      System.out.println(paging+"!!!!!!!!!!!!!!!!!!!!!!!!!1");
+      
 
       return url;
    }
@@ -109,7 +109,7 @@ public class QnaController {
       } catch (SQLException e) {
          // TODO Auto-generated catch block
          e.printStackTrace();
-         // 아직 못함
+         
       }
       return url;
    }
@@ -138,12 +138,18 @@ public class QnaController {
       } 
       
       ////
-      System.out.println("답변자 아이디" + qansVO.getQans_id());
-      System.out.println("답변 내용" + qansVO.getQans_content());
-      /*답변여부 판단과 답변의 표시를 위해 사용하면 됨   */
-      ///
+      if(qansVO == null){
+    	  System.out.println("답변 미완료");
+      }else{
+    	  System.out.println("답변자 아이디" + qansVO.getQans_id());
+          System.out.println("답변 내용" + qansVO.getQans_content());
+          /*답변여부 판단과 답변의 표시를 위해 사용하면 됨   */
+          ///
+            
+      }
       
-      
+      //답변을 나타내기 위한 정보
+      model.addAttribute("qansVO", qansVO);
       
       //로그인한 유저 계정 정보
       model.addAttribute("loginUserVO", loginUserVO);

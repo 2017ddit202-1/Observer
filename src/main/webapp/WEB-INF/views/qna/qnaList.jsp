@@ -52,7 +52,8 @@ function writeForm_go(){
 					<%-- <a href="detailArticle?noar_seq=${articleVO.noar_seq}"> --%>
 					<td><a href="detailQna?qna_qseq=${qnaVO.qseq}">${qnaVO.qna_subject}</a></td>
 					<td><fmt:formatDate value="${qnaVO.qna_date}" pattern="yyyy-MM-dd"/></td>
-					<td>답변여부공간</td>
+					
+					<td></td>
 					
 				</tr>
 			</c:forEach>
