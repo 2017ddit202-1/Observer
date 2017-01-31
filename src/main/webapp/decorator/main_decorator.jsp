@@ -133,7 +133,7 @@
             			</div>
 		    		    <div class="modal-footer">
                             <div>
-                                <button type="button" class="btn btn-primary btn-lg btn-block">Send</button>
+                                <button type="button" class="btn btn-primary btn-lg btn-block" onclick="pwdSearch_go()">Send</button>
                             </div>
                             <div>
                                 <button id="lost_register_btn" type="button" class="btn btn-link">I D 찾기</button>
@@ -152,7 +152,7 @@
             			</div>
 		    		    <div class="modal-footer">
                             <div>
-                                <button type="button" class="btn btn-primary btn-lg btn-block">Send</button>
+                                <button type="button" class="btn btn-primary btn-lg btn-block" onclick="idSearch_go()">Send</button>
                             </div>
                             <div>
                                 <button id="register_login_btn" type="button" class="btn btn-link">Log In</button>
@@ -220,6 +220,12 @@ function login_go(){
        };
     });
  };
+ 
+ function idSearch_go(){
+	 
+ };
+ 
+ 
  
 </script>
 
