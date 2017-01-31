@@ -126,7 +126,7 @@ public class QnaController {
       MemberVO loginUserVO = null;
       QnaVO qnaVO = null;
       MemberVO qnaWriterVO = null;
-      ArrayList<QanswerVO> qanslist = null;
+      QanswerVO qansVO = null;
       
       String qseq =request.getParameter("qna_qseq");
       
@@ -138,7 +138,7 @@ public class QnaController {
                   (String)session.getAttribute("loginUser")   );
          qnaVO = qnaService.getQna(qnaSeq);
          qnaWriterVO = memberService.selectMember(qnaVO.getQna_id());
-         qanslist = qanswerService.listAllArticle();
+         qansVO = qanswerService.selectQanswer(qnaVO.getQseq());
       } catch (SQLException e) {
          // TODO Auto-generated catch block
          e.printStackTrace();
@@ -150,7 +150,7 @@ public class QnaController {
     
       
       //답변을 나타내기 위한 정보
-      model.addAttribute("qanslist", qanslist);
+      model.addAttribute("qansVO", qansVO);
       
       //로그인한 유저 계정 정보
       model.addAttribute("loginUserVO", loginUserVO);
