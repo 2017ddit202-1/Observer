@@ -175,40 +175,6 @@
 			</div>
 
 		</div>
-		<!-- /.container -->
-	<!-- 	<div class="modal fade" id="login-modal" tabindex="-1" role="dialog"
-			aria-labelledby="myModalLabel" aria-hidden="true"
-			style="display: none;">
-			<div class="modal-dialog">
-				<div class="loginmodal-container">
-					<div class="modal-header">
-						<h1>Login to Your Account</h1>
-						<br>
-					</div>
-					<form action="loginList">
-						<div class="modal-body">
-							<input type="text" name="mem_id" placeholder="I D"> <br>
-							<br> <input type="password" name="mem_pwd"
-								placeholder="Password"><br>
-							<br>
-						</div>
-							<input type="button" name="login" class="login loginmodal-submit"
-								value="Login" onclick="login_go()">
-							<input type="submit" name="login" class="login loginmodal-submit"
-							value="Login">
-
-						<div class="modal-footer">
-							<div class="login-help">
-								<br> <a href="#" data-toggle="modal"
-									data-target="#id-modal">I D </a>&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;<a
-									href="#">PASSWORD 찾기</a>
-							</div>
-						</div>
-					</form>
-				</div>
-			</div>
-		</div> -->
-
 	</div>
 
 </html>
