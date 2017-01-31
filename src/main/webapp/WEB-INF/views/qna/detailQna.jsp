@@ -62,7 +62,7 @@
       	
       	<th>답변 내용</th>
       		<td>
-      			<div>미완료</div>
+      			<div id="sss"> ${qansVO.qans_content} </div>
       		</td>
       	</tr>
       </c:otherwise>
@@ -152,8 +152,6 @@
 			       	}),
 			       	success:function(data){
 			       		document.getElementById("sss").innerHTML = data;
-			       		
-			       		
 			       	}
 			       	
 			});

@@ -53,8 +53,14 @@ function writeForm_go(){
 					<td><a href="detailQna?qna_qseq=${qnaVO.qseq}">${qnaVO.qna_subject}</a></td>
 					<td><fmt:formatDate value="${qnaVO.qna_date}" pattern="yyyy-MM-dd"/></td>
 					
-					<td></td>
-					
+					<c:choose>			
+					<c:when test="${qnaVO.qna_check == 1 }">
+					<td>답변완료</td>
+					</c:when>
+					 <c:otherwise>
+					 	<td>답변진행중</td>
+					 </c:otherwise>
+					</c:choose>
 				</tr>
 			</c:forEach>
 			<tr>

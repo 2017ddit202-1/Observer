@@ -9,15 +9,22 @@ import com.ddit.dto.QnaVO;
 public class QnaServiceImpl implements QnaService {
 
 
-	
-
-
 	QnaDAO qnaDAO;
 
 	public void setQnaDAO(QnaDAO qnaDAO) {
 		this.qnaDAO = qnaDAO;
 	}
 
+	@Override
+	public int updateQnaCheck(QnaVO qnaVO) throws SQLException {
+		int result = -1;
+		
+		result =  qnaDAO.updateQnaCheck(qnaVO);
+		return result;
+	}
+
+	
+	
 	@Override
 	public ArrayList<QnaVO> listAllQna() throws SQLException {
 		ArrayList<QnaVO> qnaList = null;

@@ -21,7 +21,7 @@
    </insert>
    
    <select id="listAllQna" resultClass="qna">
-   		select * from qna order by indate desc
+   		select * from qna order by qna_date desc
    </select>
    
    <select id="listQnalist" parameterClass="str" resultClass="qna">
@@ -32,6 +32,22 @@
    <select id="totalQna" parameterClass="str" resultClass="int">
    		select count(*) from qna where qna_id like '%'||#qna_id#||'%'
    </select>
+   
+   
+   
+   <!-- 
+    update qna
+	set
+	qna_check=1
+	where qseq=61;
+    -->
+   <update id="updateCheck" parameterClass="qna">
+   		update qna
+   		set qna_check= #qna_check#
+   		where qseq= #qseq#
+   </update>   
+   
+   
    
    </sqlMap> 
     

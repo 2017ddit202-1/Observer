@@ -11,9 +11,21 @@ public class QnaDAO_iBatis implements QnaDAO {
 
 
 
+	
+
 	private SqlMapClient client;
 	public void setClient(SqlMapClient client) {
 		this.client = client;
+	}
+	
+	
+	@Override
+	public int updateQnaCheck(QnaVO checkNum) throws SQLException {
+		int result = -1;
+		result = client.update("updateCheck",checkNum);
+		System.out.println(result+"!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+		
+		return result;
 	}
 	
 	

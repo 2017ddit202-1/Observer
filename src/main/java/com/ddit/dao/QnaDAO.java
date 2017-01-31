@@ -11,6 +11,6 @@ public interface QnaDAO {
 	public void insertqna(QnaVO qnaVO) throws SQLException;
 	public String pageNumber(int tpage, String qna_id) throws SQLException;
 	public ArrayList<QnaVO> listqnalist(int tpage,String qna_id) throws SQLException;
-
+	public int updateQnaCheck(QnaVO qnaVO) throws SQLException;
 	
 }
