@@ -68,6 +68,10 @@ public class QnaController {
       int n = qnaList.size();
       
       model.addAttribute("qnaList", qnaList);
+      for(QnaVO vo:qnaList){
+    	  System.out.println(vo.getQna_check());
+    	  System.out.println(vo.getQna_id());
+      }
       model.addAttribute("qnaListSize", n);
       model.addAttribute("paging", paging);
       
@@ -122,34 +126,31 @@ public class QnaController {
       MemberVO loginUserVO = null;
       QnaVO qnaVO = null;
       MemberVO qnaWriterVO = null;
-      QanswerVO qansVO = null;
+      ArrayList<QanswerVO> qanslist = null;
+      
       String qseq =request.getParameter("qna_qseq");
+      
       int qnaSeq = Integer.parseInt(qseq);
       
+   
       try {
          loginUserVO = memberService.selectMember(
                   (String)session.getAttribute("loginUser")   );
          qnaVO = qnaService.getQna(qnaSeq);
          qnaWriterVO = memberService.selectMember(qnaVO.getQna_id());
-        qansVO = qanswerService.selectQanswer(qnaSeq);
+         qanslist = qanswerService.listAllArticle();
       } catch (SQLException e) {
          // TODO Auto-generated catch block
          e.printStackTrace();
       } 
       
       ////
-      if(qansVO == null){
-    	  System.out.println("답변 미완료");
-      }else{
-    	  System.out.println("답변자 아이디" + qansVO.getQans_id());
-          System.out.println("답변 내용" + qansVO.getQans_content());
-          /*답변여부 판단과 답변의 표시를 위해 사용하면 됨   */
-          ///
-            
-      }
+      
+ 
+    
       
       //답변을 나타내기 위한 정보
-      model.addAttribute("qansVO", qansVO);
+      model.addAttribute("qanslist", qanslist);
       
       //로그인한 유저 계정 정보
       model.addAttribute("loginUserVO", loginUserVO);
@@ -185,13 +186,20 @@ public class QnaController {
       
       //게시글번호 유지 해야됨
       QanswerVO qanswerVO = new QanswerVO();
+      QanswerVO qanswerVO2 = null;
       
+      QnaVO qnaVO = new QnaVO();
       qanswerVO.setQans_id(loginUser);
       qanswerVO.setQans_content(content);
       qanswerVO.setQans_qseq(Integer.parseInt(seqNum));
       
       try {
          qanswerService.insertQanswer(qanswerVO);
+         //답변VO를 추가할떄 qna테이블에 qna_check도 0에서 1로 update
+         qnaVO = qnaService.getQna(Integer.parseInt(seqNum));
+         qnaVO.setQna_check(1);
+         qnaService.updateQnaCheck(qnaVO);
+         qanswerVO2 = qanswerService.selectQanswer(Integer.parseInt(seqNum));
       } catch (SQLException e) {
          // TODO Auto-generated catch block
          e.printStackTrace();
@@ -199,7 +207,7 @@ public class QnaController {
       
       System.out.println(loginUser);
       System.out.println(content);
-      
+      model.addAttribute("qansVO",qanswerVO2);
       
       
       return content;
