@@ -47,12 +47,24 @@ $(function() {
         return false;
     });
     
-    $('#login_register_btn').click( function () { modalAnimate($formLogin, $formRegister) });
+//    $("#login-modal").on('hidden.bs.modal', function (){ });
+//    $('#login-modal').on('hide.bs.modal', function(){
+//        $('#login-form').data('formValidation').resetForm(true);
+//    });
+    
+    $('#login_register_btn').click( function () { modalAnimate($formLogin, $formRegister); });
     $('#register_login_btn').click( function () { modalAnimate($formRegister, $formLogin); });
     $('#login_lost_btn').click( function () { modalAnimate($formLogin, $formLost); });
     $('#lost_login_btn').click( function () { modalAnimate($formLost, $formLogin); });
     $('#lost_register_btn').click( function () { modalAnimate($formLost, $formRegister); });
     $('#register_lost_btn').click( function () { modalAnimate($formRegister, $formLost); });
+    $('.modal-header #aaa').click( function () {
+			$formLost.hide();
+			$formRegister.hide();
+			$formLogin.show(); 			
+    });
+//    $('')
+    
     
     function modalAnimate ($oldForm, $newForm) {
         var $oldH = $oldForm.height();
