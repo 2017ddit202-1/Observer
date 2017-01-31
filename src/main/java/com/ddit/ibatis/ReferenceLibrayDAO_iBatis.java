@@ -5,8 +5,14 @@ import java.util.ArrayList;
 
 import com.ddit.dao.ReferenceLibrayDAO;
 import com.ddit.dto.ReferenceLibrayVO;
+import com.ibatis.sqlmap.client.SqlMapClient;
 
 public class ReferenceLibrayDAO_iBatis implements ReferenceLibrayDAO{
+	
+	private SqlMapClient client;
+	public void setClient(SqlMapClient client) {
+		this.client = client;
+	}
 
 	@Override
 	public int insertRef(ReferenceLibrayVO RefVO) throws SQLException {
@@ -32,10 +38,11 @@ public class ReferenceLibrayDAO_iBatis implements ReferenceLibrayDAO{
 		return null;
 	}
 
+
 	@Override
-	public ArrayList<ReferenceLibrayVO> listAllArticle() throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+	public ArrayList<ReferenceLibrayVO> listAllReference() throws SQLException {
+		ArrayList<ReferenceLibrayVO> referenceList = (ArrayList<ReferenceLibrayVO>)client.queryForList("listReference");
+		return referenceList;
 	}
 
 }
