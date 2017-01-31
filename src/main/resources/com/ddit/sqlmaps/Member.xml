@@ -37,6 +37,10 @@
 		position_list(posl_id,posl_pos)
 		values(#posl_id#,'ROLE_USER')
 	</insert>
+	
+	<select id="idFind" parameterClass="member" resultClass="member">
+		select * from member where mem_nm=#mem_nm# and mem_email=#mem_email#
+	</select>
    
    
 </sqlMap>  

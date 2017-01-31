@@ -13,4 +13,7 @@ public interface MemberService {
 	MemberVO selectMember(String userid) throws SQLException;
 	public void deleteuseMember(MemberVO memberVO) throws SQLException;
 	public void positionRole(String userid)throws SQLException;
+	
+	public MemberVO idFind(String name , String email) throws SQLException;
+	public MemberVO pwdFind(String userid , String email) throws SQLException;
 }
