@@ -28,6 +28,7 @@
    function get_msg(message){
       var move = '70px';
       jQuery('#test').text(message);
+      
    }
    <c:if test="${error =='true'}">
    jQuery(function(){
@@ -263,7 +264,7 @@
 								value="Login" onclick="login_go()">
 					<br>
 					<a href="" data-toggle="modal" target="#myModal2" id="modal2">I D </a>
-					&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;<a href="#" data-toggle="modal" target="#myModal3" id="modal3">PASSWORD 찾기</a>
+					&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;<a href="" data-toggle="modal" target="#myModal3" id="modal3">PASSWORD 찾기</a>
 			</div> <!-- /.modal-footer -->
 		</div><!-- /.modal-content -->
 	</div><!-- /.modal-dialog -->
@@ -293,8 +294,8 @@
 
 					<div class="form-group">
 						<div class="input-group">
-							<input type="password" class="form-control" id="mem_email" name ="mem_email" placeholder="Email">
-							<label for="uPassword" class="input-group-addon glyphicon glyphicon-lock"></label>
+							<input type="text" class="form-control" id="mem_email" name ="mem_email" placeholder="Email">
+							<label for="utext" class="input-group-addon glyphicon glyphicon-lock"></label>
 						</div><!--  /.input-group -->
 					</div><!--  /.form-group -->
 				</form>
@@ -331,8 +332,8 @@
 
 					<div class="form-group">
 						<div class="input-group">
-							<input type="password" class="form-control" id="mem_email" name ="mem_email" placeholder="Email">
-							<label for="uPassword" class="input-group-addon glyphicon glyphicon-lock"></label>
+							<input type="text" class="form-control" id="mem_email" name ="mem_email" placeholder="Email">
+							<label for="uEmail" class="input-group-addon glyphicon glyphicon-lock"></label>
 						</div><!--  /.input-group -->
 					</div><!--  /.form-group -->
 				</form>
@@ -447,9 +448,8 @@
   
    $(function(){
 		  $('.modal-footer').on('click', '#modal2', function(e){
-			  e.preventDefault();
 			$("#myModal").modal('hide');
-			 $("#myModal2").modal('show');
+			 $("#myModal2").modal();
 // 			$('.modal-body').empty();
 // 			$('.modal-body').append("<input type='text' value='이름'>");
 		  });
@@ -457,17 +457,15 @@
 	  });
    $(function(){
 	  $('.modal-footer').on('click' , '#modal3',function(e){
-		  e.preventDefault();
 		  $("#myModal").modal('hide');
-		  $("#myModal3").modal('show');
+		  $("#myModal3").modal();
 	  });
    });
    
    /* ID 찾기에서 --> Password 찾기 */
    $(function(){
 	   $('.modal-header').on('click' , '#modal4',function(e){
-		  e.preventDefault();
-		  $('.modal-body').empty();
+		  $('.modal-body').empty();  
 		  $('.modal-body'). html(
 				  "<form role='form'>"+
 					"<div class='form-group'>"+

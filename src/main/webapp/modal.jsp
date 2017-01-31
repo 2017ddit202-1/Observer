@@ -14,10 +14,10 @@
   $(function(){
 	  $('.modal-footer').on('click', '#modal2', function(e){
 		  e.preventDefault();
-		// $("#myModal").modal('hide');
-		//  $("#myModal2").modal('show');
-		$('.modal-body').empty();
-		$('.modal-body').append("<input type='text' value='이름'>");
+		$("#myModal").modal('hide');
+		 $("#myModal2").modal('show');
+// 		$('.modal-body').empty();
+// 		$('.modal-body').append("<input type='text' value='이름'>");
 	  });
   })
   
