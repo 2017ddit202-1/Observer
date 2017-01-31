@@ -27,8 +27,6 @@
 
 <title>Lonely - Free bootstrap 3 one page template</title>
 
-<!-- CSS -->
-<link href="<%=request.getContextPath()%>/css/bootstrap.min.css" rel="stylesheet" type="text/css">
 
     <title>Landing Page - Start Bootstrap Theme</title>
 
@@ -39,7 +37,7 @@
 	
     <!-- Custom CSS -->
     
-    <link href="<%=request.getContextPath()%>/resources/css"rel="stylesheet">
+    <%-- <link href="<%=request.getContextPath()%>/resources/css/landing-page.css"rel="stylesheet"> --%>
 
 
     <!-- Custom Fonts -->
@@ -76,7 +74,7 @@
                     </li>
 
 				 <li>
-                        <a href="" data-toggle="modal" data-target="#myModal" id="modal1">Login</a>
+                        <a href="" data-toggle="modal" data-target="#login-modal" id="modal1">Login</a>
                     </li>
 				<!-- <li>
 					<button class="btn btn-primary" data-toggle="modal"
@@ -89,6 +87,88 @@
         </div>
         <!-- /.container -->
     </nav>
+    
+    
+    <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    	<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header" align="center">
+					<img class="img-circle" id="img_logo" src="http://bootsnipp.com/img/logo.jpg">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+					</button>
+				</div>
+                
+                <!-- Begin # DIV Form -->
+                <div id="div-forms">
+                
+                    <!-- Begin # Login Form -->
+                    <form id="login-form" role="form">
+		                <div class="modal-body">
+				    		<input id="mem_id" name="mem_id" class="form-control" type="text" placeholder="I D" required>
+				    		<input id="mem_pwd" name="mem_pwd" class="form-control" type="password" placeholder="Password" required>
+                            <div class="checkbox">
+                            </div>
+        		    	</div>
+				        <div class="modal-footer">
+                            <div>
+                                <button type="button" class="btn btn-primary btn-lg btn-block" name="login" value="login" onclick="login_go()">Login</button>
+                            </div>
+				    	    <div>
+                                <button id="login_register_btn" type="button" class="btn btn-link">I D</button> / 
+                                <button id="login_lost_btn" type="button" class="btn btn-link">Password</button>
+                            </div>
+				        </div>
+                    </form>
+                    <!-- End # Login Form -->
+                    
+                    <!-- Begin | Lost Password Form -->
+                    <form id="lost-form" style="display:none;">
+    	    		    <div class="modal-body">
+    	    		    	<input id="lost_id" class="form-control" type="text" placeholder="I D" required>
+		    				<input id="lost_email" class="form-control" type="text" placeholder="E-Mail" required>
+            			</div>
+		    		    <div class="modal-footer">
+                            <div>
+                                <button type="button" class="btn btn-primary btn-lg btn-block">Send</button>
+                            </div>
+                            <div>
+                                <button id="lost_register_btn" type="button" class="btn btn-link">I D 찾기</button>
+                                <button id="lost_login_btn" type="button" class="btn btn-link">Log In</button>
+                            </div>
+		    		    </div>
+                    </form>
+                    <!-- End | Lost Password Form -->
+                    
+                    <!-- Begin | Lost ID Form -->
+                    <form id="register-form" style="display:none;">
+            		    <div class="modal-body">
+		    				<input id="register_username" class="form-control" type="text" placeholder="Username" required>
+                            <input id="register_email" class="form-control" type="text" placeholder="E-Mail" required>
+            			</div>
+		    		    <div class="modal-footer">
+                            <div>
+                                <button type="button" class="btn btn-primary btn-lg btn-block">Send</button>
+                            </div>
+                            <div>
+                                <button id="register_login_btn" type="button" class="btn btn-link">Log In</button>
+                                <button id="register_lost_btn" type="button" class="btn btn-link">Password 찾기</button>
+                            </div>
+		    		    </div>
+                    </form>
+                    <!-- End | Lost ID Form -->
+                    
+                </div>
+                <!-- End # DIV Form -->
+                
+			</div>
+		</div>
+	</div>
+    <!-- END # MODAL LOGIN -->
+    
+    
+    
+    
 
     <!-- jQuery -->
     <script src="<%=request.getContextPath()%>/resources/js/jquery.js"></script>
@@ -96,7 +176,8 @@
     <!-- Bootstrap Core JavaScript -->
     <script src="<%=request.getContextPath()%>/resources/js/bootstrap.min.js"></script>
 
-
+	<!-- Modal js -->
+	<script src="<%=request.getContextPath()%>/resources/js/modal.js"></script>
 
 
 
@@ -112,28 +193,31 @@
 		form.submit();
 	}
 </script> --%>
-
 <script>
-	
-	
-$('#modal1').click(function(e){
-	  $('.modal-body').html(	
-			'<form role="form">'+
-			'<div class="form-group">'+
-				'<div class="input-group">'+
-					'<input type="text" class="form-control" id="mem_id" name = "mem_id" placeholder="I D">'+
-					'<label for="uLogin" class="input-group-addon glyphicon glyphicon-user"></label>'+
-				'</div>'+
-			'</div> <!-- /.form-group -->'+
-			
-			'<div class="form-group">'+
-				'<div class="input-group">'+
-				'<input type="password" class="form-control" id="mem_pwd" name ="mem_pwd" placeholder="Password">'+
-					'<label for="uPassword" class="input-group-addon glyphicon glyphicon-lock"></label>'+
-				'</div><!--  /.input-group -->'+
-			'</div><!--  /.form-group -->'+
-			'</form>');
-});
-</script>
+function login_go(){
+    $.ajax({
+       url : 'loginList',
+       data : $('form input').serialize(),
+       type : 'POST',
+       dataType : 'json',
+       beforeSend : function(xhr){
+          xhr.setRequestHeader("Accept","application/json");
+       }
+    }).done(function(body){
+       var message=body.response.message;
+       var error=body.response.error;
+       var returl=body.response.returl;
+       if(error)
+          get_msg(message);
+       if(error==false){
+          if(returl=='')
+             returl = '<c:url value="/user/mypage" />';
+          location.href = returl;
+       };
+    });
+ };
 
+
+
+</script>
 </html>
