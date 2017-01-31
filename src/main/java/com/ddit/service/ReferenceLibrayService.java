@@ -11,5 +11,6 @@ public interface ReferenceLibrayService {
 	public void updateRef(ReferenceLibrayVO RefVO) throws SQLException;
 	public int deleteRef(int reli_seq) throws SQLException;
 	ReferenceLibrayVO selectRef(int reli_seq) throws SQLException;
-	public ArrayList<ReferenceLibrayVO> listAllArticle() throws SQLException;
+	public ArrayList<ReferenceLibrayVO> listAllReference()throws SQLException;
+	
 }

@@ -35,6 +35,14 @@
 		p:client-ref="SqlMapClient" />
 	<bean id="freeBoardService" class="com.ddit.service.FreeBoardServiceImpl"
 		p:freeBoardDAO_iBatis-ref="freeBoardDAO" />
+		
+
+	<bean id="referenceDAO" class="com.ddit.ibatis.ReferenceLibrayDAO_iBatis">
+		<property name="client" ref="SqlMapClient" />
+	</bean>
+	<bean id="referenceService" class="com.ddit.service.ReferenceLibrayServiceImpl">
+		<property name="referenceDAO" ref="referenceDAO" />
+	</bean>
 
 
 

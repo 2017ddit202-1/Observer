@@ -8,6 +8,7 @@
   	<sqlMap resource="com/ddit/sqlmaps/Notice_Article.xml"/>
   	<sqlMap resource="com/ddit/sqlmaps/Qanswer.xml"/>
   	<sqlMap resource="com/ddit/sqlmaps/FreeBoard.xml"/>
+  	<sqlMap resource="com/ddit/sqlmaps/Reference.xml"/>
   	
   	
   	

@@ -3,9 +3,15 @@ package com.ddit.service;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import com.ddit.dao.ReferenceLibrayDAO;
 import com.ddit.dto.ReferenceLibrayVO;
 
 public class ReferenceLibrayServiceImpl implements ReferenceLibrayService{
+
+	ReferenceLibrayDAO referenceDAO;
+	public void setReferenceDAO(ReferenceLibrayDAO referenceDAO) {
+		this.referenceDAO = referenceDAO;
+	}
 
 	@Override
 	public int insertRef(ReferenceLibrayVO RefVO) throws SQLException {
@@ -32,10 +38,14 @@ public class ReferenceLibrayServiceImpl implements ReferenceLibrayService{
 	}
 
 	@Override
-	public ArrayList<ReferenceLibrayVO> listAllArticle() throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+	public ArrayList<ReferenceLibrayVO> listAllReference()throws SQLException{
+		
+		ArrayList<ReferenceLibrayVO> referenceVO = null;
+		referenceVO=referenceDAO.listAllReference();
+		return referenceVO;
 	}
+
+
 
 	
 }
