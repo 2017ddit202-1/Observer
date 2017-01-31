@@ -1,6 +1,7 @@
 package com.ddit.controller;
 
 import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -168,7 +169,7 @@ public class QnaController {
    /* @RequestMapping(value="/qnaList", method=RequestMethod.GET) */
    /*@RequestParam(value="qna_qseq")String qseq,*/
 /*@RequestParam(value="qna_qseq", defaultValue="1")int qna_qseq*/
-   @RequestMapping(value="/qAnswer", method=RequestMethod.POST)
+   @RequestMapping(value="/qAnswer", method=RequestMethod.POST, produces="application/text;charset=utf8")
    @ResponseBody
    public String qAnswer(HttpSession session, Model model,
          HttpServletRequest request, HttpServletResponse response){
@@ -178,8 +179,9 @@ public class QnaController {
             // TODO Auto-generated catch block
             e.printStackTrace();
          }
-         
-      String content = request.getParameter("content");
+         response.setCharacterEncoding("utf-8");
+     
+         String content = request.getParameter("content");
       String seqNum = request.getParameter("seqNum");
       System.out.println(Integer.parseInt(seqNum));
       String loginUser = (String) session.getAttribute("loginUser");
@@ -208,7 +210,7 @@ public class QnaController {
       System.out.println(loginUser);
       System.out.println(content);
       model.addAttribute("qansVO",qanswerVO2);
-      
+      URLEncoder.encode(content);
       
       return content;
    } 

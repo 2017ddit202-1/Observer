@@ -7,7 +7,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title></title>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
@@ -95,7 +95,7 @@
 				</c:when>
 				<c:when
 					test="${loginUserVO.mem_group_lice eq qnaWriterVO.mem_group_lice}">
-					<sec:authorize access="hasRole('ROLE_ADMIN')">
+					<sec:authorize access="hasAnyRole('ROLE_ADMIN','ROLE_SUPER')">
 						<input type="button" value="답변하기" id="forget">
 					</sec:authorize>
 				</c:when>
