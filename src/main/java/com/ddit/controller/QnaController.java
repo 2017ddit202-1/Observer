@@ -13,7 +13,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ddit.dto.MemberVO;
@@ -67,11 +66,11 @@ public class QnaController {
          e.printStackTrace();
       }
       int n = qnaList.size();
-
+      
       model.addAttribute("qnaList", qnaList);
       model.addAttribute("qnaListSize", n);
       model.addAttribute("paging", paging);
-      System.out.println(paging+"!!!!!!!!!!!!!!!!!!!!!!!!!1");
+      
 
       return url;
    }
@@ -110,7 +109,7 @@ public class QnaController {
       } catch (SQLException e) {
          // TODO Auto-generated catch block
          e.printStackTrace();
-         // 아직 못함
+         
       }
       return url;
    }
@@ -123,6 +122,7 @@ public class QnaController {
       MemberVO loginUserVO = null;
       QnaVO qnaVO = null;
       MemberVO qnaWriterVO = null;
+      QanswerVO qansVO = null;
       String qseq =request.getParameter("qna_qseq");
       int qnaSeq = Integer.parseInt(qseq);
       
@@ -131,10 +131,25 @@ public class QnaController {
                   (String)session.getAttribute("loginUser")   );
          qnaVO = qnaService.getQna(qnaSeq);
          qnaWriterVO = memberService.selectMember(qnaVO.getQna_id());
+        qansVO = qanswerService.selectQanswer(qnaSeq);
       } catch (SQLException e) {
          // TODO Auto-generated catch block
          e.printStackTrace();
       } 
+      
+      ////
+      if(qansVO == null){
+    	  System.out.println("답변 미완료");
+      }else{
+    	  System.out.println("답변자 아이디" + qansVO.getQans_id());
+          System.out.println("답변 내용" + qansVO.getQans_content());
+          /*답변여부 판단과 답변의 표시를 위해 사용하면 됨   */
+          ///
+            
+      }
+      
+      //답변을 나타내기 위한 정보
+      model.addAttribute("qansVO", qansVO);
       
       //로그인한 유저 계정 정보
       model.addAttribute("loginUserVO", loginUserVO);
@@ -162,6 +177,7 @@ public class QnaController {
             // TODO Auto-generated catch block
             e.printStackTrace();
          }
+         
       String content = request.getParameter("content");
       String seqNum = request.getParameter("seqNum");
       System.out.println(Integer.parseInt(seqNum));
@@ -189,5 +205,29 @@ public class QnaController {
       return content;
    } 
 
+   //////////////////////////
+   
+   @RequestMapping("/qnaUpdate")
+   public String qnaUpdate(HttpSession session, HttpServletRequest request, HttpServletResponse response){
+	   String url = "qna/qnaUpdate";
+	   	System.out.println("글수정을 위한 컨트롤러");
+	   
+	   return url;
+   }
+  
+   @RequestMapping("/qnaDelete")
+   public String qnaDelete(HttpSession session, HttpServletRequest request, HttpServletResponse response){
+	   String url = "qna/qnaDelete";
+	   	System.out.println("글삭제를 위한 컨트롤러");
+	   
+	   return url;
+   }
+  
+   ////////
+   
+   
+   
+   
+   
 
 }

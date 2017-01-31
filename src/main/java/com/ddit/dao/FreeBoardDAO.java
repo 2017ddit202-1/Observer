@@ -11,5 +11,5 @@ public interface FreeBoardDAO {
 	public void updateFB(FreeBoardVO freeBoardVO) throws SQLException;
 	public int deleteFB(int fb_seq) throws SQLException;
 	FreeBoardVO selectFB(int fb_seq) throws SQLException;
-	public ArrayList<FreeBoardVO> listAllArticle() throws SQLException;
+	public ArrayList<FreeBoardVO> listAllFb() throws SQLException;
 }

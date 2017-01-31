@@ -30,6 +30,11 @@
 	<bean id="qansertService" class="com.ddit.service.QanswerServiceImpl">
 		<property name="qanswerDAO" ref="qanswerDAO" />
 	</bean>
+	
+	<bean id="freeBoardDAO" class="com.ddit.ibatis.FreeBoardDAO_iBatis"
+		p:client-ref="SqlMapClient" />
+	<bean id="freeBoardService" class="com.ddit.service.FreeBoardServiceImpl"
+		p:freeBoardDAO_iBatis-ref="freeBoardDAO" />
 
 
 

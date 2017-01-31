@@ -16,6 +16,10 @@
 	<decorator name="article" page="user_decorator.jsp">
 		<pattern>/article/*</pattern>
 	</decorator>
+	
+	<decorator name="freeBoard" page="user_decorator.jsp">
+		<pattern>/fb/*</pattern>
+	</decorator>
 
 	<excludes>
 		<pattern>/idCheckForm*</pattern>
