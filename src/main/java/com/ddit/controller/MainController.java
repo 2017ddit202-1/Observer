@@ -2,6 +2,7 @@ package com.ddit.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 import java.sql.SQLException;
 
 import javax.servlet.ServletException;
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ddit.dto.MemberVO;
 import com.ddit.service.MemberServiceImpl;
@@ -139,6 +141,32 @@ public class MainController {
 		String url = "idSearch";
 		System.out.println("controller");
 		return url;
+	}
+	
+	@RequestMapping(value = "/idFind", method = RequestMethod.POST ,produces="application/text;charset=utf8")
+	@ResponseBody
+	public String idFind(HttpServletRequest request, HttpServletResponse response , HttpSession session , Model model){
+		
+		String name = request.getParameter("mem_nm");
+		String email = request.getParameter("mem_email");
+		MemberVO member = null;
+		String data = "";
+		
+		try {
+			member = memberService.idFind(name, email);
+			if(member != null){
+				data = member.getMem_id();
+			}else{
+				data = "찾는아이디가 없습니다.";
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println(data);
+		
+		return data;
+		
 	}
 	
 }

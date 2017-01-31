@@ -144,15 +144,15 @@
                     <!-- End | Lost Password Form -->
                     
                     <!-- Begin | Lost ID Form -->
-                    <form id="register-form" style="display:none;">
+                    <form id="register-form" name="idForm" style="display:none;">
             		    <div class="modal-body">
-            		        <span>I D 찾기</span> 
-		    				<input id="mem_nm" class="form-control" type="text" placeholder="Username" required>
-                            <input id="mem_email" class="form-control" type="text" placeholder="E-Mail" required>
+            		        <span>I D 찾기</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id = "resultId"></span>
+		    				<input id="mem_nm" name = "mem_nm" class="form-control" type="text" placeholder="Username">
+                            <input id="mem_email" name = "mem_email" class="form-control" type="text" placeholder="E-Mail">
             			</div>
 		    		    <div class="modal-footer">
                             <div>
-                                <button type="button" class="btn btn-primary btn-lg btn-block" onclick="idSearch_go()">Send</button>
+                                <button type="button" id = "idBtn"class="btn btn-primary btn-lg btn-block">Send</button>
                             </div>
                             <div>
                                 <button id="register_login_btn" type="button" class="btn btn-link">Log In</button>
@@ -220,10 +220,27 @@ function login_go(){
        };
     });
  };
- 
- function idSearch_go(){
-	 
- };
+ </script>
+ <script>
+ $(function(){
+	 $('#idBtn').click(function(){
+		 
+		$.ajax({
+			url : "<%=request.getContextPath()%>/idFind",
+			type : "post",
+			data : $('form input').serialize(),
+			success:function(data){
+				$('#resultId').text(data);
+				$('#mem_nm').val("");
+				$('#register-form #mem_email').val("");
+			},
+			error:function(data){
+				alert('3333');
+			}
+		});
+	 });
+ });
+
  
  
  
