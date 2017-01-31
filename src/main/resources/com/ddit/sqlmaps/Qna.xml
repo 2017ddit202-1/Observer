@@ -48,6 +48,16 @@
    </update>   
    
    
+   <!-- 
+   delete from qna 
+ 	where qseq=70;
+   --> 
+   
+   <delete id="deleteQna" parameterClass="int">
+   		delete from qna 
+   		where qseq=#qseq#
+   </delete>
+   
    
    </sqlMap> 
     

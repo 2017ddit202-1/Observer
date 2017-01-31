@@ -1,6 +1,7 @@
 package com.ddit.controller;
 
 import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -35,6 +36,7 @@ public class QnaController {
    private QanswerService qanswerService;
 
    /* @RequestMapping(value="/qnaList", method=RequestMethod.GET) */
+   
    @RequestMapping("/qnaList")
    public String qnaList(/* @RequestParam("qseq") int qseq, */
    HttpSession session, Model model, HttpServletRequest request) {
@@ -68,10 +70,7 @@ public class QnaController {
       int n = qnaList.size();
       
       model.addAttribute("qnaList", qnaList);
-      for(QnaVO vo:qnaList){
-    	  System.out.println(vo.getQna_check());
-    	  System.out.println(vo.getQna_id());
-      }
+   
       model.addAttribute("qnaListSize", n);
       model.addAttribute("paging", paging);
       
@@ -126,7 +125,7 @@ public class QnaController {
       MemberVO loginUserVO = null;
       QnaVO qnaVO = null;
       MemberVO qnaWriterVO = null;
-      ArrayList<QanswerVO> qanslist = null;
+      QanswerVO qansVO = null;
       
       String qseq =request.getParameter("qna_qseq");
       
@@ -138,7 +137,7 @@ public class QnaController {
                   (String)session.getAttribute("loginUser")   );
          qnaVO = qnaService.getQna(qnaSeq);
          qnaWriterVO = memberService.selectMember(qnaVO.getQna_id());
-         qanslist = qanswerService.listAllArticle();
+         qansVO = qanswerService.selectQanswer(qnaVO.getQseq());
       } catch (SQLException e) {
          // TODO Auto-generated catch block
          e.printStackTrace();
@@ -150,7 +149,7 @@ public class QnaController {
     
       
       //답변을 나타내기 위한 정보
-      model.addAttribute("qanslist", qanslist);
+      model.addAttribute("qansVO", qansVO);
       
       //로그인한 유저 계정 정보
       model.addAttribute("loginUserVO", loginUserVO);
@@ -168,7 +167,7 @@ public class QnaController {
    /* @RequestMapping(value="/qnaList", method=RequestMethod.GET) */
    /*@RequestParam(value="qna_qseq")String qseq,*/
 /*@RequestParam(value="qna_qseq", defaultValue="1")int qna_qseq*/
-   @RequestMapping(value="/qAnswer", method=RequestMethod.POST)
+   @RequestMapping(value="/qAnswer", method=RequestMethod.POST, produces="application/text;charset=utf8")
    @ResponseBody
    public String qAnswer(HttpSession session, Model model,
          HttpServletRequest request, HttpServletResponse response){
@@ -178,10 +177,11 @@ public class QnaController {
             // TODO Auto-generated catch block
             e.printStackTrace();
          }
-         
-      String content = request.getParameter("content");
+         response.setCharacterEncoding("utf-8");
+     
+         String content = request.getParameter("content");
       String seqNum = request.getParameter("seqNum");
-      System.out.println(Integer.parseInt(seqNum));
+    
       String loginUser = (String) session.getAttribute("loginUser");
       
       //게시글번호 유지 해야됨
@@ -208,7 +208,7 @@ public class QnaController {
       System.out.println(loginUser);
       System.out.println(content);
       model.addAttribute("qansVO",qanswerVO2);
-      
+      URLEncoder.encode(content);
       
       return content;
    } 
@@ -222,12 +222,29 @@ public class QnaController {
 	   
 	   return url;
    }
+   
   
    @RequestMapping("/qnaDelete")
    public String qnaDelete(HttpSession session, HttpServletRequest request, HttpServletResponse response){
-	   String url = "qna/qnaDelete";
-	   	System.out.println("글삭제를 위한 컨트롤러");
-	   
+	   String url = "redirect:/qna/qnaList";
+	   System.out.println(request.getParameter("qna_seq"));
+	   int qseq = Integer.parseInt(request.getParameter("qna_seq"));
+	   int result = 0;
+	   ArrayList<QnaVO> qnaList = null;
+	   try {
+		   System.out.println("234");
+		result = qnaService.deleteQna(qseq);
+		qnaList = qnaService.listAllQna();
+		
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	   	
+	   	request.setAttribute("qnaList", qnaList);
+	   	
+	   	
+	   	
 	   return url;
    }
   
