@@ -95,6 +95,16 @@
 				</c:when>
 				<c:when
 					test="${loginUserVO.mem_group_lice eq qnaWriterVO.mem_group_lice}">
+							
+					<sec:authorize access="hasAnyRole('ROLE_ADMIN','ROLE_SUPER')">
+						<input type="button" value="답변하기" id="forget">
+					</sec:authorize>
+				</c:when>
+				
+				
+				<c:when
+					test="${loginUserVO.mem_id == 'SUADMIN1'}">
+							
 					<sec:authorize access="hasAnyRole('ROLE_ADMIN','ROLE_SUPER')">
 						<input type="button" value="답변하기" id="forget">
 					</sec:authorize>

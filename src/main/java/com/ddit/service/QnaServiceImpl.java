@@ -7,14 +7,24 @@ import com.ddit.dao.QnaDAO;
 import com.ddit.dto.QnaVO;
 
 public class QnaServiceImpl implements QnaService {
-
-
 	QnaDAO qnaDAO;
 
 	public void setQnaDAO(QnaDAO qnaDAO) {
 		this.qnaDAO = qnaDAO;
 	}
 
+	
+	
+	@Override
+	public int deleteQna(int qseq) throws SQLException {
+		int result = -1;
+		result = qnaDAO.deleteQna(qseq);
+		return result;
+	}
+
+	
+	
+	
 	@Override
 	public int updateQnaCheck(QnaVO qnaVO) throws SQLException {
 		int result = -1;

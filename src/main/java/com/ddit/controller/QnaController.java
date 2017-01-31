@@ -36,6 +36,7 @@ public class QnaController {
    private QanswerService qanswerService;
 
    /* @RequestMapping(value="/qnaList", method=RequestMethod.GET) */
+   
    @RequestMapping("/qnaList")
    public String qnaList(/* @RequestParam("qseq") int qseq, */
    HttpSession session, Model model, HttpServletRequest request) {
@@ -69,10 +70,7 @@ public class QnaController {
       int n = qnaList.size();
       
       model.addAttribute("qnaList", qnaList);
-      for(QnaVO vo:qnaList){
-    	  System.out.println(vo.getQna_check());
-    	  System.out.println(vo.getQna_id());
-      }
+   
       model.addAttribute("qnaListSize", n);
       model.addAttribute("paging", paging);
       
@@ -183,7 +181,7 @@ public class QnaController {
      
          String content = request.getParameter("content");
       String seqNum = request.getParameter("seqNum");
-      System.out.println(Integer.parseInt(seqNum));
+    
       String loginUser = (String) session.getAttribute("loginUser");
       
       //게시글번호 유지 해야됨
@@ -224,12 +222,29 @@ public class QnaController {
 	   
 	   return url;
    }
+   
   
    @RequestMapping("/qnaDelete")
    public String qnaDelete(HttpSession session, HttpServletRequest request, HttpServletResponse response){
-	   String url = "qna/qnaDelete";
-	   	System.out.println("글삭제를 위한 컨트롤러");
-	   
+	   String url = "redirect:/qna/qnaList";
+	   System.out.println(request.getParameter("qna_seq"));
+	   int qseq = Integer.parseInt(request.getParameter("qna_seq"));
+	   int result = 0;
+	   ArrayList<QnaVO> qnaList = null;
+	   try {
+		   System.out.println("234");
+		result = qnaService.deleteQna(qseq);
+		qnaList = qnaService.listAllQna();
+		
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	   	
+	   	request.setAttribute("qnaList", qnaList);
+	   	
+	   	
+	   	
 	   return url;
    }
   

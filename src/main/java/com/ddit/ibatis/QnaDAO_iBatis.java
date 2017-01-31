@@ -10,14 +10,19 @@ import com.ibatis.sqlmap.client.SqlMapClient;
 public class QnaDAO_iBatis implements QnaDAO {
 
 
-
-	
-
 	private SqlMapClient client;
 	public void setClient(SqlMapClient client) {
 		this.client = client;
 	}
+
 	
+	
+
+	@Override
+	public int deleteQna(int qseq) throws SQLException {
+		int result =  client.delete("deleteQna",qseq);
+		return result;
+	}
 	
 	@Override
 	public int updateQnaCheck(QnaVO checkNum) throws SQLException {
