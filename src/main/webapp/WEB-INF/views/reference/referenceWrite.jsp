@@ -31,9 +31,10 @@
 				
 	<button type="submit">글쓰기</button>
 	<button type="button" id="btnContactUs" onclick="history.go(-1);">취소</button>
-
     </form>
 </body>
 </html>
+
+
 
 

@@ -16,27 +16,22 @@
 	<table border=1>
 		<tr>
 			<th>게시글번호</th>
-			<th>아이디</th>
 			<th>제목</th>
+			<th>내용</th>
 			<th>파일이름</th>
 			<th>등록날짜</th>
 		</tr>
 		
-		
 		<c:forEach items="${referenceList}" var="referenceVO">
 		<tr>
 		<th> ${referenceVO.reli_seq}</th>
-		<th> ${referenceVO.mem_id}</th>
-		<th> ${referenceVO.reli_subject}</th>
+		<th> <a href="detailArticle?reli_seq=${referenceVO.reli_seq}"> ${referenceVO.reli_subject} </a></th>
+		<th> ${referenceVO.reli_content}</th>
 		<th> ${referenceVO.reli_file_nm}</th>
 		<th> ${referenceVO.reli_date}</th>
 		</tr>
 		</c:forEach>
-		
-		
 
 	</table>
 	<button type="button" onclick="location.href='<%=request.getContextPath()%>/rf/referenceWrite' ">글쓰기</button>
 </form>
-
-
