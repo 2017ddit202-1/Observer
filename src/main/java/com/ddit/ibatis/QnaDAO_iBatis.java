@@ -11,13 +11,20 @@ import com.ibatis.sqlmap.client.SqlMapClient;
 
 public class QnaDAO_iBatis implements QnaDAO {
 
-
-	
-	private SqlMapClient client;
+private SqlMapClient client;
 	public void setClient(SqlMapClient client) {
 		this.client = client;
 	}
 
+	
+	
+	@Override
+	public int updateQnaVO(QnaVO qnaVO) throws SQLException {
+		  client.update("modifyQnaVO", qnaVO);
+		return 0;
+	}
+	
+	
 	@Override
 	public QnaVO selectQna(int qseq, String userid) throws SQLException {
 		QnaVO qnaVO =new QnaVO();
