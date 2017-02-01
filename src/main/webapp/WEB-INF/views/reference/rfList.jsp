@@ -36,7 +36,7 @@
 		
 
 	</table>
-	<button type="button" onclick="location.href='reference/referenceWrite' ">글쓰기</button>
+	<button type="button" onclick="location.href='<%=request.getContextPath()%>/rf/referenceWrite' ">글쓰기</button>
 </form>
 
 

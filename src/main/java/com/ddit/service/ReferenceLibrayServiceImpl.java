@@ -14,8 +14,8 @@ public class ReferenceLibrayServiceImpl implements ReferenceLibrayService{
 	}
 
 	@Override
-	public int insertRef(ReferenceLibrayVO RefVO) throws SQLException {
-		// TODO Auto-generated method stub
+	public int insertReference(ReferenceLibrayVO referenceVO) throws SQLException{
+		referenceDAO.insertReference(referenceVO);
 		return 0;
 	}
 

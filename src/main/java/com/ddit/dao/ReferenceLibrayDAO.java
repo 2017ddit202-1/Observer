@@ -8,7 +8,7 @@ import com.ddit.dto.ReferenceLibrayVO;
 public interface ReferenceLibrayDAO {
 
 	public ArrayList<ReferenceLibrayVO> listAllReference()throws SQLException;
-	public int insertRef(ReferenceLibrayVO RefVO) throws SQLException;
+	public int insertReference(ReferenceLibrayVO referenceVO) throws SQLException;
 	public void updateRef(ReferenceLibrayVO RefVO) throws SQLException;
 	public int deleteRef(int reli_seq) throws SQLException;
 	ReferenceLibrayVO selectRef(int reli_seq) throws SQLException;

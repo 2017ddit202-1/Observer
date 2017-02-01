@@ -20,6 +20,10 @@
 	<decorator name="freeBoard" page="user_decorator.jsp">
 		<pattern>/fb/*</pattern>
 	</decorator>
+	
+		<decorator name="reference" page="user_decorator.jsp">
+		<pattern>/rf/*</pattern>
+	</decorator>
 
 	<excludes>
 		<pattern>/idCheckForm*</pattern>

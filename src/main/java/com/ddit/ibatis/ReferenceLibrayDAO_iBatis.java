@@ -15,9 +15,16 @@ public class ReferenceLibrayDAO_iBatis implements ReferenceLibrayDAO{
 	}
 
 	@Override
-	public int insertRef(ReferenceLibrayVO RefVO) throws SQLException {
-		// TODO Auto-generated method stub
-		return 0;
+	public int insertReference(ReferenceLibrayVO referenceVO) throws SQLException {
+		System.out.println("ReferenceLibrayDAO_iBatis"+referenceVO);
+		int result = -1;
+		if(client.insert("insertReference",referenceVO) != null){
+			result=-1;
+		}else{
+			result=1;
+		}
+		return result;
+	
 	}
 
 	@Override

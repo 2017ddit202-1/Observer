@@ -12,4 +12,11 @@
 select * from reference_library order by reli_date desc
 </select>
 
+
+	<insert id="insertReference" parameterClass="reference">                                              
+		insert into reference_library(reli_seq,reli_file_nm,reli_subject,mem_id,reli_content,reli_size,reli_stored_filenm)
+		values(reli_seq.nextval, #reli_file_nm#, #reli_subject#, #mem_id#,#reli_content#,#reli_size#,#reli_stored_filenm#)
+	</insert>
+
 </sqlMap>
+
