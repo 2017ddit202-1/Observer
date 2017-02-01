@@ -59,8 +59,13 @@ public class MemberServiceImpl implements MemberService{
 
 	@Override
 	public MemberVO pwdFind(String userid, String email) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+		return memberIbatis.pwdFind(userid, email);
+	}
+
+	@Override
+	public void tempPwd(MemberVO memberVO) throws SQLException {
+		 memberIbatis.tempPwd(memberVO);
+		
 	}
 	
 	

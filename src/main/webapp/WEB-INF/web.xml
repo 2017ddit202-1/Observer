@@ -11,6 +11,7 @@
 			classpath:root-context.xml
 			classpath:application-context.xml
 			classpath:spring-security.xml
+			classpath:spring-mail.xml
 		</param-value>
 	</context-param>
 

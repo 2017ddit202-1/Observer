@@ -16,5 +16,7 @@ public interface MemberDAO {
 	public MemberVO idFind(String name , String email) throws SQLException;
 	public MemberVO pwdFind(String userid , String email) throws SQLException;
 	
+	
+	public void tempPwd(MemberVO memberVO) throws SQLException; 
 
 }
