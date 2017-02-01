@@ -43,12 +43,24 @@
 	set
 	qna_check=1
 	where qseq=61;
+   
+   	답변여부에 따라 qna_check를 업데이트
+   	0 =  답변미완료
+   	1 = 답변완료
     -->
    <update id="updateCheck" parameterClass="qna">
    		update qna
    		set qna_check= #qna_check#
    		where qseq= #qseq#
    </update>   
+   
+   
+   <update id="modifyQnaVO" parameterClass="qna">
+   		update qna 
+   		set qna_subject=#qna_subject#, qna_content=#qna_content#
+   		where qseq=#qseq#
+   </update>
+   
    
    
    <!-- 

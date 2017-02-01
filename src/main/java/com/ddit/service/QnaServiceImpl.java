@@ -9,12 +9,23 @@ import com.ddit.dto.QnaVO;
 public class QnaServiceImpl implements QnaService {
 
 
+
+
 	QnaDAO qnaDAO;
 
 	public void setQnaDAO(QnaDAO qnaDAO) {
 		this.qnaDAO = qnaDAO;
 	}
 
+
+	
+	@Override
+	public int updateQnaVO(QnaVO qnaVO) throws SQLException {
+		qnaDAO.updateQnaVO(qnaVO);
+		return 0;
+	}
+
+	
 	
 
 	

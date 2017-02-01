@@ -23,5 +23,7 @@ public interface QnaService {
 	
 	public QnaVO selectQna(int qseq, String userid)throws SQLException;
 	
+	public int updateQnaVO(QnaVO qnaVO) throws SQLException;
+	
 	
 }
