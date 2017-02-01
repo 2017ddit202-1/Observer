@@ -9,7 +9,6 @@ import com.ddit.dto.QnaVO;
 public class QnaServiceImpl implements QnaService {
 
 
-	
 
 
 	QnaDAO qnaDAO;
@@ -18,6 +17,49 @@ public class QnaServiceImpl implements QnaService {
 		this.qnaDAO = qnaDAO;
 	}
 
+
+	
+	@Override
+	public int updateQnaVO(QnaVO qnaVO) throws SQLException {
+		qnaDAO.updateQnaVO(qnaVO);
+		return 0;
+	}
+
+	
+	
+
+	
+	@Override
+	public QnaVO selectQna(int qseq, String userid) throws SQLException {
+		QnaVO qnaVO = new QnaVO();
+		 qnaVO = qnaDAO.selectQna(qseq, userid);
+		return qnaVO;
+	}
+
+	
+	
+	
+	
+	@Override
+	public int deleteQna(int qseq) throws SQLException {
+		int result = -1;
+		result = qnaDAO.deleteQna(qseq);
+		return result;
+	}
+
+	
+	
+	
+	@Override
+	public int updateQnaCheck(QnaVO qnaVO) throws SQLException {
+		int result = -1;
+		
+		result =  qnaDAO.updateQnaCheck(qnaVO);
+		return result;
+	}
+
+	
+	
 	@Override
 	public ArrayList<QnaVO> listAllQna() throws SQLException {
 		ArrayList<QnaVO> qnaList = null;

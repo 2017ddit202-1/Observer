@@ -25,10 +25,11 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>Lonely - Free bootstrap 3 one page template</title>
+
 
 
     <title>Landing Page - Start Bootstrap Theme</title>
+
 
     <!-- Bootstrap Core CSS -->
     
@@ -72,9 +73,9 @@
                     <li>
                         <a href="#about">About</a>
                     </li>
-
+ 
 				 <li>
-                        <a href="" data-toggle="modal" data-target="#login-modal" id="modal1">Login</a>
+                        <a href="" data-toggle="modal" data-target="#login-modal" id="modal1" data-backdrop="static" data-keyboard="false" >Login</a>
                     </li>
 				<!-- <li>
 					<button class="btn btn-primary" data-toggle="modal"
@@ -94,7 +95,7 @@
 			<div class="modal-content">
 				<div class="modal-header" align="center">
 					<img class="img-circle" id="img_logo" src="http://bootsnipp.com/img/logo.jpg">
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<button type="button"  id="aaa" class="close" data-dismiss="modal" aria-label="Close">
 						<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
 					</button>
 				</div>
@@ -105,6 +106,7 @@
                     <!-- Begin # Login Form -->
                     <form id="login-form" role="form">
 		                <div class="modal-body">
+		                        <span>로그인</span> 
 				    		<input id="mem_id" name="mem_id" class="form-control" type="text" placeholder="I D" required>
 				    		<input id="mem_pwd" name="mem_pwd" class="form-control" type="password" placeholder="Password" required>
                             <div class="checkbox">
@@ -125,12 +127,13 @@
                     <!-- Begin | Lost Password Form -->
                     <form id="lost-form" style="display:none;">
     	    		    <div class="modal-body">
-    	    		    	<input id="lost_id" class="form-control" type="text" placeholder="I D" required>
-		    				<input id="lost_email" class="form-control" type="text" placeholder="E-Mail" required>
+    	    		        <span>Password 찾기</span>
+    	    		    	<input id="mem_id" class="form-control" type="text" placeholder="I D" required>
+		    				<input id="mem_email" class="form-control" type="text" placeholder="E-Mail" required>
             			</div>
 		    		    <div class="modal-footer">
                             <div>
-                                <button type="button" class="btn btn-primary btn-lg btn-block">Send</button>
+                                <button type="button" class="btn btn-primary btn-lg btn-block" onclick="pwdSearch_go()">Send</button>
                             </div>
                             <div>
                                 <button id="lost_register_btn" type="button" class="btn btn-link">I D 찾기</button>
@@ -141,21 +144,22 @@
                     <!-- End | Lost Password Form -->
                     
                     <!-- Begin | Lost ID Form -->
-                    <form id="register-form" style="display:none;">
+                    <form id="register-form" name="idForm" style="display:none;">
             		    <div class="modal-body">
-		    				<input id="register_username" class="form-control" type="text" placeholder="Username" required>
-                            <input id="register_email" class="form-control" type="text" placeholder="E-Mail" required>
+            		        <span>I D 찾기</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id = "resultId"></span>
+		    				<input id="mem_nm" name = "mem_nm" class="form-control" type="text" placeholder="Username">
+                            <input id="mem_email" name = "mem_email" class="form-control" type="text" placeholder="E-Mail">
             			</div>
 		    		    <div class="modal-footer">
                             <div>
-                                <button type="button" class="btn btn-primary btn-lg btn-block">Send</button>
+                                <button type="button" id = "idBtn"class="btn btn-primary btn-lg btn-block">Send</button>
                             </div>
                             <div>
                                 <button id="register_login_btn" type="button" class="btn btn-link">Log In</button>
                                 <button id="register_lost_btn" type="button" class="btn btn-link">Password 찾기</button>
                             </div>
 		    		    </div>
-                    </form>
+                    </form>  
                     <!-- End | Lost ID Form -->
                     
                 </div>
@@ -216,8 +220,31 @@ function login_go(){
        };
     });
  };
+ </script>
+ <script>
+ $(function(){
+	 $('#idBtn').click(function(){
+		 
+		$.ajax({
+			url : "<%=request.getContextPath()%>/idFind",
+			type : "post",
+			data : $('form input').serialize(),
+			success:function(data){
+				$('#resultId').text(data);
+				$('#mem_nm').val("");
+				$('#register-form #mem_email').val("");
+			},
+			error:function(data){
+				alert('3333');
+			}
+		});
+	 });
+ });
 
-
-
+ 
+ 
+ 
 </script>
+
+ 
 </html>

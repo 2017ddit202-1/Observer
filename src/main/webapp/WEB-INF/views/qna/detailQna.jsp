@@ -1,14 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ page trimDirectiveWhitespaces="true" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+	pageEncoding="UTF-8"%>
+<%@ page trimDirectiveWhitespaces="true"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
+	<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title></title>
-	<script
+<script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
 
@@ -24,94 +26,102 @@
 
 </head>
 <body>
-<h1>detail page</h1>
- <h2> 1:1 고객 게시판 </h2>
-      <h3> 고객님의 질문에 대해서 운영자가 1:1 답변을 드립니다.</h3>    
-    <form name="formm" method="post">
-    <table id="notice">
-      <tr>
-              <th>제목</th>
-              <td>${qnaVO.qna_subject}</td>
-      </tr>
-      작성자 : ${qnaVO.qna_id}
-      <tr>
-        <th>등록일</th>
-        <td> <fmt:formatDate value="${qnaVO.qna_date}" type="date"/></td>
-      </tr>
-      <tr>
-        <th>질문내용</th>
-        <td>${qnaVO.qna_content} .${qnaVO.qna_id}, ${loginUserVO.mem_id}
-      </tr>
-    <!--  -->
-    <c:choose>
-    	<c:when test="${qansVO.qans_qseq != null }">
-      <tr>
-      <!-- 답변은 admin이고 lice번호가 qna작성자와 같아야만 달수 잇음 
-      	suadmin은 admin에 글에 답변을 달수 있음  
-      c:if를 이용해서 답변의 여부를 판단하여 표시 
-      	이미 답변이 달려 있다면 답변의 내용이 표시 되고 
-      	그렇지 않다면 빈공간 qna글 작성자 일때는 디테일 화면에서 답변내용이 확인 되게 하고 
-      -->
-      
-        <th>답변 내용</th>
-        <td><div id="sss"> ${qansVO.qans_content} </div></td>
-      </tr>
-      </c:when>
-      <c:otherwise>
-      	<tr>
-      	
-      	<th>답변 내용</th>
-      		<td>
-      			<div>미완료</div>
-      		</td>
-      	</tr>
-      </c:otherwise>
-     </c:choose> 
-      
-    </table>
-    
-<!--  -->
-	<div class="container" id="hiddenDiv" style="display: none">
-         <form>
-            <div class="form-group">
-               <label for="email">답변내용:</label> 
-            <!--    <input type="textarea"
+	<h1>detail page</h1>
+	<h2>1:1 고객 게시판</h2>
+	<h3>고객님의 질문에 대해서 운영자가 1:1 답변을 드립니다.</h3>
+	<form name="formm" method="post">
+		<table id="notice">
+			<tr>
+				<th>제목</th>
+				<td>${qnaVO.qna_subject}</td>
+			</tr>
+			작성자 : ${qnaVO.qna_id}
+			<tr>
+				<th>등록일</th>
+				<td><fmt:formatDate value="${qnaVO.qna_date}" type="date" /></td>
+			</tr>
+			<tr>
+				<th>질문내용</th>
+				<td>${qnaVO.qna_content}.${qnaVO.qna_id}, ${loginUserVO.mem_id}
+				
+			</tr>
+			<!--  -->
+			<c:choose>
+				<c:when test="${qansVO.qans_qseq != null }">
+					<tr>
+						<th>답변 내용</th>
+						<td><div id="sss">${qansVO.qans_content}</div></td>
+					</tr>
+				</c:when>
+				<c:otherwise>
+					<tr>
+
+						<th>답변 내용</th>
+						<td>
+							<div id="sss">GG</div>
+						</td>
+					</tr>
+				</c:otherwise>
+			</c:choose>
+
+		</table>
+
+		<!--  -->
+		<div class="container" id="hiddenDiv" style="display: none">
+			<form>
+				<div class="form-group">
+					<label for="email">답변내용:</label>
+					<!--    <input type="textarea"
                   class="form-control" id="email" placeholder="Enter answer">
              -->
-             <textarea rows="10" cols="100" name="email" placeholder="Enter answer"></textarea>
-            </div>
-            <button type="button" id="btn" class="btn btn-default btn-block" onclick="qAnswer_go()">
-               답변등록</button>
-         </form>
-      </div>
-<!--  -->
+					<textarea rows="10" cols="100" name="email"
+						placeholder="Enter answer"></textarea>
+				</div>
+				<button type="button" id="btn" class="btn btn-default btn-block"
+					onclick="qAnswer_go()">답변등록</button>
+			</form>
+		</div>
+		<!--  -->
 
-    <div class="clear"></div>
-    
-     <div id="buttons" style="float:right">
-     <input type="button"  value="목록보기"   class="submit"  onclick="list_go()">
-      <c:choose>
-      <c:when test="${loginUserVO.mem_id eq qnaVO.qna_id}"> 
-      <input type="button"  value="수정"   class="submit"  onclick="update_go()"> 
-      <input type="button"  value="삭제"   class="submit"  onclick="delete_go()">
-      </c:when> 
-	  <c:when test="${loginUserVO.mem_group_lice eq qnaWriterVO.mem_group_lice}"> 
-     <sec:authorize access="hasRole('ROLE_ADMIN')"> 
-      <input type="button"  value="답변하기" id="forget" > 
-      </sec:authorize>
-    	</c:when>
-    </c:choose>
-      
-    
-       
-      </div>
-    </form>
-    
-    
-    
-    
-    
-<script>
+		<div class="clear"></div>
+
+		<div id="buttons" style="float: right">
+			<input type="button" value="목록보기" class="submit" onclick="list_go()">
+			<c:choose>
+				<c:when test="${loginUserVO.mem_id eq qnaVO.qna_id}">
+					<input type="button" value="수정" class="submit"
+						onclick="update_go()">
+					<input type="button" value="삭제" class="submit"
+						onclick="delete_go()">
+				</c:when>
+				<c:when
+					test="${loginUserVO.mem_group_lice eq qnaWriterVO.mem_group_lice}">
+							
+					<sec:authorize access="hasAnyRole('ROLE_ADMIN','ROLE_SUPER')">
+						<input type="button" value="답변하기" id="forget">
+					</sec:authorize>
+				</c:when>
+				
+				
+				<c:when
+					test="${loginUserVO.mem_id == 'SUADMIN1'}">
+							
+					<sec:authorize access="hasAnyRole('ROLE_ADMIN','ROLE_SUPER')">
+						<input type="button" value="답변하기" id="forget">
+					</sec:authorize>
+				</c:when>
+			</c:choose>
+
+
+
+		</div>
+	</form>
+
+
+
+
+
+	<script>
 	function list_go(){
 		document.formm.action = "<%=request.getContextPath()%>" + "/qna/qnaList?qna_seq="+"${qnaVO.qseq}";
 		document.formm.submit();
@@ -152,8 +162,6 @@
 			       	}),
 			       	success:function(data){
 			       		document.getElementById("sss").innerHTML = data;
-			       		
-			       		
 			       	}
 			       	
 			});

@@ -35,7 +35,7 @@ public class QanswerServiceImpl implements QanswerService{
 
 	@Override
 	public QanswerVO selectQanswer(int qans_qseq) throws SQLException {
-		QanswerVO qnasVO = qanswerDAO.selectQansVO(qans_qseq);
+		QanswerVO qnasVO = (QanswerVO)qanswerDAO.selectQansVO(qans_qseq);
 		return qnasVO;
 	}
 

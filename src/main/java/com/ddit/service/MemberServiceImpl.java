@@ -51,6 +51,17 @@ public class MemberServiceImpl implements MemberService{
 		memberIbatis.positionRole(userid);
 		
 	}
+
+	@Override
+	public MemberVO idFind(String name, String email) throws SQLException {
+		return memberIbatis.idFind(name, email);
+	}
+
+	@Override
+	public MemberVO pwdFind(String userid, String email) throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 	
 

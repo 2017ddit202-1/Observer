@@ -74,4 +74,23 @@ public class MemberDAO_iBatis implements MemberDAO{
 		
 	}
 
+
+	@Override
+	public MemberVO idFind(String name, String email) throws SQLException {
+		MemberVO idFind = new MemberVO();
+		idFind.setMem_nm(name);
+		idFind.setMem_email(email);
+		
+		MemberVO member = (MemberVO) client.queryForObject("idFind",idFind);
+		
+		return member;
+	}
+
+
+	@Override
+	public MemberVO pwdFind(String userid, String email) throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

@@ -6,6 +6,7 @@
    	<typeAlias alias="str" type="java.lang.String" />
    <typeAlias alias="int" type="java.lang.Integer" />
    <typeAlias alias="qna" type="com.ddit.dto.QnaVO" />
+   <typeAlias alias="map" type="java.util.Map" />
    
    <select id="listQna" parameterClass="str" resultClass="qna">
    	select * from qna where id=#id# order by qseq desc
@@ -21,7 +22,7 @@
    </insert>
    
    <select id="listAllQna" resultClass="qna">
-   		select * from qna order by indate desc
+   		select * from qna order by qna_date desc
    </select>
    
    <select id="listQnalist" parameterClass="str" resultClass="qna">
@@ -32,6 +33,53 @@
    <select id="totalQna" parameterClass="str" resultClass="int">
    		select count(*) from qna where qna_id like '%'||#qna_id#||'%'
    </select>
+   
+   
+   
+   
+   
+   <!-- 
+    update qna
+	set
+	qna_check=1
+	where qseq=61;
+   
+   	답변여부에 따라 qna_check를 업데이트
+   	0 =  답변미완료
+   	1 = 답변완료
+    -->
+   <update id="updateCheck" parameterClass="qna">
+   		update qna
+   		set qna_check= #qna_check#
+   		where qseq= #qseq#
+   </update>   
+   
+   
+   <update id="modifyQnaVO" parameterClass="qna">
+   		update qna 
+   		set qna_subject=#qna_subject#, qna_content=#qna_content#
+   		where qseq=#qseq#
+   </update>
+   
+   
+   
+   <!-- 
+   delete from qna 
+ 	where qseq=70;
+   --> 
+   
+   <delete id="deleteQna" parameterClass="int">
+   		delete from qna 
+   		where qseq=#qseq#
+   </delete>
+   
+   
+   <select id="selectQna" parameterClass="qna" resultClass="qna">
+   		select * from qna 
+   		where qseq=#qseq# and qna_id=#qna_id#
+   </select>
+   
+   
    
    </sqlMap> 
     

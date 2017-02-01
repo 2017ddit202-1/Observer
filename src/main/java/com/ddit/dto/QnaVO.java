@@ -8,6 +8,13 @@ public class QnaVO {
 	private String qna_id;
 	private String qna_subject;
 	private String qna_content;
+	private int qna_check;
+	public int getQna_check() {
+		return qna_check;
+	}
+	public void setQna_check(int qna_check) {
+		this.qna_check = qna_check;
+	}
 	private Date qna_date;
 	
 	
