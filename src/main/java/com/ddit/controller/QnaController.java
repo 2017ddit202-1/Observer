@@ -216,9 +216,23 @@ public class QnaController {
    //////////////////////////
    
    @RequestMapping("/qnaUpdate")
-   public String qnaUpdate(HttpSession session, HttpServletRequest request, HttpServletResponse response){
+   public String qnaUpdate(Model model, HttpSession session, HttpServletRequest request, HttpServletResponse response){
 	   String url = "qna/qnaUpdate";
 	   	System.out.println("글수정을 위한 컨트롤러");
+	   	
+	   	QnaVO qnaVO = new QnaVO();
+	   	int qseq = Integer.parseInt(request.getParameter("qna_seq"));
+	    String userid = (String) session.getAttribute("loginUser");
+	   	
+	    
+	    try {
+			qnaVO = (QnaVO)qnaService.selectQna(qseq, userid);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	   	
+	    model.addAttribute("qnaVO", qnaVO);
 	   
 	   return url;
    }

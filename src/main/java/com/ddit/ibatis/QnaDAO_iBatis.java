@@ -2,6 +2,8 @@ package com.ddit.ibatis;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import com.ddit.dao.QnaDAO;
 import com.ddit.dto.QnaVO;
@@ -10,14 +12,23 @@ import com.ibatis.sqlmap.client.SqlMapClient;
 public class QnaDAO_iBatis implements QnaDAO {
 
 
+	
 	private SqlMapClient client;
 	public void setClient(SqlMapClient client) {
 		this.client = client;
 	}
 
-	
-	
+	@Override
+	public QnaVO selectQna(int qseq, String userid) throws SQLException {
+		QnaVO qnaVO =new QnaVO();
+		QnaVO qna =new QnaVO();
+		qna.setQseq(qseq);
+		qna.setQna_id(userid);
+		qnaVO = (QnaVO) client.queryForObject("selectQna", qna);
+		return qnaVO;
+	}
 
+	
 	@Override
 	public int deleteQna(int qseq) throws SQLException {
 		int result =  client.delete("deleteQna",qseq);
@@ -28,8 +39,6 @@ public class QnaDAO_iBatis implements QnaDAO {
 	public int updateQnaCheck(QnaVO checkNum) throws SQLException {
 		int result = -1;
 		result = client.update("updateCheck",checkNum);
-		System.out.println(result+"!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-		
 		return result;
 	}
 	

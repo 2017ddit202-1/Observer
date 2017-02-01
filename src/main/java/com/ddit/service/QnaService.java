@@ -20,4 +20,8 @@ public interface QnaService {
 	public ArrayList<QnaVO> listqnalist(int tpage,String qna_id) throws SQLException;
 	public int updateQnaCheck(QnaVO qnaVO) throws SQLException;
 	public int deleteQna(int qseq) throws SQLException;
+	
+	public QnaVO selectQna(int qseq, String userid)throws SQLException;
+	
+	
 }

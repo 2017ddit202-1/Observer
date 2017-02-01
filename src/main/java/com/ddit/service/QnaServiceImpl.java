@@ -7,12 +7,26 @@ import com.ddit.dao.QnaDAO;
 import com.ddit.dto.QnaVO;
 
 public class QnaServiceImpl implements QnaService {
+
+
 	QnaDAO qnaDAO;
 
 	public void setQnaDAO(QnaDAO qnaDAO) {
 		this.qnaDAO = qnaDAO;
 	}
 
+	
+
+	
+	@Override
+	public QnaVO selectQna(int qseq, String userid) throws SQLException {
+		QnaVO qnaVO = new QnaVO();
+		 qnaVO = qnaDAO.selectQna(qseq, userid);
+		return qnaVO;
+	}
+
+	
+	
 	
 	
 	@Override
