@@ -129,7 +129,6 @@ public class MainController {
 			HttpServletResponse response, Model model)throws ServletException, IOException{
 		String url = "idCheckForm";
 		String id = request.getParameter("mem_id").trim();
-		System.out.println(id);
 		int result=-1;
 		try {
 		result=memberService.confirmID(id);
@@ -154,7 +153,6 @@ public class MainController {
 	@RequestMapping("/idSearch")
 	public String idSearch(){
 		String url = "idSearch";
-		System.out.println("controller");
 		return url;
 	}
 	// ID찾기 ( 로그인 시 )
