@@ -41,6 +41,10 @@
 	<select id="idFind" parameterClass="member" resultClass="member">
 		select * from member where mem_nm=#mem_nm# and mem_email=#mem_email#
 	</select>
+	
+	<select id="pwdFind" parameterClass="member" resultClass="member">
+		select * from member where mem_id=#mem_id# and mem_email=#mem_email#
+	</select>
    
    
 </sqlMap>  

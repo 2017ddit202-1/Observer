@@ -127,13 +127,13 @@
                     <!-- Begin | Lost Password Form -->
                     <form id="lost-form" style="display:none;">
     	    		    <div class="modal-body">
-    	    		        <span>Password 찾기</span>
-    	    		    	<input id="mem_id" class="form-control" type="text" placeholder="I D" required>
-		    				<input id="mem_email" class="form-control" type="text" placeholder="E-Mail" required>
+    	    		        <span>Password 찾기</span><span id="resultPwd"></span>
+    	    		    	<input id="mem_id" name="mem_id" class="form-control" type="text" placeholder="I D" required>
+		    				<input id="mem_email" name="mem_email" class="form-control" type="text" placeholder="E-Mail" required>
             			</div>
 		    		    <div class="modal-footer">
                             <div>
-                                <button type="button" class="btn btn-primary btn-lg btn-block" onclick="pwdSearch_go()">Send</button>
+                                <button type="button" class="btn btn-primary btn-lg btn-block" id ="pwdBtn">Send</button>
                             </div>
                             <div>
                                 <button id="lost_register_btn" type="button" class="btn btn-link">I D 찾기</button>
@@ -228,19 +228,30 @@ function login_go(){
 		$.ajax({
 			url : "<%=request.getContextPath()%>/idFind",
 			type : "post",
-			data : $('form input').serialize(),
+			data : $('#register-form input').serialize(),
 			success:function(data){
 				$('#resultId').text(data);
 				$('#mem_nm').val("");
 				$('#register-form #mem_email').val("");
 			},
-			error:function(data){
-				alert('3333');
-			}
 		});
 	 });
  });
 
+ $(function(){
+	$('#pwdBtn').click(function(){
+		$.ajax({
+			url : "<%=request.getContextPath()%>/pwdFind",
+			type : "post",
+			data : $('#lost-form input').serialize(),
+			success:function(resultEmail){
+				$('#resultPwd').text(resultEmail);
+				$('#mem_id').val("");
+				$('#lost-form #mem_email').val("");
+			},
+		});
+	}); 
+ });
  
  
  
