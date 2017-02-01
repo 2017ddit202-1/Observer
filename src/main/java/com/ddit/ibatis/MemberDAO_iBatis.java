@@ -98,4 +98,11 @@ public class MemberDAO_iBatis implements MemberDAO{
 		return member;
 	}
 
+
+	@Override
+	public void tempPwd(MemberVO memberVO) throws SQLException {
+		client.update("pwdUpdate",memberVO);
+		
+	}
+
 }

@@ -192,6 +192,7 @@ public class MainController {
 		String content = "<strong>안녕하세요. Observer 회원님</strong><br>"
 				+ "<strong>당신의 비밀번호는</strong> ";
 		MemberVO member = null;
+		MemberVO updateMember = new MemberVO();
 		String userid = request.getParameter("mem_id");
 		String email = request.getParameter("mem_email");
 		
@@ -199,13 +200,31 @@ public class MainController {
 		String toEmail = null;
 		String toPwd = null;
 		
+		String tempPwd = "";
+		for (int i = 0; i < 8; i++) {
+			int rndVal = (int) (Math.random() * 62);
+			if (rndVal < 10) {
+				tempPwd += rndVal;
+			} else if (rndVal > 35) {
+				tempPwd += (char) (rndVal + 61);
+			} else {
+				tempPwd += (char) (rndVal + 55);
+			}
+		}
+		
 		try {
 			member = memberService.pwdFind(userid, email);
 			
 			if (member.getMem_email() != null && member.getMem_id() != null) {
 				toEmail = member.getMem_email();
-				toPwd = member.getMem_pwd();
-				content = content + " [ " + toPwd + " ] " +" &nbsp;<strong>입니다</strong>";
+				toPwd = tempPwd;
+				
+				updateMember.setMem_pwd(toPwd);
+				updateMember.setMem_id(userid);
+				
+				memberService.tempPwd(updateMember);
+				
+				content = content + " [ <strong> " + toPwd + " </strong> ] " +" &nbsp;<strong>입니다</strong>";
 				resultEmail = member.getMem_email()+"로 메일이 성공적으로 전송되었습니다.";
 			}else{
 				resultEmail = "이메일이 맞지 않습니다.";

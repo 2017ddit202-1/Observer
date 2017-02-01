@@ -231,7 +231,7 @@ function login_go(){
 			data : $('#register-form input').serialize(),
 			success:function(data){
 				$('#resultId').text(data);
-				$('#mem_nm').val("");
+				$('#register-form #mem_nm').val("");
 				$('#register-form #mem_email').val("");
 			},
 		});
@@ -246,7 +246,7 @@ function login_go(){
 			data : $('#lost-form input').serialize(),
 			success:function(resultEmail){
 				$('#resultPwd').text(resultEmail);
-				$('#mem_id').val("");
+				$('#lost-form #mem_id').val("");
 				$('#lost-form #mem_email').val("");
 			},
 		});

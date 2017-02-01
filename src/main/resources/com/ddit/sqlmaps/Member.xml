@@ -45,6 +45,12 @@
 	<select id="pwdFind" parameterClass="member" resultClass="member">
 		select * from member where mem_id=#mem_id# and mem_email=#mem_email#
 	</select>
+	
+	<update id="pwdUpdate" parameterClass="member">
+		update member
+		set mem_pwd=#mem_pwd#
+		where mem_id=#mem_id#
+	</update>
    
    
 </sqlMap>  

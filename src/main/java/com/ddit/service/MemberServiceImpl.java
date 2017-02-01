@@ -61,6 +61,12 @@ public class MemberServiceImpl implements MemberService{
 	public MemberVO pwdFind(String userid, String email) throws SQLException {
 		return memberIbatis.pwdFind(userid, email);
 	}
+
+	@Override
+	public void tempPwd(MemberVO memberVO) throws SQLException {
+		 memberIbatis.tempPwd(memberVO);
+		
+	}
 	
 	
 
