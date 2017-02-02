@@ -52,4 +52,35 @@ public class ReferenceLibrayDAO_iBatis implements ReferenceLibrayDAO{
 		return referenceList;
 	}
 
+
+	@Override
+	public ReferenceLibrayVO detailReference(int reli_seq) throws SQLException {
+		ReferenceLibrayVO referenceVO = new ReferenceLibrayVO();
+		referenceVO=(ReferenceLibrayVO)client.queryForObject("detailReference",reli_seq);
+		return referenceVO;
+	}
+
+	@Override
+	public void updateReference(ReferenceLibrayVO referenceVO) throws SQLException {
+		client.update("updateReference",referenceVO);
+	}
+
+	@Override
+	public void updateReferenceFileUp(ReferenceLibrayVO referenceVO)
+			throws SQLException {
+		client.update("updateReferenceFileUp",referenceVO);
+		
+	}
+
+	@Override
+	public void deleteReference(int reli_seq) throws SQLException {
+		client.delete("deleteReference",reli_seq);
+		
+	}
+
+
+
+
+
+
 }

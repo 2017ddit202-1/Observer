@@ -21,17 +21,34 @@
 			<th>파일이름</th>
 			<th>등록날짜</th>
 		</tr>
-		
+
 		<c:forEach items="${referenceList}" var="referenceVO">
-		<tr>
-		<th> ${referenceVO.reli_seq}</th>
-		<th> <a href="detailArticle?reli_seq=${referenceVO.reli_seq}"> ${referenceVO.reli_subject} </a></th>
-		<th> ${referenceVO.reli_content}</th>
-		<th> ${referenceVO.reli_file_nm}</th>
-		<th> ${referenceVO.reli_date}</th>
-		</tr>
+			<tr>
+				<th>${referenceVO.reli_seq}</th>
+				<th><a href="referenceDetail?reli_seq=${referenceVO.reli_seq}">
+						${referenceVO.reli_subject} </a></th>
+				<th>${referenceVO.reli_content}</th>
+				<th>${referenceVO.reli_file_nm}</th>
+				<th>${referenceVO.reli_date}</th>
+			</tr>
 		</c:forEach>
 
 	</table>
-	<button type="button" onclick="location.href='<%=request.getContextPath()%>/rf/referenceWrite' ">글쓰기</button>
+	<%-- <button type="button" onclick="location.href='<%=request.getContextPath()%>/rf/referenceWrite' ">글쓰기</button> --%>
+
+	<sec:authorize access="hasRole('ROLE_SUPER')">
+		<button type="button" onclick="location.href='<%=request.getContextPath()%>/rf/referenceWrite' ">글쓰기</button>
+	</sec:authorize>
+
+
+
+
 </form>
+
+
+
+
+
+
+
+

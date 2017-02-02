@@ -26,7 +26,7 @@ public class DownloadView extends AbstractView{
 		
 		response.setContentType(getContentType());
 		response.setContentLength((int) file.length());
-		
+		 
 		String userAgent = request.getHeader("User-Agent");
 		boolean ie = userAgent.indexOf("MSIE") > -1;
 		String fileName = null;
@@ -39,6 +39,7 @@ public class DownloadView extends AbstractView{
 		response.setHeader("Content-Transfer-Encoding", "binary");
 		OutputStream out = response.getOutputStream();
 		FileInputStream fis = null;
+
 		try{
 			fis = new FileInputStream(file);
 			FileCopyUtils.copy(fis, out);

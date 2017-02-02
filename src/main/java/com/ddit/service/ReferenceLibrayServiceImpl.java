@@ -45,6 +45,32 @@ public class ReferenceLibrayServiceImpl implements ReferenceLibrayService{
 		return referenceVO;
 	}
 
+	@Override
+	public ReferenceLibrayVO detailReference(int reli_seq) throws SQLException {
+		ReferenceLibrayVO referenceVO = new ReferenceLibrayVO();
+		referenceVO=referenceDAO.detailReference(reli_seq);
+		return referenceVO;
+	}
+
+	@Override
+	public void updateReference(ReferenceLibrayVO referenceVO)throws SQLException{
+		referenceDAO.updateReference(referenceVO);
+		
+	}
+
+	@Override
+	public void updateReferenceFileUp(ReferenceLibrayVO referenceVO)
+			throws SQLException {
+		referenceDAO.updateReferenceFileUp(referenceVO);
+		
+	}
+
+	@Override
+	public void deleteReference(int reli_seq) throws SQLException {
+		referenceDAO.deleteReference(reli_seq);
+		
+	}
+
 
 
 	
