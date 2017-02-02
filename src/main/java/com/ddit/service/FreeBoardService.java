@@ -12,4 +12,6 @@ public interface FreeBoardService {
 	public int deleteFb(int fb_seq) throws SQLException;
 	FreeBoardVO selectFb(int fb_seq) throws SQLException;
 	public ArrayList<FreeBoardVO> listAllFb() throws SQLException;
+	
+	public FreeBoardVO fbDetail(int fb_seq) throws SQLException;
 }

@@ -10,14 +10,35 @@
 	
 	
 	<select id="listFb" resultClass="freeBoard">
-		select * from free_board order by fb_date desc
+		select * from free_board order by fb_seq desc
 	</select>
 
 
 	<insert id="insertFb" parameterClass="freeBoard">
 		insert into
-		free_board(fb_seq, fb_subject, fb_content, fb_cnt, fb_id)
-		values(fb_seq.nextval, #fb_subject#, #fb_content#,#fb_cnt#, #fb_id#)
+		free_board(fb_seq,fb_subject,fb_content,fb_cnt,fb_id)
+		values(fb_seq.nextval,#fb_subject#,#fb_content#,#fb_cnt#,#fb_id#)
 	</insert>
+
+	<select id="selectFb" resultClass="freeBoard">
+		select * from free_board where
+		fb_seq=#fb_seq#
+	</select>
+
+	<delete id="deleteFb" parameterClass="int">
+		delete from free_board
+		where fb_seq=#fb_seq#
+	</delete>
+	
+	<update id="updateFb" parameterClass="freeBoard">
+		update free_board
+		set fb_subject=#fb_subject#,fb_content=#fb_content#
+		where fb_seq=#fb_seq#
+	</update>
+	
+	<select id="detailFb" parameterClass="int" resultClass="freeBoard">
+		select * from free_board where fb_seq=#fb_seq#
+	</select>
+	
 
 </sqlMap>	

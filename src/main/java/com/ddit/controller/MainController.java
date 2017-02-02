@@ -188,7 +188,7 @@ public class MainController {
 		JavaMailSender jmailSender = (JavaMailSender) mailSender;
 		MimeMessage message = ((JavaMailSender) mailSender).createMimeMessage();
 		String content = "<strong>안녕하세요. Observer 회원님</strong><br>"
-				+ "<strong>당신의 비밀번호는</strong> ";
+				+ "<strong>당신의 임시 비밀번호는</strong> ";
 		MemberVO member = null;
 		MemberVO updateMember = new MemberVO();
 		String userid = request.getParameter("mem_id");

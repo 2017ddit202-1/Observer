@@ -27,26 +27,31 @@ public class FreeBoardDAO_iBatis implements FreeBoardDAO{
 
 	@Override
 	public void updateFB(FreeBoardVO freeBoardVO) throws SQLException {
-		// TODO Auto-generated method stub
-		
+		client.update("updateFb",freeBoardVO);
 	}
 
 	@Override
 	public int deleteFB(int fb_seq) throws SQLException {
-		// TODO Auto-generated method stub
-		return 0;
+		return client.delete("deleteFb",fb_seq);
 	}
 
 	@Override
 	public FreeBoardVO selectFB(int fb_seq) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+		FreeBoardVO fbVO = (FreeBoardVO) client.queryForObject("selectFb",fb_seq);
+		
+		return fbVO;
 	}
 
 	@Override
 	public ArrayList<FreeBoardVO> listAllFb() throws SQLException {
 		ArrayList<FreeBoardVO> fbList = (ArrayList<FreeBoardVO>) client.queryForList("listFb");
 		return fbList;
+	}
+
+	@Override
+	public FreeBoardVO fbDetail(int fb_seq) throws SQLException {
+		FreeBoardVO fbVO = (FreeBoardVO) client.queryForObject("detailFb",fb_seq);
+		return fbVO;
 	}
 
 }
