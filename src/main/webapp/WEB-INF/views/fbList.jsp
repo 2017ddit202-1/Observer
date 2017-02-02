@@ -37,43 +37,19 @@
 						<th><a href="<%=request.getContextPath() %>/fb/fbDetail?fb_seq=${fbList.fb_seq}">${fbList.fb_subject}</a></th>
 						<th>${fbList.fb_content}</th>
 						<th>${fbList.fb_date}</th>
-						<th>${fbList.fb_cnt}</th>						
+						<th>${fbList.fb_cnt}</th>
 					</tr>
 				</c:forEach>
+				<tr>
+				</tr>
+				<tr>
+					<td colspan="6" style="text-align: center;">${paging}</td>
+				</tr>
+				
 			</c:otherwise>
 		</c:choose>
 	</table>	
-<%-- 		<c:choose> --%>
-<%-- 				<c:when test="${qnaListSize<=0}"> --%>
-<!-- 						<tr> -->
-<!-- 							<td width="100%" colspan="5" align="center" height="23"> -->
-<!-- 								There are no registered qna.</td> -->
-<!-- 						</tr> -->
-<%-- 					</c:when> --%>
-<%-- 				<c:otherwise> --%>
-<%-- 			<c:forEach items="${articleList}" var="articleVO"> --%>
-<!-- 				<tr> -->
-<%-- 						<th>${articleVO.noar_seq}</th> --%>
-<%-- 						<th>${loginUser}</th> <!-- //////////articleVO.noar_id --> --%>
-<%-- 						<th><a href="detailArticle?noar_seq=${articleVO.noar_seq}">${articleVO.noar_subject}</a></th> --%>
-<%-- 						<th>${articleVO.noar_content}</th> --%>
-<%-- 						<th>${articleVO.noar_date}</th> --%>
-<!-- 					</tr> -->
-<%-- 			</c:forEach> --%>
-<!-- 			<tr> -->
-<%-- 				<td colspan="6" style="text-align: center;">${paging}</td> --%>
-<!-- 			</tr> -->
-
-<%-- 		</c:otherwise> --%>
-<%-- 		</c:choose> --%>
-<!-- 		<!--  --> -->
-<!-- 		</table> -->
-	
-
-
 	</form>
-
-
 
 	<sec:authorize access="isAuthenticated()">
 		<button type="button" onclick="fbWrite_go() ">글쓰기</button>

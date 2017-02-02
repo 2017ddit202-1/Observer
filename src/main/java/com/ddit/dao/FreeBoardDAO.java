@@ -4,6 +4,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import com.ddit.dto.FreeBoardVO;
+import com.ddit.dto.Notice_ArticleVO;
+import com.ddit.dto.QnaVO;
 
 public interface FreeBoardDAO {
 
@@ -14,4 +16,8 @@ public interface FreeBoardDAO {
 	public ArrayList<FreeBoardVO> listAllFb() throws SQLException;
 	
 	public FreeBoardVO fbDetail(int fb_seq) throws SQLException;
+	public String pageNumber(int tpage, String fb_id) throws SQLException;
+	public ArrayList<FreeBoardVO> listFbPage(int tpage,String fb_id) throws SQLException;
+	
+	public int fb_cnt(int fb_seq) throws SQLException;
 }

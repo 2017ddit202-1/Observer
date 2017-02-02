@@ -18,7 +18,7 @@
 	 <input type="hidden" name="fb_seq" value="${fbVO.fb_seq}"> 
 	 
 	 
-	 <button type="button" id="btnContactUs" onclick="history.go(-1);">뒤로가기</button>
+	 <button type="button" id="btnContactUs" onclick="fbList_go()">뒤로가기</button>
 	
       <button type="button" id="btnContactUs" onclick="go_fbWrite()">수정하기</button>
 	<button type="button" id="btnContactUs" onclick="go_fbDelete()">삭제하기</button>
@@ -29,6 +29,11 @@
 </article>
 
 <script>
+function fbList_go(){
+	document.formm.action = "<%=request.getContextPath()%>/fb/fbList";
+	document.formm.submit();
+}
+
 function go_fbWrite(){
 	document.formm.action = "<%=request.getContextPath()%>/fb/fbUpdate";
     document.formm.submit();

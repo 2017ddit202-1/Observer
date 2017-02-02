@@ -39,11 +39,25 @@ public class FreeBoardController {
 	public String fbList(HttpServletRequest request , HttpSession session , Model model){
 		String url = "/fbList";
 		
+		String key = "";
+		String tpage = request.getParameter("tpage");
+		if (request.getParameter("key") != null) {
+			key = request.getParameter("key");
+		}
+		if (tpage == null) {
+			tpage = "1"; 
+		} else if (tpage.equals("")) {
+			tpage = "1";
+		}
+		
 		String id = (String) session.getAttribute("loginUser");
+		
 		ArrayList<FreeBoardVO> fbList = null;
+		String paging = null;
 		
 		try {
-			fbList = freeBoardServiceImpl.listAllFb();
+			fbList = freeBoardServiceImpl.listFbPage(Integer.parseInt(tpage), key);
+			paging = freeBoardServiceImpl.pageNumber(Integer.parseInt(tpage), key);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -52,6 +66,7 @@ public class FreeBoardController {
 		
 		model.addAttribute("fbList",fbList);
 		model.addAttribute("fbListSize",size);
+		model.addAttribute("paging",paging);
 		session.getAttribute("loginUser");
 		
 		return url;		
@@ -94,6 +109,7 @@ public class FreeBoardController {
 		
 		try {
 			fbVO = freeBoardServiceImpl.fbDetail(Integer.parseInt(fb_seq));
+			freeBoardServiceImpl.fb_cnt(Integer.parseInt(fb_seq));
 		} catch (NumberFormatException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

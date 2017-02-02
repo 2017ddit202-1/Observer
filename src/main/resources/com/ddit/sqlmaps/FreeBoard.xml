@@ -40,5 +40,20 @@
 		select * from free_board where fb_seq=#fb_seq#
 	</select>
 	
+	<select id="listFbPage" parameterClass="str" resultClass="freeBoard">
+		select * from free_board where fb_id like '%'||#fb_id#||'%' order by
+		fb_date desc
+	</select>
+	
+	<select id="totalFb" parameterClass="str" resultClass="int">
+		select count(*) from free_board where fb_id like '%'||#fb_id#||'%'
+	</select>
+	
+	<update id = "readCount" parameterClass="int">
+		update free_board
+		set fb_cnt=(select fb_cnt from free_board where fb_seq=#fb_seq#)+1
+		where fb_seq=#fb_seq#
+	</update>
+	
 
 </sqlMap>	
