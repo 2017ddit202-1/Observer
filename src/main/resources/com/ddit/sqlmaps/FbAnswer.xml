@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
+    "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+
+<sqlMap namespace="FbAnswer">
+	<typeAlias alias="str" type="java.lang.String" />
+	<typeAlias alias="int" type="java.lang.Integer" />
+	<typeAlias alias="fbAns" type="com.ddit.dto.FbanswerVO" />
+	
+	<insert id="insertFbAns" parameterClass="fbAns">
+      INSERT INTO
+      fbanswer(fbans_seq,fbans_content,fbans_id,fbans_fbseq) 
+      VALUES(fbans_seq.nextval, #fbans_content#, #fbans_id#,#fbans_fbseq#)
+   </insert>
+   
+   <select id="selectFbAns" parameterClass="int" resultClass="fbAns">
+   		select * from fbanswer where fbans_seq=#fbans_seq#
+   </select>
+		
+	
+</sqlMap>	

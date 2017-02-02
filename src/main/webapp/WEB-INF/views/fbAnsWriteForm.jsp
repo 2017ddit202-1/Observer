@@ -10,7 +10,7 @@
 
 <script>
 	function write_go(){
-		document.formm.action = "<%=request.getContextPath()%>/fb/fbWrite";
+		document.formm.action = "<%=request.getContextPath()%>/fbAns/fbAnsWrite";
 		document.formm.submit();
 	}
 
@@ -21,16 +21,14 @@
 <body>
 <br><br><br><br><br><br><br><br>
 
-<h1>자유게시판 작성하기</h1>
+<h1>댓글 작성하기</h1><br>
 <form name="formm" method="post" 
 		action="qnaWrite">
-			<fieldset>	
-				작성자 : ${loginUser}<br /><br />		
-			    <label>제목</label>
-			    <input type="text" name="subject"  size="64" ><br>
-			    
-				<label>질문내용</label>
+			<fieldset>
+				작성자 : ${loginUser}	<br/><br/>
+				<label>댓글내용</label>
 			    <textarea rows="8" cols="65" name="content"></textarea><br>
+			    <input type="hidden" name="fb_fbseq" value="${fb_seq}">
 			</fieldset>   
 		<div class="clear"></div>
 		 <div id="buttons" style="float:right">

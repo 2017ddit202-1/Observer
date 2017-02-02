@@ -7,9 +7,9 @@ import com.ddit.dto.FbanswerVO;
 
 public interface FbanswerService {
 
-	public int insertCpu(FbanswerVO cpuVO) throws SQLException;
-	public void updateCpu(FbanswerVO cpuVO) throws SQLException;
-	public int deleteCpu(int fbans_seq) throws SQLException;
-	FbanswerVO selectCpu(int fbans_seq) throws SQLException;
+	public int insertFbanswer(FbanswerVO fbanswerVO) throws SQLException;
+	public void updateFbanswer(FbanswerVO fbanswerVO) throws SQLException;
+	public int deleteFbanswer(int fbans_seq) throws SQLException;
+	FbanswerVO selectFbanswer(int fbans_seq) throws SQLException;
 	public ArrayList<FbanswerVO> listAllArticle() throws SQLException;
 }

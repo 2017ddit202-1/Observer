@@ -43,7 +43,11 @@
 	<bean id="referenceService" class="com.ddit.service.ReferenceLibrayServiceImpl">
 		<property name="referenceDAO" ref="referenceDAO" />
 	</bean>
-	
+
+	<bean id="fbAnswerDAO" class="com.ddit.ibatis.Fbanswer_iBatis"
+		p:client-ref="SqlMapClient" />
+	<bean id="fbAnswerService" class="com.ddit.service.FbanswerServiceImpl"
+		p:fbAnswer_iBatis-ref="fbAnswerDAO" />	
 	
 
 

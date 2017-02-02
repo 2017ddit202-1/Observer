@@ -24,6 +24,10 @@
 		<decorator name="reference" page="user_decorator.jsp">
 		<pattern>/rf/*</pattern>
 	</decorator>
+	
+	<decorator name="fbAnswer" page="user_decorator.jsp">
+		<pattern>/fbAns/*</pattern>
+	</decorator>
 
 	<excludes>
 		<pattern>/idCheckForm*</pattern>
