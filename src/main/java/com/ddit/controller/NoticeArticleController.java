@@ -32,7 +32,7 @@ public class NoticeArticleController {
 	public String articleView(HttpServletRequest request,
 			HttpServletResponse response,HttpSession session, Model model) {
 		String url = "articleView";
-/////////////////페이징시작/////////////////////////
+      /////////////////페이징시작/////////////////////////
 		String key="";
 		String tpage = request.getParameter("tpage");
 		if(request.getParameter("key") != null){
@@ -136,7 +136,7 @@ public class NoticeArticleController {
 		}
 		/*session.setAttribute("articleVO", articleVO);*/
 		request.setAttribute("articleVO", articleVO);
-		System.out.println(articleVO);
+		
 		
 		return url;
 	}

@@ -1,22 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
     "http://www.ibatis.com/dtd/sql-map-2.dtd">
-    
+
 <sqlMap namespace="Reference">
-	<typeAlias alias="str" type="java.lang.String" />
-	<typeAlias alias="int" type="java.lang.Integer" />
-	<typeAlias alias="reference" type="com.ddit.dto.ReferenceLibrayVO" />
-	
-
-<select id="listReference" resultClass="reference">
-select * from reference_library order by reli_date desc
-</select>
+   <typeAlias alias="str" type="java.lang.String" />
+   <typeAlias alias="int" type="java.lang.Integer" />
+   <typeAlias alias="reference" type="com.ddit.dto.ReferenceLibrayVO" />
 
 
-	<insert id="insertReference" parameterClass="reference">                                              
-		insert into reference_library(reli_seq,reli_file_nm,reli_subject,mem_id,reli_content,reli_size,reli_stored_filenm)
-		values(reli_seq.nextval, #reli_file_nm#, #reli_subject#, #mem_id#,#reli_content#,#reli_size#,#reli_stored_filenm#)
-	</insert>
+   <select id="listReference" resultClass="reference">
+      select * from
+      reference_library order by reli_date desc
+   </select>
+
+
+   <insert id="insertReference" parameterClass="reference">
+      insert into
+      reference_library(reli_seq,reli_file_nm,reli_subject,mem_id,reli_content,reli_size,reli_stored_filenm)
+      values(reli_seq.nextval, #reli_file_nm#, #reli_subject#,
+      #mem_id#,#reli_content#,#reli_size#,#reli_stored_filenm#)
+   </insert>
+
+   <select id="detailReference" parameterClass="int" resultClass="reference">
+      select * from reference_library where reli_seq=#reli_seq#
+   </select>
+
+   <update id="updateReference" parameterClass="reference">
+      update reference_library
+      set
+      reli_subject=#reli_subject#, reli_content=#reli_content#
+      where reli_seq=#reli_seq#
+   </update>
+   
+   <update id="updateReferenceFileUp" parameterClass="reference">
+   update reference_library
+   set
+   reli_file_nm=#reli_file_nm#, reli_subject=#reli_subject#, reli_content=#reli_content#,reli_size=#reli_size#, reli_stored_filenm=#reli_stored_filenm#
+   where reli_seq=#reli_seq#
+   </update>
+   
+   <delete id="deleteReference" parameterClass="int">
+   delete from reference_library where reli_seq=#reli_seq#
+   </delete>
+
 
 </sqlMap>
-
