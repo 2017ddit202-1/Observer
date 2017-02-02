@@ -139,7 +139,6 @@ public class FreeBoardController {
 		fbVO.setFb_content(request.getParameter("fb_content"));
 		fbVO.setFb_seq(Integer.parseInt(request.getParameter("fb_seq")));
 		
-		System.out.println(fbVO);
 		ArrayList<FreeBoardVO> fbList = null;
 		
 		try {
