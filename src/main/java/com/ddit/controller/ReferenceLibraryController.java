@@ -140,7 +140,7 @@ public class ReferenceLibraryController {
          @RequestParam("uploadfile") MultipartFile multipartFile,
          HttpServletRequest request, HttpServletResponse response,
          Model model) throws IllegalStateException, IOException {
-
+	   
       request.setCharacterEncoding("utf-8");
       response.setContentType("text/html;charset=utf-8");
       String url = "reference/rfList";
@@ -173,14 +173,10 @@ public class ReferenceLibraryController {
          String reli_stored = System.currentTimeMillis() + "$$"
                + multipartFile.getOriginalFilename(); // 가공파일이름
 
-         System.out.println(name);
-         System.out.println(size);
-         System.out.println(reli_stored);
-         
-         String upload = request.getSession().getServletContext()
-               .getRealPath(uploadPath);
+       /*  String upload = request.getSession().getServletContext()
+               .getRealPath(uploadPath);*/
 
-         File file = new File(upload, reli_stored);
+         File file = new File(uploadPath, reli_stored);
          
          referenceVO.setMem_id(request.getParameter("mem_id"));
          referenceVO.setReli_subject(request.getParameter("reli_subject"));
@@ -207,6 +203,7 @@ public class ReferenceLibraryController {
 
       return url;
    }
+  
    
    
    //자료글삭제하기

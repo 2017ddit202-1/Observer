@@ -67,7 +67,7 @@ public class DownloadController implements ApplicationContextAware {
 
 	// //////////////////////////////////////////////////////////////////////////////////
 
-	@RequestMapping("/filee/{filestore}")
+	@RequestMapping("/filee/{filestore}")  //filestore->시퀀스번호
 	public ModelAndView downloadFile(@PathVariable String filestore,
 			HttpServletResponse response, HttpServletRequest request)
 			throws IOException {
@@ -85,26 +85,21 @@ public class DownloadController implements ApplicationContextAware {
 			e.printStackTrace();
 		}
 
+		//파일이름 받아옴
 		String reli_stored_filenm = reference.getReli_stored_filenm();
 
-		File downloadFile = getFile2(reli_stored_filenm);
+		File downloadFile = getFile2(reli_stored_filenm); //경로와 이름으로 파일을 가져옴
 		if (downloadFile == null) {
 			response.sendError(HttpServletResponse.SC_NOT_FOUND);
 			return null;
 		}
-		return new ModelAndView("download", "downloadFile", downloadFile); // download
-																			// =
-																			// view
-																			// "downloadFile",
-																			// downloadFile
-																			// =
-																			// model
+		return new ModelAndView("download", "downloadFile", downloadFile); //뷰아이디이름,이름,값
 	}
 
 	private File getFile2(String filestore) {
-		String baseDir = uploadPath;
+		String baseDir = uploadPath; //"C:\\dev\\file\\";
 
-		return new File(baseDir, filestore);
+		return new File(baseDir, filestore);  //경로,파일이름
 	}
 
 }

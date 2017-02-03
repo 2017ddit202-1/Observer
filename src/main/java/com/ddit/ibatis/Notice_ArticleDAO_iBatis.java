@@ -138,6 +138,11 @@ public class Notice_ArticleDAO_iBatis implements Notice_ArticleDAO{
 				.queryForList("listArticlelist", noar_id, startRow,counts);
 		return articleView;
 	}
+
+	@Override
+	public int articleCnt(int noar_seq) throws SQLException {
+		return client.update("articleCnt",noar_seq);
+	}
 	
 
 

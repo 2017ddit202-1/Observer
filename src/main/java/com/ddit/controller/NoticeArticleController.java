@@ -127,9 +127,11 @@ public class NoticeArticleController {
 		String url="detailArticle";
 		
 		String noar_seq = request.getParameter("noar_seq");
+		int seq=Integer.parseInt(noar_seq);
 		Notice_ArticleVO articleVO=null;
 		try {
 			articleVO=articleService.detailArticle(Integer.parseInt(noar_seq));
+		    articleService.articleCnt(seq);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -200,6 +202,15 @@ public class NoticeArticleController {
 		
 	
 
+		return url;
+	}
+	
+	@RequestMapping("/articleSearch")
+	public String search(){
+		String url = "";
+		
+		System.out.println("^^^^^^^^^^^^^^^^^^^^^^^^^");
+		
 		return url;
 	}
 }

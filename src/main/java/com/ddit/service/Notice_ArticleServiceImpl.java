@@ -79,4 +79,12 @@ public class Notice_ArticleServiceImpl implements Notice_ArticleService{
 
 
 
+	@Override
+	public int articleCnt(int noar_seq) throws SQLException {
+		
+		return articleDAO.articleCnt(noar_seq);
+	}
+
+
+
 }

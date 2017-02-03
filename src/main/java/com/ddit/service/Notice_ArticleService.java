@@ -13,4 +13,5 @@ public interface Notice_ArticleService {
 	public void updateArticle(Notice_ArticleVO articleVO)throws SQLException;
 	public String totalPage(int tpage, String noar_id) throws SQLException;
 	public ArrayList<Notice_ArticleVO> listArticlelist(int tpage,String noar_id) throws SQLException;
+	public int articleCnt(int noar_seq)throws SQLException;
 }
