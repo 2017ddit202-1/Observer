@@ -29,8 +29,8 @@
 
 
     <title>Landing Page - Start Bootstrap Theme</title>
-
-
+	
+	 
     <!-- Bootstrap Core CSS -->
     
 	<link href="<%=request.getContextPath()%>/resources/css/bootstrap.min.css"rel="stylesheet">

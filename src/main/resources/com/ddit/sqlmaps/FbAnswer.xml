@@ -16,8 +16,7 @@
    </insert>
    
    <select id="selectFbAns" parameterClass="int" resultClass="fbAns">
-   		select * from fbanswer where fbans_seq=#fbans_seq#
-   </select>
-		
-	
+   		select * from fbanswer where fbans_fbseq=#fbans_fbseq#
+   </select> 
+   
 </sqlMap>	

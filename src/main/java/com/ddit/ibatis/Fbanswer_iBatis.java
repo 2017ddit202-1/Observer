@@ -2,6 +2,7 @@ package com.ddit.ibatis;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 import com.ddit.dao.FbanswerDAO;
 import com.ddit.dto.FbanswerVO;
@@ -39,13 +40,15 @@ public class Fbanswer_iBatis implements FbanswerDAO{
 
 	@Override
 	public FbanswerVO selectFbanswer(int fbans_seq) throws SQLException {
-		return (FbanswerVO) client.queryForObject("selectFbAns", fbans_seq);
+//		return (FbanswerVO) client.queryForObject("selectFbAns",fbans_seq);
+		return null;
 	}
 
 	@Override
-	public ArrayList<FbanswerVO> listAllArticle() throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+	public List<FbanswerVO> listAllFbAnswer(int fbans_seq) throws SQLException {
+		List<FbanswerVO> list = client.queryForList("selectFbAns",fbans_seq);
+		return list;
 	}
+
 
 }

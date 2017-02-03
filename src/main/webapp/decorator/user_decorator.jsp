@@ -11,10 +11,17 @@
 	response.setHeader("Cache-Control", "no-cache");
 	response.addHeader("Cache-Control", "no-store");
 	response.setDateHeader("Expires", 1L);
+	
 %>
 
 <!DOCTYPE html>
 <html>
+
+<script src="<%=request.getContextPath()%>/resources/js/jquery.js"></script>
+    <script src="<%=request.getContextPath()%>/resources/js/jquery-3.1.1.js"></script>
+    <script src="<%=request.getContextPath()%>/resources/js/jquery-3.1.1.min.js"></script>
+
+
 <title>OBSERVER<decorator:title /></title>
 <decorator:head />
 
