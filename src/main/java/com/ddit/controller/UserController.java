@@ -120,6 +120,19 @@ public class UserController {
 		return url;
 		}
 	
+	@RequestMapping(value="/memberDelete", method = RequestMethod.POST)
+	public String memberDelete(HttpServletRequest request){
+		String url="";
+		/*request.getParameter("mem_")*/
+		
+	
+		
+		System.out.println("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
+		
+		return url;
+		
+	}
+	
 	
 	
 	

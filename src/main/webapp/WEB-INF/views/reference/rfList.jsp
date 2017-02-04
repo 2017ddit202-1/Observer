@@ -19,6 +19,7 @@
          <th>제목</th>
          <th>내용</th>
          <th>파일이름</th>
+         <th>파일크기</th>
          <th>등록날짜</th>
       </tr>
 
@@ -29,6 +30,7 @@
                   ${referenceVO.reli_subject} </a></th>
             <th>${referenceVO.reli_content}</th>
             <th>${referenceVO.reli_file_nm}</th>
+            <th>${referenceVO.reli_size}</th>
             <th>${referenceVO.reli_date}</th>
          </tr>
       </c:forEach>

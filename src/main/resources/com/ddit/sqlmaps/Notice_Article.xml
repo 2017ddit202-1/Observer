@@ -5,6 +5,7 @@
 <sqlMap namespace="Article">
 	<typeAlias alias="str" type="java.lang.String" />
 	<typeAlias alias="int" type="java.lang.Integer" />
+	<typeAlias alias="map" type="java.util.Map"/>
 	<typeAlias alias="article" type="com.ddit.dto.Notice_ArticleVO" />
 
 	<select id="listArticle" resultClass="article">
@@ -42,7 +43,28 @@
 	<select id="totalArticle" parameterClass="str" resultClass="int">
 		select count(*) from notice_article where noar_id like '%'||#noar_id#||'%'
 	</select>
-
+	
+	
+	<update id="articleCnt" parameterClass="int">
+	 update notice_article
+	 set noar_cnt=(select noar_cnt from notice_article where noar_seq=#noar_seq#)+1
+	 where noar_seq=#noar_seq#
+	 </update>
+	
+	
+    <select id="articleSearch_seq" parameterClass="int" resultClass="article">
+    select * from notice_article where noar_seq like '%'||#noar_seq#||'%'
+    </select>
+    
+    <select id="articleSearch_subject" parameterClass="str" resultClass="article">
+    select * from notice_article where noar_subject like '%'||#noar_seq#||'%'
+    </select>
+    
+    <select id="articleSearch_content" parameterClass="str" resultClass="article">
+    select * from notice_article where noar_content like '%'||#noar_seq#||'%'
+    </select>
+    
+    
 </sqlMap> 
 
 

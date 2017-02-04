@@ -26,7 +26,7 @@
 						isAuthenticated() ==        모두
  --%>
 	
-	 <button type="button" id="btnContactUs" onclick="history.go(-1);">확인</button>
+	 <button type="button" id="btnContactUs" onclick="articleList_go();">확인</button>
 	
 	<sec:authorize access="hasRole('ROLE_SUPER')">
       <button type="button" id="btnContactUs" onclick="go_articleWrite()">수정하기</button>
@@ -46,7 +46,17 @@ function go_articleWrite(){
 function go_articleDelete(){
 	document.formm.action = "<%=request.getContextPath()%>/article/articleDelete";
     document.formm.submit();
-    
-    
+
 }
+function articleList_go(){
+	document.formm.action = "<%=request.getContextPath()%>/article/articleView";
+    document.formm.submit();
+}
+
+
+<%-- function list_go(){
+	document.formm.action = "<%=request.getContextPath()%>" + "/qna/qnaList?qna_seq="+"${qnaVO.qseq}";
+	document.formm.submit();
+	
+} --%>
 </script>

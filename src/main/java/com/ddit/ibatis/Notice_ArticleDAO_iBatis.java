@@ -2,6 +2,8 @@ package com.ddit.ibatis;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 import com.ddit.dao.Notice_ArticleDAO;
 import com.ddit.dto.Notice_ArticleVO;
@@ -138,7 +140,36 @@ public class Notice_ArticleDAO_iBatis implements Notice_ArticleDAO{
 				.queryForList("listArticlelist", noar_id, startRow,counts);
 		return articleView;
 	}
+
+	@Override
+	public int articleCnt(int noar_seq) throws SQLException {
+		return client.update("articleCnt",noar_seq);
+	}
+
+
+	@Override
+	public ArrayList<Notice_ArticleVO> articleSearch_seq(int noar_seq)
+			throws SQLException {
 	
+	ArrayList<Notice_ArticleVO> articleList =(ArrayList<Notice_ArticleVO>)client.queryForList("articleSearch_seq", noar_seq);
+		return articleList;
+	}
+
+	@Override
+	public ArrayList<Notice_ArticleVO> articleSearch_subject(String noar_seq)
+			throws SQLException {
+		ArrayList<Notice_ArticleVO> articleList =(ArrayList<Notice_ArticleVO>)client.queryForList("articleSearch_subject", noar_seq);
+		return articleList;
+	}
+
+	@Override
+	public ArrayList<Notice_ArticleVO> articleSearch_content(String noar_seq)
+			throws SQLException {
+		ArrayList<Notice_ArticleVO> articleList =(ArrayList<Notice_ArticleVO>)client.queryForList("articleSearch_content", noar_seq);
+		return articleList;
+	}
+
+
 
 
 }

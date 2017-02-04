@@ -24,7 +24,7 @@
 
    <form id="formm" name="formm" method="post" action="<%=request.getContextPath()%>/rf/referenceFileUpload"
       enctype="multipart/form-data">
-    아이디:<input type="text" name="mem_id" required="required" placeholder="아이디"><br>
+    아이디:<input type="text" name="mem_id" required="required" value="${loginUser}"><br>
       제목:<input type="text" name="reli_subject" required="required" placeholder="제목"><br>
     내용:<textarea rows="20" cols="40" name="reli_content" required="required" placeholder="내용"></textarea><br>
       파일:<input type="file" name="uploadfile" required="required"><br>
