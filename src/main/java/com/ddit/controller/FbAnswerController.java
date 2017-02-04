@@ -2,6 +2,7 @@ package com.ddit.controller;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -17,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ddit.dto.FbanswerVO;
-import com.ddit.dto.MemberVO;
 import com.ddit.service.FbanswerServiceImpl;
 
 @Controller
@@ -40,7 +40,7 @@ public class FbAnswerController {
 //		return url;
 //	}
 	
-	@RequestMapping(value="/fbAnsList",method=RequestMethod.POST)
+	@RequestMapping(value="/fbAnsList",method=RequestMethod.POST,produces="application/json;charset=utf8")
 	@ResponseBody 
 	public List<FbanswerVO> fbAnsList(@RequestBody Map<String,Object> fbMap , Model model){
 		List<FbanswerVO> fbAnsList = new ArrayList<FbanswerVO>();
@@ -52,7 +52,7 @@ public class FbAnswerController {
 			e.printStackTrace();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			e.printStackTrace(); 
 		}
 		return fbAnsList;
 	}
@@ -79,5 +79,27 @@ public class FbAnswerController {
 			e.printStackTrace();
 		}
 		return fbList;
+	}
+	
+	@RequestMapping("/fbAnsDelete")
+	@ResponseBody
+	public Map<String,Object> fbAnsDelete(Model model,HttpServletRequest request){
+		int fbAns_seq = Integer.parseInt(request.getParameter("result"));
+		Map<String,Object> fbMap = new HashMap();
+		
+		List<FbanswerVO> fbAnsList = null;
+		try {
+			fbanswerService.deleteFbanswer(fbAns_seq);
+			fbAnsList = fbanswerService.listAllFbAnswer(fbAns_seq);
+			fbMap.put("fbAnsList", fbAnsList);
+			fbMap.put("fbAns_seq", fbAns_seq);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		model.addAttribute("fbAns_seq",fbAns_seq);
+		
+		return fbMap;
 	}
 }
