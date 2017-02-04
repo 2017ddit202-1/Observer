@@ -18,7 +18,7 @@ function writeForm_go(){
 	
 	
 	function serachQna_go(){
-		document.formm.action = "<%=request.getContextPath()%>"	+ "/qna/qnaSearch";
+		document.formm.action = "<%=request.getContextPath()%>"	+ "/qna/qnaList";
 		document.formm.submit();
 		
 	}
@@ -33,7 +33,13 @@ function writeForm_go(){
 
 	<form name="formm" method="post">
 		<div>
-			<input type="text" name="searchKey" placeholder="Search...">
+		<select name="keyField" size="1">
+		<option value="qna_seq">게시글번호</option>
+		<option value="qna_seq">제목</option>
+		<option value="qna_seq">내용</option>
+		<option value="qna_seq">작성자</option>
+	</select> 
+			<input type="text" name="key" placeholder="Search...">
 			<button  type="button" onclick="serachQna_go()">
 				<i class="fa fa-search"></i>
 			</button>
@@ -61,7 +67,9 @@ function writeForm_go(){
 					<c:forEach items="${qnaList}" var="qnaVO">
 						<tr>
 							<td>${qnaVO.qseq}</td>
-							<td>${qnaVO.qna_id}</td>
+<%-- 							<c:if test="${qnaVO.qna_date eq time }">
+							</c:if>
+ --%>							<td>${qnaVO.qna_id}</td>
 							<%-- <a href="detailArticle?noar_seq=${articleVO.noar_seq}"> --%>
 							<td><a href="detailQna?qna_qseq=${qnaVO.qseq}">${qnaVO.qna_subject}</a></td>
 							<td><fmt:formatDate value="${qnaVO.qna_date}"
