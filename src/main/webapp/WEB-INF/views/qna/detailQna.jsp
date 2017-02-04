@@ -134,6 +134,7 @@
 	}
 	
 	function delete_go(){
+		alert('게시글을 삭제합니다.');
 		document.formm.action = "<%=request.getContextPath()%>" + "/qna/qnaDelete?qna_seq="+"${qnaVO.qseq}";
 		document.formm.submit();
 	}

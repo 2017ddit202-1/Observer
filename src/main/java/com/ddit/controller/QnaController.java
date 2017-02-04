@@ -161,6 +161,7 @@ public class QnaController {
 		return url;
 	}
 
+	
 	/* @RequestMapping(value="/qnaList", method=RequestMethod.GET) */
 	/* @RequestParam(value="qna_qseq")String qseq, */
 	/* @RequestParam(value="qna_qseq", defaultValue="1")int qna_qseq */
@@ -279,6 +280,19 @@ public class QnaController {
 		return url;
 	}
 
+	
+	@RequestMapping("/qnaSearch")
+	public String qnaSearch(){
+		String url ="redirect:/qna/qnaList";
+		
+		
+		System.out.println("search");
+		
+		
+		return url;
+	}
+	
+	
 	// //////
 
 }
