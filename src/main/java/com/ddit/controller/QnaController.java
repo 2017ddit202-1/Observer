@@ -3,7 +3,9 @@ package com.ddit.controller;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -69,6 +71,15 @@ public class QnaController {
 		}
 		int n = qnaList.size();
 
+		////
+		Date date = new Date();
+		SimpleDateFormat simpleDate = new SimpleDateFormat("yyyy-MM-dd");
+		String time = (String)simpleDate.format(date);
+		System.out.println(time);
+		
+		////
+		
+		model.addAttribute("time");
 		model.addAttribute("qnaList", qnaList);
 
 		model.addAttribute("qnaListSize", n);
@@ -256,7 +267,7 @@ public class QnaController {
 		}
 		return url;
 	}
-
+	
 	@RequestMapping("/qnaDelete")
 	public String qnaDelete(HttpSession session, HttpServletRequest request,
 			HttpServletResponse response) {
@@ -280,17 +291,6 @@ public class QnaController {
 		return url;
 	}
 
-	
-	@RequestMapping("/qnaSearch")
-	public String qnaSearch(){
-		String url ="redirect:/qna/qnaList";
-		
-		
-		System.out.println("search");
-		
-		
-		return url;
-	}
 	
 	
 	// //////
