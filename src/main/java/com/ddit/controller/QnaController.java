@@ -73,7 +73,11 @@ public class QnaController {
 
 		model.addAttribute("qnaListSize", n);
 		model.addAttribute("paging", paging);
-
+		System.out.println(tpage);
+		System.out.println(key);
+		System.out.println(paging);
+		System.out.println(paging);
+		
 		return url;
 	}
 
