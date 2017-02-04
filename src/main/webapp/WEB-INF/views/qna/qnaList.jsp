@@ -12,9 +12,17 @@
 <script>
 function writeForm_go(){
 	
-	document.formm.action = "<%=request.getContextPath()%>"+"/qna/qnaWriteForm";
+	document.formm.action = "<%=request.getContextPath()%>"	+ "/qna/qnaWriteForm";
 		document.formm.submit();
 	}
+	
+	
+	function serachQna_go(){
+		document.formm.action = "<%=request.getContextPath()%>"	+ "/qna/qnaSearch";
+		document.formm.submit();
+		
+	}
+	
 </script>
 
 
@@ -24,6 +32,12 @@ function writeForm_go(){
 	<h2>Q&A게시판</h2>
 
 	<form name="formm" method="post">
+		<div>
+			<input type="text" name="searchKey" placeholder="Search...">
+			<button  type="button" onclick="serachQna_go()">
+				<i class="fa fa-search"></i>
+			</button>
+		</div>
 		<table border='1'>
 			<tr>
 				<th>게시글번호</th>
@@ -33,8 +47,7 @@ function writeForm_go(){
 				<th>답변여부</th>
 
 			</tr>
-			<br>
-			<br>
+			
 
 			<!-- ////////////////////////////////////////////////////////////// -->
 			<c:choose>
@@ -73,13 +86,7 @@ function writeForm_go(){
 			<!--  -->
 		</table>
 		<input type="submit" value="질문하기" onclick="writeForm_go()" />
-
-
 	</form>
-
-
-
-
 </body>
 </html>
 

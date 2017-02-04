@@ -14,6 +14,15 @@
 		document.formm.submit();
 	}
 
+	
+	function list_go(){
+		document.formm.action = "<%=request.getContextPath()%>/qna/qnaList";
+		document.formm.submit();
+	}
+
+		
+	
+	
 </script>
 
 
@@ -36,7 +45,7 @@
 		<div class="clear"></div>
 		 <div id="buttons" style="float:right">
 			<input type="submit"  value="글 등록"  onclick="write_go()"> 
-			<input type="reset"   value="취소"     class="cancel">
+			<input type="reset"   value="취소"    onclick="list_go()">
 		  </div>
 		</form>
 

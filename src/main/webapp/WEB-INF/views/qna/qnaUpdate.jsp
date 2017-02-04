@@ -45,7 +45,7 @@
 			<input type="button" value="수정" class="submit"
 				onclick="modify_go()">
 			<input	type="button" value="취소" class="cancel"
-				onclick="location.href='/main/index.do'">
+				onclick="list_go()">
 		</div>
 	</form>
  
@@ -56,7 +56,12 @@
 		document.formm.submit();
 	}
 
-
+	function list_go(){
+		document.formm.method = "POST";
+		document.formm.action = "<%=request.getContextPath()%>" + "/qna/qnaList?qna_seq="+"${qnaVO.qseq}";
+		document.formm.submit();
+	
+	}
 </script>
 
 
