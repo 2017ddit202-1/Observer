@@ -30,8 +30,8 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 	@Override
-	public int confirmID(String userid) throws SQLException {
-		int result =memberIbatis.confirmID(userid);
+	public int confirmID(String userid) throws SQLException{
+		int result = memberIbatis.confirmID(userid);
 		return result;
 	}
 
@@ -67,6 +67,20 @@ public class MemberServiceImpl implements MemberService{
 		 memberIbatis.tempPwd(memberVO);
 		
 	}
+
+	@Override
+	public MemberVO confirmID2(String userid) throws SQLException {
+		return memberIbatis.confirmID2(userid);
+		
+	}
+
+	@Override
+	public void memberEnabled(String userid) throws SQLException {
+		memberIbatis.memberEnabled(userid);
+		
+	}
+
+
 	
 	
 

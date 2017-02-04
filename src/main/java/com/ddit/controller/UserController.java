@@ -1,5 +1,10 @@
 package com.ddit.controller;
 
+import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
+import java.io.Writer;
 import java.security.Provider.Service;
 import java.sql.SQLException;
 
@@ -120,14 +125,56 @@ public class UserController {
 		return url;
 		}
 	
-	@RequestMapping(value="/memberDelete", method = RequestMethod.POST)
-	public String memberDelete(HttpServletRequest request){
-		String url="";
-		/*request.getParameter("mem_")*/
+	@RequestMapping(value="/memberDelete", method = RequestMethod.POST, produces = "application/text;charset=utf8")
+	public String memberDelete(HttpServletRequest request,HttpServletResponse response){
+
+		
+		String url="/index";
+		
+		String mem_id = request.getParameter("mem_id");
+
+		MemberVO memberVO = null;
+		
+		try {
+			memberVO=memberService.confirmID2(mem_id);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		
+		String mem_pwd=memberVO.getMem_pwd();
+		
+		if(mem_pwd.equals(request.getParameter("mem_pwd"))){
+			try {
+				memberService.memberEnabled(mem_id);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}else{
+		/*	 PrintWriter out;
+			try {
+				out = response.getWriter();
+				 out.println("<script>alert('비밀번호가 일치하지 않습니다.');</script>"); 
+				  out.flush(); 
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			*/
+
+	          
+		}
+	
+
+		
+		//아이디로 셀렉을 해서 vo 값을 가져와 입력한 패스워드와 보 값의 패스워드가 같으면
+		//ENABLED를 0으로 변경한다
 		
 	
 		
-		System.out.println("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
 		
 		return url;
 		

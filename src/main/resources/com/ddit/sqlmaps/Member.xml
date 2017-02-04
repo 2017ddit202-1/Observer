@@ -51,6 +51,12 @@
 		set mem_pwd=#mem_pwd#
 		where mem_id=#mem_id#
 	</update>
+	
+	<update id="memberEnabled" parameterClass="str">
+   update member
+   set enabled='0'
+   where mem_id=#mem_id#
+   </update>
    
    
 </sqlMap>  

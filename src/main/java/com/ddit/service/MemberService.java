@@ -18,4 +18,7 @@ public interface MemberService {
 	public MemberVO pwdFind(String userid , String email) throws SQLException;
 	
 	public void tempPwd(MemberVO memberVO) throws SQLException; 
+	
+	public MemberVO confirmID2(String userid) throws SQLException;   //아이디로셀렉
+	public void memberEnabled(String userid)throws SQLException; //탈퇴
 }

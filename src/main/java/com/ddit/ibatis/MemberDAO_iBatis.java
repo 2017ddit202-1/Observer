@@ -41,14 +41,12 @@ public class MemberDAO_iBatis implements MemberDAO{
 
 	@Override
 	public int confirmID(String userid) throws SQLException {
-		int result= -1;
-		MemberVO memberVO = (MemberVO)client.queryForObject("confirmID", userid);
-		if(memberVO != null){
-			result = 1;
+		int result=-1;//실패
+		if(client.queryForObject("confirmID",userid) != null){
+			result=-1;
 		}else{
-			result = -1; 
+			result=1; //성공
 		}
-		
 		return result;
 	}
 
@@ -104,5 +102,24 @@ public class MemberDAO_iBatis implements MemberDAO{
 		client.update("pwdUpdate",memberVO);
 		
 	}
+
+
+	@Override
+	public MemberVO confirmID2(String userid) throws SQLException {
+		return (MemberVO) client.queryForObject("confirmID",userid);
+		
+	}
+
+
+	@Override
+	public void memberEnabled(String userid) throws SQLException {
+	  client.update("memberEnabled", userid);
+		
+	}
+
+
+
+
+
 
 }

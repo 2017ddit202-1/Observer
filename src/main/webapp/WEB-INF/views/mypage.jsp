@@ -52,8 +52,8 @@
         <!-- //////////////내용//////////////// -->
         
         <form id="formm" name="formm" method="post">
-        ID:<input type="text" id="mem_id" value="${loginUser}"><br>
-        PWD:<input type="password" id="mem_pwd"><br>
+        ID:<input type="text" id="mem_id" name="mem_id" value="${loginUser}"><br>
+        PWD:<input type="password" id="mem_pwd" name="mem_pwd"><br>
         <button type="button" id="btnContactUs" onclick="memberDelete()">탈퇴하기</button>
         </form>
         
