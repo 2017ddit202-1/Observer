@@ -2,6 +2,8 @@ package com.ddit.service;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 import com.ddit.dao.Notice_ArticleDAO;
 import com.ddit.dto.Notice_ArticleVO;
@@ -84,6 +86,40 @@ public class Notice_ArticleServiceImpl implements Notice_ArticleService{
 		
 		return articleDAO.articleCnt(noar_seq);
 	}
+
+
+
+	@Override
+	public ArrayList<Notice_ArticleVO> articleSearch_seq(int noar_seq)
+			throws SQLException {
+		ArrayList<Notice_ArticleVO> articleList =articleDAO.articleSearch_seq(noar_seq);
+		return articleList;
+	}
+
+
+
+	@Override
+	public ArrayList<Notice_ArticleVO> articleSearch_subject(String noar_seq)
+			throws SQLException {
+		ArrayList<Notice_ArticleVO> articleList =articleDAO.articleSearch_subject(noar_seq);
+		return articleList;
+	}
+
+
+
+	@Override
+	public ArrayList<Notice_ArticleVO> articleSearch_content(String noar_seq)
+			throws SQLException {
+		ArrayList<Notice_ArticleVO> articleList =articleDAO.articleSearch_content(noar_seq);
+		return articleList;
+	}
+
+
+
+
+
+
+
 
 
 

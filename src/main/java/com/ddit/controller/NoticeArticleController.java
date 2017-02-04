@@ -15,11 +15,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.ddit.dto.Notice_ArticleVO;
-import com.ddit.dto.QnaVO;
 import com.ddit.service.Notice_ArticleService;
-import com.ddit.service.QnaService;
 
 @Controller
 @RequestMapping("/article")
@@ -32,6 +31,11 @@ public class NoticeArticleController {
 	public String articleView(HttpServletRequest request,
 			HttpServletResponse response,HttpSession session, Model model) {
 		String url = "articleView";
+		
+		
+		
+		
+		
       /////////////////페이징시작/////////////////////////
 		String key="";
 		String tpage = request.getParameter("tpage");
@@ -48,8 +52,7 @@ public class NoticeArticleController {
 		ArrayList<Notice_ArticleVO> articleList = null;
 		String paging = null;
 		//
-		
-		
+
 		
 		//////////////////////////////////////////////////
 
@@ -205,14 +208,51 @@ public class NoticeArticleController {
 		return url;
 	}
 	
-	@RequestMapping("/articleSearch")
-	public String search(){
-		String url = "";
+	
+	//공지사항 서치
+	@RequestMapping(value="/articleSearch", method=RequestMethod.POST)
+	public String articleSearch(@RequestParam(required=false) String keyField, @RequestParam String keyWord, Model model
+			,HttpServletRequest request){
 		
-		System.out.println("^^^^^^^^^^^^^^^^^^^^^^^^^");
+		String url="articleView";
+
+		ArrayList<Notice_ArticleVO> articleList= null;
+		
+		if(keyField.equals("noar_seq")){
+			int key=Integer.parseInt(keyWord);
+			
+			try {
+				articleList=articleService.articleSearch_seq(key);
+				model.addAttribute("articleSearch", articleList);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}else if(keyField.equals("noar_subject")){
+			try {
+				articleList=articleService.articleSearch_subject(keyWord);
+				model.addAttribute("articleList", articleList);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		}else{
+			try {
+				articleList=articleService.articleSearch_content(keyWord);
+				model.addAttribute("articleList",articleList);
+				model.addAttribute(keyField);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	
 		
 		return url;
 	}
+	
+	
 }
 
 

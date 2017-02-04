@@ -52,4 +52,11 @@ function articleList_go(){
 	document.formm.action = "<%=request.getContextPath()%>/article/articleView";
     document.formm.submit();
 }
+
+
+<%-- function list_go(){
+	document.formm.action = "<%=request.getContextPath()%>" + "/qna/qnaList?qna_seq="+"${qnaVO.qseq}";
+	document.formm.submit();
+	
+} --%>
 </script>
