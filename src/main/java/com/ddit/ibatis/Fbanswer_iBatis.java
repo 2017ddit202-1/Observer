@@ -34,8 +34,8 @@ public class Fbanswer_iBatis implements FbanswerDAO{
 
 	@Override
 	public int deleteFbanswer(int fbans_seq) throws SQLException {
-		// TODO Auto-generated method stub
-		return 0;
+		int result = client.delete("deleteFbAns",fbans_seq);
+		return result;
 	}
 
 	@Override

@@ -27,15 +27,15 @@
 		<button type="button" id="btnContactUs" onclick="go_fbDelete()">삭제하기</button>
 		<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
 		
-		
+		<div id = "test"></div>
 		<div id="answer"></div>
 		작성자 : ${loginUser}	<br/><br/>
 		<textarea rows="8" cols="65" name="fbAns_content" id ="fbAns_content"></textarea><br>
 			    <input type="hidden" name="fb_fbseq" value="${fb_seq}" id="fb_fbseq">
+<%-- 			    <input type="hidden" name="fbAns_seq" value="${ }" --%>
 						
 		<button type="button" id="btnFbAnswer" name="btnFbAnswer">댓글쓰기</button>
-
-
+		
 	</form>
 	
 </article>
@@ -60,8 +60,6 @@ function go_fbWrite(){
 function go_fbDelete(){
 	document.formm.action = "<%=request.getContextPath()%>/fb/fbDelete";
     document.formm.submit();
-    
-    
 }
 </script>
 
@@ -84,14 +82,18 @@ $(document).ready(function() {
 				var day = date.getDate();
 				day = day >= 10? day:'0'+day;
 				var fullDate = year + '년' + month + '월' + day + '일';
-				var fbAnsList = '<div>ID : '
+				var fbAnsList = '<div id = "'+data[i].fbans_seq+'">ID : '
 							  + data[i].fbans_id
 							  + ' / ' + '작성날짜 : '
-							  + fullDate + '<div> ->'
+							  + fullDate
+							  + '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'
+							  + '<a href="" id="'
+							  + data[i].fbans_seq
+							  + '"class="mm" name="mm">X</a>'
+							  + '<div> ->'
 							  + data[i].fbans_content
-							  +'</div></div><br><br>';
+							  +'</div></div><br>';
 				$('div #answer').append(fbAnsList);			  
-							  
 			})
 		}
 	});
@@ -119,13 +121,35 @@ $(document).ready(function() {
 						var fbAnsList = '<div>ID : '
 									  + data[i].fbans_id
 									  + ' / ' + '작성날짜 : '
-									  + fullDate + '<div> ->'
+									  + fullDate
+									  + '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'
+									  + '<a href="" id="'
+									  + data[i].fbans_seq
+									  + '"class="mm" name="mm">X</a>'
+									  + '<div> ->'
 									  + data[i].fbans_content
 									  +'</div></div><br><br>';
 						$('div #answer').append(fbAnsList);	
 					})
 				}
 			});
+	});
+	
+	$(document).on('click','.mm',function(e){
+		e.preventDefault();
+		var result = $(this).attr('id');
+		$.ajax({
+			url:"<%=request.getContextPath()%>/fbAns/fbAnsDelete",
+			data: {"result" : result},
+			dataType:'json',
+			type:'post',
+			success:function(fbMap){
+				fbAnsMap = jQuery.map(fbMap , function(a){
+					return a;
+				})
+				$('#'+fbAnsMap).remove();
+			}
+		});
 	});
 </script>
 

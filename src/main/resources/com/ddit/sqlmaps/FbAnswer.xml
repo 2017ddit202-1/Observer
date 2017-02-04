@@ -19,4 +19,9 @@
    		select * from fbanswer where fbans_fbseq=#fbans_fbseq#
    </select> 
    
+   <delete id="deleteFbAns" parameterClass="int">
+		delete from fbanswer
+		where fbans_seq=#fbans_seq#
+	</delete>
+   
 </sqlMap>	
