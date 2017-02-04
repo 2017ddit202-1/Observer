@@ -24,8 +24,7 @@ public class FbanswerServiceImpl implements FbanswerService{
 	}
 	@Override
 	public int deleteFbanswer(int fbans_seq) throws SQLException {
-		// TODO Auto-generated method stub
-		return 0;
+		return fbAnswer_iBatis.deleteFbanswer(fbans_seq);
 	}
 	@Override
 	public FbanswerVO selectFbanswer(int fbans_seq) throws SQLException {
