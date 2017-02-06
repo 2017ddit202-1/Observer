@@ -28,8 +28,7 @@ public class Fbanswer_iBatis implements FbanswerDAO{
 
 	@Override
 	public void updateFbanswer(FbanswerVO fbanswerVO) throws SQLException {
-		// TODO Auto-generated method stub
-		
+		client.update("updateFbAns", fbanswerVO);
 	}
 
 	@Override

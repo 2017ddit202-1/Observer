@@ -23,5 +23,11 @@
 		delete from fbanswer
 		where fbans_seq=#fbans_seq#
 	</delete>
+	
+	<update id="updateFbAns" parameterClass="fbAns">
+		update fbanswer
+		set fbans_content=#fbans_content#,fbans_date=#fbans_date#
+		where fbans_seq=#fbans_seq#
+	</update>
    
 </sqlMap>	
