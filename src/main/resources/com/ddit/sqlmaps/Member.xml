@@ -3,60 +3,73 @@
     "http://www.ibatis.com/dtd/sql-map-2.dtd">
 
 <sqlMap namespace="Member">
-   <typeAlias alias="str" type="java.lang.String" />
-   <typeAlias alias="int" type="java.lang.Integer" />
-   <typeAlias alias="member" type="com.ddit.dto.MemberVO" />
+	<typeAlias alias="str" type="java.lang.String" />
+	<typeAlias alias="int" type="java.lang.Integer" />
+	<typeAlias alias="member" type="com.ddit.dto.MemberVO" />
+	<typeAlias alias="position_list" type="com.ddit.dto.PositionListVO" />
 
-   <update id="insertMember" parameterClass="member">
-      insert into
-      member(mem_id,mem_pwd,mem_nm,mem_email,mem_phone,enabled,mem_date,mem_group_lice)
-      values(#mem_id#,#mem_pwd#,#mem_nm#,#mem_email#,#mem_phone#,1,sysdate,'1')
-   </update>
+	<update id="insertMember" parameterClass="member">
+		insert into
+		member(mem_id,mem_pwd,mem_nm,mem_email,mem_phone,enabled,mem_date,mem_group_lice)
+		values(#mem_id#,#mem_pwd#,#mem_nm#,#mem_email#,#mem_phone#,1,sysdate,'1')
+	</update>
 
-   <update id="updateMember" parameterClass="member">
-      update member
-      set
-      mem_pwd=#mem_pwd#,mem_nm=#mem_nm#,mem_email=#mem_email#,mem_phone=#mem_phone#
-      where mem_id=#mem_id#
-   </update>
+	<update id="updateMember" parameterClass="member">
+		update member
+		set
+		mem_pwd=#mem_pwd#,mem_nm=#mem_nm#,mem_email=#mem_email#,mem_phone=#mem_phone#
+		where mem_id=#mem_id#
+	</update>
 
-   <delete id="deleteMember" parameterClass="member">
-      delete from member where mem_id=#mem_id#
-   </delete>
+	<delete id="deleteMember" parameterClass="member">
+		delete from member
+		where mem_id=#mem_id#
+	</delete>
 
-   <select id="confirmID" parameterClass="str" resultClass="member">
-      select * from member where mem_id=#mem_id#
-   </select>
-   
-   <select id="selectMember" parameterClass="str" resultClass="member">
-      select * from member where mem_id=#mem_id#
-   </select>
-   
-   	<insert id="positionRole" parameterClass="str">
+	<select id="confirmID" parameterClass="str" resultClass="member">
+		select *
+		from member where mem_id=#mem_id#
+	</select>
+
+	<select id="selectMember" parameterClass="str" resultClass="member">
+		select * from member where mem_id=#mem_id#
+	</select>
+
+	<insert id="positionRole" parameterClass="str">
 		insert into
 		position_list(posl_id,posl_pos)
 		values(#posl_id#,'ROLE_USER')
 	</insert>
-	
+
 	<select id="idFind" parameterClass="member" resultClass="member">
-		select * from member where mem_nm=#mem_nm# and mem_email=#mem_email#
+		select *
+		from member where mem_nm=#mem_nm# and mem_email=#mem_email#
 	</select>
-	
+
 	<select id="pwdFind" parameterClass="member" resultClass="member">
-		select * from member where mem_id=#mem_id# and mem_email=#mem_email#
+		select
+		* from member where mem_id=#mem_id# and mem_email=#mem_email#
 	</select>
-	
+
 	<update id="pwdUpdate" parameterClass="member">
 		update member
-		set mem_pwd=#mem_pwd#
+		set
+		mem_pwd=#mem_pwd#
 		where mem_id=#mem_id#
 	</update>
-	
+
 	<update id="memberEnabled" parameterClass="str">
-   update member
-   set enabled='0'
-   where mem_id=#mem_id#
-   </update>
-   
-   
+		update member
+		set
+		enabled='0'
+		where mem_id=#mem_id#
+	</update>
+
+
+	<select id="authoritySelect" parameterClass="str" resultClass="position_list">
+		select  
+		* from position_list where posl_id=#posl_id#
+	</select> 
+
+
 </sqlMap>  

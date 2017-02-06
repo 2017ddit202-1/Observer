@@ -48,7 +48,14 @@
 		p:client-ref="SqlMapClient" />
 	<bean id="fbAnswerService" class="com.ddit.service.FbanswerServiceImpl"
 		p:fbAnswer_iBatis-ref="fbAnswerDAO" />	
-	
+		
+		
+		<bean id="authorityDAO" class="com.ddit.ibatis.AuthorityDAO_iBatis"
+		p:client-ref="SqlMapClient" />
+	<bean id="authorityService" class="com.ddit.service.AuthorityServiceImpl"
+		p:authorityDAO-ref="authorityDAO" />	
+		
+
 
 
 

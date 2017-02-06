@@ -4,6 +4,7 @@ import java.sql.SQLException;
 
 import com.ddit.dao.MemberDAO;
 import com.ddit.dto.MemberVO;
+import com.ddit.dto.PositionListVO;
 import com.ibatis.sqlmap.client.SqlMapClient;
 
 public class MemberDAO_iBatis implements MemberDAO{
@@ -114,6 +115,13 @@ public class MemberDAO_iBatis implements MemberDAO{
 	@Override
 	public void memberEnabled(String userid) throws SQLException {
 	  client.update("memberEnabled", userid);
+		
+	}
+
+
+	@Override
+	public PositionListVO authoritySelect(String userid) throws SQLException {
+		return (PositionListVO) client.queryForObject("authoritySelect",userid);
 		
 	}
 

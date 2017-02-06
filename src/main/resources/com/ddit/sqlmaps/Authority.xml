@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
+    "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Authority">
+	<typeAlias alias="str" type="java.lang.String" />
+	<typeAlias alias="int" type="java.lang.Integer" />
+	<typeAlias alias="authority" type="com.ddit.dto.AuthorityVO" />
+	
+	<insert id="AuthorityInsert" parameterClass="str">
+	insert into
+	authority(atrt_id,atrt_admin_accept,atrt_user_accept,atrt_date)
+	values(#atrt_id#,'n','n',sysdate)
+	</insert>
+
+</sqlMap>
+

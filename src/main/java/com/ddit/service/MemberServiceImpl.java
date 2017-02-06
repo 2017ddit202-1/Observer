@@ -3,6 +3,7 @@ package com.ddit.service;
 import java.sql.SQLException;
 
 import com.ddit.dto.MemberVO;
+import com.ddit.dto.PositionListVO;
 import com.ddit.ibatis.MemberDAO_iBatis;
 
 public class MemberServiceImpl implements MemberService{
@@ -77,6 +78,12 @@ public class MemberServiceImpl implements MemberService{
 	@Override
 	public void memberEnabled(String userid) throws SQLException {
 		memberIbatis.memberEnabled(userid);
+		
+	}
+
+	@Override
+	public PositionListVO authoritySelect(String userid) throws SQLException {
+		return memberIbatis.authoritySelect(userid);
 		
 	}
 
