@@ -89,6 +89,10 @@ $(document).ready(function() {
 							  + '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'
 							  + '<a href="" id="'
 							  + data[i].fbans_seq
+							  + '"class=nn" name="nn">V</a>'
+							  + '&nbsp;&nbsp;&nbsp;'
+							  + '<a href="" id="'
+							  + data[i].fbans_seq
 							  + '"class="mm" name="mm">X</a>'
 							  + '<div> ->'
 							  + data[i].fbans_content
@@ -118,17 +122,23 @@ $(document).ready(function() {
 						var day = date.getDate();
 						day = day >= 10? day:'0'+day;
 						var fullDate = year + '년' + month + '월' + day + '일';
-						var fbAnsList = '<div>ID : '
-									  + data[i].fbans_id
-									  + ' / ' + '작성날짜 : '
-									  + fullDate
-									  + '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'
-									  + '<a href="" id="'
-									  + data[i].fbans_seq
-									  + '"class="mm" name="mm">X</a>'
-									  + '<div> ->'
-									  + data[i].fbans_content
-									  +'</div></div><br><br>';
+						var fbAnsList = '<div id = "'+data[i].fbans_seq+'">ID : '
+										  + data[i].fbans_id
+										  + ' / ' + '작성날짜 : '
+										  + fullDate
+										  + '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'
+										  + '<a href="" id="'
+										  + data[i].fbans_seq
+										  + '"class=nn" name="nn">V</a>'
+										  + '&nbsp;&nbsp;&nbsp;'
+										  + '<a href="" id="'
+										  + data[i].fbans_seq
+										  + '"class="mm" name="mm">X</a>'
+										  + '<div> ->'
+										  + data[i].fbans_content
+										  +'</div></div><br>';
+									  
+									  
 						$('div #answer').append(fbAnsList);	
 					})
 				}
