@@ -61,6 +61,9 @@ function go_fbDelete(){
 	document.formm.action = "<%=request.getContextPath()%>/fb/fbDelete";
     document.formm.submit();
 }
+function fbAnsCancle_go(){
+	
+}
 </script>
 
 <script>
@@ -81,22 +84,31 @@ $(document).ready(function() {
 				month = month >= 10 ? month : '0' + month;
 				var day = date.getDate();
 				day = day >= 10? day:'0'+day;
-				var fullDate = year + '년' + month + '월' + day + '일';
+				var fullDate = year + '-' + month + '-' + day;
 				var fbAnsList = '<div id = "'+data[i].fbans_seq+'">ID : '
 							  + data[i].fbans_id
-							  + ' / ' + '작성날짜 : '
+							  + '&nbsp;&nbsp;&nbsp/&nbsp;&nbsp;&nbsp;'
+							  + '<span id="'+data[i].fbans_seq+'span">'
 							  + fullDate
+							  + '</span>'
 							  + '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'
 							  + '<a href="" id="'
 							  + data[i].fbans_seq
-							  + '"class="mm" name="mm">X</a>'
-							  + '<div> ->'
+							  + '"class="nn" name="nn">수정</a>'
+							  + '&nbsp;&nbsp;&nbsp;'
+							  + '<a href="" id="'
+							  + data[i].fbans_seq
+							  + '"class="mm" name="mm">삭제</a>'
+							  + '<div class="'
+							  + data[i].fbans_seq
+							  + '">'
 							  + data[i].fbans_content
 							  +'</div></div><br>';
 				$('div #answer').append(fbAnsList);			  
 			})
 		}
 	});
+	
 });
 	$('#btnFbAnswer').on('click',function(){
 		var fb_fbseq = $('#fb_fbseq').val();
@@ -117,18 +129,26 @@ $(document).ready(function() {
 						month = month >= 10 ? month : '0' + month;
 						var day = date.getDate();
 						day = day >= 10? day:'0'+day;
-						var fullDate = year + '년' + month + '월' + day + '일';
-						var fbAnsList = '<div>ID : '
-									  + data[i].fbans_id
-									  + ' / ' + '작성날짜 : '
-									  + fullDate
-									  + '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'
-									  + '<a href="" id="'
-									  + data[i].fbans_seq
-									  + '"class="mm" name="mm">X</a>'
-									  + '<div> ->'
-									  + data[i].fbans_content
-									  +'</div></div><br><br>';
+						var fullDate = year + '-' + month + '-' + day;
+						var fbAnsList = '<div id = "'+data[i].fbans_seq+'">ID : '
+										  + data[i].fbans_id
+										  + '&nbsp;&nbsp;&nbsp/&nbsp;&nbsp;&nbsp;' 
+										  + fullDate
+										  + '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'
+										  + '<a href="" id="'
+										  + data[i].fbans_seq
+										  + '"class="nn" name="nn">수정</a>'
+										  + '&nbsp;&nbsp;&nbsp;'
+										  + '<a href="" id="'
+										  + data[i].fbans_seq
+										  + '"class="mm" name="mm">삭제</a>'
+										  + '<div class="'
+										  + data[i].fbans_seq
+										  + '">'
+										  + data[i].fbans_content
+										  +'</div></div><br>';
+									  
+									  
 						$('div #answer').append(fbAnsList);	
 					})
 				}
@@ -151,6 +171,67 @@ $(document).ready(function() {
 			}
 		});
 	});
+	
+	$(document).on('click','.nn',function(e){
+		e.preventDefault();
+		var result = $(this).attr('id');
+		var reContent = document.getElementsByClassName(result);
+		$.ajax({
+			url:"<%=request.getContextPath()%>/fbAns/fbAnsUpdateForm",
+			data:{'result':result},
+			dataType:'json',
+			type:'post',
+			success:function(fbMap){
+				fbAnsMap = jQuery.map(fbMap , function(a){
+					return a;
+				})
+				$('.'+fbAnsMap).html(
+					'<textarea id="fbAnsUp" name="fbAnsUp">'
+					+ reContent[0].innerHTML
+					+'</textarea>'
+					+'<button type="button" id="'+result+'" class="fbAnsModify">확인</button>'
+					+'<button type="button" id="'+result+'" class="fbAnsCancle">취소</button>'
+				);
+			}
+		});
+	})
+	$(document).on('click','.fbAnsModify',function(e){
+		e.preventDefault();
+		var result = $(this).attr('id');
+		var fbAnsUp = $('#fbAnsUp').val();
+		var data = {'fbAnsUp':fbAnsUp,'result':result};
+		$.ajax({
+			url:"<%=request.getContextPath()%>/fbAns/fbAnsUpdate",
+			data: data,
+			type:'post',
+			success:function(fbAnsUp){
+				var date = new Date(fbAnsUp.fbans_date);
+				var year = date.getFullYear();
+				var month = (1 + date.getMonth());
+				month = month >= 10 ? month : '0' + month;
+				var day = date.getDate();
+				day = day >= 10? day:'0'+day;
+				var fullDate = year + '-' + month + '-' + day;
+				
+				$('#fbAnsUp').val('');
+				$('.'+fbAnsMap).empty();
+				$('#'+result+'span').text(fullDate);
+				
+				$('.'+fbAnsMap).html(
+					fbAnsUp.fbans_content		
+				);
+			}
+		})
+	})
+	
+	$(document).on('click','.fbAnsCancle',function(e){
+		e.preventDefault();
+		var fbAnsCancle = $('#fbAnsUp').val();
+		$('.'+fbAnsMap).empty();
+		$('.'+fbAnsMap).html(fbAnsCancle);
+	})
+	
+	
 </script>
 
 
