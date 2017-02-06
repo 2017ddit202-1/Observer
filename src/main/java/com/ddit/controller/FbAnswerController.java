@@ -2,6 +2,7 @@ package com.ddit.controller;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -57,7 +58,7 @@ public class FbAnswerController {
 		return fbAnsList;
 	}
 	
-	@RequestMapping(value ="/fbAnsWrite" , method=RequestMethod.POST,produces="application/json;charset=utf8")
+	@RequestMapping(value ="/fbAnsWrite",method=RequestMethod.POST,produces="application/json;charset=utf8")
 	@ResponseBody
 	public List<FbanswerVO> fbAnsWrite(@RequestBody Map<String,Object> fbMap , FbanswerVO fbAnsVO, HttpSession session , HttpServletRequest  request){
 
@@ -81,7 +82,7 @@ public class FbAnswerController {
 		return fbList;
 	}
 	
-	@RequestMapping("/fbAnsDelete")
+	@RequestMapping(value="/fbAnsDelete",method=RequestMethod.POST,produces="application/json;charset=utf8")
 	@ResponseBody
 	public Map<String,Object> fbAnsDelete(Model model,HttpServletRequest request){
 		int fbAns_seq = Integer.parseInt(request.getParameter("result"));
@@ -102,4 +103,53 @@ public class FbAnswerController {
 		
 		return fbMap;
 	}
+	@RequestMapping(value ="/fbAnsUpdateForm",method=RequestMethod.POST,produces="application/json;charset=utf8")
+	@ResponseBody
+	public Map<String,Object> fbAnsUpdateForm(Model model , HttpServletRequest request){
+		int fbAns_seq = Integer.parseInt(request.getParameter("result"));
+		Map<String,Object> fbMap = new HashMap();
+		List<FbanswerVO> fbAnsList = null;
+		
+		try {
+			fbAnsList = fbanswerService.listAllFbAnswer(fbAns_seq);
+			fbMap.put("fbAnsList", fbAnsList);
+			fbMap.put("fbAns_seq", fbAns_seq);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return fbMap;
+	}
+	@RequestMapping(value="/fbAnsUpdate",method=RequestMethod.POST)
+	@ResponseBody
+	public FbanswerVO fbAnsUpdate(FbanswerVO fbAnsVO,Model model,HttpServletRequest request){
+		int fbAns_seq = Integer.parseInt(request.getParameter("result"));
+		String fbAnsUp = request.getParameter("fbAnsUp");
+		List<FbanswerVO> fbAnsList = new ArrayList<FbanswerVO>();
+		Date date = new Date();
+		
+		fbAnsVO.setFbans_seq(fbAns_seq);	
+		fbAnsVO.setFbans_content(fbAnsUp);
+		fbAnsVO.setFbans_date(date);
+		
+		try {
+			fbanswerService.updateFbanswer(fbAnsVO);
+			fbAnsList = fbanswerService.listAllFbAnswer(fbAns_seq);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return fbAnsVO;
+		
+	}
+//	@RequestMapping(value="/fbAnsCancle",method=RequestMethod.POST)
+//	@ResponseBody
+//	public String fbAnsUpdate(FbanswerVO fbAnsVO,HttpServletRequest request){
+//		int fbAns_seq = Integer.parseInt(request.getParameter("result"));
+//		String fbAns
+//		
+//	}
+	
 }

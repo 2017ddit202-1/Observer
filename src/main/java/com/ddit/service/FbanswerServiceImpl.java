@@ -19,8 +19,7 @@ public class FbanswerServiceImpl implements FbanswerService{
 	}
 	@Override
 	public void updateFbanswer(FbanswerVO fbanswerVO) throws SQLException {
-		// TODO Auto-generated method stub
-		
+		fbAnswer_iBatis.updateFbanswer(fbanswerVO);
 	}
 	@Override
 	public int deleteFbanswer(int fbans_seq) throws SQLException {
