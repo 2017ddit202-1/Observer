@@ -208,7 +208,7 @@ function login_go(){
           get_msg(message);
        if(error==false){
           if(returl=='')
-             returl = '<c:url value="/user/mypage" />';
+             returl = '<c:url value="/qna/qnaList" />';
           location.href = returl;
        };
     });

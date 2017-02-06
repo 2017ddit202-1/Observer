@@ -3,6 +3,7 @@ package com.ddit.dao;
 import java.sql.SQLException;
 
 import com.ddit.dto.MemberVO;
+import com.ddit.dto.PositionListVO;
 
 public interface MemberDAO {
 	public int insertMember(MemberVO memberVO) throws SQLException;
@@ -24,5 +25,6 @@ public interface MemberDAO {
 	
 	public MemberVO confirmID2(String userid) throws SQLException;   //아이디로셀렉
 	public void memberEnabled(String userid)throws SQLException; //탈퇴
+	public PositionListVO authoritySelect(String userid)throws SQLException; //현재나의권한
 
 }

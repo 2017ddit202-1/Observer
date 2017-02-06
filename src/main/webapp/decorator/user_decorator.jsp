@@ -88,7 +88,8 @@
                 
                          <!-- /.dropdown -->
                 <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    <a class="dropdown-toggle" href="<%=request.getContextPath()%>/user/mypage">
+                    <%-- <a class="dropdown-toggle" data-toggle="dropdown" href="<%=request.getContextPath()%>/user/mypage"> --%>
                         <i class="fa fa-tasks fa-fw"></i> <i class="fa fa-caret-down"></i>
                     </a>
       			 <ul class="dropdown-menu dropdown-user">
@@ -114,7 +115,7 @@
 							<li><a href="#">관리</a></li>
 					</sec:authorize> --%>
                 <!-- /.dropdown -->
-                <li class="dropdown">
+                <li class="dropdown">      
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                         <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
                     </a>

@@ -12,7 +12,7 @@
 	
 	
 	
-	 ID: <input type="text" name="mem_id" readonly="readonly" value="${loginUser.mem_id}"><br /> 
+	ID: <input type="text" name="mem_id" readonly="readonly" value="${loginUser.mem_id}"><br /> 
 	PW1:<input type="text" name="mem_pwd" value="${loginUser.mem_pwd}"><br /> 
 	NAME: <input type="text" name="mem_nm" value="${loginUser.mem_nm}"><br /> 
 	E-MAIL: <input type="text" name="mem_email" value="${loginUser.mem_email}"><br /> 
@@ -21,14 +21,22 @@
 	
 	
 	 <input type="button" value="수정" class="submit" onclick="go_update(this.form)">
-	 <input type="button" value="뒤로가기" class="submit" onclick="history.go(-1);">
+	<!--  <input type="button" value="뒤로가기" class="submit" onclick="history.go(-1);"> -->
+	 <input type="button" value="뒤로가기" class="submit" onclick="go_mypage()"> 
 	</form>
 	
 	</article>
 	
 	<script>
 	function go_update(){
+		
 		document.formm.action = "<%=request.getContextPath()%>/user/update";
+	    document.formm.submit();
+	}
+	
+	function go_mypage(){
+		
+		document.formm.action = "<%=request.getContextPath()%>/user/mypage";
 	    document.formm.submit();
 	}
 	
