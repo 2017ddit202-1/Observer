@@ -11,8 +11,9 @@
   	<sqlMap resource="com/ddit/sqlmaps/Reference.xml"/>
   	<sqlMap resource="com/ddit/sqlmaps/FbAnswer.xml"/>
   	<sqlMap resource="com/ddit/sqlmaps/Authority.xml"/>
+  	<sqlMap resource="com/ddit/sqlmaps/SuperAdmin.xml"/>
   	
   	
-  	
+
 	
   </sqlMapConfig>

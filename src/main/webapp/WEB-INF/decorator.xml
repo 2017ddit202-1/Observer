@@ -16,17 +16,21 @@
 	<decorator name="article" page="user_decorator.jsp">
 		<pattern>/article/*</pattern>
 	</decorator>
-	
+
 	<decorator name="freeBoard" page="user_decorator.jsp">
 		<pattern>/fb/*</pattern>
 	</decorator>
-	
-		<decorator name="reference" page="user_decorator.jsp">
+
+	<decorator name="reference" page="user_decorator.jsp">
 		<pattern>/rf/*</pattern>
 	</decorator>
-	
+
 	<decorator name="fbAnswer" page="user_decorator.jsp">
 		<pattern>/fbAns/*</pattern>
+	</decorator>
+	
+	<decorator name="superAdmin" page="user_decorator.jsp">
+		<pattern>/superAdmin/*</pattern>
 	</decorator>
 
 	<excludes>
