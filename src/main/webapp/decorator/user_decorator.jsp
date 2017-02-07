@@ -127,7 +127,7 @@
                         
                         
                         <sec:authorize access="hasRole('ROLE_SUPER')">
-							<li><a href="#">관리</a></li>
+							<li><a href="<%=request.getContextPath()%>/superAdmin/management">관리</a></li>
 						</sec:authorize>
 						<sec:authorize access="isAuthenticated()">
                        		<li><a href="<%=request.getContextPath()%>/logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
