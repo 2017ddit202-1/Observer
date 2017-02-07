@@ -10,6 +10,8 @@
   	<sqlMap resource="com/ddit/sqlmaps/FreeBoard.xml"/>
   	<sqlMap resource="com/ddit/sqlmaps/Reference.xml"/>
   	<sqlMap resource="com/ddit/sqlmaps/FbAnswer.xml"/>
+  	<sqlMap resource="com/ddit/sqlmaps/VWmemPos.xml"/>
+  	
   	
   	
   	

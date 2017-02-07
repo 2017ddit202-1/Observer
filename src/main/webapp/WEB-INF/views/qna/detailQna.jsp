@@ -42,7 +42,7 @@
 			</tr>
 			<tr>
 				<th>질문내용</th>
-				<td>${qnaVO.qna_content}.${qnaVO.qna_id}, ${loginUserVO.mem_id}
+				<td>${qnaVO.qna_content}
 				
 			</tr>
 			<!--  -->
@@ -58,7 +58,7 @@
 
 						<th>답변 내용</th>
 						<td>
-							<div id="sss">GG</div>
+							<div id="sss"></div>
 						</td>
 					</tr>
 				</c:otherwise>
@@ -71,9 +71,7 @@
 			<form>
 				<div class="form-group">
 					<label for="email">답변내용:</label>
-					<!--    <input type="textarea"
-                  class="form-control" id="email" placeholder="Enter answer">
-             -->
+				
 					<textarea rows="10" cols="100" name="email"
 						placeholder="Enter answer"></textarea>
 				</div>

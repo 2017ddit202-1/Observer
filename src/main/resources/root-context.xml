@@ -30,12 +30,12 @@
 	<bean id="qansertService" class="com.ddit.service.QanswerServiceImpl">
 		<property name="qanswerDAO" ref="qanswerDAO" />
 	</bean>
-	
+
 	<bean id="freeBoardDAO" class="com.ddit.ibatis.FreeBoardDAO_iBatis"
 		p:client-ref="SqlMapClient" />
 	<bean id="freeBoardService" class="com.ddit.service.FreeBoardServiceImpl"
 		p:freeBoardDAO_iBatis-ref="freeBoardDAO" />
-		
+
 
 	<bean id="referenceDAO" class="com.ddit.ibatis.ReferenceLibrayDAO_iBatis">
 		<property name="client" ref="SqlMapClient" />
@@ -47,8 +47,15 @@
 	<bean id="fbAnswerDAO" class="com.ddit.ibatis.Fbanswer_iBatis"
 		p:client-ref="SqlMapClient" />
 	<bean id="fbAnswerService" class="com.ddit.service.FbanswerServiceImpl"
-		p:fbAnswer_iBatis-ref="fbAnswerDAO" />	
+		p:fbAnswer_iBatis-ref="fbAnswerDAO" />
 	
+	
+	<bean id="VWmemPosDAO" class="com.ddit.ibatis.VWmemPos_iBatis"
+		p:client-ref="SqlMapClient" />
+		
+	<bean id="VWmemPosService" class="com.ddit.service.VWmemPosServiceImpl" 
+		p:VWmemPos-ref="VWmemPosDAO" />
+
 
 
 

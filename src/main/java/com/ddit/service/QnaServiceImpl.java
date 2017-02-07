@@ -10,7 +10,6 @@ public class QnaServiceImpl implements QnaService {
 
 
 
-
 	QnaDAO qnaDAO;
 
 	public void setQnaDAO(QnaDAO qnaDAO) {
@@ -25,10 +24,6 @@ public class QnaServiceImpl implements QnaService {
 		return 0;
 	}
 
-	
-	
-
-	
 	@Override
 	public QnaVO selectQna(int qseq, String userid) throws SQLException {
 		QnaVO qnaVO = new QnaVO();

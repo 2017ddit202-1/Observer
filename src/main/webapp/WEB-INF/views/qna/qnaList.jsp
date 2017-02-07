@@ -3,6 +3,9 @@
 <%@ page trimDirectiveWhitespaces="true"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
+	<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -65,13 +68,23 @@ function writeForm_go(){
 				</c:when>
 				<c:otherwise>
 					<c:forEach items="${qnaList}" var="qnaVO">
+				
 						<tr>
 							<td>${qnaVO.qseq}</td>
-<%-- 							<c:if test="${qnaVO.qna_date eq time }">
-							</c:if>
- --%>							<td>${qnaVO.qna_id}</td>
-							<%-- <a href="detailArticle?noar_seq=${articleVO.noar_seq}"> --%>
-							<td><a href="detailQna?qna_qseq=${qnaVO.qseq}">${qnaVO.qna_subject}</a></td>
+							<td>${qnaVO.qna_id}</td>
+							
+					
+					<c:choose>
+					<c:when test="${loginUser eq qnaVO.qna_id || mempos.posl_pos eq 'ROLE_ADMIN'}">
+						<td><a href="detailQna?qna_qseq=${qnaVO.qseq}">${qnaVO.qna_subject}</a></td>
+				</c:when>
+					<c:otherwise>
+							<td>${qnaVO.qna_subject}</td>
+					</c:otherwise>
+					
+					</c:choose>
+							
+							
 							<td><fmt:formatDate value="${qnaVO.qna_date}"
 									pattern="yyyy-MM-dd" /></td>
 
