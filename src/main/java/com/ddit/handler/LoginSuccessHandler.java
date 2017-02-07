@@ -25,8 +25,6 @@ public class LoginSuccessHandler extends
          throws ServletException, IOException {
       
       HttpSession session = request.getSession();
-      System.out.println("성공");
-      System.out.println(auth.getPrincipal());
       session.setAttribute("loginUser", auth.getName());
 
       String accept = request.getHeader("accept");

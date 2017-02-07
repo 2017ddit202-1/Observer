@@ -32,7 +32,6 @@
 		작성자 : ${loginUser}	<br/><br/>
 		<textarea rows="8" cols="65" name="fbAns_content" id ="fbAns_content"></textarea><br>
 			    <input type="hidden" name="fb_fbseq" value="${fb_seq}" id="fb_fbseq">
-<%-- 			    <input type="hidden" name="fbAns_seq" value="${ }" --%>
 						
 		<button type="button" id="btnFbAnswer" name="btnFbAnswer">댓글쓰기</button>
 		
@@ -191,6 +190,7 @@ $(document).ready(function() {
 					+'</textarea>'
 					+'<button type="button" id="'+result+'" class="fbAnsModify">확인</button>'
 					+'<button type="button" id="'+result+'" class="fbAnsCancle">취소</button>'
+					+'<input type="hidden" id="fbAnsHi" value="'+reContent[0].innerHTML+'">'
 				);
 			}
 		});
@@ -226,7 +226,7 @@ $(document).ready(function() {
 	
 	$(document).on('click','.fbAnsCancle',function(e){
 		e.preventDefault();
-		var fbAnsCancle = $('#fbAnsUp').val();
+		var fbAnsCancle = $('#fbAnsHi').val();
 		$('.'+fbAnsMap).empty();
 		$('.'+fbAnsMap).html(fbAnsCancle);
 	})

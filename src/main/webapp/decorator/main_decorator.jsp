@@ -106,7 +106,8 @@
                     <!-- Begin # Login Form -->
                     <form id="login-form" role="form">
 		                <div class="modal-body">
-		                        <span>로그인</span> 
+		                        <span>로그인</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		                        <span id="loginFail"></span> 
 				    		<input id="mem_id" name="mem_id" class="form-control" type="text" placeholder="I D" required>
 				    		<input id="mem_pwd" name="mem_pwd" class="form-control" type="password" placeholder="Password" required>
                             <div class="checkbox">
@@ -191,6 +192,11 @@
    
 </head>
 <script>
+function get_msg(message){
+	jQuery('#loginFail').text(message);
+}
+
+
 function login_go(){
     $.ajax({
        url : 'loginList',

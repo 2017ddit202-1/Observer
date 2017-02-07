@@ -8,8 +8,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;
+
+import com.ddit.dto.MemberVO;
+import com.ddit.ibatis.MemberDAO_iBatis;
 
 public class LoginFailureHandler extends SimpleUrlAuthenticationFailureHandler {
 	
@@ -17,27 +21,17 @@ public class LoginFailureHandler extends SimpleUrlAuthenticationFailureHandler {
 	public void setLoginFormPath(String loginFormPath){
 		this.loginFormPath=loginFormPath;
 	}
-
 	@Override
 	public void onAuthenticationFailure(HttpServletRequest request,
 			HttpServletResponse response, AuthenticationException exception)
 			throws IOException, ServletException {
 		String accept = request.getHeader("accept");
-		System.out.println("실패");
 		String retUrl = request.getParameter("returl");
 		
 		String error = "true";
 		String message = "로그인실패하였습니다.";
 		if(StringUtils.indexOf(accept, "html") > -1){
 			request.getRequestDispatcher(loginFormPath).forward(request, response);
-			/*String redirectUrl = request.getParameter(this.targetUrlParameter);
-			if(redirectUrl != null){
-				super.logger.debug("Found redirect URL: " + redirectUrl);
-				getRedirectStrategy().sendRedirect(request, response, redirectUrl);
-			}else{
-				super.onAuthenticationFailure(request, response, exception);
-			}*/
-			
 			response.sendRedirect(request.getContextPath()+"?mem_id="+request.getParameter("mem_id"));
 			
 		}else if(StringUtils.indexOf(accept, "xml") >-1){

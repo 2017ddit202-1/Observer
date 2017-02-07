@@ -144,12 +144,5 @@ public class FbAnswerController {
 		return fbAnsVO;
 		
 	}
-//	@RequestMapping(value="/fbAnsCancle",method=RequestMethod.POST)
-//	@ResponseBody
-//	public String fbAnsUpdate(FbanswerVO fbAnsVO,HttpServletRequest request){
-//		int fbAns_seq = Integer.parseInt(request.getParameter("result"));
-//		String fbAns
-//		
-//	}
 	
 }
