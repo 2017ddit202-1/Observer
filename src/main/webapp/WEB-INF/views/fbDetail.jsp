@@ -193,8 +193,6 @@ $(document).ready(function() {
 	$(document).on('click','.nn',function(e){
 		e.preventDefault();
 		var result = $(this).attr('id');
-// 		$('#'+result+'a').hide();
-// 		$('#'+result).hide();
 		$('.nn').hide();
 		$('.mm').hide();
 		$('#btnFbAnswer').hide();
@@ -226,6 +224,8 @@ $(document).ready(function() {
 		var result = $(this).attr('id');
 		var fbAnsUp = $('#fbAnsUp').val();
 		var data = {'fbAnsUp':fbAnsUp,'result':result};
+		$('.nn').show();
+		$('.mm').show();
 		$.ajax({
 			url:"<%=request.getContextPath()%>/fbAns/fbAnsUpdate",
 			data: data,

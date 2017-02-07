@@ -134,7 +134,7 @@ public class FreeBoardController {
 	@RequestMapping("/fbDelete")
 	public String fbDelete(HttpServletRequest request , HttpServletResponse response , HttpSession session , Model model){
 		String url = "redirect:/fb/fbList";
-		int fb_seq = Integer.parseInt(request.getParameter("fb_seq"));
+		int fb_seq = Integer.parseInt(request.getParameter("fb_fbseq"));
 		int result = 0;
 		ArrayList<FreeBoardVO> fbList = null;
 		
@@ -161,7 +161,7 @@ public class FreeBoardController {
 		fbVO.setFb_id((String)session.getAttribute("loginUser"));
 		fbVO.setFb_subject(request.getParameter("fb_subject"));
 		fbVO.setFb_content(request.getParameter("fb_content"));
-		fbVO.setFb_seq(Integer.parseInt(request.getParameter("fb_seq")));
+		fbVO.setFb_seq(Integer.parseInt(request.getParameter("fb_fbseq")));
 		
 		ArrayList<FreeBoardVO> fbList = null;
 		
