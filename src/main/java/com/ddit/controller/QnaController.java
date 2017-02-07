@@ -43,6 +43,60 @@ public class QnaController {
 	private VWmemposService vWmemposService;
 
 
+	@RequestMapping("/adminQnaList")
+	public String adminQna(Model model,  HttpServletRequest request, HttpSession session){
+		String url="qna/adminQnaList";
+		
+		String key = "";
+		String tpage = request.getParameter("tpage");
+		if (request.getParameter("key") != null) { 
+			key = request.getParameter("key");
+		}
+
+		if (tpage == null) {
+			tpage = "1"; // ���� ������ (default 1)
+		} else if (tpage.equals("")) {
+			tpage = "1";
+		}
+
+		String id = (String) session.getAttribute("loginUser");
+
+		ArrayList<QnaVO> qnaList = null;
+		String paging = null;
+		VWmemPosVO mempos = null;
+		//
+
+		try {
+			qnaList = qnaService.listqnalist(Integer.parseInt(tpage), key);
+			paging = qnaService.totalPage(Integer.parseInt(tpage), key);
+			mempos = vWmemposService.memposVO(id);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		int n = qnaList.size(); //페이징을 위한
+
+	///
+		Date date = new Date();
+		SimpleDateFormat simpleDate = new SimpleDateFormat("yyyy-MM-dd");
+		String time = (String)simpleDate.format(date);
+		System.out.println(time);
+		////
+		
+		
+		model.addAttribute("mempos",mempos);
+		model.addAttribute("time");
+		model.addAttribute("qnaList", qnaList);
+		model.addAttribute("qnaListSize", n);
+		model.addAttribute("paging", paging);
+		
+		
+		
+		return url;
+	}
+	
+	
+	
 	@RequestMapping("/qnaList")
 	public String qnaList(/* @RequestParam("qseq") int qseq, */
 	HttpSession session, Model model, HttpServletRequest request) {
@@ -50,7 +104,7 @@ public class QnaController {
 		String url = "qna/qnaList";
 		String key = "";
 		String tpage = request.getParameter("tpage");
-		if (request.getParameter("key") != null) {
+		if (request.getParameter("key") != null) { 
 			key = request.getParameter("key");
 		}
 

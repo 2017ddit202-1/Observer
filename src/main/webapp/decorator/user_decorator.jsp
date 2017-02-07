@@ -190,8 +190,17 @@
                                     <a href="<%=request.getContextPath()%>/article/articleView">공지사항</a>
                                 </li>
                                 <li>
-                                    <a href="<%=request.getContextPath()%>/qna/qnaList">QnA</a>
+                                    <a href="<%=request.getContextPath()%>/qna/qnaList"> Q&A 게시판</a>
                                 </li>
+                                
+                                <sec:authorize access="hasAnyRole('ROLE_SUPER', 'ROLE_ADMIN')">
+                                <li>
+                                    <a href="<%=request.getContextPath()%>/qna/adminQnaList"> 관리자 Q&A 게시판</a>
+                                </li>
+                                </sec:authorize>
+                                
+                                
+                                
                                 <li>
                                     <a href="<%=request.getContextPath()%>/fb/fbList">자유게시판</a> 
                                 </li>
