@@ -21,9 +21,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.ddit.dto.MemberVO;
 import com.ddit.dto.QanswerVO;
 import com.ddit.dto.QnaVO;
+import com.ddit.dto.VWmemPosVO;
 import com.ddit.service.MemberServiceImpl;
 import com.ddit.service.QanswerService;
 import com.ddit.service.QnaService;
+import com.ddit.service.VWmemposService;
 
 @Controller
 @RequestMapping("/qna")
@@ -36,8 +38,10 @@ public class QnaController {
 
 	@Autowired
 	private QanswerService qanswerService;
+	
+	@Autowired
+	private VWmemposService vWmemposService;
 
-	/* @RequestMapping(value="/qnaList", method=RequestMethod.GET) */
 
 	@RequestMapping("/qnaList")
 	public String qnaList(/* @RequestParam("qseq") int qseq, */
@@ -60,35 +64,33 @@ public class QnaController {
 
 		ArrayList<QnaVO> qnaList = null;
 		String paging = null;
+		VWmemPosVO mempos = null;
 		//
 
 		try {
 			qnaList = qnaService.listqnalist(Integer.parseInt(tpage), key);
 			paging = qnaService.totalPage(Integer.parseInt(tpage), key);
+			mempos = vWmemposService.memposVO(id);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		int n = qnaList.size();
+		int n = qnaList.size(); //페이징을 위한
 
-		////
+	///
 		Date date = new Date();
 		SimpleDateFormat simpleDate = new SimpleDateFormat("yyyy-MM-dd");
 		String time = (String)simpleDate.format(date);
 		System.out.println(time);
-		
 		////
 		
+		
+		model.addAttribute("mempos",mempos);
 		model.addAttribute("time");
 		model.addAttribute("qnaList", qnaList);
-
 		model.addAttribute("qnaListSize", n);
 		model.addAttribute("paging", paging);
-		System.out.println(tpage);
-		System.out.println(key);
-		System.out.println(paging);
-		System.out.println(paging);
-		
+	
 		return url;
 	}
 
@@ -204,7 +206,7 @@ public class QnaController {
 
 		try {
 			qanswerService.insertQanswer(qanswerVO);
-			// 답변VO를 추가할떄 qna테이블에 qna_check도 0에서 1로 update
+
 			qnaVO = qnaService.getQna(Integer.parseInt(seqNum));
 			qnaVO.setQna_check(1);
 			qnaService.updateQnaCheck(qnaVO);
@@ -252,8 +254,7 @@ public class QnaController {
 
 		String url = "redirect:/qna/qnaList";
 		QnaVO qnaVO = new QnaVO();
-		System.out.println(request.getParameter("qna_subject"));
-		System.out.println(request.getParameter("qna_content"));
+		
 		int qseq = Integer.parseInt(request.getParameter("qna_seq"));
 		String userid = (String) session.getAttribute("loginUser");
 		try {
@@ -277,7 +278,8 @@ public class QnaController {
 		int result = 0;
 		ArrayList<QnaVO> qnaList = null;
 		try {
-			System.out.println("234");
+			
+			
 			result = qnaService.deleteQna(qseq);
 			qnaList = qnaService.listAllQna();
 
