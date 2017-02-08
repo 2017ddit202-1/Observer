@@ -38,13 +38,13 @@
 
 
 
-	<!-- 권한신청모달 -->
+	 <!-- 권한신청모달 -->
 	<div class="container">
 
-		<button type="button" data-toggle="modal" data-target="#myModal">권한신청</button>
+		<button type="button" data-toggle="modal" data-target="#myModal1">권한신청</button>
 
 		<!-- Modal -->
-		<div class="modal fade" id="myModal" role="dialog">
+		<div class="modal fade" id="myModal1" role="dialog">
 			<div class="modal-dialog">
 
 				<!-- Modal content-->
@@ -55,59 +55,48 @@
 					</div>
 					<div class="modal-body">
 
-
-
 						<!-- //////////////내용//////////////// -->
 
-						<p>현재 나의 권한은${positionList.posl_pos}입니다.</p>
-
-
 						<c:choose>
-							<c:when test="${positionList.posl_pos eq 'ROLE_USER'}">
-
-								<p>ADMIN으로 변경합니다.</p>
-
+							<c:when test="${authority.atrt_admin_accept eq 'n'}">
+								<p>권한요청이 진행중입니다.</p>
 							</c:when>
+
 							<c:otherwise>
-								<p>USER로 변경합니다.</p>
 
-							</c:otherwise>
-
-						</c:choose>
-						
-						<button type="button" id="authorityBtn" onclick="autority_go()">신청하기</button>
+								<p>현재 나의 권한은${positionList.posl_pos}입니다.</p>
 
 
-						<!-- <script src="http://code.jquery.com/jquery-latest.min.js"></script> 아작스-->
+								<c:choose>
+									<c:when test="${positionList.posl_pos eq 'ROLE_USER'}">
 
-						<script>
+										<p>ADMIN으로 변경합니다.</p>
+
+									</c:when>
+									<c:otherwise>
+										<p>USER로 변경합니다.</p>
+
+									</c:otherwise>
+
+								</c:choose>
+
+								<button type="button" id="authorityBtn" onclick="autority_go()">신청하기</button>
+
+
+								<!-- <script src="http://code.jquery.com/jquery-latest.min.js"></script> 아작스-->
+
+								<script>
  function autority_go(){
 	document.formm.action="<%=request.getContextPath()%>/atrt/authorityReq";
 	document.formm.submit();	
 } 
 
-<%-- $(function(){ 아작스
-	$('#DeleteBtn').click(function(){
-		$.ajax({
-			url : "<%=request.getContextPath()%>/user/memberDelete",
-			type : "post",
-			data : $('#formm input').serialize(),
-			 success:function(data){
-				if(data=="0"){ //일치하지 않으면
-					$('#resultId').text('비밀번호가 일치하지 않습니다.')
-				}else{
-					alert('탈퇴완료되었습니다.')
-					location.href="<%=request.getContextPath()%>/index";
-				}
-			},
-		});
-		
-	});
-}); --%>
-
-
-
 </script>
+
+							</c:otherwise>
+
+						</c:choose>
+
 
 					</div>
 					<div class="modal-footer">
