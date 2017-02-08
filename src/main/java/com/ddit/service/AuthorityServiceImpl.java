@@ -1,10 +1,10 @@
-
 package com.ddit.service;
 
 
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import com.ddit.dto.AuthorityVO;
 import com.ddit.dto.Vw_AuthorityVO;
 import com.ddit.ibatis.AuthorityDAO_iBatis;
 
@@ -28,5 +28,40 @@ public class AuthorityServiceImpl implements AuthorityService{
 		return authorityDAO.authorityList();
 	}
 
-}
 
+	@Override
+	public String authoritySelect1(String userid) throws SQLException {
+		return authorityDAO.authoritySelect1(userid);
+	}
+
+
+	@Override
+	public void adminAuthority(String userid) throws SQLException {
+		authorityDAO.adminAuthority(userid);
+		
+	}
+
+
+	@Override
+	public void authorityDelete(String userid) throws SQLException {
+		authorityDAO.authorityDelete(userid);
+		
+	}
+
+
+	@Override
+	public void userAuthority(String userid) throws SQLException {
+		authorityDAO.userAuthority(userid);
+		
+	}
+
+
+	@Override
+	public AuthorityVO authorityYN(String userid) throws SQLException {
+		return authorityDAO.authorityYN(userid);
+		
+	}
+
+
+
+}

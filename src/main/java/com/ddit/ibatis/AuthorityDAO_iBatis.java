@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import com.ddit.dao.AuthorityDAO;
+import com.ddit.dto.AuthorityVO;
 import com.ddit.dto.Vw_AuthorityVO;
 import com.ibatis.sqlmap.client.SqlMapClient;
 
@@ -24,10 +25,40 @@ public class AuthorityDAO_iBatis implements AuthorityDAO {
 	@Override
 	public ArrayList<Vw_AuthorityVO> authorityList() throws SQLException {
 
-		System.out.println((ArrayList<Vw_AuthorityVO>) client
-				.queryForList("authorityList"));
 		return (ArrayList<Vw_AuthorityVO>) client.queryForList("authorityList");
 
 	}
+
+	@Override
+	public String authoritySelect1(String userid) throws SQLException {
+		return (String) client.queryForObject("authoritySelect1",userid);
+		
+	}
+
+	@Override
+	public void adminAuthority(String userid) throws SQLException {
+		client.update("adminAuthority",userid);
+		
+	}
+
+	@Override
+	public void authorityDelete(String userid) throws SQLException {
+		client.delete("authorityDelete",userid);
+		
+	}
+
+	@Override
+	public void userAuthority(String userid) throws SQLException {
+		client.update("userAuthority",userid);
+		
+	}
+
+	@Override
+	public AuthorityVO authorityYN(String userid) throws SQLException {
+		return (AuthorityVO) client.queryForObject("authorityYN",userid);
+		
+	}
+
+
 
 }

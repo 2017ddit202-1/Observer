@@ -57,7 +57,7 @@
     </select>
     
     <select id="articleSearch_subject" parameterClass="str" resultClass="article">
-    select * from notice_article where noar_subject like '%'||#noar_seq#||'%'
+    select * from notice_article where noar_subject like '%'||#str#||'%'
     </select>
     
     <select id="articleSearch_content" parameterClass="str" resultClass="article">

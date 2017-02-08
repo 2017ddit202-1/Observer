@@ -21,8 +21,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.ddit.dto.AuthorityVO;
 import com.ddit.dto.MemberVO;
 import com.ddit.dto.PositionListVO;
+import com.ddit.service.AuthorityServiceImpl;
 import com.ddit.service.MemberServiceImpl;
 
 @Controller
@@ -34,6 +36,13 @@ public class UserController {
 
 	public void setMemberService(MemberServiceImpl memberService) {
 		this.memberService = memberService;
+	}
+	
+	@Autowired
+	private AuthorityServiceImpl authorityService;
+
+	public void setAuthorityService(AuthorityServiceImpl authorityService) {
+		this.authorityService = authorityService;
 	}
 
 	@RequestMapping("/mypage")
@@ -52,6 +61,24 @@ public class UserController {
 			e.printStackTrace();
 		}
 		request.setAttribute("positionList", positionList);
+		
+		
+		String userid=(String)session.getAttribute("loginUser");
+		
+		AuthorityVO authority= new AuthorityVO();
+		try {
+			authority=authorityService.authorityYN(userid);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println(authority);
+		request.setAttribute("authority", authority);
+		
+		
+		
+		
+		
 
 		return url;
 	}
