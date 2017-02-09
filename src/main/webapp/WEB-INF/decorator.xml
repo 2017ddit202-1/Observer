@@ -33,8 +33,13 @@
 		<pattern>/superAdmin/*</pattern>
 	</decorator>
 
+
 	<decorator name="authority" page="user_decorator.jsp">
 		<pattern>/atrt/*</pattern>
+</decorator>
+	<decorator name="server" page="user_decorator.jsp">
+		<pattern>/server/*</pattern>
+
 	</decorator>
 
 	<excludes>

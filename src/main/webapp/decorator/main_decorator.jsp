@@ -214,7 +214,7 @@ function login_go(){
           get_msg(message);
        if(error==false){
           if(returl=='')
-             returl = '<c:url value="/qna/qnaList" />';
+             returl = '<c:url value="/server/serverMain" />';
           location.href = returl;
        };
     });
