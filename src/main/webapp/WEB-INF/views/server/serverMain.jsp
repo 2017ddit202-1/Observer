@@ -7,57 +7,48 @@
 <head>
 <meta charset="UTF-8">
 <title></title>
-<script type="text/javascript" src="<%=request.getContextPath()%>/resources/js/jquery-3.1.1.min.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/resources/js/jquery-1.11.0.min.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/resources/js/sockjs-0.3.min.js"></script>
+<script type="text/javascript">
 
-	<script type="text/javascript">
 
-	$(document).ready(function() {
-		 conn(); 
-		/*  $('#enterBtn').on('click', function() {
-			conn();
-		});  */
-		$('#sendBtn').click(function() { send(); });
-	})
+var sock = null;
+$(document).ready(function() {
+	  alert('안냥');
+	  
+	  //ip적고 포트번호 맞추고 실행하면 됨 
+	  
+	  
+	 /*  "http://192.168.202.140:8181/${pageContext.request.contextPath}/chat" */
+	  sock = new SockJS("http://192.168.0.3:8111/${pageContext.request.contextPath}/server/serverMain");
+	  alert('${pageContext.request.contextPath}');
+	  sock.onopen = function(){
+		  sock.send("반가워");
+		  alert('안냥1');
+	  }
+	 
+	  sock.onmessage = function(evt){
+		  $("#chatMessage").append(evt.data + "<br/>");
+	  }
+	
+	  sock.onclose= function(){
+		  sock.send("퇴장");
+	  }
+	
+	  $("#sendMessage").click(function(){
+		if($("#message").val() !=""){
+			sock.send($("#message").val());
+			$("#chatMessage").append("나->" + $("#message").val()+"<br/>");
+			$("message").val("");
+		}
+	  })
+	  
+});
 
 	/* 	"http://192.168.202.139:8181/${pageContext.request.contextPath}/server/serverMain"	 */	
 			/* http://192.168.202.139:8181/obs/server */
 	
-		var socket;
-	function conn() {
-		obsocket = new SockJS(
-				"http://localhost:8181${pageContext.request.contextPath}/server/serverMain"
-				);
-		
-		obsocket.send;
-		obsocket.onmessage = m;
 	
-	
-	}
-	
-observer = setInterval(function(){
-		send();
-	},3000);
-
-function serverstop(){
-	 alert("정지");
-	 clearInterval(observer);
- }
-	
-	
-	
-	function send() {
- 		/* alert("send"); */
-		var msg = $("#content").val();
-		 obsocket.send(msg); 
-		 m(e); 
-			
-	}
-	
-	function m(evt){
-		alert('바보멍충아');
-	}
-
 
 </script>
 
@@ -66,15 +57,10 @@ function serverstop(){
 <h1>server page</h1>
 
 
-	id <input type="text" id="name">
-	content <input type="text" id="content" value="${test}">
-	
-	<!-- <input type = "button" id="enterBtn" value="연결"> -->
-	<input type = "button" id="enterBtn" value="추가">
-	<input type = "button" id="startBtn" value="메세지보내기" onclick="m()">
-	
-	<input type = "button" id="sendBtn" value="Servertop" onclick="serverstop()" >
-	
+	<h1>채팅페이지</h1>
+ <input type="text" id="message"/>
+ <input type="button" id="sendMessage" value="메세지보내기"/>
+ <div id="chatMessage" style="overflow: auto; max-height: 500px;"></div>
 
 </body>
 </html>

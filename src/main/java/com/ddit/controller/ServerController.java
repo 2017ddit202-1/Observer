@@ -16,9 +16,7 @@ public class ServerController {
 		String url = "server/serverMain";
 		
 		//서버와 연결된 내용들을 db에 저장
-		String a = "박불휘";
-		model.addAttribute("test", a);
-		
+		System.out.println("serverController");
 		
 		
 		
