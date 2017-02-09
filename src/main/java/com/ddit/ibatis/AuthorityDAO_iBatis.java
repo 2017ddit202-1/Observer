@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import com.ddit.dao.AuthorityDAO;
+import com.ddit.dto.AlertVO;
 import com.ddit.dto.AuthorityVO;
 import com.ddit.dto.Vw_AuthorityVO;
 import com.ibatis.sqlmap.client.SqlMapClient;
@@ -56,6 +57,12 @@ public class AuthorityDAO_iBatis implements AuthorityDAO {
 	@Override
 	public AuthorityVO authorityYN(String userid) throws SQLException {
 		return (AuthorityVO) client.queryForObject("authorityYN",userid);
+		
+	}
+
+	@Override
+	public void alertY_insert(AlertVO alertVO) throws SQLException {
+		client.insert("alertY_insert",alertVO);
 		
 	}
 
