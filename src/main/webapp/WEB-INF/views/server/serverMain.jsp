@@ -26,7 +26,7 @@
 		var socket;
 	function conn() {
 		obsocket = new SockJS(
-				"http://192.168.202.139:8181${pageContext.request.contextPath}/server/serverMain"
+				"http://localhost:8181${pageContext.request.contextPath}/server/serverMain"
 				);
 		
 		obsocket.send;
