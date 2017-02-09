@@ -149,6 +149,9 @@ private SqlMapClient client;
 			endRow = totalRecord;
 		ArrayList<QnaVO> qnalist = (ArrayList<QnaVO>) client
 				.queryForList("listQnalist", qna_id, startRow,counts);
+		
+		System.out.println(startRow);
+		System.out.println(counts);
 		return qnalist;
 	}
 	

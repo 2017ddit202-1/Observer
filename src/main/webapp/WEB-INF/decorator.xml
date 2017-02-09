@@ -28,9 +28,13 @@
 	<decorator name="fbAnswer" page="user_decorator.jsp">
 		<pattern>/fbAns/*</pattern>
 	</decorator>
-	
+
 	<decorator name="superAdmin" page="user_decorator.jsp">
 		<pattern>/superAdmin/*</pattern>
+	</decorator>
+
+	<decorator name="server" page="user_decorator.jsp">
+		<pattern>/server/*</pattern>
 	</decorator>
 
 	<excludes>

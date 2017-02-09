@@ -215,9 +215,9 @@ public class NoticeArticleController {
 			,HttpServletRequest request){
 		
 		String url="articleView";
-
-		ArrayList<Notice_ArticleVO> articleList= null;
 		
+		ArrayList<Notice_ArticleVO> articleList= null;
+		System.out.println(keyWord);
 		if(keyField.equals("noar_seq")){
 			int key=Integer.parseInt(keyWord);
 			
