@@ -75,6 +75,18 @@ function serverstop(){
 	
 	<input type = "button" id="sendBtn" value="Servertop" onclick="serverstop()" >
 	
+	
+	
+
+<!-- //////////////////////////////////////////////////////////////// -->
+
+<c:if test="${!empty userOK}">
+  <script> alert('권한이 변경되었습니다.');</script>
+</c:if>
+
+
+
+
 
 </body>
 </html>

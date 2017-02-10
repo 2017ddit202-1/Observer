@@ -6,17 +6,17 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd">
 
-	<context:property-placeholder location="classpath:com/**/jdbc.properties"/>
-	
-	<bean id = "dataSource"	class= "org.apache.commons.dbcp2.BasicDataSource"
-		p:driverClassName="${jdbc.driverClassName}" 
-		p:url="${jdbc.url}"
-		p:username="${jdbc.username}"
-		p:password="${jdbc.password}" /> <!-- jdbc.properties의 값 -->
-	
+
+	<context:property-placeholder location="classpath:com/**/jdbc.properties" />
+
+	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource"
+		p:driverClassName="${jdbc.driverClassName}" p:url="${jdbc.url}"
+		p:username="${jdbc.username}" p:password="${jdbc.password}" /> <!-- jdbc.properties의 값 -->
+
 	<bean id="SqlMapClient" class="org.springframework.orm.ibatis.SqlMapClientFactoryBean"
-			p:configLocation="classpath:com/ddit/sqlconfig/SqlMapConfig.xml"
-			p:dataSource-ref="dataSource"
-	/>
+		p:configLocation="classpath:com/ddit/sqlconfig/SqlMapConfig.xml"
+		p:dataSource-ref="dataSource" />
+
+
 
 </beans>

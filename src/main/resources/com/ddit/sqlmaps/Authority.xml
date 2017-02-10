@@ -45,6 +45,11 @@
 	   alert(al_id,al_authority)
 	   values(#al_id#,#al_authority#)
 	</insert>
+	
+	<delete id="alertDelete" parameterClass="str">
+	delete from alert
+	where al_id=#al_id#
+	</delete>
 
 </sqlMap> 
 

@@ -47,19 +47,27 @@
 	<bean id="fbAnswerDAO" class="com.ddit.ibatis.Fbanswer_iBatis"
 		p:client-ref="SqlMapClient" />
 	<bean id="fbAnswerService" class="com.ddit.service.FbanswerServiceImpl"
-		p:fbAnswer_iBatis-ref="fbAnswerDAO" />	
-		
-		
-		<bean id="authorityDAO" class="com.ddit.ibatis.AuthorityDAO_iBatis"
+		p:fbAnswer_iBatis-ref="fbAnswerDAO" />
+
+
+	<bean id="authorityDAO" class="com.ddit.ibatis.AuthorityDAO_iBatis"
 		p:client-ref="SqlMapClient" />
 	<bean id="authorityService" class="com.ddit.service.AuthorityServiceImpl"
-		p:authorityDAO-ref="authorityDAO" />	
-		
+		p:authorityDAO-ref="authorityDAO" />
+
 	<bean id="VWmemPosDAO" class="com.ddit.ibatis.VWmemPos_iBatis"
 		p:client-ref="SqlMapClient" />
-		
-	<bean id="VWmemPosService" class="com.ddit.service.VWmemPosServiceImpl" 
+
+	<bean id="VWmemPosService" class="com.ddit.service.VWmemPosServiceImpl"
 		p:VWmemPos-ref="VWmemPosDAO" />
+
+
+	<bean id="alertDAO" class="com.ddit.ibatis.AlertDAO_iBatis"
+		p:client-ref="SqlMapClient" />
+
+	<bean id="alertService" class="com.ddit.service.AlertServiceImpl"
+		p:alertDAO-ref="alertDAO" />
+
 
 
 

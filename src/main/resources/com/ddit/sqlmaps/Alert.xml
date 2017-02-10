@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
+    "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Alert">
+	<typeAlias alias="str" type="java.lang.String" />
+	<typeAlias alias="int" type="java.lang.Integer" />
+	<typeAlias alias="alert" type="com.ddit.dto.AlertVO" />
+	
+	<select id="select_sessionID" parameterClass="str" resultClass="str">
+	select * from alert where al_id=#al_id#
+	</select>
+	
+	</sqlMap>
