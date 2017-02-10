@@ -25,4 +25,9 @@ public class AlertDAO_iBatis implements AlertDAO{
 		
 	}
 
+	@Override
+	public String authority_content(String userid) throws SQLException {
+		return (String) client.queryForObject("authority_content",userid);
+	}
+
 }

@@ -25,7 +25,8 @@
 	</update>
 
 	<delete id="authorityDelete" parameterClass="str">
-		delete from authority
+		delete from
+		authority
 		where atrt_id=#atrt_id#
 
 	</delete>
@@ -35,21 +36,28 @@
 		set posl_pos='ROLE_USER'
 		where posl_id=#posl_id#
 	</update>
-	 
+
 	<select id="authorityYN" parameterClass="str" resultClass="authority">
-	    select * from authority where atrt_id=#atrt_id#
+		select * from authority where atrt_id=#atrt_id#
 	</select>
-	
+
 	<insert id="alertY_insert" parameterClass="alert">
-	   insert into
-	   alert(al_id,al_authority)
-	   values(#al_id#,#al_authority#)
+		insert into
+		alert(al_id,al_authority)
+		values(#al_id#,#al_authority#)
 	</insert>
-	
+
 	<delete id="alertDelete" parameterClass="str">
-	delete from alert
-	where al_id=#al_id#
+		delete from alert
+		where al_id=#al_id#
 	</delete>
+
+
+	<insert id="authorityRejection" parameterClass="str">
+		insert into
+		alert(al_id,al_authority)
+		values(#al_id#,'거절')
+	</insert>
 
 </sqlMap> 
 

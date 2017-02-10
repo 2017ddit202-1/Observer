@@ -71,5 +71,12 @@ public class AuthorityServiceImpl implements AuthorityService{
 	}
 
 
+	@Override
+	public void authorityRejection(String userid) throws SQLException {
+		authorityDAO.authorityRejection(userid);
+		
+	}
+
+
 
 }
