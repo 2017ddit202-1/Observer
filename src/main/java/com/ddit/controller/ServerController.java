@@ -33,7 +33,6 @@ public class ServerController {
 	public String test(HttpServletRequest request,
 			HttpServletResponse response, Model model, HttpSession session) {
 		String url = "server/serverMain";
-	
 
 		String loginUser = (String) session.getAttribute("loginUser");
 		String userOK = null;
@@ -50,7 +49,7 @@ public class ServerController {
 			model.addAttribute("userOK",userOK);
 		}
 		
-		
+
 
 		return url;
 
