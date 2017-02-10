@@ -59,6 +59,9 @@ public class ServerController {
 			}
 			
 	
+			
+			
+			
 			System.out.println(column+"!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 			model.addAttribute("userOK",userOK);
 			model.addAttribute("column", column);
