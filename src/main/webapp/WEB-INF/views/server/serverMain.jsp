@@ -20,8 +20,9 @@ $(document).ready(function() {
 	  
 	  /*/socket/echo-ws */
 	 /*  http://192.168.202.140:8181/${pageContext.request.contextPath}/chat" */
-	  sock = new SockJS("http://192.168.202.139:8181/${pageContext.request.contextPath}/server/serverMain");
-	 /*  alert('${pageContext.request.contextPath}'); */
+	  sock = new SockJS("${pageContext.request.contextPath}/server/serverMain");
+	 
+	  /* alert('${pageContext.request.contextPath}');  */
 	  sock.onopen = function(){
 		  sock.send("반가워");
 		
@@ -46,8 +47,7 @@ $(document).ready(function() {
 });
 
 	/* 	"http://192.168.202.139:8181/${pageContext.request.contextPath}/server/serverMain"	 */	
-			/* http://192.168.202.139:8181/obs/server */
-	
+			
 	
 
 </script>
