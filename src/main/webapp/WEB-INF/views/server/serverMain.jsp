@@ -14,17 +14,17 @@
 
 var sock = null;
 $(document).ready(function() {
-	  alert('안냥');
+	
 	  
 	  //ip적고 포트번호 맞추고 실행하면 됨 
 	  
-	  
-	 /*  "http://192.168.202.140:8181/${pageContext.request.contextPath}/chat" */
-	  sock = new SockJS("http://192.168.0.3:8111/${pageContext.request.contextPath}/server/serverMain");
-	  alert('${pageContext.request.contextPath}');
+	  /*/socket/echo-ws */
+	 /*  http://192.168.202.140:8181/${pageContext.request.contextPath}/chat" */
+	  sock = new SockJS("http://192.168.202.139:8181/${pageContext.request.contextPath}/server/serverMain");
+	 /*  alert('${pageContext.request.contextPath}'); */
 	  sock.onopen = function(){
 		  sock.send("반가워");
-		  alert('안냥1');
+		
 	  }
 	 
 	  sock.onmessage = function(evt){
