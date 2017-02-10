@@ -14,41 +14,44 @@
 
 var sock = null;
 $(document).ready(function() {
+
+	
+	  
+	  //ip적고 포트번호 맞추고 실행하면 됨 
+	  
+	  /*/socket/echo-ws */
+	 /*  http://192.168.202.140:8181/${pageContext.request.contextPath}/chat" */
+	  sock = new SockJS("${pageContext.request.contextPath}/server/serverMain");
+	 
+	  /* alert('${pageContext.request.contextPath}');  */
+	  sock.onopen = function(){
+		  sock.send("반가워");
+		
+	  }
+	 
+	  sock.onmessage = function(evt){
+		  $("#chatMessage").append(evt.data + "<br/>");
+	  }
+	
+	  sock.onclose= function(){
+		  sock.send("퇴장");
+	  }
+	
+	  $("#sendMessage").click(function(){
+		if($("#message").val() !=""){
+			sock.send($("#message").val());
+			$("#chatMessage").append("나->" + $("#message").val()+"<br/>");
+			$("message").val("");
+		}
+	  })
+	  
+
    
      
-     //ip적고 포트번호 맞추고 실행하면 됨 
-     
-     /*/socket/echo-ws */
-    /*  http://192.168.202.140:8181/${pageContext.request.contextPath}/chat" */
-     sock = new SockJS("${pageContext.request.contextPath}/server/serverMain");
-    
-     /* alert('${pageContext.request.contextPath}');  */
-     sock.onopen = function(){
-        sock.send("반가워");
-      
-     }
-    
-     sock.onmessage = function(evt){
-        $("#chatMessage").append(evt.data + "<br/>");
-     }
-   
-     sock.onclose= function(){
-        sock.send("퇴장");
-     }
-   
-     $("#sendMessage").click(function(){
-      if($("#message").val() !=""){
-         sock.send($("#message").val());
-         $("#chatMessage").append("나->" + $("#message").val()+"<br/>");
-         $("message").val("");
-      }
-     })
-     
+ 
+
 });
 
-   /*    "http://192.168.202.139:8181/${pageContext.request.contextPath}/server/serverMain"    */   
-         
-   
 
 </script>
 

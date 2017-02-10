@@ -9,3 +9,4 @@ public interface AlertDAO {
 	public String authority_content(String userid)throws SQLException;
 
 }
+

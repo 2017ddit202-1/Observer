@@ -9,3 +9,4 @@ public interface AlertService {
 	public String authority_content(String userid)throws SQLException;
 
 }
+

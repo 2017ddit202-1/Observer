@@ -22,17 +22,18 @@ import com.ddit.service.AlertServiceImpl;
 @RequestMapping("/server")
 public class ServerController {
 
-	@Autowired
-	private AlertServiceImpl alertService;
+   @Autowired
+   private AlertServiceImpl alertService;
 
-	public void setAlertService(AlertServiceImpl alertService) {
-		this.alertService = alertService;
-	}
+   public void setAlertService(AlertServiceImpl alertService) {
+      this.alertService = alertService;
+   }
 
-	@RequestMapping(value="/serverMain",method = RequestMethod.GET, produces = "application/text;charset=utf8")
-	public String test(HttpServletRequest request,
-			HttpServletResponse response, Model model, HttpSession session) {
-		String url = "server/serverMain";
+   @RequestMapping(value="/serverMain",method = RequestMethod.GET, produces = "application/text;charset=utf8")
+   public String test(HttpServletRequest request,
+         HttpServletResponse response, Model model, HttpSession session) {
+      String url = "server/serverMain";
+
 
 		String loginUser = (String) session.getAttribute("loginUser");
 		String userOK = null;
@@ -62,13 +63,11 @@ public class ServerController {
 			model.addAttribute("userOK",userOK);
 			model.addAttribute("column", column);
 		}
-		
-
-
-		return url;
-
-	}
 	
-	
+      return url;
+
+   }
+   
+   
 
 }

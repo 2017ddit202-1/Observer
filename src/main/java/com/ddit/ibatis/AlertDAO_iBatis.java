@@ -31,3 +31,4 @@ public class AlertDAO_iBatis implements AlertDAO{
 	}
 
 }
+
