@@ -15,17 +15,17 @@
 var sock = null;
 $(document).ready(function() {
 
-	
-	  
+	/* "http://"+document.domain+":8181/server/serverMain" */
 	  //ip적고 포트번호 맞추고 실행하면 됨 
-	  
+	/* 		  "${pageContext.request.contextPath}/server/serverMain" */  
 	  /*/socket/echo-ws */
 	 /*  http://192.168.202.140:8181/${pageContext.request.contextPath}/chat" */
-	  sock = new SockJS("${pageContext.request.contextPath}/server/serverMain");
-	 
 	  /* alert('${pageContext.request.contextPath}');  */
+
+	  sock = new SockJS("http://"+document.domain+":8181/observer/server/serverMain");
+	 
 	  sock.onopen = function(){
-		  sock.send("반가워");
+		  sock.send("@");
 		
 	  }
 	 
