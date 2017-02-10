@@ -40,13 +40,27 @@
 		p:defaultEncoding="utf-8"/>	
 	
 	
-	<beans:bean id="observerSocket" class="com.ddit.handler.ObserverTest" />
+	
+	<interceptors>
+     
+      <interceptor>
+         <mapping path="/**"/>
+        <!--  컨트롤러 화면전환 무조껀 true -->
+         <exclude-mapping path="/server/**" />
+
+         <beans:bean id="handlerInterceptor" class="com.ddit.interceptor.ServerInterceptor" />
+      </interceptor>
+   </interceptors>
+	
+	
+	
+	<!-- <beans:bean id="observerSocket" class="com.ddit.handler.ObserverTest" />
 	
 	<websocket:handlers>
 		<websocket:mapping handler="observerSocket" path="/server/serverMain" />
 		<websocket:sockjs />
 	</websocket:handlers>
-	
+	 -->
 	
 	
 	

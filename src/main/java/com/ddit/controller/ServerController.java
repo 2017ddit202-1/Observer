@@ -22,39 +22,39 @@ import com.ddit.service.AlertServiceImpl;
 @RequestMapping("/server")
 public class ServerController {
 
-	@Autowired
-	private AlertServiceImpl alertService;
+   @Autowired
+   private AlertServiceImpl alertService;
 
-	public void setAlertService(AlertServiceImpl alertService) {
-		this.alertService = alertService;
-	}
+   public void setAlertService(AlertServiceImpl alertService) {
+      this.alertService = alertService;
+   }
 
-	@RequestMapping(value="/serverMain",method = RequestMethod.GET, produces = "application/text;charset=utf8")
-	public String test(HttpServletRequest request,
-			HttpServletResponse response, Model model, HttpSession session) {
-		String url = "server/serverMain";
+   @RequestMapping(value="/serverMain",method = RequestMethod.GET, produces = "application/text;charset=utf8")
+   public String test(HttpServletRequest request,
+         HttpServletResponse response, Model model, HttpSession session) {
+      String url = "server/serverMain";
 
-		String loginUser = (String) session.getAttribute("loginUser");
-		String userOK = null;
+      String loginUser = (String) session.getAttribute("loginUser");
+      String userOK = null;
 
-		try {
-			userOK = alertService.select_sessionID(loginUser);
-			alertService.alertDelete(loginUser);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+      try {
+         userOK = alertService.select_sessionID(loginUser);
+         alertService.alertDelete(loginUser);
+      } catch (SQLException e) {
+         // TODO Auto-generated catch block
+         e.printStackTrace();
+      }
 
-		if (userOK != null) {
-			model.addAttribute("userOK",userOK);
-		}
-		
+      if (userOK != null) {
+         model.addAttribute("userOK",userOK);
+      }
+      
 
 
-		return url;
+      return url;
 
-	}
-	
-	
+   }
+   
+   
 
 }
