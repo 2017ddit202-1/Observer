@@ -23,4 +23,9 @@ public class AlertServiceImpl implements AlertService{
 		
 	}
 
+	@Override
+	public String authority_content(String userid) throws SQLException {
+		return alertDAO.authority_content(userid);
+	}
+
 }

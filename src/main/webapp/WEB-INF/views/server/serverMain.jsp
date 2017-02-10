@@ -67,8 +67,11 @@ $(document).ready(function() {
  
  <!-- //////////////////////////////////////////////////////////////// -->
 
+
+
+
 <c:if test="${!empty userOK}">
-  <script> alert('권한이 변경되었습니다.');</script>
+  <script> alert('${column}');</script>
 </c:if>
 
 </body>

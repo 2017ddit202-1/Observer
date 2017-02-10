@@ -11,7 +11,7 @@
 <button type="button" onclick="allcheckBox()">전체선택</button>
 <button type="button" onclick="allcheckBoxDelete()">전체해제</button>
 <button type="button" onclick="authorityAccept_go()">수락</button>
-<button type="button">거절</button>
+<button type="button" onclick="authorityAcceptNO_go()">거절</button>
 
 
 <thead>
@@ -59,6 +59,13 @@ function authorityAccept_go(){
 	document.formm.action = "<%=request.getContextPath()%>/superAdmin/authorityAccept";
 	document.formm.submit();
 	}
+	
+function authorityAcceptNO_go(){
+	document.formm.action = "<%=request.getContextPath()%>/superAdmin/authorityAcceptNO";
+	document.formm.submit();
+	}
+	
+	
 	function allcheckBox() {
 		$("input[name=mem_id]").prop("checked", true);
 

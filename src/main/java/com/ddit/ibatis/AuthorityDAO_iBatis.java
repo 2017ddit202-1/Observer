@@ -66,6 +66,12 @@ public class AuthorityDAO_iBatis implements AuthorityDAO {
 		
 	}
 
+	@Override
+	public void authorityRejection(String userid) throws SQLException {
+		client.insert("authorityRejection",userid);
+		
+	}
+
 
 
 }

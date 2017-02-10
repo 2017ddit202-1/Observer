@@ -18,7 +18,7 @@ public interface AuthorityService {
 	public void authorityDelete(String userid)throws SQLException; //업데이트한 id authority에서 삭제
 	public AuthorityVO authorityYN(String userid)throws SQLException;//'n'값 가져와 진행중!!
 	public void alertY_insert(AlertVO alertVO)throws SQLException; //권한신청 수락일때 -> 아이디,변경된권한 insert
-
+	public void authorityRejection(String userid)throws SQLException; //권한거절시 알림테이블에 '거절' insert
 
 
 

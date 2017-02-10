@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.ddit.dto.AlertVO;
 import com.ddit.dto.Vw_AuthorityVO;
+import com.ddit.service.AlertServiceImpl;
 import com.ddit.service.AuthorityServiceImpl;
 
 @Controller
@@ -23,6 +24,13 @@ public class SuperAdminController {
 
 	public void setAuthorityService(AuthorityServiceImpl authorityService) {
 		this.authorityService = authorityService;
+	}
+
+	@Autowired
+	private AlertServiceImpl alertService;
+	
+	public void setAlertService(AlertServiceImpl alertService) {
+		this.alertService = alertService;
 	}
 
 	// 관리페이지
@@ -64,15 +72,14 @@ public class SuperAdminController {
 																	
 				// 승락
 				if (authority.equals("ROLE_USER")) {
-					alertVO.setAl_id(chkbox[i]);
-					alertVO.setAl_authority("ROLE_ADMIN");
+					alertVO.setAl_id(chkbox[i]); //아이디값
+					alertVO.setAl_authority("ROLE_ADMIN"); //변경된 권한 저장
 
 					authorityService.alertY_insert(alertVO);
+					authorityService.adminAuthority(chkbox[i]);
+					
 
-					/*
-					 * authorityService.authorityDelete(chkbox[i]);
-					 * //authority테이블에서 삭제
-					 */} else if (authority.equals("ROLE_ADMIN")) {
+					} else if (authority.equals("ROLE_ADMIN")) {
 					/*
 					 * authorityService.userAuthority(chkbox[i]);//권한을 유저 변경하고,
 					 * authorityService.authorityDelete(chkbox[i]);
@@ -93,7 +100,24 @@ public class SuperAdminController {
 
 	}
 
-	// 체크후 수락을 누르면 권한요청승락으로 와 아이디 값을 받아 포지션 리스트의 권한을 변경해 주고
-	// ATRT_USER_ACCEPT의 값을'y'로변경해준다.
+	
+	//권한 거절
+	@RequestMapping(value="/authorityAcceptNO", method = RequestMethod.POST)
+	public String authorityAcceptNO(HttpServletRequest request){
+		
+		String url = "redirect:/superAdmin/authorityList";
+		
+		String[] chkbox = request.getParameterValues("mem_id");
+		for(int i=0; i< chkbox.length; i++){
+			try {
+				authorityService.authorityRejection(chkbox[i]);//alert테이블에 '거절' 저장
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			}
+		return url;
+	}
+	
 
 }

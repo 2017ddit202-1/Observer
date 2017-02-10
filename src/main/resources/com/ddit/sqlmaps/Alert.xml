@@ -11,4 +11,9 @@
 	select * from alert where al_id=#al_id#
 	</select>
 	
+	<select id="authority_content" parameterClass="str" resultClass="str">
+	select al_authority from alert where al_id=#al_id#
+	</select>
+	
 	</sqlMap>
+

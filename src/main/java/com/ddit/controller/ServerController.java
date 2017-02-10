@@ -34,23 +34,36 @@ public class ServerController {
          HttpServletResponse response, Model model, HttpSession session) {
       String url = "server/serverMain";
 
-      String loginUser = (String) session.getAttribute("loginUser");
-      String userOK = null;
 
-      try {
-         userOK = alertService.select_sessionID(loginUser);
-         alertService.alertDelete(loginUser);
-      } catch (SQLException e) {
-         // TODO Auto-generated catch block
-         e.printStackTrace();
-      }
+		String loginUser = (String) session.getAttribute("loginUser");
+		String userOK = null;
+		String column="";
 
-      if (userOK != null) {
-         model.addAttribute("userOK",userOK);
-      }
-      
+		try {
+			userOK = alertService.select_sessionID(loginUser);  //alert테이블에 ID값이 존재하는지 select
+			column=alertService.authority_content(loginUser);
+			alertService.alertDelete(loginUser);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
-
+		if (userOK != null) {//값이 있으면
+			
+			if(column.equals("거절")){
+				column ="권한신청이 거절되었습니다.";
+			}else if (column.equals("ROLE_ADMIN")) {
+				column ="ADMIN으로 등급신청 완료";
+			}else if(column.equals("ROLE_USER")){
+				column ="USER로 등급신청 완료";
+			}
+			
+	
+			System.out.println(column+"!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+			model.addAttribute("userOK",userOK);
+			model.addAttribute("column", column);
+		}
+	
       return url;
 
    }
