@@ -13,6 +13,7 @@
 	</configs>
 	<autoconfigs>
 		<config>src/main/resources/spring-mail.xml</config>
+		<config>src/main/resources/socket-context.xml</config>
 		<config>src/main/resources/application-context.xml</config>
 	</autoconfigs>
 	<configSets>

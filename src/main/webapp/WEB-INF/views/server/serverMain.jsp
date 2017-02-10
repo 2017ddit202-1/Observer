@@ -14,6 +14,7 @@
 
 var sock = null;
 $(document).ready(function() {
+
 	
 	  
 	  //ip적고 포트번호 맞추고 실행하면 됨 
@@ -43,12 +44,16 @@ $(document).ready(function() {
 		}
 	  })
 	  
+
+   
+     
+ 
+
 });
 
-	/* 	"http://192.168.202.139:8181/${pageContext.request.contextPath}/server/serverMain"	 */	
-			/* http://192.168.202.139:8181/obs/server */
-	
-	
+   /*    "http://192.168.202.139:8181/${pageContext.request.contextPath}/server/serverMain"    */   
+         
+   
 
 </script>
 
@@ -57,10 +62,16 @@ $(document).ready(function() {
 <h1>server page</h1>
 
 
-	<h1>채팅페이지</h1>
+   <h1>채팅페이지</h1>
  <input type="text" id="message"/>
  <input type="button" id="sendMessage" value="메세지보내기"/>
  <div id="chatMessage" style="overflow: auto; max-height: 500px;"></div>
+ 
+ <!-- //////////////////////////////////////////////////////////////// -->
+
+<c:if test="${!empty userOK}">
+  <script> alert('권한이 변경되었습니다.');</script>
+</c:if>
 
 </body>
 </html>

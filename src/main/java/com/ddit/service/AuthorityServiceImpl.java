@@ -4,6 +4,7 @@ package com.ddit.service;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import com.ddit.dto.AlertVO;
 import com.ddit.dto.AuthorityVO;
 import com.ddit.dto.Vw_AuthorityVO;
 import com.ddit.ibatis.AuthorityDAO_iBatis;
@@ -59,6 +60,13 @@ public class AuthorityServiceImpl implements AuthorityService{
 	@Override
 	public AuthorityVO authorityYN(String userid) throws SQLException {
 		return authorityDAO.authorityYN(userid);
+		
+	}
+
+
+	@Override
+	public void alertY_insert(AlertVO alertVO) throws SQLException {
+		authorityDAO.alertY_insert(alertVO);
 		
 	}
 

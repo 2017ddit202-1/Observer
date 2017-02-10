@@ -39,6 +39,7 @@ public class LoginSuccessHandler extends
       
          
       } else if (StringUtils.indexOf(accept, "xml") > -1) {
+    	  
          response.setContentType("application/xml;charset=utf-8");
          String data = StringUtils.join(new String[] {
                "<?xml version=\"1.0\" encoding=\"UTF-8\"?>", "<response>",
