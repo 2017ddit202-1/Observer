@@ -4,9 +4,9 @@
 
 
 <sqlMap namespace="FreeBoard">
-	<typeAlias alias="str" type="java.lang.String" />
-	<typeAlias alias="int" type="java.lang.Integer" />
-	<typeAlias alias="freeBoard" type="com.ddit.dto.FreeBoardVO" />
+<!-- 	<typeAlias alias="str" type="java.lang.String" /> -->
+<!-- 	<typeAlias alias="int" type="java.lang.Integer" /> -->
+<!-- 	<typeAlias alias="freeBoard" type="com.ddit.dto.FreeBoardVO" /> -->
 	
 	
 	<select id="listFb" resultClass="freeBoard">

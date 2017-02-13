@@ -3,10 +3,10 @@
     "http://www.ibatis.com/dtd/sql-map-2.dtd">
 
 <sqlMap namespace="Article">
-	<typeAlias alias="str" type="java.lang.String" />
-	<typeAlias alias="int" type="java.lang.Integer" />
-	<typeAlias alias="map" type="java.util.Map"/>
-	<typeAlias alias="article" type="com.ddit.dto.Notice_ArticleVO" />
+<!-- 	<typeAlias alias="str" type="java.lang.String" /> -->
+<!-- 	<typeAlias alias="int" type="java.lang.Integer" /> -->
+<!-- 	<typeAlias alias="map" type="java.util.Map"/> -->
+<!-- 	<typeAlias alias="article" type="com.ddit.dto.Notice_ArticleVO" /> -->
 
 	<select id="listArticle" resultClass="article">
 		select * from notice_article order by noar_date desc

@@ -5,9 +5,9 @@
 
 
 <sqlMap namespace="FbAnswer">
-	<typeAlias alias="str" type="java.lang.String" />
-	<typeAlias alias="int" type="java.lang.Integer" />
-	<typeAlias alias="fbAns" type="com.ddit.dto.FbanswerVO" />
+<!-- 	<typeAlias alias="str" type="java.lang.String" /> -->
+<!-- 	<typeAlias alias="int" type="java.lang.Integer" /> -->
+<!-- 	<typeAlias alias="fbAns" type="com.ddit.dto.FbanswerVO" /> -->
 	
 	<insert id="insertFbAns" parameterClass="fbAns">
       INSERT INTO

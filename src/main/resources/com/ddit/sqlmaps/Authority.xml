@@ -3,10 +3,8 @@
     "http://www.ibatis.com/dtd/sql-map-2.dtd">
 
 <sqlMap namespace="Authority">
-	<typeAlias alias="str" type="java.lang.String" />
-	<typeAlias alias="int" type="java.lang.Integer" />
-	<typeAlias alias="authority" type="com.ddit.dto.AuthorityVO" />
-	<typeAlias alias="alert" type="com.ddit.dto.AlertVO" />
+<!-- 	<typeAlias alias="authority" type="com.ddit.dto.AuthorityVO" /> -->
+<!-- 	<typeAlias alias="alert" type="com.ddit.dto.AlertVO" /> -->
 
 	<insert id="AuthorityInsert" parameterClass="str">
 		insert into

@@ -246,11 +246,6 @@
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
-			<artifactId>spring-ibatis</artifactId>
-			<version>2.0.8</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
 			<artifactId>spring-jdbc</artifactId>
 			<version>4.0.4.RELEASE</version>
 		</dependency>
@@ -282,6 +277,42 @@
           <artifactId>commons-dbcp2</artifactId>
           <version>2.0</version>
       </dependency>
+
+	<dependency>
+		<groupId>kr.or.ddit</groupId>
+		<artifactId>ibatis-typealias-generator</artifactId>
+		<version>1.0</version>
+		<scope>system</scope>
+		<systemPath>${project.basedir}\src\main\webapp\WEB-INF\lib\ibatis-typealias-generator.jar</systemPath>
+	</dependency>
+
+	<!-- https://mvnrepository.com/artifact/org.springframework/spring-orm -->
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-orm</artifactId>
+		<version>3.2.9.RELEASE</version>
+	</dependency>
+
+	<!-- https://mvnrepository.com/artifact/org.apache.ibatis/ibatis-sqlmap -->
+	<dependency>
+		<groupId>org.apache.ibatis</groupId>
+		<artifactId>ibatis-sqlmap</artifactId>
+		<version>2.3.4.726</version>
+	</dependency>
+	
+	<dependency>
+		<groupId>org.projectlombok</groupId>
+		<artifactId>lombok</artifactId>
+		<version>1.16.14</version>
+		<scope>provided</scope>
+	</dependency>
+	<dependency>
+		<groupId>com.googlecode.log4jdbc</groupId>
+		<artifactId>log4jdbc</artifactId>
+		<version>1.2</version>
+	</dependency>
+	
+	
 		
 		
 	</dependencies>

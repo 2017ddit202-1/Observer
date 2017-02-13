@@ -2,9 +2,9 @@
 <!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
     "http://www.ibatis.com/dtd/sql-map-2.dtd">
 <sqlMap>
-	    <typeAlias alias="str" type="java.lang.String" />
-	    <typeAlias alias="int" type="java.lang.Integer" />
-	    <typeAlias alias="VWmempos" type="com.ddit.dto.VWmemPosVO" />
+<!-- 	    <typeAlias alias="str" type="java.lang.String" /> -->
+<!-- 	    <typeAlias alias="int" type="java.lang.Integer" /> -->
+<!-- 	    <typeAlias alias="VWmempos" type="com.ddit.dto.VWmemPosVO" /> -->
 	    
 	    <select id="VWmemposVO" parameterClass="str" resultClass="VWmempos">
    				select * from VW_MEM_POS where mem_id = #str#

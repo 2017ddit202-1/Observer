@@ -3,9 +3,9 @@
     "http://www.ibatis.com/dtd/sql-map-2.dtd">
 
 <sqlMap namespace="Reference">
-   <typeAlias alias="str" type="java.lang.String" />
-   <typeAlias alias="int" type="java.lang.Integer" />
-   <typeAlias alias="reference" type="com.ddit.dto.ReferenceLibrayVO" />
+<!--    <typeAlias alias="str" type="java.lang.String" /> -->
+<!--    <typeAlias alias="int" type="java.lang.Integer" /> -->
+<!--    <typeAlias alias="reference" type="com.ddit.dto.ReferenceLibrayVO" /> -->
 
 
    <select id="listReference" resultClass="reference">

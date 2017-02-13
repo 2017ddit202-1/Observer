@@ -3,17 +3,22 @@
     "http://www.ibatis.com/dtd/sql-map-config-2.dtd">
     
   <sqlMapConfig>
-  	<sqlMap resource="com/ddit/sqlmaps/Member.xml"/>
-  	<sqlMap resource="com/ddit/sqlmaps/Qna.xml"/>
-  	<sqlMap resource="com/ddit/sqlmaps/Notice_Article.xml"/>
-  	<sqlMap resource="com/ddit/sqlmaps/Qanswer.xml"/>
-  	<sqlMap resource="com/ddit/sqlmaps/FreeBoard.xml"/>
-  	<sqlMap resource="com/ddit/sqlmaps/Reference.xml"/>
-  	<sqlMap resource="com/ddit/sqlmaps/FbAnswer.xml"/>
-	<sqlMap resource="com/ddit/sqlmaps/Authority.xml"/>
-  	<sqlMap resource="com/ddit/sqlmaps/SuperAdmin.xml"/>
-  	<sqlMap resource="com/ddit/sqlmaps/VWmemPos.xml"/>
-  	<sqlMap resource="com/ddit/sqlmaps/Alert.xml"/>
+<!--   	<sqlMap resource="com/ddit/sqlmaps/Member.xml"/> -->
+<!--   	<sqlMap resource="com/ddit/sqlmaps/Qna.xml"/> -->
+<!--   	<sqlMap resource="com/ddit/sqlmaps/Notice_Article.xml"/> -->
+<!--   	<sqlMap resource="com/ddit/sqlmaps/Qanswer.xml"/> -->
+<!--   	<sqlMap resource="com/ddit/sqlmaps/FreeBoard.xml"/> -->
+<!--   	<sqlMap resource="com/ddit/sqlmaps/Reference.xml"/> -->
+<!--   	<sqlMap resource="com/ddit/sqlmaps/FbAnswer.xml"/> -->
+<!-- 	<sqlMap resource="com/ddit/sqlmaps/Authority.xml"/> -->
+<!--   	<sqlMap resource="com/ddit/sqlmaps/SuperAdmin.xml"/> -->
+<!--   	<sqlMap resource="com/ddit/sqlmaps/VWmemPos.xml"/> -->
+<!--   	<sqlMap resource="com/ddit/sqlmaps/Alert.xml"/> -->
+
+	<typeAlias alias="str" type="java.lang.String" />
+	<typeAlias alias="int" type="java.lang.Integer" />
+	<typeAlias alias="map" type="java.util.Map"/>
+	<sqlMap resource="com/ddit/sqlmaps/blank.xml"/>
   	
 
   	
