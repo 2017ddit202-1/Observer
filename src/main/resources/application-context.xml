@@ -10,14 +10,15 @@
 
 
 	<context:property-placeholder location="classpath:com/**/jdbc.properties" />
-
 	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource"
 		p:driverClassName="${jdbc.driverClassName}" p:url="${jdbc.url}"
 		p:username="${jdbc.username}" p:password="${jdbc.password}" /> <!-- jdbc.properties의 값 -->
 
-	<bean id="SqlMapClient" class="org.springframework.orm.ibatis.SqlMapClientFactoryBean"
+	<bean id="SqlMapClient" class="kr.or.ddit.commons.ibatis.CustomSqlMapClientFactoryBean"
 		p:configLocation="classpath:com/ddit/sqlconfig/SqlMapConfig.xml"
-		p:dataSource-ref="dataSource" />
+		p:mappingLocations="classpath:com/ddit/sqlmaps/*.xml"
+		p:dataSource-ref="dataSource"
+		p:typeAliasPackages="com.ddit.**.dto" />
 
 
 

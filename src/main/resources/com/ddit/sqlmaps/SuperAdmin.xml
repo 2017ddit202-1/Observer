@@ -3,9 +3,9 @@
     "http://www.ibatis.com/dtd/sql-map-2.dtd">
 
 <sqlMap namespace="SuperAdmin">
-	<typeAlias alias="str" type="java.lang.String" />
-	<typeAlias alias="int" type="java.lang.Integer" />
-	<typeAlias alias="superAdmin" type="com.ddit.dto.Vw_AuthorityVO" />
+<!-- 	<typeAlias alias="str" type="java.lang.String" /> -->
+<!-- 	<typeAlias alias="int" type="java.lang.Integer" /> -->
+<!-- 	<typeAlias alias="superAdmin" type="com.ddit.dto.Vw_AuthorityVO" /> -->
 
 	<select id="authorityList" resultClass="superAdmin">
 		select * from
