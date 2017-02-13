@@ -5,8 +5,14 @@ import java.util.ArrayList;
 
 import com.ddit.dao.CpuDAO;
 import com.ddit.dto.CpuVO;
+import com.ibatis.sqlmap.client.SqlMapClient;
 
 public class CpuDAO_iBatis implements CpuDAO{
+	
+	private SqlMapClient client;
+	public void setClient(SqlMapClient client) {
+		this.client = client;
+	}
 
 	@Override
 	public int insertCpu(CpuVO cpuVO) throws SQLException {
@@ -36,6 +42,18 @@ public class CpuDAO_iBatis implements CpuDAO{
 	public ArrayList<CpuVO> listAllArticle() throws SQLException {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public ArrayList<CpuVO> listCpu() throws SQLException {
+		ArrayList<CpuVO> cpuList =   (ArrayList<CpuVO>) client.queryForList("listAllCpu");
+		return cpuList;
+	}
+
+	@Override
+	public ArrayList<CpuVO> listCpuHo() throws SQLException {
+		ArrayList<CpuVO> cpuList =   (ArrayList<CpuVO>) client.queryForList("ListAllCpuHo");
+		return cpuList;
 	}
 
 }

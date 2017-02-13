@@ -13,4 +13,7 @@ public interface CpuService {
 	CpuVO selectCpu(int cpu_seq) throws SQLException;
 	public ArrayList<CpuVO> listAllArticle() throws SQLException;
 	
+	public ArrayList<CpuVO> listCpu() throws SQLException;
+	public ArrayList<CpuVO> listCpuHo() throws SQLException;
+	
 }

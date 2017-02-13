@@ -1,5 +1,6 @@
 package com.ddit.dto;
 
+
 public class AlertVO {
 	private String al_authority; 
 	private String al_id;

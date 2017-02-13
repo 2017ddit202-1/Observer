@@ -14,7 +14,7 @@
   	<sqlMap resource="com/ddit/sqlmaps/SuperAdmin.xml"/>
   	<sqlMap resource="com/ddit/sqlmaps/VWmemPos.xml"/>
   	<sqlMap resource="com/ddit/sqlmaps/Alert.xml"/>
-  	
+  	<sqlMap resource="com/ddit/sqlmaps/Cpu.xml"/>
 
   	
   	
