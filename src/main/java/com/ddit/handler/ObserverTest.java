@@ -47,8 +47,10 @@ public class ObserverTest extends TextWebSocketHandler {
 						+ "->"
 						+ message.getPayload()));
 			}
+			
+		
+		
 		}
-
 	}
 
 	@Override

@@ -97,7 +97,7 @@
 					<img class="img-circle" id="img_logo" src="http://bootsnipp.com/img/logo.jpg">
 					<button type="button"  id="aaa" class="close" data-dismiss="modal" aria-label="Close">
 						<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-					</button>
+			 		</button>
 				</div>
                 
                 <!-- Begin # DIV Form -->

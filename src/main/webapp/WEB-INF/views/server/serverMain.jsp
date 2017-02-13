@@ -11,41 +11,48 @@
 <script type="text/javascript" src="<%=request.getContextPath()%>/resources/js/sockjs-0.3.min.js"></script>
 <script type="text/javascript">
 
-
 var sock = null;
 $(document).ready(function() {
-
 	/* "http://"+document.domain+":8181/server/serverMain" */
 	  //ip적고 포트번호 맞추고 실행하면 됨 
 	/* 		  "${pageContext.request.contextPath}/server/serverMain" */  
 	  /*/socket/echo-ws */
 	 /*  http://192.168.202.140:8181/${pageContext.request.contextPath}/chat" */
 	  /* alert('${pageContext.request.contextPath}');  */
-
 	  sock = new SockJS("http://"+document.domain+":8181/observer/server/serverMain");
-	 
-	  sock.onopen = function(){
-		  sock.send("@");
+	  sock.onopen;
+	  
+	  function createSock(sock){
+		  sock2 = sock;
+		  return sock2;
+	  }
 		
-	  }
-	 
-	  sock.onmessage = function(evt){
+	  
+	  
+	  $('#addlist').click(function(){
+		  sock1 = createSock(sock);
+		  sock1.send("@");		
+		 	  
+	  });
+	  
+	 /* sock.onmessage = function(evt){
 		  $("#chatMessage").append(evt.data + "<br/>");
-	  }
+	  } */
 	
 	  sock.onclose= function(){
 		  sock.send("퇴장");
 	  }
 	
 	  $("#sendMessage").click(function(){
-		if($("#message").val() !=""){
+		/* if($("#message").val() !=""){
 			sock.send($("#message").val());
 			$("#chatMessage").append("나->" + $("#message").val()+"<br/>");
 			$("message").val("");
-		}
-	  })
+		} */
+	  });
 	  
 
+	  
    
      
  
@@ -63,6 +70,8 @@ $(document).ready(function() {
    <h1>채팅페이지</h1>
  <input type="text" id="message" value="${clientIP}"/>
  <input type="button" id="sendMessage" value="메세지보내기"/>
+ <input type="button" id="addlist" value="추가"/>
+ 
  
  <div id="chatMessage" style="overflow: auto; max-height: 500px;"></div>
  

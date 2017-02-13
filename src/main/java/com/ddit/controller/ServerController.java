@@ -1,6 +1,8 @@
 package com.ddit.controller;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -31,8 +33,9 @@ public class ServerController {
    public String test(HttpServletRequest request,
          HttpServletResponse response, Model model, HttpSession session) {
       String url = "server/serverMain";
-
+      List<String> iplist = new ArrayList<String>();
       
+      System.out.println("serverController");
 		String loginUser = (String) session.getAttribute("loginUser");
 		String userOK = null;
 		String column="";
@@ -40,10 +43,18 @@ public class ServerController {
 		request = ((ServletRequestAttributes)RequestContextHolder.currentRequestAttributes()).getRequest();
 		String ip = request.getHeader("X-FORWARDED-FOR");
 		String host = request.getRemoteHost();
-		String serverName = request.getServerName();
+		
+		
+		
+		
 		if(ip == null){
 			ip = request.getRemoteAddr();
 		}
+		
+		
+		iplist.add(ip);
+		
+		
 		try {
 			userOK = alertService.select_sessionID(loginUser);  //alert테이블에 ID값이 존재하는지 select
 			column=alertService.authority_content(loginUser);
@@ -63,14 +74,13 @@ public class ServerController {
 				column ="USER로 등급신청 완료";
 			}
 			
-			System.out.println(column+"!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 			model.addAttribute("userOK",userOK);
 			model.addAttribute("column", column);
 		}
-		System.out.println(host + "()*()()()()()()(");
-		System.out.println(serverName + "()*()()()()()()(");
 		
-		model.addAttribute("clientIP", ip);
+		
+		
+		model.addAttribute("iplist",iplist);
 		
 		
       return url;
