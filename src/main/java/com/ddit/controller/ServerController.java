@@ -1,18 +1,28 @@
 package com.ddit.controller;
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.http.HttpEntity;
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import org.apache.http.util.EntityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
@@ -29,13 +39,36 @@ public class ServerController {
       this.alertService = alertService;
    }
 
-   @RequestMapping(value="/serverMain",method = RequestMethod.GET, produces = "application/text;charset=utf8")
+   @RequestMapping(value="/serverMain",method = RequestMethod.GET ,produces="text/plain;charset=UTF-8" )
    public String test(HttpServletRequest request,
          HttpServletResponse response, Model model, HttpSession session) {
       String url = "server/serverMain";
       List<String> iplist = new ArrayList<String>();
-      
+      CloseableHttpResponse httpResponse = null;
       System.out.println("serverController");
+      //
+    /*  CloseableHttpClient httpclient = HttpClients.createDefault();
+      HttpGet httpGet = new HttpGet("http://localhost:8181/observer/server/getServer?ip="+request.getParameter("ip")
+    		  + "hostName=" + request.getParameter("hostName"));
+      try {
+    	  httpResponse = httpclient.execute(httpGet);
+    	  System.out.println("httpResponse.getStatusLine(): "+httpResponse.getStatusLine());
+    	  System.out.println(EntityUtils.toString(httpResponse.getEntity()));
+    	  HttpEntity entity = httpResponse.getEntity();
+    	  EntityUtils.consume(entity);
+	} catch (IOException e1) {
+		// TODO Auto-generated catch block
+		e1.printStackTrace();
+	}finally{
+		try {
+			httpResponse.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}*/
+      
+      
 		String loginUser = (String) session.getAttribute("loginUser");
 		String userOK = null;
 		String column="";
@@ -88,5 +121,30 @@ public class ServerController {
    }
    
    
+   
+   @RequestMapping("testForm")
+   public String test(HttpServletRequest request, HttpServletResponse response){
+	   String url = "server/testGetForm";
+	   System.out.println("GETFORM()()");
+	   return url;
+   }
 
+   
+   @RequestMapping(value="getServer", method=RequestMethod.GET)
+   public @ResponseBody Map<String, Object> getServer(HttpServletRequest request, HttpServletResponse response){
+	   System.out.println("GET Server Response");
+	   Map<String, Object> map = new HashMap<String, Object>();
+	   
+	   map.put("ip", request.getParameter("ip"));
+	   map.put("hostName", request.getParameter("hostName"));
+	   map.put("flag", "get");
+	   map.put("success", true);
+	   return map;
+	   
+	   
+	   
+	   
+   }
+   
+   
 }

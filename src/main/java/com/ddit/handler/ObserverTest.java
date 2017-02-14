@@ -31,7 +31,7 @@ public class ObserverTest extends TextWebSocketHandler {
 			throws Exception {
 		logger.info(session.getId() + "님 접속");
 		System.out.println(session.getId()+"님 접속");
-		logger.info("연결IP: " + session.getRemoteAddress().getHostName());
+		logger.info("연결IP: " + session.getRemoteAddress());
 		connectsUsers.add(session);
 	}
 

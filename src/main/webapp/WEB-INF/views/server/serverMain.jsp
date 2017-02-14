@@ -11,6 +11,11 @@
 <script type="text/javascript" src="<%=request.getContextPath()%>/resources/js/sockjs-0.3.min.js"></script>
 <script type="text/javascript">
 
+function test_go(){
+	document.formm.action = "<%=request.getContextPath()%>"+ "/server/testForm";
+	document.formm.submit();
+}
+
 var sock = null;
 $(document).ready(function() {
 	/* "http://"+document.domain+":8181/server/serverMain" */
@@ -19,8 +24,8 @@ $(document).ready(function() {
 	  /*/socket/echo-ws */
 	 /*  http://192.168.202.140:8181/${pageContext.request.contextPath}/chat" */
 	  /* alert('${pageContext.request.contextPath}');  */
-	  sock = new SockJS("http://"+document.domain+":8181/observer/server/serverMain");
-	  sock.onopen;
+	   sock = new SockJS("http://"+document.domain+":8181/observer/server/serverMain"); 
+// 	 sock = new WebSocket("ws://"+document.domain+":8181/observer/server/serverMain");
 	  
 	  function createSock(sock){
 		  sock2 = sock;
@@ -77,8 +82,9 @@ $(document).ready(function() {
  
  <!-- //////////////////////////////////////////////////////////////// -->
 
-
-
+<%-- <a href="<%=request.getContextPath()%>/server/testForm">테스트get</a> --%>
+<form name="formm" method="GET"></form>
+<input type="button"  value="testGET" onclick="test_go()"/>
 
 <c:if test="${!empty userOK}">
   <script> alert('${column}');</script>
