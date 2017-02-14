@@ -18,6 +18,11 @@ function test_go(){
 
 var sock = null;
 $(document).ready(function() {
+	alert('${data}');
+	alert('${json}');
+	
+	/* var i = ${data};
+	alert(i); */
 	/* "http://"+document.domain+":8181/server/serverMain" */
 	  //ip적고 포트번호 맞추고 실행하면 됨 
 	/* 		  "${pageContext.request.contextPath}/server/serverMain" */  
@@ -76,6 +81,9 @@ $(document).ready(function() {
  <input type="text" id="message" value="${clientIP}"/>
  <input type="button" id="sendMessage" value="메세지보내기"/>
  <input type="button" id="addlist" value="추가"/>
+<%--  <h1>${data }</h1> --%>
+ <h1>${param.ip}</h1>
+ <h1>${param.hostName}</h1>
  
  
  <div id="chatMessage" style="overflow: auto; max-height: 500px;"></div>
