@@ -116,8 +116,59 @@ public class Notice_ArticleServiceImpl implements Notice_ArticleService{
 
 
 
+	@Override
+	public String totalPage_seq(int tpage, int noar_seq) throws SQLException {
+		return articleDAO.totalPage_seq(tpage, noar_seq);
+	}
 
 
+
+	@Override
+	public String totalPage_subject(int tpage, String noar_subject)
+			throws SQLException {
+	return articleDAO.totalPage_subject(tpage, noar_subject);
+	}
+
+
+
+	@Override
+	public String totalPage_content(int tpage, String noar_content)
+			throws SQLException {
+		return articleDAO.totalPage_content(tpage, noar_content);
+	}
+
+
+
+	@Override
+	public ArrayList<Notice_ArticleVO> listArticlelist_seq(int tpage,
+			int noar_id) throws SQLException {
+		ArrayList<Notice_ArticleVO> list = articleDAO.listArticlelist_seq(tpage, noar_id);
+		return list;
+	}
+
+
+
+	@Override
+	public ArrayList<Notice_ArticleVO> listArticlelist_subject(int tpage,
+			String noar_id) throws SQLException {
+		ArrayList<Notice_ArticleVO> list = articleDAO.listArticlelist_subject(tpage, noar_id);
+		return list;
+	}
+
+
+
+	@Override
+	public ArrayList<Notice_ArticleVO> listArticlelist_content(int tpage,
+			String noar_id) throws SQLException {
+		ArrayList<Notice_ArticleVO> list = articleDAO.listArticlelist_content(tpage, noar_id);
+		return list;
+	}
+
+
+
+/*
+	String str = articleDAO.pageNumber(tpage, noar_id);
+	return str;*/
 
 
 
