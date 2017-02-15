@@ -53,7 +53,7 @@ public class ServerController {
 		String userOK = null;
 		String column = "";
 		// /////
-		request = ((ServletRequestAttributes) RequestContextHolder
+		/*request = ((ServletRequestAttributes) RequestContextHolder
 				.currentRequestAttributes()).getRequest();
 		String ip = request.getHeader("X-FORWARDED-FOR");
 		String host = request.getRemoteHost();
@@ -62,7 +62,7 @@ public class ServerController {
 			ip = request.getRemoteAddr();
 		}
 
-		iplist.add(ip);
+		iplist.add(ip);*/
 
 		try {
 			userOK = alertService.select_sessionID(loginUser); // alert테이블에 ID값이
@@ -88,10 +88,10 @@ public class ServerController {
 			model.addAttribute("column", column);
 		}
 
-		model.addAttribute("iplist", iplist);
+	/*	model.addAttribute("iplist", iplist);*/
 		Map<String,Object> map = new HashMap<String,Object>();
 		map = (Map<String, Object>) request.getAttribute("map");
-		
+	
 		model.addAttribute("map", map);
 		
 		return url;
@@ -114,11 +114,12 @@ public class ServerController {
 		
 		map.put("ip", request.getParameter("ip"));
 		map.put("hostName", request.getParameter("hostName"));
-		/*map.put("flag", "get");
-		map.put("success", true);*/  
+		map.put("flag", "get");
+		map.put("success", true);  
 		
 		return map;
 
 	}
 
+	 
 }

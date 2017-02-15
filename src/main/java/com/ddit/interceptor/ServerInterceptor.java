@@ -25,7 +25,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import com.google.gson.Gson;
-@Component
+
 public class ServerInterceptor extends HandlerInterceptorAdapter {
 
 	@Override
@@ -49,9 +49,9 @@ public class ServerInterceptor extends HandlerInterceptorAdapter {
 		CloseableHttpClient httpclient = HttpClients.createDefault();
 		HttpGet httpGet = new HttpGet(
 					"http://localhost:8181/observer/server/getServer?ip="
-							+ request.getParameter("ip")
+							+"123455"
 							+ "&hostName="
-							+ request.getParameter("hostName")
+							+ "bulhwiwhw"
 				);
 		
 		
@@ -66,6 +66,7 @@ public class ServerInterceptor extends HandlerInterceptorAdapter {
 	            
 	            System.out.println(map.toString());
 	            request.setAttribute("map", map);
+	            
 	            EntityUtils.consume(entity);
 	            
 		}catch (IOException e1) {
@@ -85,10 +86,11 @@ public class ServerInterceptor extends HandlerInterceptorAdapter {
 		}
 	}
 
-	@RequestMapping(value = "getServer", method = RequestMethod.GET)
+	@RequestMapping(value = "/getServer", method = RequestMethod.GET)
 	public @ResponseBody Map<String, Object> getServer(
 			HttpServletRequest request, HttpServletResponse response) {
 		System.out.println("GET Server Response");
+		
 		Map<String, Object> map = new HashMap<String, Object>();
 
 		request = ((ServletRequestAttributes) RequestContextHolder
@@ -101,8 +103,10 @@ public class ServerInterceptor extends HandlerInterceptorAdapter {
 		String ip = request.getHeader("X-FORWARDED-FOR");
 		if (ip == null)
 			ip = request.getRemoteAddr();
-		System.out.println("client 진짜 ip");
+		
+		System.out.println("client 진짜 ip  getserver");
 		System.out.println(ip);
+	
 		String hostName = "";
 		try {
 			hostName = InetAddress.getLocalHost().getHostName();
@@ -110,6 +114,7 @@ public class ServerInterceptor extends HandlerInterceptorAdapter {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 		map.put("ip", ip);
 		map.put("hostName", hostName);
 		/*
