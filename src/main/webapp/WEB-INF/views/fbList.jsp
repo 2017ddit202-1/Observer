@@ -5,12 +5,25 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="sec"
 	uri="http://www.springframework.org/security/tags"%>
-
-
+	
 	<br> <br>
 	<div id="contract">
 		<h2>자유게시판</h2>
 	</div>
+<form name="search" method="post">
+	<div>
+		<select name="keyField" size="1" id="keyField">
+			<option value="fb_sub">제목</option>
+			<option value="fb_con">내용</option>
+			<option value="fb_id">작성자</option>
+		</select> <input type="text" name="keyWord" id="keyWord"
+			placeholder="Search...">
+		<button type="button" id="searchBtn" class="searchBtn" onclick="search_go()">
+			<i class="fa fa-search"></i>
+		</button>
+	</div>
+</form>
+<br>
 <form name="writeForm" method="post">
 	<table border=1>
 		<tr>
@@ -41,8 +54,6 @@
 					</tr>
 				</c:forEach>
 				<tr>
-				</tr>
-				<tr>
 					<td colspan="6" style="text-align: center;">${paging}</td>
 				</tr>
 				
@@ -53,6 +64,7 @@
 
 	<sec:authorize access="isAuthenticated()">
 		<button type="button" onclick="fbWrite_go() ">글쓰기</button>
+		<button type="button" onclick="fbList_go() ">목록보기</button>
 	</sec:authorize> 
 
 <script>
@@ -60,6 +72,23 @@
 		document.writeForm.action = "<%=request.getContextPath()%>/fb/fbWriteForm";
 		document.writeForm.submit();
 	}
+	function search_go(){
+		
+// 		if (document.search.keyWord.value == "") {
+// 	        alert("검색어를 입력하세요.");
+// 	        document.search.keyWord.focus();
+// 	        return;
+// 	    }
+		
+		document.search.action="<%=request.getContextPath()%>/fb/fbSearch";
+		document.search.submit();
+	}
+	function fbList_go(){
+		document.writeForm.action = "<%=request.getContextPath()%>/fb/fbList";
+		document.writeForm.submit();
+	}
+	
 </script>
+
 
 

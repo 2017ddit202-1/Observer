@@ -77,8 +77,12 @@
 	<bean id="alertService" class="com.ddit.service.AlertServiceImpl"
 		p:alertDAO-ref="alertDAO" />
 
-
-
+	<bean id="cpuDAO" class="com.ddit.ibatis.CpuDAO_iBatis"
+		p:client-ref="SqlMapClient" />
+	<bean id="cpuService" class="com.ddit.service.CpuServiceImpl"
+		p:cpuDAO_iBatis-ref="cpuDAO" />		
+	
+	
 
 
 </beans>

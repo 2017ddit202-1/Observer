@@ -54,13 +54,13 @@
 	
 	
 	
-	<!-- <beans:bean id="observerSocket" class="com.ddit.handler.ObserverTest" />
+	<beans:bean id="observerSocket" class="com.ddit.handler.ObserverTest" />
 	
 	<websocket:handlers>
 		<websocket:mapping handler="observerSocket" path="/server/serverMain" />
-		<websocket:sockjs />
+		<websocket:sockjs disconnect-delay="9000" />
 	</websocket:handlers>
-	 -->
+	
 	
 	
 	

@@ -25,33 +25,75 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
+	  <!-- jQuery -->
+    <script src="<%=request.getContextPath()%>/resources/js/jquery.js"></script>
+    <script src="<%=request.getContextPath()%>/resources/js/jquery-3.1.1.js"></script>
+    <script src="<%=request.getContextPath()%>/resources/js/jquery-3.1.1.min.js"></script>
 
-
-
-    <title>Landing Page - Start Bootstrap Theme</title>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="<%=request.getContextPath()%>/resources/js/bootstrap.min.js"></script>
 	
-	 
+
     <!-- Bootstrap Core CSS -->
     
 	<link href="<%=request.getContextPath()%>/resources/css/bootstrap.min.css"rel="stylesheet">
 	<link href="<%=request.getContextPath()%>/resources/css/modal.css"rel="stylesheet">
 	
-    <!-- Custom CSS -->
-    
-    <%-- <link href="<%=request.getContextPath()%>/resources/css/landing-page.css"rel="stylesheet"> --%>
-
 
     <!-- Custom Fonts -->
     <link href="<%=request.getContextPath()%>/resources/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="<%=request.getContextPath()%>/resources/font-awesome/css/font-awesome.min.css"rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+    
+    <!-- Modal js -->
+	<script src="<%=request.getContextPath()%>/resources/js/modal.js"></script>
+    
+<style type="text/css">
+#modal1{
+/* background-color: #2b52c6; */
+color: white;
+font-family:고딕;
+font-size:15px;
+font-weight:bold;
+} 
 
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
+#modal1:hover{
+background-color: #8ba0e0;
+}
+#sign1{
+/* background-color: #000000; */
+color: white;
+font-family:고딕;
+font-size:15px;
+font-weight:bold;
+}
+#sign1:hover{
+background-color:#aeaeaf;
+}
+.topnav{
+width:100%;
+height: 10%;
+}
+}
+#mainTitle{
+margin-left:155%;
+}
+.navbar-right li{
+width:100px;
+height:83px;
+text-align:center;
+}
+ .navbar-right li a{
+	padding-top: 30%;
+    padding-bottom: 33%;
+}
+#mem_id{
+	width:100%;
+}
+#mem_pwd{
+	width:100%;
+}
+</style>
 
 
  <!-- Navigation -->
@@ -65,23 +107,20 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand topnav" href="<%=request.getContextPath() %>/">Observer</a>
+                <a class="navbar-brand topnav" href="<%=request.getContextPath() %>/" id="mainTitle"><h2>
+                <img id="logo" src = "<%=request.getContextPath()%>/resources/img/observer1.png" style="width:7%;float:left">&nbsp;OBSERVER</h2></a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
-                    <li>
-                        <a href="#about">About</a>
-                    </li>
- 
-				 <li>
-                        <a href="" data-toggle="modal" data-target="#login-modal" id="modal1" data-backdrop="static" data-keyboard="false" >Login</a>
+				 <li style="background-color: #2b52c6;">
+                        <a href="" data-toggle="modal" data-target="#login-modal" id="modal1" data-backdrop="static" data-keyboard="false" >LOG IN</a>
                     </li>
 				<!-- <li>
 					<button class="btn btn-primary" data-toggle="modal"
 						data-target="#myModal">Log in</button>
 				</li> -->
-				<li><a href="<%=request.getContextPath()%>/join">Sign Up</a></li>
+				<li style="background-color: #000000;"><a href="<%=request.getContextPath()%>/join" id="sign1">SIGN UP</a></li>
 			</ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -89,15 +128,14 @@
         <!-- /.container -->
     </nav>
     
-    
     <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
     	<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header" align="center">
-					<img class="img-circle" id="img_logo" src="http://bootsnipp.com/img/logo.jpg">
+					<img class="img-circle" id="img_logo" src="<%=request.getContextPath()%>/resources/img/observer.png">
 					<button type="button"  id="aaa" class="close" data-dismiss="modal" aria-label="Close">
 						<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-					</button>
+			 		</button>
 				</div>
                 
                 <!-- Begin # DIV Form -->
@@ -170,23 +208,6 @@
 		</div>
 	</div>
     <!-- END # MODAL LOGIN -->
-    
-    
-    
-    
-
-    <!-- jQuery -->
-    <script src="<%=request.getContextPath()%>/resources/js/jquery.js"></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="<%=request.getContextPath()%>/resources/js/bootstrap.min.js"></script>
-
-	<!-- Modal js -->
-	<script src="<%=request.getContextPath()%>/resources/js/modal.js"></script>
-
-
-
-
 	<decorator:body />
 
    
@@ -255,6 +276,4 @@ function login_go(){
  
  
 </script>
-
- 
 </html>

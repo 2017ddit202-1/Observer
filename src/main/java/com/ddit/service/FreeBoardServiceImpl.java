@@ -64,4 +64,31 @@ public class FreeBoardServiceImpl implements FreeBoardService{
 		return freeBoardDAO_iBatis.fb_cnt(fb_seq);
 	}
 
+	@Override
+	public ArrayList<FreeBoardVO> searchSub(String fb_sub,int tpage) throws SQLException {
+		return freeBoardDAO_iBatis.searchSub(fb_sub,tpage);
+	}
+	
+	@Override
+	public String pageNumberSub(int tpage, String fb_sub) throws SQLException {
+		return freeBoardDAO_iBatis.pageNumberSub(tpage, fb_sub);
+	}
+
+	@Override
+	public ArrayList<FreeBoardVO> searchCon(String fb_con,int tpage) throws SQLException {
+		return freeBoardDAO_iBatis.searchCon(fb_con,tpage);
+	}
+	
+	@Override
+	public String pageNumberCon(int tpage, String fb_con) throws SQLException {
+		return freeBoardDAO_iBatis.pageNumberCon(tpage, fb_con);
+	}
+
+
+	@Override
+	public ArrayList<FreeBoardVO> searchId(String userId,int tpage) throws SQLException {
+		return freeBoardDAO_iBatis.searchId(userId,tpage);
+	}
+
+
 }

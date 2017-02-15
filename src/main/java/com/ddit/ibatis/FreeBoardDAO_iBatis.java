@@ -142,5 +142,174 @@ public class FreeBoardDAO_iBatis implements FreeBoardDAO{
 	public int fb_cnt(int fb_seq) throws SQLException {
 		return client.update("readCount",fb_seq);
 	}
+	
+	
+	public int fbPagingSub(String fb_sub) throws SQLException{
+		int total_pages = 0;
+		if (fb_sub.equals("")) {
+			fb_sub = "%";
+		}
+		total_pages = (Integer) client.queryForObject("totalFbSub",
+				fb_sub);
+		return total_pages;
+	}
+
+	@Override
+	public String pageNumberSub(int tpage, String fb_sub) throws SQLException {
+		String str = "";
+
+		int total_pages = fbPagingSub(fb_sub);
+		int page_count = total_pages / counts + 1;
+
+		if (total_pages % counts == 0) {
+			page_count--;
+		}
+		if (tpage < 1) {
+			tpage = 1;
+		}
+
+		int start_page = tpage - (tpage % view_rows) + 1;
+		int end_page = start_page + (counts - 1);
+
+		if (end_page > page_count) {
+			end_page = page_count;
+		}
+		if (start_page > view_rows) {
+			str += "<a href='fbList?tpage=1&key=" + fb_sub
+					+ "'>&lt;&lt;</a>&nbsp;&nbsp;";
+			str += "<a href='fbList.did?tpage=" + (start_page - 1);
+			str += "&key=<%=fb_id%>'>&lt;</a>&nbsp;&nbsp;";
+		}
+
+		for (int i = start_page; i <= end_page; i++) {
+			if (i == tpage) {
+				str += "<font color=red>[" + i + "]&nbsp;&nbsp;</font>";
+			} else {
+				str += "<a href='fbList?tpage=" + i + "&key="
+						+ fb_sub + "'>[" + i + "]</a>&nbsp;&nbsp;";
+			}
+		}
+
+		if (page_count > end_page) {
+			str += "<a href='fbList?tpage=" + (end_page + 1)
+					+ "&key=" + fb_sub + "'> &gt; </a>&nbsp;&nbsp;";
+			str += "<a href='fbList?tpage=" + page_count
+					+ "&key=" + fb_sub + "'> &gt; &gt; </a>&nbsp;&nbsp;";
+		}
+		return str;
+	}
+
+	@Override
+	public ArrayList<FreeBoardVO> searchSub(String fb_sub,int tpage) throws SQLException {
+		int startRow = -1;
+		int endRow = -1;
+
+		if (fb_sub == "") {
+			fb_sub = "%";
+		}
+		
+		int totalRecord = fbPagingSub(fb_sub);
+
+		startRow = (tpage - 1) * counts;
+		endRow = startRow + counts - 1;
+		if (endRow > totalRecord)
+			endRow = totalRecord;
+		ArrayList<FreeBoardVO> fbList = (ArrayList<FreeBoardVO>) client.queryForList("searchSubject",fb_sub,startRow,counts);
+		return fbList;
+	}
+	
+	public int fbPagingCon(String fb_con) throws SQLException{
+		int total_pages = 0;
+		if (fb_con.equals("")) {
+			fb_con = "%";
+		}
+		total_pages = (Integer) client.queryForObject("totalFbCon",
+				fb_con);
+		return total_pages;
+	}
+	
+
+	@Override
+	public ArrayList<FreeBoardVO> searchCon(String fb_con,int tpage) throws SQLException {
+		int startRow = -1;
+		int endRow = -1;
+
+		if (fb_con == "") {
+			fb_con = "%";
+		}
+		
+		int totalRecord = fbPagingCon(fb_con);
+
+		startRow = (tpage - 1) * counts;
+		endRow = startRow + counts - 1;
+		if (endRow > totalRecord)
+			endRow = totalRecord;
+		ArrayList<FreeBoardVO> fbList = (ArrayList<FreeBoardVO>) client.queryForList("searchContent",fb_con,startRow,counts);
+		return fbList;
+	}
+	
+	@Override
+	public String pageNumberCon(int tpage, String fb_con) throws SQLException {
+		String str = "";
+
+		int total_pages = fbPagingCon(fb_con);
+		int page_count = total_pages / counts + 1;
+
+		if (total_pages % counts == 0) {
+			page_count--;
+		}
+		if (tpage < 1) {
+			tpage = 1;
+		}
+
+		int start_page = tpage - (tpage % view_rows) + 1;
+		int end_page = start_page + (counts - 1);
+
+		if (end_page > page_count) {
+			end_page = page_count;
+		}
+		if (start_page > view_rows) {
+			str += "<a href='fbList?tpage=1&key=" + fb_con
+					+ "'>&lt;&lt;</a>&nbsp;&nbsp;";
+			str += "<a href='fbList.did?tpage=" + (start_page - 1);
+			str += "&key=<%=fb_id%>'>&lt;</a>&nbsp;&nbsp;";
+		}
+
+		for (int i = start_page; i <= end_page; i++) {
+			if (i == tpage) {
+				str += "<font color=red>[" + i + "]&nbsp;&nbsp;</font>";
+			} else {
+				str += "<a href='fbList?tpage=" + i + "&key="
+						+ fb_con + "'>[" + i + "]</a>&nbsp;&nbsp;";
+			}
+		}
+
+		if (page_count > end_page) {
+			str += "<a href='fbList?tpage=" + (end_page + 1)
+					+ "&key=" + fb_con + "'> &gt; </a>&nbsp;&nbsp;";
+			str += "<a href='fbList?tpage=" + page_count
+					+ "&key=" + fb_con + "'> &gt; &gt; </a>&nbsp;&nbsp;";
+		}
+		return str;
+	}
+
+	@Override
+	public ArrayList<FreeBoardVO> searchId(String userId,int tpage) throws SQLException {
+		int startRow = -1;
+		int endRow = -1;
+
+		if (userId == "") {
+			userId = "%";
+		}
+		
+		int totalRecord = fbPaging(userId);
+
+		startRow = (tpage - 1) * counts;
+		endRow = startRow + counts - 1;
+		if (endRow > totalRecord)
+			endRow = totalRecord;
+		ArrayList<FreeBoardVO> fbList = (ArrayList<FreeBoardVO>) client.queryForList("searchId",userId,startRow,counts);
+		return fbList;
+	}
 
 }

@@ -179,5 +179,65 @@ public class FreeBoardController {
 		
 		return url;
 	}
+	
+	@RequestMapping(value="/fbSearch",method=RequestMethod.POST)
+	public String fbSearch(Model model,HttpServletRequest request){
+		String url = "fbList";
+		
+		String keyField = request.getParameter("keyField");
+		String keyWord = request.getParameter("keyWord");
+		
+		String key = "";
+		String tpage = request.getParameter("tpage");
+		if (request.getParameter("keyWord") != null) {
+			key = request.getParameter("keyWord");
+		}
+		if (tpage == null) {
+			tpage = "1"; 
+		} else if (tpage.equals("")) {
+			tpage = "1";
+		}
+		
+		model.addAttribute("tpage",tpage);
+		
+		
+		
+		ArrayList<FreeBoardVO> fbList = null;
+		String paging = null;
+		 if(keyField.equals("fb_sub")){
+			try {
+				fbList = freeBoardServiceImpl.searchSub(keyWord, Integer.parseInt(tpage));
+				paging = freeBoardServiceImpl.pageNumberSub(Integer.parseInt(tpage), key);
+				model.addAttribute("fbList",fbList);
+				model.addAttribute("paging",paging);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		}else if(keyField.equals("fb_con")){
+			try {
+				fbList = freeBoardServiceImpl.searchCon(keyWord, Integer.parseInt(tpage));
+				paging = freeBoardServiceImpl.pageNumberCon(Integer.parseInt(tpage), key);
+				model.addAttribute("fbList",fbList);
+				model.addAttribute("paging",paging);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}else if(keyField.equals("fb_id")){
+			try {
+				fbList = freeBoardServiceImpl.searchId(keyWord, Integer.parseInt(tpage));
+				paging = freeBoardServiceImpl.pageNumber(Integer.parseInt(tpage), key);
+				model.addAttribute("fbList",fbList);
+				model.addAttribute("paging",paging);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		return url;
+	}
 
 }

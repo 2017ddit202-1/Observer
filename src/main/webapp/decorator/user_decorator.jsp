@@ -156,8 +156,13 @@
                         </li>
                      
                         <li>
-                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> SERVER<span class="fa arrow"></span></a>
+                            <a href="<%=request.getContextPath()%>/server/serverMain"><i class="fa fa-bar-chart-o fa-fw"></i> SERVER<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
+                                
+                                <li>
+                                    <a href="<%=request.getContextPath()%>/server/serverMain">-전체목록</a>
+                                </li>
+                                
                                 <li>
                                     <a href="flot.html">-요약</a>
                                 </li>

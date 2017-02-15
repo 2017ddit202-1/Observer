@@ -11,41 +11,58 @@
 <script type="text/javascript" src="<%=request.getContextPath()%>/resources/js/sockjs-0.3.min.js"></script>
 <script type="text/javascript">
 
+function test_go(){
+	document.formm.action = "<%=request.getContextPath()%>"+ "/server/testForm";
+	document.formm.submit();
+}
 
 var sock = null;
 $(document).ready(function() {
-
+	alert('${data}');
+	alert('${json}');
 	
-	  
+	/* var i = ${data};
+	alert(i); */
+	/* "http://"+document.domain+":8181/server/serverMain" */
 	  //ip적고 포트번호 맞추고 실행하면 됨 
-	  
+	/* 		  "${pageContext.request.contextPath}/server/serverMain" */  
 	  /*/socket/echo-ws */
 	 /*  http://192.168.202.140:8181/${pageContext.request.contextPath}/chat" */
-	  sock = new SockJS("${pageContext.request.contextPath}/server/serverMain");
-	 
 	  /* alert('${pageContext.request.contextPath}');  */
-	  sock.onopen = function(){
-		  sock.send("반가워");
+	   sock = new SockJS("http://"+document.domain+":8181/observer/server/serverMain"); 
+// 	 sock = new WebSocket("ws://"+document.domain+":8181/observer/server/serverMain");
+	  
+	  function createSock(sock){
+		  sock2 = sock;
+		  return sock2;
+	  }
 		
-	  }
-	 
-	  sock.onmessage = function(evt){
+	  
+	  
+	  $('#addlist').click(function(){
+		  sock1 = createSock(sock);
+		  sock1.send("@");		
+		 	  
+	  });
+	  
+	 /* sock.onmessage = function(evt){
 		  $("#chatMessage").append(evt.data + "<br/>");
-	  }
+	  } */
 	
 	  sock.onclose= function(){
 		  sock.send("퇴장");
 	  }
 	
 	  $("#sendMessage").click(function(){
-		if($("#message").val() !=""){
+		/* if($("#message").val() !=""){
 			sock.send($("#message").val());
 			$("#chatMessage").append("나->" + $("#message").val()+"<br/>");
 			$("message").val("");
-		}
-	  })
+		} */
+	  });
 	  
 
+	  
    
      
  
@@ -61,14 +78,21 @@ $(document).ready(function() {
 
 
    <h1>채팅페이지</h1>
- <input type="text" id="message"/>
+ <input type="text" id="message" value="${clientIP}"/>
  <input type="button" id="sendMessage" value="메세지보내기"/>
+ <input type="button" id="addlist" value="추가"/>
+<%--  <h1>${data }</h1> --%>
+ <h1>${param.ip}</h1>
+ <h1>${param.hostName}</h1>
+ 
+ 
  <div id="chatMessage" style="overflow: auto; max-height: 500px;"></div>
  
  <!-- //////////////////////////////////////////////////////////////// -->
 
-
-
+<%-- <a href="<%=request.getContextPath()%>/server/testForm">테스트get</a> --%>
+<form name="formm" method="GET"></form>
+<input type="button"  value="testGET" onclick="test_go()"/>
 
 <c:if test="${!empty userOK}">
   <script> alert('${column}');</script>

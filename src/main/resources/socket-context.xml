@@ -12,12 +12,13 @@
 	<bean id="serverController" class="com.ddit.controller.ServerController" />
 	 -->
 	
-	<bean id="observerSocket" class="com.ddit.handler.ObserverTest" />
+	
+	<!-- <bean id="observerSocket" class="com.ddit.handler.ObserverTest" />
 	
 	<websocket:handlers>
 		<websocket:mapping handler="observerSocket" path="/server/serverMain" />
 		<websocket:sockjs />
-	</websocket:handlers>
+	</websocket:handlers> -->
 	
 	
 </beans>
