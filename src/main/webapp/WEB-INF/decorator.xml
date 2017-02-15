@@ -41,6 +41,11 @@
 		<pattern>/server/*</pattern>
 
 	</decorator>
+	
+	<decorator name="cpu" page="user_decorator.jsp">
+		<pattern>/cpu/*</pattern>
+	</decorator>
+	
 
 	<excludes>
 		<pattern>/idCheckForm*</pattern>

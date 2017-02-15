@@ -49,19 +49,13 @@
 
     <!-- Custom Fonts -->
     <link href="<%=request.getContextPath()%>/resources/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
     
-   <!--  ////////////////////////////////네브바 -->
+    <!-- FunsionCharts -->
+    <script src="<%=request.getContextPath()%>/resources/js/fusioncharts.js"></script>
+	<script src="<%=request.getContextPath()%>/resources/js/fusioncharts.charts.js"></script>
+	<script src="<%=request.getContextPath()%>/resources/js/fusioncharts.theme.fint.js"></script>
+	<script src="<%=request.getContextPath()%>/resources/js/fusioncharts.widgets.js"></script>
 
-
- <!-- Navigation -->
-      <!-- Navigation -->
         <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -167,7 +161,7 @@
                                     <a href="flot.html">-요약</a>
                                 </li>
                                 <li>
-                                    <a href="morris.html">-CPU</a>
+                                    <a href="<%=request.getContextPath()%>/cpu/cpuMain">-CPU</a>
                                 </li>
                                   <li>
                                     <a href="morris.html">-메모리</a>
