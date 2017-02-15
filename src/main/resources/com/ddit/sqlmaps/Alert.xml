@@ -3,7 +3,6 @@
     "http://www.ibatis.com/dtd/sql-map-2.dtd">
 
 <sqlMap namespace="Alert">
-
 <!-- 	<typeAlias alias="str" type="java.lang.String" />
 	<typeAlias alias="int" type="java.lang.Integer" />
 	<typeAlias alias="alert" type="com.ddit.dto.AlertVO" />

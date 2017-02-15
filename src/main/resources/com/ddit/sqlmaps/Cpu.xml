@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
+    "http://www.ibatis.com/dtd/sql-map-2.dtd">
+    
+    <sqlMap namespace="cpu">
+	<typeAlias alias="str" type="java.lang.String" />
+	<typeAlias alias="int" type="java.lang.Integer" />
+	<typeAlias alias="cpu" type="com.ddit.dto.CpuVO" />
+	
+	<select id="listAllCpu" resultClass="cpu">
+		select * from(select * from cpu order by cpu_date desc) where
+			<![CDATA[rownum<=30]]> order by cpu_date asc
+	</select>
+	
+	<select id="ListAllCpuHo" resultClass="cpu">
+		select * from(select * from cpu order by cpu_date desc) where
+			<![CDATA[rownum<=35]]> order by cpu_date asc
+	</select>
+	
+	
+	</sqlMap>

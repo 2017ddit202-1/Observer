@@ -55,5 +55,24 @@
 		where fb_seq=#fb_seq#
 	</update>
 	
+    <select id="searchSubject" parameterClass="str" resultClass="freeBoard">
+    select * from free_board where fb_subject like '%'||#fb_subject#||'%'
+    </select>
+    
+    <select id="totalFbSub" parameterClass="str" resultClass="int">
+		select count(*) from free_board where fb_subject like '%'||#fb_subject#||'%'
+	</select>
+    
+    <select id="searchContent" parameterClass="str" resultClass="freeBoard">
+    select * from free_board where fb_content like '%'||#fb_content#||'%'
+    </select>
+    
+      <select id="totalFbCon" parameterClass="str" resultClass="int">
+		select count(*) from free_board where fb_content like '%'||#fb_content#||'%'
+	</select>
+    
+     <select id="searchId" parameterClass="str" resultClass="freeBoard">
+    select * from free_board where fb_id like '%'||#fb_id#||'%'
+    </select>
 
 </sqlMap>	

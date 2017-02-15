@@ -18,6 +18,12 @@ public interface FreeBoardService {
 	public String pageNumber(int tpage, String fb_id) throws SQLException;
 	public ArrayList<FreeBoardVO> listFbPage(int tpage,String fb_id) throws SQLException;
 	
-	public int fb_cnt(int fb_seq) throws SQLException;	
+	public int fb_cnt(int fb_seq) throws SQLException;
+	
+	public ArrayList<FreeBoardVO> searchSub(String fb_sub,int tpage) throws SQLException;
+	public String pageNumberSub(int tpage, String fb_sub) throws SQLException;
+	public ArrayList<FreeBoardVO> searchCon(String fb_con,int tpage) throws SQLException;
+	public String pageNumberCon(int tpage, String fb_con) throws SQLException;
+	public ArrayList<FreeBoardVO> searchId(String userId,int tpage) throws SQLException;
 	
 }

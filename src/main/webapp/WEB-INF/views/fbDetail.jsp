@@ -226,6 +226,7 @@ $(document).ready(function() {
 		var data = {'fbAnsUp':fbAnsUp,'result':result};
 		$('.nn').show();
 		$('.mm').show();
+		$('#btnFbAnswer').show();
 		$.ajax({
 			url:"<%=request.getContextPath()%>/fbAns/fbAnsUpdate",
 			data: data,
