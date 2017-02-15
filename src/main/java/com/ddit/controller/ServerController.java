@@ -47,70 +47,7 @@ public class ServerController {
 			HttpServletResponse response, Model model, HttpSession session) {
 		String url = "server/serverMain";
 		List<String> iplist = new ArrayList<String>();
-		CloseableHttpResponse httpResponse = null;
-		System.out.println("serverController");
-		// //
-		CloseableHttpClient httpclient = HttpClients.createDefault();
-		HttpGet httpGet = new HttpGet(
-				"http://localhost:8181/observer/server/getServer");
-		try {
-			httpResponse = httpclient.execute(httpGet);
-			System.out.println("httpResponse.getStatusLine(): "
-					+ httpResponse.getStatusLine());
-			/*
-			 * System.out.println(EntityUtils.toString(httpResponse.getEntity()))
-			 * ;
-			 */
-
-			HttpEntity entity = httpResponse.getEntity();
-			
-			BufferedReader reader = new BufferedReader(new InputStreamReader(
-					httpResponse.getEntity().getContent()));
-
-			String inputLine;
-			StringBuffer buffer = new StringBuffer();
-
-			while ((inputLine = reader.readLine()) != null) {
-				buffer.append(inputLine);
-			}
-			reader.close();
-
-			// print result
-			System.out.println(response.toString());
-			httpclient.close();
-			Gson g = new Gson();
-			String json = g.toJson(buffer);
-			model.addAttribute("json",json);
-			
-			System.out.println("buffer content : " + buffer.toString());
-			model.addAttribute("data", buffer);
 		
-		
-			Map map = new HashMap<String, Object>();
-			Gson test = new Gson();
-			/*String json = test.toJson(EntityUtils.toString(httpResponse
-					.getEntity()));*/
-			/*System.out.println(json + "ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ");*/
-			/*
-			 * map =(Map)httpResponse.getEntity();
-			 */
-			// ////
-			/* httpResponse.getEntity().get */
-
-			// ////
-
-			EntityUtils.consume(entity);
-		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		} finally {
-			try {
-				httpResponse.close();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
 
 		String loginUser = (String) session.getAttribute("loginUser");
 		String userOK = null;
@@ -152,8 +89,11 @@ public class ServerController {
 		}
 
 		model.addAttribute("iplist", iplist);
-	
-
+		Map<String,Object> map = new HashMap<String,Object>();
+		map = (Map<String, Object>) request.getAttribute("map");
+		
+		model.addAttribute("map", map);
+		
 		return url;
 
 	}
@@ -170,11 +110,13 @@ public class ServerController {
 			HttpServletRequest request, HttpServletResponse response) {
 		System.out.println("GET Server Response");
 		Map<String, Object> map = new HashMap<String, Object>();
-
+		
+		
 		map.put("ip", request.getParameter("ip"));
 		map.put("hostName", request.getParameter("hostName"));
 		/*map.put("flag", "get");
 		map.put("success", true);*/  
+		
 		return map;
 
 	}
