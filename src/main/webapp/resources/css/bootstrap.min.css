@@ -1467,7 +1467,7 @@ hr {
 }
 
 .h4, .h5, .h6, h4, h5, h6 {
-	margin-top: 10px;
+	margin-top: -1px;
 	margin-bottom: 10px
 }
 
@@ -1827,8 +1827,8 @@ pre code {
 }
 
 .container {
-	padding-right: 15px;
-	padding-left: 15px;
+/* 	padding-right: 15px; */
+/*	padding-left: 15px;*/
 	margin-right: auto;
 	margin-left: auto
 }
@@ -4579,8 +4579,8 @@ select[multiple].input-group-sm>.form-control, select[multiple].input-group-sm>.
 	}
 	.navbar-fixed-bottom .navbar-collapse, .navbar-fixed-top .navbar-collapse,
 		.navbar-static-top .navbar-collapse {
-		padding-right: 0;
-		padding-left: 0
+ 		/* padding-right: 0; */ 
+		 padding-left:0; 
 	}
 }
 
