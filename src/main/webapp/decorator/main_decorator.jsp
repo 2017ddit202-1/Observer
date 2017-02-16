@@ -87,7 +87,7 @@ text-align:center;
 	padding-top: 30%;
     padding-bottom: 33%;
 }
-#mem_id , #mem_pwd , #mem_nm ,#mem_email{ 
+#mem_id , #mem_pwd , #pwd_id ,#pwd_email,#mem_nm,#mem_email{ 
  	width:100%; 
  } 
 
@@ -108,13 +108,17 @@ margin-bottom:5%;
 }
 
 .modal-content{
-min-height: 380px;
+min-height: 400px;
 }
 #foot{
 	padding-top: 10.8%;
 }
 #register-form,#lost-form{
 	padding-top: 0.3px;
+}
+#pwd_id{
+	margin-top: 15.1%;
+    margin-bottom: 5%;
 }
 </style>
 
@@ -163,7 +167,7 @@ min-height: 380px;
                     <form id="login-form" role="form">
 		                <div class="modal-body">
                			 <h4><span id="loginSpan">로그인</span></h4>
-		                    <span id="loginFail"></span> 
+		                    <b><span id="loginFail"></span></b> 
 				    		<input id="mem_id" name="mem_id" class="form-control" type="text" placeholder="I D" required>
 				    		<input id="mem_pwd" name="mem_pwd" class="form-control" type="password" placeholder="Password" required>
                             <div class="checkbox">
@@ -185,11 +189,11 @@ min-height: 380px;
                     <form id="lost-form" style="display:none;">
     	    		    <div class="modal-body">
     	    		        <h4><span id="pwdSpan">Password 찾기</span></h4>
-    	    		        <span id="resultPwd"></span>
-    	    		    	<input id="mem_id" name="mem_id" class="form-control" type="text" placeholder="I D" required>
-		    				<input id="mem_email" name="mem_email" class="form-control" type="text" placeholder="E-Mail" required>
+    	    		        <b><span id="resultPwd"></span></b>
+    	    		    	<input id="pwd_id" name="mem_id" class="form-control" type="text" placeholder="I D" required>
+		    				<input id="pwd_email" name="mem_email" class="form-control" type="text" placeholder="E-Mail" required     style="margin-bottom: 10.1%;">
             			</div>
-		    		    <div class="modal-footer" id="foot">
+		    		    <div class="modal-footer" style="padding-top: 1.9%;">
                             <div>
                                 <button type="button" class="btn btn-primary btn-lg btn-block" id ="pwdBtn">Send</button>
                             </div>
@@ -205,7 +209,7 @@ min-height: 380px;
                     <form id="register-form" name="idForm" style="display:none;">
             		    <div class="modal-body">
             		        <h4><span id="loginSpan">ID 찾기</span></h4>
-            		        <span id = "resultId"></span>
+            		        <b><span id = "resultId"></span></b>
 		    				<input id="mem_nm" name = "mem_nm" class="form-control" type="text" placeholder="Username">
                             <input id="mem_email" name = "mem_email" class="form-control" type="text" placeholder="E-Mail">
             			</div>

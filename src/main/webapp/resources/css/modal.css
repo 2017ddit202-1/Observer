@@ -276,4 +276,15 @@ border-radius: 3px;
 .form-control {
   border-radius: 0px;
 }
-
+#loginFail{
+	margin-left: 26%;
+	color:red;
+}
+#resultId{
+	margin-left: 24%;
+    color: red;
+}
+#resultPwd{
+    margin-left: 12%;
+    color: red;
+}

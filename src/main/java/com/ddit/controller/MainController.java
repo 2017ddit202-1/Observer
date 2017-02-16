@@ -170,7 +170,7 @@ public class MainController {
 			if(member != null){
 				data = member.getMem_id();
 			}else{
-				data = "찾는아이디가 없습니다.";
+				data = "찾는 아이디가 없습니다.";
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -223,7 +223,7 @@ public class MainController {
 				memberService.tempPwd(updateMember);
 				
 				content = content + " [ <strong> " + toPwd + " </strong> ] " +" &nbsp;<strong>입니다</strong>";
-				resultEmail = member.getMem_email()+"로 메일이 성공적으로 전송되었습니다.";
+				resultEmail = member.getMem_email()+"로 전송되었습니다.";
 			}else{
 				resultEmail = "이메일이 맞지 않습니다.";
 			}
