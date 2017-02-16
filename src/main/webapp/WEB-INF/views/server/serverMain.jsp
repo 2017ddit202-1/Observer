@@ -18,6 +18,8 @@ function test_go(){
 
 var sock = null;
 $(document).ready(function() {
+	alert('${map.ip}');
+	alert('${map.host}');
 	
 	
 	/* var i = ${data};
@@ -80,9 +82,13 @@ $(document).ready(function() {
  <input type="text" id="message" value="${clientIP}"/>
  <input type="button" id="sendMessage" value="메세지보내기"/>
  <input type="button" id="addlist" value="추가"/>
+<h1>${map.ip }</h1>
+<h1>${map.host }</h1>
 
- <h1>ip : ${map.ip}</h1>
- <h1>hostName : ${map.hostName}</h1>
+<hr>
+
+ <h1>ip : ${classip}</h1>
+ <h1>hostName : ${classHost}</h1>
   
  
  <div id="chatMessage" style="overflow: auto; max-height: 500px;"></div>

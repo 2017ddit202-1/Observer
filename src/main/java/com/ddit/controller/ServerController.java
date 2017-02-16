@@ -34,7 +34,10 @@ import com.google.gson.Gson;
 @Controller
 @RequestMapping("/server")
 public class ServerController {
-	Map map = new HashMap();
+	Map<String,String> map = new HashMap<String,String>();
+	static String  classip = null;
+	String classHost = null;
+	
 	@Autowired
 	private AlertServiceImpl alertService;
 
@@ -47,23 +50,19 @@ public class ServerController {
 			HttpServletResponse response, Model model, HttpSession session) {
 		String url = "server/serverMain";
 		List<String> iplist = new ArrayList<String>();
+		System.out.println("테스트중입니다. 파라미터 ip"+(String)request.getParameter("ip"));
+		System.out.println("테스트중입니다. 파라미터 hostname"+(String)request.getParameter("hostName"));
+		classip = (String)request.getParameter("ip");
+		classHost = (String)request.getParameter("hostName");
 		
-
+		
+		System.out.println(classip + "()()()()");
+		System.out.println(classHost + "()()()()()");
+		
 		String loginUser = (String) session.getAttribute("loginUser");
 		String userOK = null;
 		String column = "";
-		// /////
-		/*request = ((ServletRequestAttributes) RequestContextHolder
-				.currentRequestAttributes()).getRequest();
-		String ip = request.getHeader("X-FORWARDED-FOR");
-		String host = request.getRemoteHost();
-
-		if (ip == null) {
-			ip = request.getRemoteAddr();
-		}
-
-		iplist.add(ip);*/
-
+		
 		try {
 			userOK = alertService.select_sessionID(loginUser); // alert테이블에 ID값이
 																// 존재하는지 select
@@ -88,24 +87,27 @@ public class ServerController {
 			model.addAttribute("column", column);
 		}
 
-	/*	model.addAttribute("iplist", iplist);*/
-		Map<String,Object> map = new HashMap<String,Object>();
-		map = (Map<String, Object>) request.getAttribute("map");
 	
+		
+		map.put("ip", classip);
+		map.put("host", classHost);
+		model.addAttribute("classip", classip);
+		model.addAttribute("classHost", classHost);
 		model.addAttribute("map", map);
+		
 		
 		return url;
 
 	}
 
-	@RequestMapping("testForm")
+	/*@RequestMapping("testForm")
 	public String test(HttpServletRequest request, HttpServletResponse response) {
 		String url = "server/testGetForm";
 		System.out.println("GETFORM()()");
 		return url;
-	}
+	}*/
 
-	@RequestMapping(value = "getServer", method = RequestMethod.GET)
+	/*@RequestMapping(value = "getServer", method = RequestMethod.GET)
 	public @ResponseBody Map<String, Object> getServer(
 			HttpServletRequest request, HttpServletResponse response) {
 		System.out.println("GET Server Response");
@@ -119,7 +121,7 @@ public class ServerController {
 		
 		return map;
 
-	}
+	}*/
 
 	 
 }
