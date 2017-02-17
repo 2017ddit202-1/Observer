@@ -303,6 +303,8 @@ function login_go(){
 	 $('#loginFail').empty();
 	 $('#resultPwd').empty();
 	 $('#resultId').empty();
+	 $('#login-form #mem_id').val("");
+     $('#login-form #mem_pwd').val("");
  });
  
  

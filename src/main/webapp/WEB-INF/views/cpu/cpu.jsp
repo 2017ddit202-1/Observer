@@ -7,6 +7,15 @@
 <html>
 <head>
 <title></title>
+<style type="text/css">
+#formm{
+	margin-top:-14%
+}
+#btnZxc{
+	margin-left: 85%;
+}	
+</style>
+
 <script>
 var cpu_pcnt = "";
 var inter="";
@@ -24,7 +33,8 @@ function LockF5(){
 
 /* 처음 로딩 시 tt 호출 후 setInterval */
 $(function(){
-   inter = setInterval("tt()",5000);
+//    inter = setInterval("tt()",5000);
+tt();
    
 });
 
@@ -35,7 +45,7 @@ function ss(){
     if(dd==0){
        dd++;
        ff();
-       inter2 = setInterval("ff()",5000);
+//        inter2 = setInterval("ff()",5000);
        dd = 0;
     }
 }
@@ -58,7 +68,7 @@ function vv(){
     if(pp==0){
        pp++;
        tt();
-       inter = setInterval("tt()",5000);
+//        inter = setInterval("tt()",5000);
        pp = 0;
     }
 }
@@ -135,7 +145,7 @@ function tt(){
    };
 </script>
 </head>
-<body>
+<body onload="myFunction()" style="margin:0;">
    <br />
    <br />
    <br />
@@ -151,8 +161,8 @@ function tt(){
    <form id="formm" name="formm">
       <input type="button" id="btnZxc" class="btnZxc" value="30분" onclick="vv()">
       <input type="button" id="btnAsd" class="btnAsd" value="1시간" onclick="ss()">
-      <div id="test"></div>
-      <div id="chart-container">잠시만 기달려주세요</div>
+      <div id="loader"></div>
+      <div id="chart-container"></div>
    </form>
 </body>
 </html>

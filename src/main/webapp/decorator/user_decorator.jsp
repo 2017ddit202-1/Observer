@@ -55,6 +55,27 @@
 	<script src="<%=request.getContextPath()%>/resources/js/fusioncharts.charts.js"></script>
 	<script src="<%=request.getContextPath()%>/resources/js/fusioncharts.theme.fint.js"></script>
 	<script src="<%=request.getContextPath()%>/resources/js/fusioncharts.widgets.js"></script>
+	
+	<script>
+		var myVar;
+		function cpuBtn(){
+			alert('2222222');
+			  var ct_left = (parseInt(window.screen.width)-450)/2; 
+			    var ct_top = (parseInt(window.screen.height))/3; 
+			    layer_str = "<div id='loading_layer' style='position:absolute; background-color:; font-size:12px; left:"
+			    			+ct_left+"px; top:"+ct_top+"px; width:400px; height:; padding:50px; text-align:center; vertical-align:middle;" 
+			    			+"z-index:1000; font-weight: bold;'>로딩중입니다.</div>" 
+			    document.write(layer_str);
+		 function loading_ed(){
+			        var ta =document.getElementById('loading_layer'); 
+			        ta.style.display='none'; 
+		 cpuBtn();
+		 window.onload = loading_ed; 
+			    } 
+		} 
+
+	</script>
+	
 
         <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
             <div class="navbar-header">
@@ -161,7 +182,7 @@
                                     <a href="flot.html">-요약</a>
                                 </li>
                                 <li>
-                                    <a href="<%=request.getContextPath()%>/cpu/cpuMain">-CPU</a>
+                                   <a href="<%=request.getContextPath()%>/cpu/cpuMain" onclick="cpuBtn()">-CPU</a>
                                 </li>
                                   <li>
                                     <a href="morris.html">-메모리</a>
