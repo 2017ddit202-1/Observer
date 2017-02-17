@@ -9,14 +9,28 @@ import java.util.concurrent.ConcurrentHashMap;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
+import com.ddit.dto.MessageVO;
+import com.ddit.service.AlertServiceImpl;
+import com.ddit.service.AuthorityServiceImpl;
+import com.google.gson.Gson;
+
 
 
 public class AutorityHandler extends TextWebSocketHandler{
+	
+	@Autowired
+	private AuthorityServiceImpl authorityService;
+	
+	@Autowired
+	private AlertServiceImpl alertService;
+	
+	
 	
 	private Map<String, WebSocketSession> users = new ConcurrentHashMap<String, WebSocketSession>();
 
@@ -51,7 +65,7 @@ public class AutorityHandler extends TextWebSocketHandler{
 		Map<String, Object> map = session.getAttributes();
 		String id = (String) map.get("userId");
 		
-		users.remove(id);
+		//users.remove(id);
 	}
 
 	
@@ -66,12 +80,20 @@ public class AutorityHandler extends TextWebSocketHandler{
 	@Override
 	protected void handleTextMessage(WebSocketSession session,
 			TextMessage message) throws Exception {
+		System.out.println(message+"&&&&&&&&&&&&&&&&&&&&");
 		
+		MessageVO messageVO = MessageVO.converMessage(message.getPayload());
+		String id = messageVO.getId();
 		
-	/*	String id = gson.fromJson("",String.class);*/
 		
 		Map<String, Object> map = session.getAttributes(); // <키,오브젝트>
-		String[] chkbox =  (String[]) map.get("chkbox"); //체크 스트링 배열
+		if(id==map.get("loginUer")){
+			System.out.println(map.get("loginUser")+")))))))))))))))))))))))");
+		}else{
+			System.out.println("없습니당다아다다아아아!!!!~~~");
+		}
+		
+/*		String[] chkbox =  (String[]) map.get("chkbox"); //체크 스트링 배열
 		
 		
 		for(int i=0; i<chkbox.length; i++){
@@ -81,7 +103,7 @@ public class AutorityHandler extends TextWebSocketHandler{
 			
 			}
 		}
-		
+		*/
 		
 		
 		
@@ -93,6 +115,7 @@ public class AutorityHandler extends TextWebSocketHandler{
 				fromUser = commUser;
 			}
 		}
+		
 		/*MessageVO messageVO = MessageVO.converMessage(message.getPayload());
 		String user = messageVO.getTo();
 		System.err.println(users.get(user));

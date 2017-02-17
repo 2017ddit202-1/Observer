@@ -83,9 +83,9 @@
 		
 		for(i=0; i<chklen; i++){
 			if(document.formm.mem_id[i].checked==true){
-				
+				alert(mem_id[i].value);
 				var message = {};
-				message.id = mem_id[i];
+				message.id = mem_id[i].value;
 				wsocket.send(JSON.stringify(message));
 			
 			}
