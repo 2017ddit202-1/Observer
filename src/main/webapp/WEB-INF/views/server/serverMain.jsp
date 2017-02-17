@@ -91,6 +91,12 @@ $(document).ready(function() {
  <h1>hostName : ${classHost}</h1>
   
  
+ 
+ 
+ <form action="<%=request.getContextPath() %>/test/authority" method="GET" >
+   <input type="submit" value="testtest"/>
+</form>
+ 
  <div id="chatMessage" style="overflow: auto; max-height: 500px;"></div>
  
  <!-- //////////////////////////////////////////////////////////////// -->
