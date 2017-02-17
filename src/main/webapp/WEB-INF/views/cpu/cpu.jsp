@@ -14,6 +14,61 @@
 #btnZxc{
 	margin-left: 85%;
 }	
+.raphael-group-124-creditgroup, .raphael-group-30-toolbar-group10{
+display:none;
+}
+
+/* Center the loader */
+#loader {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 1;
+  width: 150px;
+  height: 150px;
+  margin: -75px 0 0 -75px;
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid #3498db;
+  width: 120px;
+  height: 120px;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+}
+
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Add animation to "page content" */
+.animate-bottom {
+  position: relative;
+  -webkit-animation-name: animatebottom;
+  -webkit-animation-duration: 1s;
+  animation-name: animatebottom;
+  animation-duration: 1s
+}
+
+@-webkit-keyframes animatebottom {
+  from { bottom:-100px; opacity:0 } 
+  to { bottom:0px; opacity:1 }
+}
+
+@keyframes animatebottom { 
+  from{ bottom:-100px; opacity:0 } 
+  to{ bottom:0; opacity:1 }
+}
+
+#myDiv {
+  display: none;
+  text-align: center;
+}
 </style>
 
 <script>
@@ -33,9 +88,11 @@ function LockF5(){
 
 /* 처음 로딩 시 tt 호출 후 setInterval */
 $(function(){
-//    inter = setInterval("tt()",5000);
-tt();
-   
+// 		cpuBtn();
+// 		 window.onload = loading_ed;
+   inter = setInterval("tt()",5000);
+// tt();
+   $("#loader").show();
 });
 
 /* 1시간 버튼 클릭 시 */
@@ -45,7 +102,7 @@ function ss(){
     if(dd==0){
        dd++;
        ff();
-//        inter2 = setInterval("ff()",5000);
+       inter2 = setInterval("ff()",5000);
        dd = 0;
     }
 }
@@ -68,7 +125,7 @@ function vv(){
     if(pp==0){
        pp++;
        tt();
-//        inter = setInterval("tt()",5000);
+       inter = setInterval("tt()",5000);
        pp = 0;
     }
 }
@@ -80,6 +137,7 @@ function tt(){
       type : "post",
       dataType : 'json',
       success : function(data) {
+    	  $("#loader").hide();
             FusionCharts1(data);
       }
    });

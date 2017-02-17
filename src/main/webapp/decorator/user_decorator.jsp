@@ -17,11 +17,6 @@
 <!DOCTYPE html>
 <html>
 
-<script src="<%=request.getContextPath()%>/resources/js/jquery.js"></script>
-    <script src="<%=request.getContextPath()%>/resources/js/jquery-3.1.1.js"></script>
-    <script src="<%=request.getContextPath()%>/resources/js/jquery-3.1.1.min.js"></script>
-
-
 <title>OBSERVER<decorator:title /></title>
 <decorator:head />
 
@@ -34,7 +29,12 @@
     <meta name="author" content="">
 
     <title>SB Admin 2 - Bootstrap Admin Theme</title>
-
+    
+    
+	<script src="<%=request.getContextPath()%>/resources/js/jquery.js"></script>
+    <script src="<%=request.getContextPath()%>/resources/js/jquery-3.1.1.js"></script>
+    <script src="<%=request.getContextPath()%>/resources/js/jquery-3.1.1.min.js"></script>
+    
     <!-- Bootstrap Core CSS -->
     <link href="<%=request.getContextPath()%>/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
@@ -55,29 +55,41 @@
 	<script src="<%=request.getContextPath()%>/resources/js/fusioncharts.charts.js"></script>
 	<script src="<%=request.getContextPath()%>/resources/js/fusioncharts.theme.fint.js"></script>
 	<script src="<%=request.getContextPath()%>/resources/js/fusioncharts.widgets.js"></script>
-	
-	<script>
-		var myVar;
-		function cpuBtn(){
-			alert('2222222');
-			  var ct_left = (parseInt(window.screen.width)-450)/2; 
-			    var ct_top = (parseInt(window.screen.height))/3; 
-			    layer_str = "<div id='loading_layer' style='position:absolute; background-color:; font-size:12px; left:"
-			    			+ct_left+"px; top:"+ct_top+"px; width:400px; height:; padding:50px; text-align:center; vertical-align:middle;" 
-			    			+"z-index:1000; font-weight: bold;'>로딩중입니다.</div>" 
-			    document.write(layer_str);
-		 function loading_ed(){
-			        var ta =document.getElementById('loading_layer'); 
-			        ta.style.display='none'; 
-		 cpuBtn();
-		 window.onload = loading_ed; 
-			    } 
-		} 
 
-	</script>
+    <!-- jQuery -->
+    <script src="<%=request.getContextPath()%>/resources/vendor/jquery/jquery.min.js"></script>
+
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="<%=request.getContextPath()%>/resources/vendor/metisMenu/metisMenu.min.js"></script>
+
+    <!-- Morris Charts JavaScript -->
+    <script src="<%=request.getContextPath()%>/resources/vendor/raphael/raphael.min.js"></script>
+    <script src="<%=request.getContextPath()%>/resources/vendor/morrisjs/morris.min.js"></script>
+    <script src="<%=request.getContextPath()%>/resources/data/morris-data.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="<%=request.getContextPath()%>/resources/dist/js/sb-admin-2.js"></script>
+    
+    <!--  websocket -->
+	<script type="text/javascript"
+	src="<%=request.getContextPath()%>/resources/js/sockjs-0.3.min.js"></script>
 	
 
-        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+<script type="text/javascript">
+	function cpuBtn() {
+		var ct_left = (parseInt(window.screen.width) - 450) / 2;
+		var ct_top = (parseInt(window.screen.height)) / 3;
+		layer_str = "<div id='loading_layer' style='position:absolute; background-color:; font-size:12px; left:"+ct_left+"px; top:"+ct_top+"px; width:400px; height:; padding:50px; text-align:center; vertical-align:middle; z-index:1000; font-weight: bold;'>로딩중입니다.</div>"
+		//document.write(layer_str);
+	}
+	function loading_ed() {
+		var ta = document.getElementById('loading_layer');
+		ta.style.display = 'none';
+	}
+</script>
+
+
+<nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="sr-only">Toggle navigation</span>
@@ -241,38 +253,6 @@
          <div id="page-wrapper">
          		<decorator:body />
          </div>
-
-
-
-	
-    <!-- jQuery -->
-    <script src="<%=request.getContextPath()%>/resources/vendor/jquery/jquery.min.js"></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="<%=request.getContextPath()%>/resources/vendor/bootstrap/js/bootstrap.min.js"></script>
-
-    <!-- Metis Menu Plugin JavaScript -->
-    <script src="<%=request.getContextPath()%>/resources/vendor/metisMenu/metisMenu.min.js"></script>
-
-    <!-- Morris Charts JavaScript -->
-    <script src="<%=request.getContextPath()%>/resources/vendor/raphael/raphael.min.js"></script>
-    <script src="<%=request.getContextPath()%>/resources/vendor/morrisjs/morris.min.js"></script>
-    <script src="<%=request.getContextPath()%>/resources/data/morris-data.js"></script>
-
-    <!-- Custom Theme JavaScript -->
-    <script src="<%=request.getContextPath()%>/resources/dist/js/sb-admin-2.js"></script>
-    
-    <!--  websocket -->
-	<script type="text/javascript"
-	src="<%=request.getContextPath()%>/resources/js/sockjs-0.3.min.js"></script>
-
-
-
-
-
-	
-
-   
 </head>
 
 
