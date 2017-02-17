@@ -88,10 +88,7 @@ function LockF5(){
 
 /* 처음 로딩 시 tt 호출 후 setInterval */
 $(function(){
-// 		cpuBtn();
-// 		 window.onload = loading_ed;
    inter = setInterval("tt()",5000);
-// tt();
    $("#loader").show();
 });
 
