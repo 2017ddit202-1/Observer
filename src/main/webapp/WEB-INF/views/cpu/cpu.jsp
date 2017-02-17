@@ -20,20 +20,13 @@ display:none;
 
 /* Center the loader */
 #loader {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  z-index: 1;
-  width: 150px;
-  height: 150px;
-  margin: -75px 0 0 -75px;
-  border: 16px solid #f3f3f3;
-  border-radius: 50%;
-  border-top: 16px solid #3498db;
-  width: 120px;
-  height: 120px;
-  -webkit-animation: spin 2s linear infinite;
-  animation: spin 2s linear infinite;
+   position: absolute; 
+   left: 50%; 
+   top: 50%; 
+   z-index: 1; 
+   width: 150px; 
+   height: 150px; 
+   margin: -75px 0 0 -75px; 
 }
 
 @-webkit-keyframes spin {
@@ -90,6 +83,8 @@ function LockF5(){
 $(function(){
    inter = setInterval("tt()",5000);
    $("#loader").show();
+   $("#btnZxc").hide();
+   $("#btnAsd").hide();
 });
 
 /* 1시간 버튼 클릭 시 */
@@ -135,6 +130,8 @@ function tt(){
       dataType : 'json',
       success : function(data) {
     	  $("#loader").hide();
+    	  $("#btnZxc").show();
+    	  $("#btnAsd").show();
             FusionCharts1(data);
       }
    });
@@ -216,7 +213,7 @@ function tt(){
    <form id="formm" name="formm">
       <input type="button" id="btnZxc" class="btnZxc" value="30분" onclick="vv()">
       <input type="button" id="btnAsd" class="btnAsd" value="1시간" onclick="ss()">
-      <div id="loader"></div>
+      <div id="loader"><img id="lodingImg" src="<%=request.getContextPath() %>/resources/img/loader.gif"></div>
       <div id="chart-container"></div>
    </form>
 </body>
