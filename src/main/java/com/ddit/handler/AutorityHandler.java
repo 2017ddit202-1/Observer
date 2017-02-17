@@ -1,14 +1,9 @@
 package com.ddit.handler;
 
-import java.net.Socket;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.TextMessage;
@@ -18,7 +13,6 @@ import org.springframework.web.socket.handler.TextWebSocketHandler;
 import com.ddit.dto.MessageVO;
 import com.ddit.service.AlertServiceImpl;
 import com.ddit.service.AuthorityServiceImpl;
-import com.google.gson.Gson;
 
 
 
@@ -42,10 +36,11 @@ public class AutorityHandler extends TextWebSocketHandler{
 	public void afterConnectionEstablished(WebSocketSession session)
 			throws Exception {
 
+		//Map<String, Object> attributes
 		super.afterConnectionEstablished(session);
 		log(session.getId() + " 연결 됨");
 
-		Map<String, Object> map = session.getAttributes();  //세션값이 Map형태->attributes.put("loginUser", loginUser): 세션값은 object
+		Map<String, Object> map = session.getAttributes();  //세션값이 Map형태->attributes.put("loginUser", 아이디값): 세션값은 object
 		String id = (String) map.get("loginUser");
 
 		users.put(id, session); //웹소켓 세션으로 저장
@@ -82,30 +77,28 @@ public class AutorityHandler extends TextWebSocketHandler{
 			TextMessage message) throws Exception {
 		System.out.println(message+"&&&&&&&&&&&&&&&&&&&&");
 		
-		MessageVO messageVO = MessageVO.converMessage(message.getPayload());
+		MessageVO messageVO = MessageVO.converMessage(message.getPayload()); //json형태의 데이터를 String으로 변환하는 메소드
 		String id = messageVO.getId();
 		
 		
 		Map<String, Object> map = session.getAttributes(); // <키,오브젝트>
-		if(id==map.get("loginUer")){
+		System.out.println("맵맵맵: "+map.toString());
+		if(users.get(id) != null){
+			//아이디값을 가지고 권한을 가져오고 if 아이디가 user-> admin으로 변경
+			
+			String authority = authorityService.authoritySelect1(id); //아이디값의 권한을 가져옴
+			if(authority.equals("ROLE_USER")){
+				
+			}
+			
+			
+			users.get(id).sendMessage(
+					new TextMessage("회원 가 회원님이 작성하신 게시물에 댓글을 작성했습니다."));
 			System.out.println(map.get("loginUser")+")))))))))))))))))))))))");
 		}else{
 			System.out.println("없습니당다아다다아아아!!!!~~~");
 		}
-		
-/*		String[] chkbox =  (String[]) map.get("chkbox"); //체크 스트링 배열
-		
-		
-		for(int i=0; i<chkbox.length; i++){
-			if(chkbox[i]==map.get("loginUser")){
-				System.out.println("있다있다있어!!!!!!!!!!!!!!!!!!!!!!!!!!");
-			
-			
-			}
-		}
-		*/
-		
-		
+				
 		
 		
 		log(session.getId() + "로부터 메시지 수신: " + message.getPayload());
@@ -115,13 +108,7 @@ public class AutorityHandler extends TextWebSocketHandler{
 				fromUser = commUser;
 			}
 		}
-		
-		/*MessageVO messageVO = MessageVO.converMessage(message.getPayload());
-		String user = messageVO.getTo();
-		System.err.println(users.get(user));
-		users.get(user).sendMessage(
-				new TextMessage("회원 " +fromUser +"가 회원님이 작성하신 게시물에 댓글을 작성했습니다."
-						+ "\n" + messageVO.getMessage()));*/
+	
 
 	}
 

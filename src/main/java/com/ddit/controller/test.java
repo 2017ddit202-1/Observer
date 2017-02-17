@@ -18,9 +18,9 @@ public class test {
 	public String management(HttpServletRequest request, HttpSession session) {
 		String url = "/test";
 		
-		String[] chkbox = request.getParameterValues("mem_id");
+		/*String[] chkbox = request.getParameterValues("mem_id");
 
-		session.setAttribute("chkbox", chkbox);
+		session.setAttribute("chkbox", chkbox);*/
 		
 		
 		return url;
