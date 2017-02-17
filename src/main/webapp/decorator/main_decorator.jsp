@@ -257,6 +257,8 @@ function login_go(){
        var returl=body.response.returl;
        if(error)
           get_msg(message);
+       	  $('#login-form #mem_id').val("");
+       	  $('#login-form #mem_pwd').val("");
        if(error==false){
           if(returl=='')
              returl = '<c:url value="/server/serverMain" />';
@@ -297,6 +299,11 @@ function login_go(){
 	}); 
  });
  
+ $('.btn-link').click(function(){
+	 $('#loginFail').empty();
+	 $('#resultPwd').empty();
+	 $('#resultId').empty();
+ });
  
  
 </script>
