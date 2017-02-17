@@ -63,6 +63,16 @@
 	
 	
 	
+	<beans:bean id="autorityHandler" class="com.ddit.handler.AutorityHandler"/>
+	
+	<websocket:handlers>
+	   <websocket:mapping handler="autorityHandler" path="/test/authority"/>
+	   <websocket:handshake-interceptors>
+	     <beans:bean class="com.ddit.handler.AutorityInterceptor"/>
+	   </websocket:handshake-interceptors>
+	   <websocket:sockjs disconnect-delay="9000" />
+	</websocket:handlers>
+	
 	
 	<context:component-scan base-package="com.ddit" use-default-filters="false">
 		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>

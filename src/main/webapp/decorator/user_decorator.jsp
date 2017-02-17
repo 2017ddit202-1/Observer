@@ -246,6 +246,10 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="<%=request.getContextPath()%>/resources/dist/js/sb-admin-2.js"></script>
+    
+    <!--  websocket -->
+	<script type="text/javascript"
+	src="<%=request.getContextPath()%>/resources/js/sockjs-0.3.min.js"></script>
 
 
 
@@ -255,6 +259,23 @@
 
    
 </head>
+
+
+
+<script>
+	var wsocket;
+
+	$(document).ready(function() {
+		wsocket = new SockJS("http://"+document.domain+":8181/observer/test/authority");
+		wsocket.onopen;
+	
+		wsocket.onmessage = function appendMessage(msg) {
+			alert(msg.data);
+		}
+		
+	});
+	
+</script>
 
 
 </html>

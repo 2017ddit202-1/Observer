@@ -1,6 +1,8 @@
 package com.ddit.handler;
 
+import java.net.Socket;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -12,50 +14,102 @@ import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
+
+
 public class AutorityHandler extends TextWebSocketHandler{
 	
-	private Logger logger = LoggerFactory.getLogger(ObserverTest.class);
-	private List<WebSocketSession> connectsUsers;
-
 	private Map<String, WebSocketSession> users = new ConcurrentHashMap<String, WebSocketSession>();
 
-	// 나중에 map으로 구성하여 키 밸류를 이용해야함
-	public AutorityHandler() {
-		connectsUsers = new ArrayList<WebSocketSession>();
+	public Map<String, WebSocketSession> getUsers() {
+		return users;
 	}
 
-	@Override
+	@Override  //접속관련이벤트 메소드, WebSocketSession접속한 사용자
 	public void afterConnectionEstablished(WebSocketSession session)
 			throws Exception {
-		logger.info(session.getId() + "님 접속");
-		System.out.println(session.getId()+"님 접속");
-		logger.info("연결IP: " + session.getRemoteAddress().getHostName());
-		connectsUsers.add(session);
+
+		super.afterConnectionEstablished(session);
+		log(session.getId() + " 연결 됨");
+
+		Map<String, Object> map = session.getAttributes();  //세션값이 Map형태->attributes.put("loginUser", loginUser): 세션값은 object
+		String id = (String) map.get("loginUser");
+
+		users.put(id, session); //웹소켓 세션으로 저장
 	}
 
-	@Override
-	protected void handleTextMessage(WebSocketSession session,
-			TextMessage message) throws Exception {
-		logger.info(session.getId() + "님이 메시지 성공" + message.getPayload());
-		System.out.println(session.getId()+"부리부리부리");
-		for (WebSocketSession websocketSession : connectsUsers) {
-			if (!session.getId().equals(websocketSession)) {
-				websocketSession.sendMessage(new TextMessage(session
-						.getRemoteAddress().getHostName()
-						+ "->"
-						+ message.getPayload()));
-			}
-		}
-
-	}
-
+	
+	
+	  /*클라이언트가 서버와 연결 종료
+    WebSocketSession 연결을 끊은 클라이언트
+    CloseStatus 연결 상태 (확인필요)*/
+	
 	@Override
 	public void afterConnectionClosed(WebSocketSession session,
 			CloseStatus status) throws Exception {
-		logger.info(session.getId() + "님 접속 종료");
-		connectsUsers.remove(session);
+		log(session.getId() + " 연결 종료됨");
+		
+		Map<String, Object> map = session.getAttributes();
+		String id = (String) map.get("userId");
+		
+		users.remove(id);
+	}
+
+	
+	
+	
+	/*	2가지이벤트처리
+	** Send-> 클라이언트가 서버에게 메세지 보냄
+	** Emit-> 서버에 연결되어 있는 클라이언트에게 메시지 보냄
+	WebSocketSession 메시지를 보낸 클라이언트
+	TextMessage 메세지의 내용*/
+	
+	@Override
+	protected void handleTextMessage(WebSocketSession session,
+			TextMessage message) throws Exception {
+		
+		
+	/*	String id = gson.fromJson("",String.class);*/
+		
+		Map<String, Object> map = session.getAttributes(); // <키,오브젝트>
+		String[] chkbox =  (String[]) map.get("chkbox"); //체크 스트링 배열
+		
+		
+		for(int i=0; i<chkbox.length; i++){
+			if(chkbox[i]==map.get("loginUser")){
+				System.out.println("있다있다있어!!!!!!!!!!!!!!!!!!!!!!!!!!");
+			
+			
+			}
+		}
+		
+		
+		
+		
+		
+		log(session.getId() + "로부터 메시지 수신: " + message.getPayload());
+		String fromUser = "";
+		for(String commUser : users.keySet()) {
+			if(users.get(commUser).equals(session)) {
+				fromUser = commUser;
+			}
+		}
+		/*MessageVO messageVO = MessageVO.converMessage(message.getPayload());
+		String user = messageVO.getTo();
+		System.err.println(users.get(user));
+		users.get(user).sendMessage(
+				new TextMessage("회원 " +fromUser +"가 회원님이 작성하신 게시물에 댓글을 작성했습니다."
+						+ "\n" + messageVO.getMessage()));*/
 
 	}
 
+	@Override
+	public void handleTransportError(WebSocketSession session,
+			Throwable exception) throws Exception {
+		log(session.getId() + " 익셉션 발생: " + exception.getMessage());
+	}
+
+	private void log(String logmsg) {
+		System.out.println(new Date() + " : " + logmsg);
+	}
 
 }

@@ -1,3 +1,4 @@
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page trimDirectiveWhitespaces="true"%>
@@ -12,6 +13,8 @@
 <button type="button" onclick="allcheckBoxDelete()">전체해제</button>
 <button type="button" onclick="authorityAccept_go()">수락</button>
 <button type="button" onclick="authorityAcceptNO_go()">거절</button>
+
+
 
 
 <thead>
@@ -53,16 +56,92 @@
 
 		</table>
 	</form>
-	
-<thead><script>
-function authorityAccept_go(){
+<thead>
+
+
+	<%--  <form action="<%=request.getContextPath() %>/test/authority" method="GET" >
+   <input type="submit" value="testtest"/>
+</form>
+
+<button type="button" onclick="authorityAccept_go()">수락</button> --%>
+
+
+	<script>
+<%-- function authorityAccept_go(){
 	document.formm.action = "<%=request.getContextPath()%>/superAdmin/authorityAccept";
 	document.formm.submit();
-	}
+	} --%>
+	var wsocket;
 	
-function authorityAcceptNO_go(){
-	document.formm.action = "<%=request.getContextPath()%>/superAdmin/authorityAcceptNO";
-	document.formm.submit();
+	function authorityAccept_go(){
+		document.formm.action = "<%=request.getContextPath()%>/test/authority";
+		
+		
+		
+
+		var chklen = document.formm.mem_id.length; //폼의 전체길이
+		
+		for(i=0; i<chklen; i++){
+			if(document.formm.mem_id[i].checked==true){
+				
+				var message = {};
+				message.id = mem_id[i];
+				wsocket.send(JSON.stringify(message));
+			
+			}
+		}
+		
+		
+		
+		
+		
+		/*  for(i=0; i<chklen; i++){
+			    if(document.formm.mem_id[i].checked == true){
+			       count++;
+			    }
+			  }
+
+		// 체크박스 갯수만큼 for 문을 돌려 체크된 넘의 value값을 가져온다.
+		 for(i=0; i<chklen; i++){ 
+		    if(document.formm.mem_id[i].checked == true){ //0번째부터 전체 길이
+		    	
+		    	if(count==1){
+		    		id += document.formm.mem_id[i].value;
+		    	}else if(count==0){
+		    		
+		    	}else{
+		    		 if(count==totalCNT){ 
+				        	id += document.formm.mem_id[i].value;
+				        }else{
+				        	id += document.formm.mem_id[i].value;
+					        id += ',';
+					        totalCNT++;
+				       }	     
+		    	}
+		    }
+		  } 
+		 var message = {};
+			message.id = id;
+			message.authority = id;
+			wsocket.send(JSON.stringify(message)); */
+		
+		document.formm.submit();
+		}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	function authorityAcceptNO_go(){
+		document.formm.action = "<%=request.getContextPath()%>/superAdmin/authorityAcceptNO";
+		document.formm.submit();
 	}
 	
 	
@@ -75,4 +154,3 @@ function authorityAcceptNO_go(){
 
 	}
 </script>
-
