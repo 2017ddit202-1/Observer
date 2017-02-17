@@ -1,21 +1,26 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
-	pageEncoding="utf-8"%>
+   pageEncoding="utf-8"%>
 <%@ page trimDirectiveWhitespaces="true"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="decorator"
-	uri="http://www.opensymphony.com/sitemesh/decorator"%>
+   uri="http://www.opensymphony.com/sitemesh/decorator"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%
-	response.setHeader("Pragma", "No-cache");
-	response.setHeader("Cache-Control", "no-cache");
-	response.addHeader("Cache-Control", "no-store");
-	response.setDateHeader("Expires", 1L);
-	
+   response.setHeader("Pragma", "No-cache");
+   response.setHeader("Cache-Control", "no-cache");
+   response.addHeader("Cache-Control", "no-store");
+   response.setDateHeader("Expires", 1L);
+   
 %>
 
 <!DOCTYPE html>
 <html>
+
+<script src="<%=request.getContextPath()%>/resources/js/jquery.js"></script>
+    <script src="<%=request.getContextPath()%>/resources/js/jquery-3.1.1.js"></script>
+    <script src="<%=request.getContextPath()%>/resources/js/jquery-3.1.1.min.js"></script>
+
 
 <title>OBSERVER<decorator:title /></title>
 <decorator:head />
@@ -29,12 +34,7 @@
     <meta name="author" content="">
 
     <title>SB Admin 2 - Bootstrap Admin Theme</title>
-    
-    
-	<script src="<%=request.getContextPath()%>/resources/js/jquery.js"></script>
-    <script src="<%=request.getContextPath()%>/resources/js/jquery-3.1.1.js"></script>
-    <script src="<%=request.getContextPath()%>/resources/js/jquery-3.1.1.min.js"></script>
-    
+
     <!-- Bootstrap Core CSS -->
     <link href="<%=request.getContextPath()%>/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
@@ -52,44 +52,11 @@
     
     <!-- FunsionCharts -->
     <script src="<%=request.getContextPath()%>/resources/js/fusioncharts.js"></script>
-	<script src="<%=request.getContextPath()%>/resources/js/fusioncharts.charts.js"></script>
-	<script src="<%=request.getContextPath()%>/resources/js/fusioncharts.theme.fint.js"></script>
-	<script src="<%=request.getContextPath()%>/resources/js/fusioncharts.widgets.js"></script>
+   <script src="<%=request.getContextPath()%>/resources/js/fusioncharts.charts.js"></script>
+   <script src="<%=request.getContextPath()%>/resources/js/fusioncharts.theme.fint.js"></script>
+   <script src="<%=request.getContextPath()%>/resources/js/fusioncharts.widgets.js"></script>
 
-    <!-- jQuery -->
-    <script src="<%=request.getContextPath()%>/resources/vendor/jquery/jquery.min.js"></script>
-
-    <!-- Metis Menu Plugin JavaScript -->
-    <script src="<%=request.getContextPath()%>/resources/vendor/metisMenu/metisMenu.min.js"></script>
-
-    <!-- Morris Charts JavaScript -->
-    <script src="<%=request.getContextPath()%>/resources/vendor/raphael/raphael.min.js"></script>
-    <script src="<%=request.getContextPath()%>/resources/vendor/morrisjs/morris.min.js"></script>
-    <script src="<%=request.getContextPath()%>/resources/data/morris-data.js"></script>
-
-    <!-- Custom Theme JavaScript -->
-    <script src="<%=request.getContextPath()%>/resources/dist/js/sb-admin-2.js"></script>
-    
-    <!--  websocket -->
-	<script type="text/javascript"
-	src="<%=request.getContextPath()%>/resources/js/sockjs-0.3.min.js"></script>
-	
-
-<script type="text/javascript">
-	function cpuBtn() {
-		var ct_left = (parseInt(window.screen.width) - 450) / 2;
-		var ct_top = (parseInt(window.screen.height)) / 3;
-		layer_str = "<div id='loading_layer' style='position:absolute; background-color:; font-size:12px; left:"+ct_left+"px; top:"+ct_top+"px; width:400px; height:; padding:50px; text-align:center; vertical-align:middle; z-index:1000; font-weight: bold;'>로딩중입니다.</div>"
-		//document.write(layer_str);
-	}
-	function loading_ed() {
-		var ta = document.getElementById('loading_layer');
-		ta.style.display = 'none';
-	}
-</script>
-
-
-<nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="sr-only">Toggle navigation</span>
@@ -119,7 +86,7 @@
                     <%-- <a class="dropdown-toggle" data-toggle="dropdown" href="<%=request.getContextPath()%>/user/mypage"> --%>
                         <i class="fa fa-tasks fa-fw"></i> <i class="fa fa-caret-down"></i>
                     </a>
-      			 <ul class="dropdown-menu dropdown-user">
+                <ul class="dropdown-menu dropdown-user">
                         <li class="divider"></li>
                         <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> 회원정보 수정</a>
                         </li>
@@ -135,12 +102,12 @@
                         <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> 회원탈퇴</a>
                         </li>
                         
-			</ul>
+         </ul>
                
                 </li>
                 <%-- <sec:authorize access="isAuthenticated()">
-							<li><a href="#">관리</a></li>
-					</sec:authorize> --%>
+                     <li><a href="#">관리</a></li>
+               </sec:authorize> --%>
                 <!-- /.dropdown -->
                 <li class="dropdown">      
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
@@ -149,15 +116,15 @@
                     <!-- <ul class="dropdown-menu dropdown-user"> -->
                         <!-- <li class="divider"></li> -->
                         <sec:authorize access="isAuthenticated()">
-                        	<span>${sessionScope.loginUser }님 어서오세요.</span>
+                           <span>${sessionScope.loginUser }님 어서오세요.</span>
                         </sec:authorize>
                         
                         
                         <sec:authorize access="hasRole('ROLE_SUPER')">
-							<li><a href="<%=request.getContextPath()%>/superAdmin/management">관리</a></li>
-						</sec:authorize>
-						<sec:authorize access="isAuthenticated()">
-                       		<li><a href="<%=request.getContextPath()%>/logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                     <li><a href="<%=request.getContextPath()%>/superAdmin/management">관리</a></li>
+                  </sec:authorize>
+                  <sec:authorize access="isAuthenticated()">
+                             <li><a href="<%=request.getContextPath()%>/logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                         </li>
                         </sec:authorize>
                     <!-- </ul> -->
@@ -194,7 +161,7 @@
                                     <a href="flot.html">-요약</a>
                                 </li>
                                 <li>
-                                   <a href="<%=request.getContextPath()%>/cpu/cpuMain" onclick="cpuBtn()">-CPU</a>
+                                    <a href="<%=request.getContextPath()%>/cpu/cpuMain" onclick="cpuBtn()">-CPU</a>
                                 </li>
                                   <li>
                                     <a href="morris.html">-메모리</a>
@@ -251,25 +218,57 @@
         </nav>
         
          <div id="page-wrapper">
-         		<decorator:body />
+               <decorator:body />
          </div>
+
+
+
+   
+    <!-- jQuery -->
+    <script src="<%=request.getContextPath()%>/resources/vendor/jquery/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="<%=request.getContextPath()%>/resources/vendor/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="<%=request.getContextPath()%>/resources/vendor/metisMenu/metisMenu.min.js"></script>
+
+    <!-- Morris Charts JavaScript -->
+    <script src="<%=request.getContextPath()%>/resources/vendor/raphael/raphael.min.js"></script>
+    <script src="<%=request.getContextPath()%>/resources/vendor/morrisjs/morris.min.js"></script>
+    <script src="<%=request.getContextPath()%>/resources/data/morris-data.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="<%=request.getContextPath()%>/resources/dist/js/sb-admin-2.js"></script>
+    
+    <!--  websocket -->
+   <script type="text/javascript"
+   src="<%=request.getContextPath()%>/resources/js/sockjs-0.3.min.js"></script>
+
+
+
+
+
+   
+
+   
 </head>
 
 
 
 <script>
-	var wsocket;
+   var wsocket;
 
-	$(document).ready(function() {
-		wsocket = new SockJS("http://"+document.domain+":8181/observer/test/authority");
-		wsocket.onopen;
-	
-		wsocket.onmessage = function appendMessage(msg) {
-			alert(msg.data);
-		}
-		
-	});
-	
+   $(document).ready(function() {
+      wsocket = new SockJS("http://"+document.domain+":8181/observer/test/authority");
+      wsocket.onopen;
+   
+      wsocket.onmessage = function appendMessage(msg) {
+         alert(msg.data);
+      }
+      
+   });
+   
 </script>
 
 
