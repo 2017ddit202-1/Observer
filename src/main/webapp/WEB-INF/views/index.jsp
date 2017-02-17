@@ -58,10 +58,9 @@ padding:0%;
 				</ol>
 
 				<!-- Wrapper for slides -->
-				<div class="carousel-inner" role="listbox" style="height:560px;">
+				<div class="carousel-inner" role="listbox" style="height:670px;">
 					<div class="item active">
 						<img src="<%=request.getContextPath()%>/resources/img/Monitoring.png" alt="Chania" width="1583" height="485">
-						<button type="button" class="btn btn-primary">Primary</button>	
 					</div>
 					<div class="item">
 						<img src="<%=request.getContextPath()%>/resources/img/Monitoring2.png" alt="Chania" width="1583" height="485">
@@ -137,7 +136,7 @@ padding:0%;
     </div>
     <!-- /.content-section-b -->
 
-    <	<a  name="services"></a>
+    <a  name="services"></a>
     <div class="content-section-a">
 
         <div class="container">

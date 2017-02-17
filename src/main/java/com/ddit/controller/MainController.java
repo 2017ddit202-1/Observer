@@ -170,7 +170,7 @@ public class MainController {
 			if(member != null){
 				data = member.getMem_id();
 			}else{
-				data = "찾는아이디가 없습니다.";
+				data = "찾는 아이디가 없습니다.";
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -187,6 +187,7 @@ public class MainController {
 		
 		JavaMailSender jmailSender = (JavaMailSender) mailSender;
 		MimeMessage message = ((JavaMailSender) mailSender).createMimeMessage();
+		// 이메일 내용
 		String content = "<strong>안녕하세요. Observer 회원님</strong><br>"
 				+ "<strong>당신의 임시 비밀번호는</strong> ";
 		MemberVO member = null;
@@ -198,6 +199,7 @@ public class MainController {
 		String toEmail = null;
 		String toPwd = null;
 		
+		// 임시 비밀번호 8자리
 		String tempPwd = "";
 		for (int i = 0; i < 8; i++) {
 			int rndVal = (int) (Math.random() * 62);
@@ -223,7 +225,7 @@ public class MainController {
 				memberService.tempPwd(updateMember);
 				
 				content = content + " [ <strong> " + toPwd + " </strong> ] " +" &nbsp;<strong>입니다</strong>";
-				resultEmail = member.getMem_email()+"로 메일이 성공적으로 전송되었습니다.";
+				resultEmail = member.getMem_email()+"로 전송되었습니다.";
 			}else{
 				resultEmail = "이메일이 맞지 않습니다.";
 			}
@@ -234,7 +236,7 @@ public class MainController {
 				helper.setSubject("[ 비밀번호 찾기 안내 ]");
 				helper.setText(content, true);
 				helper.setFrom("observerddit202@gmail.com", "Observer");
-				helper.setTo(new InternetAddress(toEmail, "utf-8"));
+				helper.setTo(new InternetAddress(toEmail));
 
 				jmailSender.send(message);
 			}

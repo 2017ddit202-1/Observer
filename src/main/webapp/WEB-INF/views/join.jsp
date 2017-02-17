@@ -6,7 +6,7 @@
 
 <style>
 h3{
-margin-left: -26%;
+margin-left: -18%;
 }
 
 #contract{

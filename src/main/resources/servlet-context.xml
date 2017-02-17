@@ -58,6 +58,9 @@
 	
 	<websocket:handlers>
 		<websocket:mapping handler="observerSocket" path="/server/serverMain" />
+		<websocket:handshake-interceptors>
+			<beans:bean class="com.ddit.interceptor.WebHandshakeInterceptor" />
+		</websocket:handshake-interceptors>
 		<websocket:sockjs disconnect-delay="9000" />
 	</websocket:handlers>
 	

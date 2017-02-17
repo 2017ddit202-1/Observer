@@ -18,7 +18,7 @@ import com.ddit.service.CpuServiceImpl;
 
 
 @Controller
-@RequestMapping("/test")
+@RequestMapping("/cpu")
 public class TestController {
 
 	@Autowired
@@ -27,7 +27,13 @@ public class TestController {
 		this.cpuService = cpuService;
 	}
 	
-	@RequestMapping(value="/testForm",method=RequestMethod.POST)
+	@RequestMapping("cpuMain")
+	public String summaryMain(){
+		String url = "cpu/cpu";
+		return url;
+	}
+	
+	@RequestMapping(value="/cpuPcnt",method=RequestMethod.POST)
 	@ResponseBody
 	public ArrayList<CpuVO > cpuList(Model model){
 		
@@ -42,7 +48,7 @@ public class TestController {
 		return cpuVO;
 	}
 		
-	@RequestMapping(value="/testFormm",method=RequestMethod.POST)
+	@RequestMapping(value="/cpuPcntHours",method=RequestMethod.POST)
 	@ResponseBody
 	public ArrayList<CpuVO> cpuListHo(){
 		

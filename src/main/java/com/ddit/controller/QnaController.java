@@ -36,6 +36,7 @@ public class QnaController {
 	@Autowired
 	private MemberServiceImpl memberService;
 
+	
 	@Autowired
 	private QanswerService qanswerService;
 	

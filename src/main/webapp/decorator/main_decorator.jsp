@@ -72,7 +72,7 @@ background-color:#aeaeaf;
 }
 .topnav{
 width:100%;
-height: 10%;
+height: 8.5%;
 }
 }
 #mainTitle{
@@ -87,11 +87,38 @@ text-align:center;
 	padding-top: 30%;
     padding-bottom: 33%;
 }
-#mem_id{
-	width:100%;
+#mem_id , #mem_pwd , #pwd_id ,#pwd_email,#mem_nm,#mem_email{ 
+ 	width:100%; 
+ } 
+
+.img-rounded{
+width:25%;
+border-radius:10px;
 }
-#mem_pwd{
-	width:100%;
+#loginSpan{
+margin:auto auto auto 38%;
+}
+#pwdSpan{
+margin:auto auto auto 28%;
+}
+
+#mem_id, #mem_nm{
+margin-top:10%;
+margin-bottom:5%;
+}
+
+.modal-content{
+min-height: 400px;
+}
+#foot{
+	padding-top: 10.8%;
+}
+#register-form,#lost-form{
+	padding-top: 0.3px;
+}
+#pwd_id{
+	margin-top: 15.1%;
+    margin-bottom: 5%;
 }
 </style>
 
@@ -116,10 +143,6 @@ text-align:center;
 				 <li style="background-color: #2b52c6;">
                         <a href="" data-toggle="modal" data-target="#login-modal" id="modal1" data-backdrop="static" data-keyboard="false" >LOG IN</a>
                     </li>
-				<!-- <li>
-					<button class="btn btn-primary" data-toggle="modal"
-						data-target="#myModal">Log in</button>
-				</li> -->
 				<li style="background-color: #000000;"><a href="<%=request.getContextPath()%>/join" id="sign1">SIGN UP</a></li>
 			</ul>
             </div>
@@ -129,10 +152,10 @@ text-align:center;
     </nav>
     
     <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
-    	<div class="modal-dialog">
+    	<div class="modal-dialog" >
 			<div class="modal-content">
 				<div class="modal-header" align="center">
-					<img class="img-circle" id="img_logo" src="<%=request.getContextPath()%>/resources/img/observer.png">
+					<img class="img-rounded" id="img_logo" src="<%=request.getContextPath()%>/resources/img/observer1.png">
 					<button type="button"  id="aaa" class="close" data-dismiss="modal" aria-label="Close">
 						<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
 			 		</button>
@@ -140,18 +163,17 @@ text-align:center;
                 
                 <!-- Begin # DIV Form -->
                 <div id="div-forms">
-                
                     <!-- Begin # Login Form -->
                     <form id="login-form" role="form">
 		                <div class="modal-body">
-		                        <span>로그인</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		                        <span id="loginFail"></span> 
+               			 <h4><span id="loginSpan">로그인</span></h4>
+		                    <b><span id="loginFail"></span></b> 
 				    		<input id="mem_id" name="mem_id" class="form-control" type="text" placeholder="I D" required>
 				    		<input id="mem_pwd" name="mem_pwd" class="form-control" type="password" placeholder="Password" required>
                             <div class="checkbox">
                             </div>
         		    	</div>
-				        <div class="modal-footer">
+				        <div class="modal-footer" style="padding-top:8%;">
                             <div>
                                 <button type="button" class="btn btn-primary btn-lg btn-block" name="login" value="login" onclick="login_go()">Login</button>
                             </div>
@@ -166,11 +188,12 @@ text-align:center;
                     <!-- Begin | Lost Password Form -->
                     <form id="lost-form" style="display:none;">
     	    		    <div class="modal-body">
-    	    		        <span>Password 찾기</span><span id="resultPwd"></span>
-    	    		    	<input id="mem_id" name="mem_id" class="form-control" type="text" placeholder="I D" required>
-		    				<input id="mem_email" name="mem_email" class="form-control" type="text" placeholder="E-Mail" required>
+    	    		        <h4><span id="pwdSpan">Password 찾기</span></h4>
+    	    		        <b><span id="resultPwd"></span></b>
+    	    		    	<input id="pwd_id" name="mem_id" class="form-control" type="text" placeholder="I D" required>
+		    				<input id="pwd_email" name="mem_email" class="form-control" type="text" placeholder="E-Mail" required     style="margin-bottom: 10.1%;">
             			</div>
-		    		    <div class="modal-footer">
+		    		    <div class="modal-footer" style="padding-top: 1.9%;">
                             <div>
                                 <button type="button" class="btn btn-primary btn-lg btn-block" id ="pwdBtn">Send</button>
                             </div>
@@ -185,11 +208,12 @@ text-align:center;
                     <!-- Begin | Lost ID Form -->
                     <form id="register-form" name="idForm" style="display:none;">
             		    <div class="modal-body">
-            		        <span>I D 찾기</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id = "resultId"></span>
+            		        <h4><span id="loginSpan">ID 찾기</span></h4>
+            		        <b><span id = "resultId"></span></b>
 		    				<input id="mem_nm" name = "mem_nm" class="form-control" type="text" placeholder="Username">
                             <input id="mem_email" name = "mem_email" class="form-control" type="text" placeholder="E-Mail">
             			</div>
-		    		    <div class="modal-footer">
+		    		    <div class="modal-footer" id="foot">
                             <div>
                                 <button type="button" id = "idBtn"class="btn btn-primary btn-lg btn-block">Send</button>
                             </div>
@@ -233,6 +257,8 @@ function login_go(){
        var returl=body.response.returl;
        if(error)
           get_msg(message);
+       	  $('#login-form #mem_id').val("");
+       	  $('#login-form #mem_pwd').val("");
        if(error==false){
           if(returl=='')
              returl = '<c:url value="/server/serverMain" />';
@@ -273,6 +299,11 @@ function login_go(){
 	}); 
  });
  
+ $('.btn-link').click(function(){
+	 $('#loginFail').empty();
+	 $('#resultPwd').empty();
+	 $('#resultId').empty();
+ });
  
  
 </script>
