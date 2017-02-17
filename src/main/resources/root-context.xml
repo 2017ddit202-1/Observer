@@ -3,16 +3,24 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:p="http://www.springframework.org/schema/p"
 	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:util="http://www.springframework.org/schema/util"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.3.xsd">
 
 	<!-- Root Context: defines shared resources visible to all other web components -->
-	<context:component-scan base-package="com.ddit" use-default-filters="false">
-		<context:include-filter type="annotation" expression="org.springframework.stereotype.Repository"/>
-		<context:include-filter type="annotation" expression="org.springframework.stereotype.Service"/>
-		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+	<context:component-scan base-package="com.ddit"
+		use-default-filters="false">
+		<context:include-filter type="annotation"
+			expression="org.springframework.stereotype.Repository" />
+		<context:include-filter type="annotation"
+			expression="org.springframework.stereotype.Service" />
+		<context:exclude-filter type="annotation"
+			expression="org.springframework.stereotype.Controller" />
 	</context:component-scan>
-	
+
+
+
 
 	<bean id="memberDao" class="com.ddit.ibatis.MemberDAO_iBatis"
 		p:client-ref="SqlMapClient" />
@@ -80,9 +88,25 @@
 	<bean id="cpuDAO" class="com.ddit.ibatis.CpuDAO_iBatis"
 		p:client-ref="SqlMapClient" />
 	<bean id="cpuService" class="com.ddit.service.CpuServiceImpl"
-		p:cpuDAO_iBatis-ref="cpuDAO" />		
-	
-	
+		p:cpuDAO_iBatis-ref="cpuDAO" />
+
+
+
+
+<!-- 
+	<bean id="test" class="com.ddit.controller.ServerController">
+		<property name="classMap">
+			<map>
+				<entry key="ip" value=""/>
+				<entry key="hostName" value="" />
+			</map>
+		</property>
+	</bean> -->
+
+	<util:map id="classMap" map-class="java.util.HashMap">
+				<entry key="ip" value=""/>
+				<entry key="hostName" value="" />
+	</util:map>
 
 
 </beans>

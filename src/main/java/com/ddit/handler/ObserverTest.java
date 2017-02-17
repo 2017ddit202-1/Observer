@@ -18,7 +18,7 @@ public class ObserverTest extends TextWebSocketHandler {
 
 	private Logger logger = LoggerFactory.getLogger(ObserverTest.class);
 	private List<WebSocketSession> connectsUsers;
-
+	String ipTest = "";
 	private Map<String, WebSocketSession> users = new ConcurrentHashMap<String, WebSocketSession>();
 
 	// 나중에 map으로 구성하여 키 밸류를 이용해야함
@@ -39,6 +39,7 @@ public class ObserverTest extends TextWebSocketHandler {
 	protected void handleTextMessage(WebSocketSession session,
 			TextMessage message) throws Exception {
 		logger.info(session.getId() + "님이 메시지 성공" + message.getPayload());
+		ipTest = message.getPayload();
 		System.out.println(session.getId()+"부리부리부리");
 		for (WebSocketSession websocketSession : connectsUsers) {
 			if (!session.getId().equals(websocketSession)) {
