@@ -44,9 +44,9 @@
 	<interceptors>
      
       <interceptor>
-         <mapping path="/**"/>
+         <mapping path="/server/**"/>
         <!--  컨트롤러 화면전환 무조껀 true -->
-         <exclude-mapping path="/server/**" />
+        
 
          <beans:bean id="handlerInterceptor" class="com.ddit.interceptor.ServerInterceptor" />
       </interceptor>
