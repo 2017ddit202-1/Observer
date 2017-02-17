@@ -1,42 +1,37 @@
 package com.ddit.controller;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.annotation.Resource;
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.apache.http.HttpEntity;
-import org.apache.http.client.methods.CloseableHttpResponse;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.CloseableHttpClient;
-import org.apache.http.impl.client.HttpClients;
-import org.apache.http.util.EntityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.context.request.RequestContextHolder;
-import org.springframework.web.context.request.ServletRequestAttributes;
 
 import com.ddit.service.AlertServiceImpl;
-import com.google.gson.Gson;
 
 @Controller
 @RequestMapping("/server")
 public class ServerController {
-	Map<String,String> map = new HashMap<String,String>();
-	static String  classip = null;
-	String classHost = null;
+	
+	
+	 Map<String,String> classMap = new LinkedHashMap<String,String>();
+	
+	 String  classip = "";
+	
+	String classHost = "";
+	
 	
 	@Autowired
 	private AlertServiceImpl alertService;
@@ -50,14 +45,14 @@ public class ServerController {
 			HttpServletResponse response, Model model, HttpSession session) {
 		String url = "server/serverMain";
 		List<String> iplist = new ArrayList<String>();
-		System.out.println("테스트중입니다. 파라미터 ip"+(String)request.getParameter("ip"));
-		System.out.println("테스트중입니다. 파라미터 hostname"+(String)request.getParameter("hostName"));
-		classip = (String)request.getParameter("ip");
-		classHost = (String)request.getParameter("hostName");
 		
+		/*classip = (String)session.getAttribute("ip");
+		classHost = (String)session.getAttribute("hostName");*/
+		classMap = (Map<String, String>) session.getAttribute("classMap"); 
 		
-		System.out.println(classip + "()()()()");
-		System.out.println(classHost + "()()()()()");
+		System.out.println(classMap.toString() +"()()()()()(");
+		
+		/////////
 		
 		String loginUser = (String) session.getAttribute("loginUser");
 		String userOK = null;
@@ -86,14 +81,11 @@ public class ServerController {
 			model.addAttribute("userOK", userOK);
 			model.addAttribute("column", column);
 		}
-
-	
 		
-		map.put("ip", classip);
-		map.put("host", classHost);
-		model.addAttribute("classip", classip);
-		model.addAttribute("classHost", classHost);
-		model.addAttribute("map", map);
+		
+		
+		model.addAttribute("map", classMap);
+		
 		
 		
 		return url;
