@@ -15,4 +15,6 @@ public class MemoryVO {
 	private int memory_seq;
 	private Date memory_date;
 	private String server_code;
+	private String memory_idle;
+	private String memory_pcnt;
 }
