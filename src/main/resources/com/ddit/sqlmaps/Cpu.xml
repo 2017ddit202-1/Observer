@@ -3,15 +3,15 @@
     "http://www.ibatis.com/dtd/sql-map-2.dtd">
     
     <sqlMap namespace="cpu">
+    <!-- 30분List -->
 	<select id="listAllCpu" resultClass="cpu">
 		select * from(select * from cpu order by cpu_date desc) where
 			<![CDATA[rownum<=30]]> order by cpu_date asc
 	</select>
 	
+	<!-- 1시간 List -->
 	<select id="ListAllCpuHo" resultClass="cpu">
 		select * from(select * from cpu order by cpu_date desc) where
 			<![CDATA[rownum<=35]]> order by cpu_date asc
 	</select>
-	
-	
 	</sqlMap>
