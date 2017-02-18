@@ -60,7 +60,7 @@ public class SuperAdminController {
 	}
 
 	// 권한요청승락
-	@RequestMapping(value = "/authorityAccept", method = RequestMethod.POST)
+	/*@RequestMapping(value = "/authorityAccept", method = RequestMethod.POST)
 	public String authorityAccept(HttpServletRequest request) {
 		String url = "redirect:/superAdmin/authorityList";
 
@@ -80,11 +80,11 @@ public class SuperAdminController {
 					
 
 					} else if (authority.equals("ROLE_ADMIN")) {
-					/*
+					
 					 * authorityService.userAuthority(chkbox[i]);//권한을 유저 변경하고,
 					 * authorityService.authorityDelete(chkbox[i]);
 					 * //authority테이블에서 삭제
-					 */
+					 
 					alertVO.setAl_id(chkbox[i]);
 					alertVO.setAl_authority("ROLE_USER");
 
@@ -98,7 +98,7 @@ public class SuperAdminController {
 
 		return url; // 승락을 누르면
 
-	}
+	}*/
 
 	
 	//권한 거절
