@@ -74,16 +74,28 @@
 		
 		document.formm.action = "<%=request.getContextPath()%>/test/authority";
 
-		var chklen = document.formm.mem_id.length; //폼의 전체길이
+		var chklen = document.formm.mem_id.length;
 		
+		if(chklen==undefined){
+			chklen=1;
+		}//폼의 전체길이
+		alert(chklen);
+		if(chklen != 1){
+
 		for(i=0; i<chklen; i++){
-			if(document.formm.mem_id[i].checked==true){ //체크한 값이 있으면
-				/* alert(mem_id[i].value); */
+			if(document.formm.mem_id[i].checked==true && chklen!=1){ //체크한 값이 있으면
+			 alert(mem_id[i].value); 
 				var message = {};
 				message.id = mem_id[i].value;  //->제이슨 형태로 {id: 체크한 곳의 아이디값}
 				wsocket.send(JSON.stringify(message));
 				// wsocket.send ==> 소켓 인터셉터 거쳐서 핸들러로 가는데..send가 있어야만 핸들러의 handleTextMessage()가 실행
 			}
+		}
+		}else if(chklen==1){
+			alert(document.formm.mem_id.value);
+			var message = {};
+			message.id = document.formm.mem_id.value;
+			wsocket.send(JSON.stringify(message));
 		}
 
 		document.formm.submit();
