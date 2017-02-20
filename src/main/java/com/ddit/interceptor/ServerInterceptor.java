@@ -45,8 +45,7 @@ public class ServerInterceptor extends HandlerInterceptorAdapter {
 		String cpu = request.getParameter("cpu");
 		String disk = request.getParameter("disk");
 		String memory = request.getParameter("memory");
-		
-		
+		String saveyn = request.getParameter("saveyn");
 		if(request.getParameter("ip") != null || request.getParameter("hostName") != null){
 			System.out.println("()()()()");
 			System.out.println( "request에 testIP ========"+(String)request.getParameter("testIp"));
@@ -58,6 +57,7 @@ public class ServerInterceptor extends HandlerInterceptorAdapter {
 			System.out.println(request.getMethod());
 			valueMap.put("hostName", hostName);
 			valueMap.put("cpu", cpu);
+			valueMap.put("saveyn", saveyn);
 			classMap.put(ip, valueMap);
 			System.out.println("()()())");
 			
