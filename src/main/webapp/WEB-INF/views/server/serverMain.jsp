@@ -14,6 +14,7 @@
 <script type="text/javascript">
 
 function addlist_go(){
+	/* alert('ghghgh'); */
 	document.formm.action = "<%=request.getContextPath()%>"	+ "/server/serverHandling";
 	document.formm.submit();
 }
@@ -88,7 +89,6 @@ function test_go(){
 <form id="formm" name="formm" method="post">
       <table border=1>
        		<tr>
-				<td>선택</td>
 				<td>ip</td>
 				<td>hostName</td>
 				<td>cpu</td>
@@ -97,10 +97,10 @@ function test_go(){
 
          <c:forEach items="${map}" var="i">
             <tr>
-               <td><input type="checkbox" name="mem_id" id="mem_id"/></td>
                 <td>  ${i.key }</td>
              	  <td>${i.value.hostName }</td>
              	  <td>${i.value.cpu }</td>
+             	  <input type = "hidden" id="currentip" name="currentip" value="${i.key }"/>
 					<td><input type="button" id="addlist" value="등록" onclick="addlist_go()"/></td>
              	  
                
