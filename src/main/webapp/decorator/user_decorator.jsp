@@ -72,6 +72,10 @@
       
        
                 <!-- /.dropdown -->
+                
+                     <sec:authorize access="isAuthenticated()">
+                           <span>${sessionScope.loginUser }님 어서오세요.</span>
+                        </sec:authorize>
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                         <i class="fa fa-bell fa-fw"></i> <i class="fa fa-caret-down"></i>
@@ -115,9 +119,9 @@
                     </a>
                     <!-- <ul class="dropdown-menu dropdown-user"> -->
                         <!-- <li class="divider"></li> -->
-                        <sec:authorize access="isAuthenticated()">
+                        <%-- <sec:authorize access="isAuthenticated()">
                            <span>${sessionScope.loginUser }님 어서오세요.</span>
-                        </sec:authorize>
+                        </sec:authorize> --%>
                         
                         
                         <sec:authorize access="hasRole('ROLE_SUPER')">
