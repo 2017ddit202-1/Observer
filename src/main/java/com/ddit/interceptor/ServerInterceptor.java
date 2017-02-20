@@ -18,7 +18,8 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 public class ServerInterceptor extends HandlerInterceptorAdapter {
-	static Map<String,String> classMap = new LinkedHashMap<String,String>();
+	static Map<String,Map> classMap = new LinkedHashMap<String,Map>();
+	static Map<String,String> valueMap = new HashMap<String, String>();
 	@Override
 	public boolean preHandle(HttpServletRequest request,
 			HttpServletResponse response, Object handler) throws Exception {
@@ -39,24 +40,35 @@ public class ServerInterceptor extends HandlerInterceptorAdapter {
 		CloseableHttpResponse httpResponse = null;
 		CloseableHttpClient httpclient = HttpClients.createDefault();
 		
-		String ip = (String)request.getParameter("ip"); 
+		String ip = (String)request.getParameter("testIp"); 
 		String hostName = (String)request.getParameter("hostName");
+		String cpu = request.getParameter("cpu");
+		String disk = request.getParameter("disk");
+		String memory = request.getParameter("memory");
 		
 		
 		if(request.getParameter("ip") != null || request.getParameter("hostName") != null){
 			System.out.println("()()()()");
+			System.out.println( "request에 testIP ========"+(String)request.getParameter("testIp"));
 			System.out.println((String)request.getParameter("ip"));
 			System.out.println((String)request.getParameter("hostName"));
-			System.out.println(ip);
-			System.out.println(hostName);
-			classMap.put(ip, hostName);
+			System.out.println((String)request.getParameter("cpu"));
+			System.out.println((String)request.getParameter("memory"));
+			System.out.println((String)request.getParameter("disk"));
+			System.out.println(request.getMethod());
+			valueMap.put("hostName", hostName);
+			valueMap.put("cpu", cpu);
+			classMap.put(ip, valueMap);
 			System.out.println("()()())");
 			
 		}
 		
 		System.out.println("classMap = "+classMap);
-		HttpSession session = request.getSession();
-		session.setAttribute("classMap", classMap);
+		request.setAttribute("testIp", ip);
+		request.setAttribute("classMap", classMap);
+		
+	/*	HttpSession session = request.getSession();
+		session.setAttribute("classMap", classMap);*/
 		
 		
 		
