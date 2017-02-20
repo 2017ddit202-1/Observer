@@ -46,57 +46,24 @@ position: absolute;
 top: 250px;
 left: 480px; 
 text-align:center;
+margin-left: 6%; 
 }
-
-
-
-
-
-
-
-.btn {
-    background-color: #2b52c6;
-    border: none;
-    color: white;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    cursor: pointer;
-    width: 150px;
-    height: 40px;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 .button {
   display: inline-block;
-  border-radius: 4px;
-  background-color: #2b52c6;
+  border-radius: 45px;
+  background-color: #395ece;
   border: none;
   color: #FFFFFF;
   text-align: center;
   font-size: 18px;
-  padding: 20px;
-  width: 200px;
+  padding: 1.5%;
+  width: 30%;
   transition: all 0.5s;
   cursor: pointer;
-  margin: 5px;
+  margin: 3%;
+  font-weight: bold;
 }
 
 .button span {
@@ -111,7 +78,7 @@ text-align:center;
   position: absolute;
   opacity: 0;
   top: 0;
-  right: -20px;
+/*   right: -20px; */
   transition: 0.5s;
 }
 
@@ -122,6 +89,10 @@ text-align:center;
 .button:hover span:after {
   opacity: 1;
   right: 0;
+}
+#btnDetail{
+	background-color:rgba(00,00,00,0.1);
+	border:1px solid white;
 }
 
 </style>      
@@ -134,62 +105,95 @@ text-align:center;
 
 <br><br><br><br>
     <!-- Header -->
-    <div class="intro-header">
-        <div class="container" id="carouselMain">
-         <div id="myCarousel" class="carousel slide" data-ride="carousel">
-            <!-- Indicators -->
-            <ol class="carousel-indicators">
-               <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-               <li data-target="#myCarousel" data-slide-to="1"></li>
-               <li data-target="#myCarousel" data-slide-to="2"></li>
-            </ol>
+	<div class="intro-header">
+		<div class="container" id="carouselMain">
+			<div id="myCarousel" class="carousel slide" data-ride="carousel">
+				<!-- Indicators -->
+				<ol class="carousel-indicators">
+					<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+					<li data-target="#myCarousel" data-slide-to="1"></li>
+					<li data-target="#myCarousel" data-slide-to="2"></li>
+				</ol>
 
-            <!-- Wrapper for slides -->
-            <div class="carousel-inner" role="listbox" style="height:670px;">
-               <div class="item active">
-               
-               
-               
-               <div class="image_text">
-                  <img src="<%=request.getContextPath()%>/resources/img/main1.png" alt="Chania" style="height:670px; width: 100%;">
-                   <div class="text_img">
-                   <p style="font-size: 70px; color: white; font-weight: bold">Monitoring makes easy</p><p style="font-size: 30px; color: white;">강력한 모니터링 툴 OBSERVER을 무료로 이용하세요!</p>
-                   <button type="button" class="btn">다운로드</button>
-                   <button class="button" style="vertical-align:middle"><span>다운로드 </span></button>
-                   </div>
-               </div>
-               
-               
-               
-               
-                  <img src="<%=request.getContextPath()%>/resources/img/main1.png" alt="Chania" style="height:670px; width: 100%;">
-               </div>
-               <div class="item">
-                  <img src="<%=request.getContextPath()%>/resources/img/main2.png" alt="Chania" style="height:670px; width: 100%;">
-               </div>
+				<!-- Wrapper for slides -->
+				<div class="carousel-inner" role="listbox" style="height: 670px;">
+					<div class="item active">
+						<div class="image_text">
+							<img src="<%=request.getContextPath()%>/resources/img/main1.png"
+								alt="Chania" style="height: 670px; width: 100%;">
+							<div class="text_img">
+								<p style="font-size: 70px; color: white; font-weight: bold">Monitoring
+									makes easy</p>
+								<p style="font-size: 26px; color: white;">강력한 모니터링 툴
+									OBSERVER을 무료로 이용하세요.</p>
+								<button class="button" style="vertical-align: middle">
+									<span>회원가입 </span>
+								</button>
+								<button class="button" id="btnDetail"
+									style="vertical-align: middle">
+									<span>자세히보기 </span>
+								</button>
+							</div>
+						</div>
+					</div>
+					<div class="item">
+						<div class="image_text">
+							<img src="<%=request.getContextPath()%>/resources/img/main2.png"
+								alt="Chania" style="height: 670px; width: 100%;">
+							<div class="text_img">
+								<p style="font-size: 70px; color: white; font-weight: bold">All-in-One
+									Monitoring</p>
+								<p style="font-size: 26px; color: white;">다양하고 혁신적인 모니터링 기능을
+									OBSERVER 로 사용할 수 있습니다.</p>
+								<button class="button" style="vertical-align: middle">
+									<span>다운로드 </span>
+								</button>
+								<button class="button" id="btnDetail"
+									style="vertical-align: middle">
+									<span>자세히보기 </span>
+								</button>
+							</div>
+						</div>
+					</div>
 
-               <div class="item">
-                  <img src="<%=request.getContextPath()%>/resources/img/main3.png" alt="Flower" style="height:670px; width: 100%;">
-               </div>
-            </div>
+					<div class="item">
+						<div class="image_text">
+							<img src="<%=request.getContextPath()%>/resources/img/main3.png"
+								alt="Chania" style="height: 670px; width: 100%;">
+							<div class="text_img">
+								<p style="font-size: 70px; color: white; font-weight: bold">OBSERVER
+									SMS</p>
+								<p style="font-size: 26px; color: white;">　　　다양한 관점의 분석을 통한
+									인사이트를 제공합니다.　　　</p>
+								<button class="button" style="vertical-align: middle">
+									<span>Menual 다운로드 </span>
+								</button>
+								<button class="button" id="btnDetail"
+									style="vertical-align: middle">
+									<span>자세히보기 </span>
+								</button>
+							</div>
+						</div>
+					</div>
+				</div>
 
-            <!-- Left and right controls -->
-            <a class="left carousel-control" href="#myCarousel" role="button"
-               data-slide="prev"> <span
-               class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-               <span class="sr-only">Previous</span>
-            </a> <a class="right carousel-control" href="#myCarousel" role="button"
-               data-slide="next"> <span
-               class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-               <span class="sr-only">Next</span>
-            </a>
-         </div>
+				<!-- Left and right controls -->
+				<a class="left carousel-control" href="#myCarousel" role="button"
+					data-slide="prev"> <span
+					class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+					<span class="sr-only">Previous</span>
+				</a> <a class="right carousel-control" href="#myCarousel" role="button"
+					data-slide="next"> <span
+					class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+					<span class="sr-only">Next</span>
+				</a>
+			</div>
 
-      </div>
-        <!-- /.container -->
+		</div>
+		<!-- /.container -->
 
-    </div>
-    <!-- /.intro-header -->
+	</div>
+	<!-- /.intro-header -->
 
 <br><br><br><br>
     <!-- Page Content -->
@@ -202,7 +206,7 @@ text-align:center;
                 <div class="col-lg-5 col-sm-6">
                     <hr class="section-heading-spacer">
                     <div class="clearfix"></div>
-                    <h2 class="section-heading">Monitoring made easy<br><br>강력한 모니터링 툴 옵져버를 무료로 이용하세요</h2><br>
+                    <h2 class="section-heading">Monitoring made easy<br><br>강력한 모니터링 툴 OBSERVER를 무료로 이용하세요.</h2><br>
                    <a href="<%=request.getContextPath() %>/join" class="btn btn-default btn-lg"><i class="fa fa-twitter fa-fw"></i> <span class="network-name">회원가입</span></a>
                      
                 </div>
@@ -225,7 +229,7 @@ text-align:center;
                 <div class="col-lg-5 col-lg-offset-1 col-sm-push-6  col-sm-6">
                     <hr class="section-heading-spacer">
                     <div class="clearfix"></div>
-                    <h2 class="section-heading">Observer SMS<br><br>다양한 관점의 분석을 통한 인사이트를 제공합니다.</h2><br>
+                    <h2 class="section-heading">OBSERVER SMS<br><br>다양한 관점의 분석을 통한 인사이트를 제공합니다.</h2><br>
                     <a href="<%=request.getContextPath() %>/detail" class="btn btn-default btn-lg"><i class="fa fa-twitter fa-fw"></i> <span class="network-name">자세히 보기</span></a>
                 </div>
                 <div class="col-lg-5 col-sm-pull-6  col-sm-6">
@@ -247,7 +251,7 @@ text-align:center;
                 <div class="col-lg-5 col-sm-6">
                     <hr class="section-heading-spacer">
                     <div class="clearfix"></div>
-                    <h2 class="section-heading">All-in-One모니터링<br><br>다양하고 혁신적인 모니터링 기능을 옵져버 하나로 사용할 수 있습니다</h2><br>
+                    <h2 class="section-heading">All-in-One모니터링<br><br>다양하고 혁신적인 모니터링 기능을 OBSERVER 로 사용할 수 있습니다.</h2><br>
                    <a href="file/installer" class="btn btn-default btn-lg"><i class="fa fa-twitter fa-fw"></i> <span class="network-name">다운로드</span></a>
                      
                 </div>
@@ -273,7 +277,7 @@ text-align:center;
                <hr class="section-heading-spacer">
                <div class="clearfix"></div>
                <h2 class="section-heading">
-                  Observer SMS<br>
+                  OBSERVER SMS<br>
                   <br>다양한 관점의 분석을 통한 인사이트를 제공합니다.
                </h2>
                <br> <a href="file/menu" class="btn btn-default btn-lg"><i
