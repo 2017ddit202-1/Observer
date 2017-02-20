@@ -246,6 +246,19 @@ public class MainController {
 		}
 		return resultEmail;
 	}
+	
+	
+	@RequestMapping("/mainDetail")
+	public String mainDetail(){
+		String url= "mainDetail";
+		return url;
+	}
+	
+	
+	
+	
+	
+	
 }
 
 
