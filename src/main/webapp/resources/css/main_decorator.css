@@ -1,0 +1,71 @@
+#modal1{
+/* background-color: #2b52c6; */
+color: white;
+font-family:고딕;
+font-size:15px;
+font-weight:bold;
+} 
+
+#modal1:hover{
+background-color: #8ba0e0;
+}
+#sign1{
+/* background-color: #000000; */
+color: white;
+font-family:고딕;
+font-size:15px;
+font-weight:bold;
+}
+#sign1:hover{
+background-color:#aeaeaf;
+}
+.topnav{
+width:100%;
+height: 8.5%;
+}
+}
+#mainTitle{
+margin-left:155%;
+}
+.navbar-right li{
+width:100px;
+height:83px;
+text-align:center;
+}
+ .navbar-right li a{
+	padding-top: 30%;
+    padding-bottom: 33%;
+}
+#mem_id , #mem_pwd , #pwd_id ,#pwd_email,#mem_nm,#mem_email{ 
+ 	width:100%; 
+ } 
+
+.img-rounded{
+width:25%;
+border-radius:10px;
+}
+#loginSpan{
+margin:auto auto auto 38%;
+}
+#pwdSpan{
+margin:auto auto auto 28%;
+}
+
+#mem_id, #mem_nm{
+margin-top:10%;
+margin-bottom:5%;
+}
+
+.modal-content{
+min-height: 400px;
+}
+#foot{
+	padding-top: 10.8%;
+}
+#register-form,#lost-form{
+	padding-top: 0.3px;
+}
+#pwd_id{
+	margin-top: 15.1%;
+    margin-bottom: 5%;
+}
