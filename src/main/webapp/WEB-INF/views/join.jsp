@@ -313,8 +313,7 @@ margin:1%;
          return;
       }
       var url = "idCheckForm?mem_id=" + document.formm.mem_id.value;
-      window
-            .open(url, "_blank_1",
+      window.open(url, "_blank_1",
                   "toolbar=no, menubar=no, scrollbars=yes, resizable=no, width=400, height=200");
 
    }
