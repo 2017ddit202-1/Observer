@@ -13,9 +13,9 @@
 	src="<%=request.getContextPath()%>/resources/js/sockjs-0.3.min.js"></script>
 <script type="text/javascript">
 
-function addlist_go(){
-	/* alert('ghghgh'); */
-	document.formm.action = "<%=request.getContextPath()%>"	+ "/server/serverHandling";
+function addlist_go(ip){
+	//alert("qqqqqq");
+	document.formm.action = "<%=request.getContextPath()%>"	+ "/server/serverHandling?currentIp="+ip;
 	document.formm.submit();
 }
 
@@ -100,8 +100,8 @@ function test_go(){
                 <td>  ${i.key }</td>
              	  <td>${i.value.hostName }</td>
              	  <td>${i.value.cpu }</td>
-             	  <input type = "hidden" id="currentip" name="currentip" value="${i.key }"/>
-					<td><input type="button" id="addlist" value="등록" onclick="addlist_go()"/></td>
+             	  <input type = "hidden" id="${i.key }" name="${i.key }" value="${i.key }"/>
+					<td><input type="button" id="addlist" value="등록" onclick="addlist_go('${i.key }')"/></td>
              	  
                
                </tr>

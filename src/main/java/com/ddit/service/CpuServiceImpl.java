@@ -15,7 +15,7 @@ public class CpuServiceImpl implements CpuService{
 
 	@Override
 	public int insertCpu(CpuVO cpuVO) throws SQLException {
-		// TODO Auto-generated method stub
+		cpuDAO_iBatis.insertCpu(cpuVO);
 		return 0;
 	}
 

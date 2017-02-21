@@ -3,38 +3,45 @@ package com.ddit.service;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import com.ddit.dao.MemberGroupDAO;
+import com.ddit.dao.ServerDAO;
 import com.ddit.dto.MemberGroupVO;
 
 public class MemberGroupServiceImpl implements MemberGroupService{
-
-	@Override
-	public int insertCpu(MemberGroupVO cpuVO) throws SQLException {
-		// TODO Auto-generated method stub
-		return 0;
+	
+	MemberGroupDAO memberGroupDAO;
+	public void setMemberGroupDAO(MemberGroupDAO memberGroupDAO) {
+		this.memberGroupDAO = memberGroupDAO;
 	}
 
 	@Override
-	public void updateCpu(MemberGroupVO cpuVO) throws SQLException {
+	public int insertMemberGroupVO(MemberGroupVO memberGroupVO)
+			throws SQLException {
+		memberGroupDAO.insertMemGroup(memberGroupVO);
+		return 0;
+	}
+	@Override
+	public void updateMemberGroupVO(MemberGroupVO MemberGroupVO)
+			throws SQLException {
 		// TODO Auto-generated method stub
 		
 	}
-
 	@Override
-	public String deleteCpu(String mg_lice) throws SQLException {
+	public String deleteMemberGroupVO(String mg_lice) throws SQLException {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
 	@Override
-	public MemberGroupVO selectCpu(String mg_lice) throws SQLException {
+	public MemberGroupVO selectMemberGroupVO(String mg_lice)
+			throws SQLException {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
 	@Override
-	public ArrayList<MemberGroupVO> listAllArticle() throws SQLException {
+	public ArrayList<MemberGroupVO> listAllMemberGroup() throws SQLException {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
+	
+	
 }

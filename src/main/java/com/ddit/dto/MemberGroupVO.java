@@ -10,7 +10,7 @@ import lombok.Data;
 public class MemberGroupVO {
 
 	private String mg_nm;
-	private String mg_loce;
+	private String mg_lice;
 	private Date mg_date;
 	private String mem_id;
 }

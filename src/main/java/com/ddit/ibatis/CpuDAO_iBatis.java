@@ -16,7 +16,7 @@ public class CpuDAO_iBatis implements CpuDAO{
 
 	@Override
 	public int insertCpu(CpuVO cpuVO) throws SQLException {
-		// TODO Auto-generated method stub
+		client.insert("insertCpuInfo",cpuVO);
 		return 0;
 	}
 

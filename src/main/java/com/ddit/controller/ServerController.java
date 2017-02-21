@@ -16,80 +16,117 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.ddit.dto.CpuVO;
+import com.ddit.dto.MemberGroupVO;
 import com.ddit.dto.MemberVO;
 import com.ddit.dto.ServerVO;
 import com.ddit.service.AlertServiceImpl;
+import com.ddit.service.CpuServiceImpl;
+import com.ddit.service.MemberGroupServiceImpl;
 import com.ddit.service.MemberServiceImpl;
+import com.ddit.service.ServerServiceImpl;
 
 @Controller
 @RequestMapping("/server")
 public class ServerController {
-	
-	
-	 Map<String,Map<String,String>> classMap = new LinkedHashMap<String,Map<String,String>>();
-	
-	 /*String  classip = "";
-	
-	String classHost = "";*/
-	
-	
+
+	Map<String, Map<String, String>> classMap = new LinkedHashMap<String, Map<String, String>>();
+
+	/*
+	 * String classip = "";
+	 * 
+	 * String classHost = "";
+	 */
+
 	@Autowired
 	private AlertServiceImpl alertService;
-	
-	
+
 	@Autowired
 	private MemberServiceImpl memberService;
+
+	@Autowired
+	private ServerServiceImpl serverService;
+
+	@Autowired
+	private MemberGroupServiceImpl memberGroupService;
+
+	@Autowired
+	private CpuServiceImpl cpuServiceImpl;
+	
+	
+	public void setCpuServiceImpl(CpuServiceImpl cpuServiceImpl) {
+		this.cpuServiceImpl = cpuServiceImpl;
+	}
+
+	public void setMemberService(MemberServiceImpl memberService) {
+		this.memberService = memberService;
+	}
+
+	public void setServerService(ServerServiceImpl serverService) {
+		this.serverService = serverService;
+	}
 
 	public void setAlertService(AlertServiceImpl alertService) {
 		this.alertService = alertService;
 	}
-
+	
 	/*
-	 * if문으로 ip로 
+	 * if문으로 ip로
 	 */
 	@RequestMapping(value = "/serverMain", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
 	public String test(HttpServletRequest request,
 			HttpServletResponse response, Model model, HttpSession session) {
 		String url = "server/serverMain";
-		String currentip = request.getParameter("testIp");
+		String currentIp = request.getParameter("testIp");
 		String saveyn = null;
 		List<String> iplist = new ArrayList<String>();
 		System.out.println("POST method");
-		classMap = (Map<String, Map<String, String>>) request.getAttribute("classMap"); 
-		System.out.println("dddddddd"+request.getAttribute("testIp"));
-		System.out.println(classMap.toString() +"()()()()()(");
-		System.out.println(classMap.toString() +"()()()()()(");
-		
-		Map<String,String> valueMap = classMap.get(currentip);
-		
-		//서버 table에서 currentip 로 셀렉해서 saveyn이 1이면
-		valueMap.put("saveyn","1");
-		classMap.put(currentip, valueMap);
-		
-		if(classMap.get(currentip).get("saveyn").equals("1")){
-			//cpu 테이블에 인설트
+		classMap = (Map<String, Map<String, String>>) request
+				.getAttribute("classMap");
+		System.out.println("dddddddd" + request.getAttribute("testIp"));
+		System.out.println(classMap.toString() + "()()()()()(");
+		System.out.println(classMap.toString() + "()()()()()(");
+
+		Map<String, String> valueMap = classMap.get(currentIp);
+
+		// 서버 table에서 currentip 로 셀렉해서 saveyn이 1이면
+		ServerVO serverVO = new ServerVO();
+		try {
+			serverVO = serverService.selectServerVO(currentIp);
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
 		}
-		 
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		/////////
-		
+		valueMap.put("saveyn", serverVO.getSaveyn());
+		classMap.put(currentIp, valueMap);
+
+		CpuVO cpuVO = new CpuVO();
+		if (serverVO.getSaveyn().equals("1")) {
+			// cpu 테이블에 인설트
+			
+			
+			System.out.println(classMap.get(currentIp).get("cpu_pcnt"));
+			cpuVO.setCpu_pcnt(classMap.get(currentIp).get("cpu_pcnt"));
+			cpuVO.setCpu_user_pcnt(classMap.get(currentIp).get("cpu_user_pcnt"));
+			cpuVO.setCpu_total_pcnt(classMap.get(currentIp).get("cpu_total_pcnt"));
+			cpuVO.setCpu_idle(classMap.get(currentIp).get("cpu_idle"));
+			cpuVO.setCpu_ip(currentIp);
+			cpuVO.setServer_code(serverVO.getServer_code());
+			try {
+				cpuServiceImpl.insertCpu(cpuVO);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		}
+
+		// ///////
+
 		String loginUser = (String) session.getAttribute("loginUser");
 		String userOK = null;
 		String column = "";
-		
+
 		try {
 			userOK = alertService.select_sessionID(loginUser); // alert테이블에 ID값이
 																// 존재하는지 select
@@ -113,13 +150,9 @@ public class ServerController {
 			model.addAttribute("userOK", userOK);
 			model.addAttribute("column", column);
 		}
-		
-		
-		
+
 		model.addAttribute("map", classMap);
-		
-		
-		
+
 		return url;
 
 	}
@@ -130,20 +163,23 @@ public class ServerController {
 		String url = "server/serverMain";
 		System.out.println("GET method");
 		List<String> iplist = new ArrayList<String>();
-		
-		/*classip = (String)session.getAttribute("ip");
-		classHost = (String)session.getAttribute("hostName");*/
-		classMap = (Map<String, Map<String, String>>) request.getAttribute("classMap"); 
+
+		/*
+		 * classip = (String)session.getAttribute("ip"); classHost =
+		 * (String)session.getAttribute("hostName");
+		 */
+		classMap = (Map<String, Map<String, String>>) request
+				.getAttribute("classMap");
 		System.out.println(request.getAttribute("classMap").toString());
-		System.out.println("dddddddd"+request.getAttribute("testIp"));
-		System.out.println(classMap.toString() +"()()()()()(");
-		
-		/////////
-		
+		System.out.println("dddddddd" + request.getAttribute("testIp"));
+		System.out.println(classMap.toString() + "()()()()()(");
+
+		// ///////
+
 		String loginUser = (String) session.getAttribute("loginUser");
 		String userOK = null;
 		String column = "";
-		
+
 		try {
 			userOK = alertService.select_sessionID(loginUser); // alert테이블에 ID값이
 																// 존재하는지 select
@@ -171,19 +207,24 @@ public class ServerController {
 		return url;
 
 	}
-	
-	 
-	
-	@RequestMapping(value="/serverHandling" ,method = RequestMethod.POST)
-	public String handling(HttpServletRequest request, HttpServletResponse response
-								, Model model, HttpSession session){
+
+	/**
+	 * Db쪽에 인설트 순서는 adminUser의 라이센스가 있는지 확인 있다면 currentip 서버에 해당 라이선스 키를 입력함 없다면
+	 * 새로 라이선스키를 받아(그룹생성) adminUser의 라이센스 변경후 currentip 서버에 해당 라이선스 키를 입력함
+	 */
+	static int a = 1;
+
+	@RequestMapping(value = "/serverHandling", method = RequestMethod.POST)
+	public String handling(HttpServletRequest request,
+			HttpServletResponse response, Model model, HttpSession session) {
 		String url = "redirect:/server/serverMain";
 		String adminUser = (String) session.getAttribute("loginUser");
 		MemberVO memberVO = null;
 		ServerVO serverVO = new ServerVO();
-			/*System.out.println(request.getParameter("currentip"));*/
-		String  currentip = request.getParameter("currentip");
-		Map<String,String> valueMap = classMap.get(currentip);
+		/* System.out.println(request.getParameter("currentip")); */
+
+		String currentIp = request.getParameter("currentIp");
+		Map<String, String> valueMap = classMap.get(currentIp);
 		valueMap.put("saveyn", "1");
 		try {
 			memberVO = memberService.selectMember(adminUser);
@@ -191,60 +232,76 @@ public class ServerController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		if(!(memberVO.getMem_group_lice().equals("1"))){
-			serverVO.setServer_ip(currentip);
+
+		if (!(memberVO.getMem_group_lice().equals("1"))) {
+
 			serverVO.setServer_host(valueMap.get("hostName"));
 			serverVO.setServer_os("widow7");
-			serverVO.setSaveyn(memberVO.getMem_group_lice());
+			serverVO.setServer_ip(currentIp);
+			serverVO.setSaveyn("1");
 			serverVO.setServer_id(adminUser);
-			
-		}else if(memberVO.getMem_group_lice().equals("1")){
-			//이부분에서 라이센스변경 후 서버테이블에 추가 
-				
-			
-		}
-		// Db쪽에 인설트 순서는 
-		// adminUser의 라이센스가 있는지 확인
-		// 있다면 currentip 서버에 해당 라이선스 키를 입력함
-		// 없다면 새로 라이선스키를 받아(그룹생성) adminUser의 라이센스 변경후 currentip 서버에 해당 라이선스 키를 입력함
-				
-			
-		
-			System.out.println("serverHandling");
-			System.out.println(classMap.toString());
-			
-			
-			
-			
-			
-			
-			//1차적으로 그룹생성/ ====> 서버테이블 등록 >>> 스위치 1
-			
-			
-			/*if(스위치 == 1){
-				insert
-			}else if(==0){
-				
+
+			serverVO.setServer_code("A" + a);
+			a++;
+			try {
+				// 인설트이전에 currentIp로 테이블에 중복확인하여 중복이면 update
+				String ip = null;
+				ip = serverService.selectServerIP(currentIp);
+				if (ip != null) {
+					// update
+					serverService.updateServer(serverVO);
+				} else if (ip == null) {
+					serverService.insertServer(serverVO);
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
-			
-			*/
-			
-			
-			
-			
-			
-			
+		} else if (memberVO.getMem_group_lice().equals("1")) {
+			// 이부분에서 라이센스변경 후 서버테이블에 추가
+			int result = (int) (Math.floor(Math.random() * 1000000) + 100000);
+			if (result > 1000000) {
+				result = result - 100000;
+			}
+			memberVO.setMem_group_lice(result + "");
+			// member테이블에 update하고 , member_group에 insert
+			MemberGroupVO memberGroupVO = new MemberGroupVO();
+			memberGroupVO.setMem_id(memberVO.getMem_id());
+			memberGroupVO.setMg_nm(memberVO.getMem_nm());
+			memberGroupVO.setMg_lice(memberVO.getMem_group_lice());
+
+			// serverVO 추가
+			serverVO.setServer_host(valueMap.get("hostName"));
+			serverVO.setServer_os("widow7");
+			serverVO.setServer_ip(currentIp);
+			serverVO.setSaveyn("1");
+			serverVO.setServer_id(adminUser);
+
+			serverVO.setServer_code("A" + a);
+			a++;
+			try {
+				// update
+				memberGroupService.insertMemberGroupVO(memberGroupVO);
+				memberService.updateMember(memberVO);
+				// 인설트이전에 currentIp로 테이블에 중복확인하여 중복이면 update
+				String ip = null;
+				ip = serverService.selectServerIP(currentIp);
+				if (ip != null) {
+					// update
+					serverService.updateServer(serverVO);
+				} else if (ip == null) {
+					serverService.insertServer(serverVO);
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+
+		System.out.println("serverHandling");
+		System.out.println(classMap.toString());
+
 		return url;
 	}
-	
-	
-	
-	 
+
 }
-
-
-
-
-
-

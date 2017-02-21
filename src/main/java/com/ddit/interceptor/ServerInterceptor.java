@@ -19,10 +19,10 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 public class ServerInterceptor extends HandlerInterceptorAdapter {
 	static Map<String,Map> classMap = new LinkedHashMap<String,Map>();
-	static Map<String,String> valueMap = new HashMap<String, String>();
 	@Override
 	public boolean preHandle(HttpServletRequest request,
 			HttpServletResponse response, Object handler) throws Exception {
+		Map<String,String> valueMap = new HashMap<String, String>();
 		System.out.println("()()()()()()()()()()()()()()()()()()()()()()");
 		System.out.println("Serverinterceptor 입니다.");
 		System.out.println("요청 클라이언트 ip");
@@ -42,22 +42,31 @@ public class ServerInterceptor extends HandlerInterceptorAdapter {
 		
 		String ip = (String)request.getParameter("testIp"); 
 		String hostName = (String)request.getParameter("hostName");
-		String cpu = request.getParameter("cpu");
-		String disk = request.getParameter("disk");
-		String memory = request.getParameter("memory");
 		String saveyn = request.getParameter("saveyn");
+		String cpu_pcnt = request.getParameter("cpu_pcnt");
+		String cpu_user_pcnt = request.getParameter("cpu_user_pcnt");
+		String cpu_total_pcnt = request.getParameter("cpu_total_pcnt");
+		String cpu_idle = request.getParameter("cpu_idle");
+		String cpu_ip = request.getParameter("cpu_ip");
+		
 		if(request.getParameter("ip") != null || request.getParameter("hostName") != null){
 			System.out.println("()()()()");
 			System.out.println( "request에 testIP ========"+(String)request.getParameter("testIp"));
 			System.out.println((String)request.getParameter("ip"));
 			System.out.println((String)request.getParameter("hostName"));
-			System.out.println((String)request.getParameter("cpu"));
-			System.out.println((String)request.getParameter("memory"));
-			System.out.println((String)request.getParameter("disk"));
+			System.out.println((String)request.getParameter("cpu_pcnt"));
+			System.out.println((String)request.getParameter("cpu_user_pcnt"));
 			System.out.println(request.getMethod());
+			
 			valueMap.put("hostName", hostName);
-			valueMap.put("cpu", cpu);
 			valueMap.put("saveyn", saveyn);
+			valueMap.put("cpu_pcnt", cpu_pcnt);
+			valueMap.put("cpu_user_pcnt", cpu_user_pcnt);
+			valueMap.put("cpu_total_pcnt", cpu_total_pcnt);
+			valueMap.put("cpu_idle", cpu_idle);
+			valueMap.put("cpu_ip", cpu_ip);
+			
+			
 			classMap.put(ip, valueMap);
 			System.out.println("()()())");
 			
