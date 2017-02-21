@@ -50,11 +50,10 @@
     <!-- Custom Fonts -->
     <link href="<%=request.getContextPath()%>/resources/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     
-    <!-- FunsionCharts -->
-    <script src="<%=request.getContextPath()%>/resources/js/fusioncharts.js"></script>
-   <script src="<%=request.getContextPath()%>/resources/js/fusioncharts.charts.js"></script>
-   <script src="<%=request.getContextPath()%>/resources/js/fusioncharts.theme.fint.js"></script>
-   <script src="<%=request.getContextPath()%>/resources/js/fusioncharts.widgets.js"></script>
+   	<!-- HighChart -->
+    <script src="<%=request.getContextPath()%>/resources/js/highcharts.js"></script>
+    <script src="<%=request.getContextPath()%>/resources/js/exporting.js"></script>
+    <script src="<%=request.getContextPath()%>/resources/js/grid-light.js"></script>
 
         <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
             <div class="navbar-header">
@@ -162,22 +161,22 @@
                                 </li>
                                 
                                 <li>
-                                    <a href="flot.html">-요약</a>
+                                    <a href="flot.html">&nbsp;- 요약</a>
                                 </li>
                                 <li>
-                                    <a href="<%=request.getContextPath()%>/cpu/cpuMain" onclick="cpuBtn()">-CPU</a>
+                                    <a href="<%=request.getContextPath()%>/cpu/cpuMain" onclick="cpuBtn()">&nbsp;- CPU</a>
                                 </li>
                                   <li>
-                                    <a href="morris.html">-메모리</a>
+                                    <a href="morris.html">&nbsp;- 메모리</a>
                                 </li>
                                   <li>
-                                    <a href="morris.html">-프로세스</a>
+                                    <a href="morris.html">&nbsp;- 프로세스</a>
                                 </li>
                                   <li>
-                                    <a href="morris.html">-디스크</a>
+                                    <a href="morris.html">&nbsp;- 디스크</a>
                                 </li>
                                   <li>
-                                    <a href="morris.html">-트래픽</a>
+                                    <a href="morris.html">&nbsp;- 트래픽</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
