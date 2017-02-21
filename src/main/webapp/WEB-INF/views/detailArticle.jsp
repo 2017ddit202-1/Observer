@@ -26,11 +26,10 @@ function go_articleDelete(){
 
 }
 function articleList_go(){
+	
 	document.formm.action = "<%=request.getContextPath()%>/article/articleView";
     document.formm.submit();
 }
-
-
 </script>
 
 	<br> <br>
@@ -41,12 +40,12 @@ function articleList_go(){
 	</div>
 	<br><br><br>
 	
-	
+<form id="formm" name="formm" method="post">
 <table style="width: 1000px;" align="center">
 
 <tr id="detail_table_tr">
 <td style="background-color: #e4eaf2; width: 90px; border-top: 1px solid #c3ced9;">제목</td>
-<td>${articleVO.noar_subject}</td>
+<td><input type="text" name="noar_subject" value="${articleVO.noar_subject}" style="border: none; outline: none; width: 500px; text-align:center;"></td>
 <td></td>
 <td></td>
 </tr>
@@ -57,9 +56,10 @@ function articleList_go(){
 <td><fmt:formatDate value="${articleVO.noar_date}" pattern="yyyy-MM-dd" /></td>
 
 
-<td style="background-color: #e4eaf2; width: 90px; border-top: 1px solid #c3ced9;">조회수</td>
-<td style="border-top: 1px solid #c3ced9;">${articleVO.noar_seq}</td>
+<td style="background-color: #e4eaf2; width: 90px; border-top: 1px solid #c3ced9;">번호</td>
+<td style="border-top: 1px solid #c3ced9;"><input type="text" name="noar_seq" value="${articleVO.noar_seq}" style="border: none; outline: none; width: 60px; text-align:center; "></td>
 </tr>
+
 
 </table>
 <div style="text-align: center;">
@@ -85,16 +85,16 @@ function articleList_go(){
  
  <div style="text-align: center;">
 	
-	 <button type="button" id="btnContactUs" onclick="articleList_go();">확인</button>
+	 <button type="button" id="btnContactUs" onclick="articleList_go();">목록</button>
 	
 	<sec:authorize access="hasRole('ROLE_SUPER')">
       <button type="button" id="btnContactUs" onclick="go_articleWrite()">수정하기</button>
-	<button type="button" id="btnContactUs" onclick="go_articleDelete()">삭제하기</button>
+	  <button type="button" id="btnContactUs" onclick="go_articleDelete()">삭제하기</button>
 
-       </sec:authorize>
+    </sec:authorize>
        </div>
 
-		<!-- </form> -->
+		</form> 
 	
 
 
