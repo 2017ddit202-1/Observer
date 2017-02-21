@@ -238,6 +238,10 @@ public class QnaController {
 	@ResponseBody
 	public String qAnswer(HttpSession session, Model model,
 			HttpServletRequest request, HttpServletResponse response) {
+		System.out.println(")()()()()()()()()()()()()");
+		System.out.println("qanswer");
+		System.out.println("()()()()()()()()()()()()()");
+		
 		try {
 			request.setCharacterEncoding("utf-8");
 		} catch (UnsupportedEncodingException e) {

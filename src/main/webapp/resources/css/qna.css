@@ -1,0 +1,40 @@
+#article_tr td {
+	background-color: #e4eaf2;
+	border-top: 1px solid #c3ced9;
+	border-bottom: 1px solid #ffffff;
+	height: 50px;
+	padding-top: 1.5%;
+	text-align: center;
+}
+
+.button {
+	background-color: #4CAF50; /* Green */
+	border: none;
+	color: white;
+	padding: 1px 32px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	margin: 4px 2px;
+	cursor: pointer;
+	height: 28px;
+}
+
+.button2 {
+	background-color: #337ab5;
+} 
+
+#div_index{
+	font-size: 30px; 
+	width: 1000px; 
+	text-align: left;
+		margin-left: 242px;
+}
+
+#article_write_tr{
+height: 50px;
+border-top: 1px solid #c3ced9;
+border-bottom: 1px solid #c3ced9;
+text-align: center;
+}

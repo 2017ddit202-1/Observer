@@ -74,11 +74,12 @@ function check() {
 
 <body>
 
-	<div
-		style="background-color: #337ab5; width: 100%; height: 50px; padding: 0;"></div>
-	<br>
-	<div style="font-size: 30px; width: 800px; text-align: center;">
-		<img src="<%=request.getContextPath()%>/resources/img/arrow.png">공지사항
+<br><br><br>
+
+	<div style="font-size: 30px; width: 1000px; text-align: left; margin-left: 242px;">
+		<img src="<%=request.getContextPath()%>/resources/img/arrow.png">공지사항 
+	<span style="font-size: 15px; color: #7c7c7c">각종 안내, 서비스 또는 OBSERVER의 소식 버전안내 등의 정보를 확인할 수 있습니다.</span>
+	
 	</div>
 
 	<br>
