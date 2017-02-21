@@ -66,7 +66,8 @@ public class QnaController {
 		String paging = null;
 		VWmemPosVO mempos = null;
 		//
-
+		
+		
 		try {
 			qnaList = qnaService.listqnalist(Integer.parseInt(tpage), key);
 			paging = qnaService.totalPage(Integer.parseInt(tpage), key);

@@ -14,61 +14,61 @@
    </div>
 
    <form class="form-horizontal" id="formm" name="formm" method="post">
-			<!-- Text input-->
-			<div class="form-group">
-				<div class="col-md-1">
-					<label class="col-md-4 control-label" for="id">ID</label>
-					<input id="fn" type="text" name="mem_id" 
-						class="form-control input-md">
-				</div>
-					<button class="btn btn-primary" onclick="idcheck()" id="check">중복 체크</button><br/>
-			</div>
-			<br>
+         <!-- Text input-->
+         <div class="form-group">
+            <div class="col-md-1">
+               <label class="col-md-4 control-label" for="id">ID</label>
+               <input id="fn" type="text" name="mem_id" 
+                  class="form-control input-md">
+            </div>
+               <button class="btn btn-primary" onclick="idcheck()" id="check">중복 체크</button><br/>
+         </div>
+         <br>
 
-			<div class="form-group">
-				<div class="col-md-1">
-					<label class="col-md-4 control-label" for="id">Name</label>
-					<input id="fn" type="text" name="mem_nm"
-						class="form-control input-md"><br/>
-				</div>
-			</div>
-			<!-- Text input-->
-			<div class="form-group">
-				<div class="col-md-2">
-					<label class="col-md-4 control-label" for="id">Password</label>
-					<input id="fn" name="mem_pwd" type="password"
-						 class="form-control input-md"><br/>
+         <div class="form-group">
+            <div class="col-md-1">
+               <label class="col-md-4 control-label" for="id">Name</label>
+               <input id="fn" type="text" name="mem_nm"
+                  class="form-control input-md"><br/>
+            </div>
+         </div>
+         <!-- Text input-->
+         <div class="form-group">
+            <div class="col-md-2">
+               <label class="col-md-4 control-label" for="id">Password</label>
+               <input id="fn" name="mem_pwd" type="password"
+                   class="form-control input-md"><br/>
 
-				</div>
-			</div>
-			
-				<div class="form-group">
-				<div class="col-md-2">
-					<label class="col-md-4 control-label" for="id">Password 확인</label>
-					<input id="fn" type="password" name="mem_pwd2"
-						 class="form-control input-md"><br/>
+            </div>
+         </div>
+         
+            <div class="form-group">
+            <div class="col-md-2">
+               <label class="col-md-4 control-label" for="id">Password 확인</label>
+               <input id="fn" type="password" name="mem_pwd2"
+                   class="form-control input-md"><br/>
 
-				</div>
-			</div>
+            </div>
+         </div>
 
-			<!-- Text input-->
-			<div class="form-group">
-				<div class="col-md-2">
-					<label class="col-md-4 control-label" for="id">E-Mail</label>
-					<input id="fn" type="text" name="mem_email"
-						class="form-control input-md"><br/>
+         <!-- Text input-->
+         <div class="form-group">
+            <div class="col-md-2">
+               <label class="col-md-4 control-label" for="id">E-Mail</label>
+               <input id="fn" type="text" name="mem_email"
+                  class="form-control input-md"><br/>
 
-				</div>
-			</div>
-			
-			<div class="form-group">
-				<div class="col-md-2">
-					<label class="col-md-4 control-label" for="id">Phone</label>
-					<input id="fn" type="text" name="mem_phone"
-						class="form-control input-md"><br/>
+            </div>
+         </div>
+         
+         <div class="form-group">
+            <div class="col-md-2">
+               <label class="col-md-4 control-label" for="id">Phone</label>
+               <input id="fn" type="text" name="mem_phone"
+                  class="form-control input-md"><br/>
 
-				</div>
-			</div>
+            </div>
+         </div>
       <div>
          <input type="checkbox" name="check1" value="동의">이용약관에
          동의합니다.(필수)
@@ -239,10 +239,10 @@
       </div>
       <br><br>
       <div style="margin-left:26%;">
-	  <button class="btn btn-primary" id="btnContactUs" onclick="go_save()">계정생성</button>
+     <button class="btn btn-primary" id="btnContactUs" onclick="go_save()">계정생성</button>
       <button class="btn btn-primary" id="btnContactUs" onclick="history.go(-1);" style="margin-left:8%">취소</button>
       </div>
    </form>
-	<br><br><br><br>
+   <br><br><br><br>
 
 </article>

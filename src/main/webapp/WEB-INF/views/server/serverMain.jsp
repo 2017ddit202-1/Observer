@@ -13,6 +13,11 @@
 	src="<%=request.getContextPath()%>/resources/js/sockjs-0.3.min.js"></script>
 <script type="text/javascript">
 
+function addlist_go(){
+	/* alert('ghghgh'); */
+	document.formm.action = "<%=request.getContextPath()%>"	+ "/server/serverHandling";
+	document.formm.submit();
+}
 
 
 
@@ -60,6 +65,9 @@ function test_go(){
 						});
 
 			});
+	
+	
+
 </script>
 
 </head>
@@ -67,7 +75,7 @@ function test_go(){
 	<h1>server page</h1>
 
 
-	<h1>채팅페이지</h1>
+	<h1>전체목록</h1>
 	<input type="text" id="message" value="${clientIP}" />
 	<input type="button" id="sendMessage" value="메세지보내기" />
 	
@@ -77,21 +85,24 @@ function test_go(){
 
 
 
-<input type="button" id="addlist" value="추가" />
 
 <form id="formm" name="formm" method="post">
       <table border=1>
        		<tr>
-				<td>추가</td>
 				<td>ip</td>
 				<td>hostName</td>
+				<td>cpu</td>
+				
 			</tr>
 
          <c:forEach items="${map}" var="i">
             <tr>
-               <td><input type="checkbox" name="mem_id" id="mem_id"/></td>
-                <td>  value="${i.key }"</td>
-             	  <td>${i.value }</td>
+                <td>  ${i.key }</td>
+             	  <td>${i.value.hostName }</td>
+             	  <td>${i.value.cpu }</td>
+             	  <input type = "hidden" id="currentip" name="currentip" value="${i.key }"/>
+					<td><input type="button" id="addlist" value="등록" onclick="addlist_go()"/></td>
+             	  
                
                </tr>
              </c:forEach>
@@ -109,8 +120,7 @@ function test_go(){
 	<!-- //////////////////////////////////////////////////////////////// -->
 
 	<%-- <a href="<%=request.getContextPath()%>/server/testForm">테스트get</a> --%>
-	<form name="formm" method="GET"></form>
-	<input type="button" value="testGET" onclick="test_go()" />
+	
 
 	<c:if test="${!empty userOK}">
 		<script>
