@@ -32,97 +32,24 @@
 
     <!-- Bootstrap Core JavaScript -->
     <script src="<%=request.getContextPath()%>/resources/js/bootstrap.min.js"></script>
-	
+    
+    <!-- Modal js -->
+	<script src="<%=request.getContextPath()%>/resources/js/modal.js"></script>
+	<!-- Main Decorator js -->
+	<script src="<%=request.getContextPath()%>/resources/js/main_decorator.js"></script>
 
     <!-- Bootstrap Core CSS -->
-    
 	<link href="<%=request.getContextPath()%>/resources/css/bootstrap.min.css"rel="stylesheet">
 	<link href="<%=request.getContextPath()%>/resources/css/modal.css"rel="stylesheet">
 	
+	<!-- Main Decorator CSS -->
+	<link href="<%=request.getContextPath()%>/resources/css/main_decorator.css"rel="stylesheet">
 
     <!-- Custom Fonts -->
     <link href="<%=request.getContextPath()%>/resources/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="<%=request.getContextPath()%>/resources/font-awesome/css/font-awesome.min.css"rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
     
-    <!-- Modal js -->
-	<script src="<%=request.getContextPath()%>/resources/js/modal.js"></script>
-    
-<style type="text/css">
-#modal1{
-/* background-color: #2b52c6; */
-color: white;
-font-family:고딕;
-font-size:15px;
-font-weight:bold;
-} 
-
-#modal1:hover{
-background-color: #8ba0e0;
-}
-#sign1{
-/* background-color: #000000; */
-color: white;
-font-family:고딕;
-font-size:15px;
-font-weight:bold;
-}
-#sign1:hover{
-background-color:#aeaeaf;
-}
-.topnav{
-width:100%;
-height: 8.5%;
-}
-}
-#mainTitle{
-margin-left:155%;
-}
-.navbar-right li{
-width:100px;
-height:83px;
-text-align:center;
-}
- .navbar-right li a{
-	padding-top: 30%;
-    padding-bottom: 33%;
-}
-#mem_id , #mem_pwd , #pwd_id ,#pwd_email,#mem_nm,#mem_email{ 
- 	width:100%; 
- } 
-
-.img-rounded{
-width:25%;
-border-radius:10px;
-}
-#loginSpan{
-margin:auto auto auto 38%;
-}
-#pwdSpan{
-margin:auto auto auto 28%;
-}
-
-#mem_id, #mem_nm{
-margin-top:10%;
-margin-bottom:5%;
-}
-
-.modal-content{
-min-height: 400px;
-}
-#foot{
-	padding-top: 10.8%;
-}
-#register-form,#lost-form{
-	padding-top: 0.3px;
-}
-#pwd_id{
-	margin-top: 15.1%;
-    margin-bottom: 5%;
-}
-</style>
-
-
  <!-- Navigation -->
     <nav class="navbar navbar-default navbar-fixed-top topnav" role="navigation">
         <div class="container topnav">
@@ -233,80 +160,5 @@ min-height: 400px;
 	</div>
     <!-- END # MODAL LOGIN -->
 	<decorator:body />
-
-   
 </head>
-<script>
-function get_msg(message){
-	jQuery('#loginFail').text(message);
-}
-
-
-function login_go(){
-    $.ajax({
-       url : 'loginList',
-       data : $('form input').serialize(),
-       type : 'POST',
-       dataType : 'json',
-       beforeSend : function(xhr){
-          xhr.setRequestHeader("Accept","application/json");
-       }
-    }).done(function(body){
-       var message=body.response.message;
-       var error=body.response.error;
-       var returl=body.response.returl;
-       if(error)
-          get_msg(message);
-       	  $('#login-form #mem_id').val("");
-       	  $('#login-form #mem_pwd').val("");
-       if(error==false){
-          if(returl=='')
-             returl = '<c:url value="/server/serverMain" />';
-          location.href = returl;
-       };
-    });
- };
- </script>
- <script>
- $(function(){
-	 $('#idBtn').click(function(){
-		 
-		$.ajax({
-			url : "<%=request.getContextPath()%>/idFind",
-			type : "post",
-			data : $('#register-form input').serialize(),
-			success:function(data){
-				$('#resultId').text(data);
-				$('#register-form #mem_nm').val("");
-				$('#register-form #mem_email').val("");
-			},
-		});
-	 });
- });
-
- $(function(){
-	$('#pwdBtn').click(function(){
-		$.ajax({
-			url : "<%=request.getContextPath()%>/pwdFind",
-			type : "post",
-			data : $('#lost-form input').serialize(),
-			success:function(resultEmail){
-				$('#resultPwd').text(resultEmail);
-				$('#lost-form #mem_id').val("");
-				$('#lost-form #mem_email').val("");
-			},
-		});
-	}); 
- });
- 
- $('.btn-link').click(function(){
-	 $('#loginFail').empty();
-	 $('#resultPwd').empty();
-	 $('#resultId').empty();
-	 $('#login-form #mem_id').val("");
-     $('#login-form #mem_pwd').val("");
- });
- 
- 
-</script>
 </html>

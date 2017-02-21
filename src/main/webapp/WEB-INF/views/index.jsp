@@ -8,101 +8,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+	<link href="<%=request.getContextPath()%>/resources/css/index.css"rel="stylesheet">
     <title>main</title>
-      
-<script>
-   function get_msg(message){
-      var move = '70px';
-      jQuery('#test').text(message);
-      
-   }
-   <c:if test="${error =='true'}">
-   jQuery(function(){
-      get_msg("로그인 실패하였습니다. 정확히 입력해주세요.")
-   });
-   </c:if>
-  
-
-</script>
-      
-<style>
-#carouselMain{
-width:100%;
-}
-.carousel-inner img{
-background-color: black;
-}
-#carouselMain{
-padding:0%;
-}
-
-
-.image_text{
-position: relative;
-float: none;
-}
-.image_text .text_img{
-position: absolute;
-top: 250px;
-left: 480px; 
-text-align:center;
-margin-left: 6%; 
-}
-
-
-.button {
-  display: inline-block;
-  border-radius: 45px;
-  background-color: #395ece;
-  border: none;
-  color: #FFFFFF;
-  text-align: center;
-  font-size: 18px;
-  padding: 1.5%;
-  width: 30%;
-  transition: all 0.5s;
-  cursor: pointer;
-  margin: 3%;
-  font-weight: bold;
-}
-
-.button span {
-  cursor: pointer;
-  display: inline-block;
-  position: relative;
-  transition: 0.5s;
-}
-
-.button span:after {
-  content: '\00bb';
-  position: absolute;
-  opacity: 0;
-  top: 0;
-/*   right: -20px; */
-  transition: 0.5s;
-}
-
-.button:hover span {
-  padding-right: 25px;
-}
-
-.button:hover span:after {
-  opacity: 1;
-  right: 0;
-}
-#btnDetail{
-	background-color:rgba(00,00,00,0.1);
-	border:1px solid white;
-}
-
-</style>      
-
 </head>
-
 <body>
-
-  
-
 <br><br><br><br>
     <!-- Header -->
 	<div class="intro-header">
@@ -293,6 +202,6 @@ margin-left: 6%;
 
       </div>
    </div>
-
+<br/><br/><br/><br/><br/><br/>
 </html>
 
