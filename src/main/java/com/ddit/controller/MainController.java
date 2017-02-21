@@ -159,7 +159,6 @@ public class MainController {
 	@RequestMapping(value = "/idFind", method = RequestMethod.POST ,produces="application/text;charset=utf8")
 	@ResponseBody
 	public String idFind(HttpServletRequest request, HttpServletResponse response , HttpSession session , Model model){
-		
 		String name = request.getParameter("mem_nm");
 		String email = request.getParameter("mem_email");
 		MemberVO member = null;

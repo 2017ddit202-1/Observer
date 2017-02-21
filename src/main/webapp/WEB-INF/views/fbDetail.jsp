@@ -5,9 +5,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
-
-
-
+<script src="<%=request.getContextPath()%>/resources/js/freeboard.js"></script>
 
 <article>
 	<br> <br>
@@ -34,35 +32,11 @@
 		<textarea rows="8" cols="65" name="fbAns_content" id ="fbAns_content"></textarea><br>
 			    <input type="hidden" name="fb_fbseq" value="${fb_seq}" id="fb_fbseq">
 						
-		<button type="button" id="btnFbAnswer" name="btnFbAnswer">댓글쓰기</button>
+		<button type="button" id="btnFbAnswer" class="btnFbAnwer"name="btnFbAnswer">댓글쓰기</button>
 		
 	</form>
 	
 </article>
-
-<script>
-
-function fbAnsWirteForm(){
-	document.formm.action = "<%=request.getContextPath()%>/fbAns/fbAnsWriteForm";
-	document.formm.submit();
-}
-
-
-function fbList_go(){
-	document.formm.action = "<%=request.getContextPath()%>/fb/fbList";
-	document.formm.submit();
-}
-
-function go_fbWrite(){
-	document.formm.action = "<%=request.getContextPath()%>/fb/fbUpdate";
-    document.formm.submit();
-}
-function go_fbDelete(){
-	document.formm.action = "<%=request.getContextPath()%>/fb/fbDelete";
-    document.formm.submit();
-}
-</script>
-
 <script>
 /* 댓글 리스트 */
 $(document).ready(function() {
@@ -264,5 +238,3 @@ $(document).ready(function() {
 	
 	
 </script>
-
-
