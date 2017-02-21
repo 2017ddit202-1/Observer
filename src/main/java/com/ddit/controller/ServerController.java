@@ -92,10 +92,14 @@ public class ServerController {
 		// 서버 table에서 currentip 로 셀렉해서 saveyn이 1이면
 		ServerVO serverVO = new ServerVO();
 		try {
-			serverVO = serverService.selectServerVO(currentIp);
+			serverVO = serverService.selectServerVO(currentIp);			
 		} catch (SQLException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
+		}
+		if(serverVO == null){
+			serverVO = new ServerVO();
+			serverVO.setSaveyn("0");	
 		}
 		valueMap.put("saveyn", serverVO.getSaveyn());
 		classMap.put(currentIp, valueMap);
