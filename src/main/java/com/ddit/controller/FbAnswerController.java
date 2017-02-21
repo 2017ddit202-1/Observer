@@ -34,7 +34,6 @@ public class FbAnswerController {
 	@RequestMapping(value="/fbAnsList",method=RequestMethod.POST,produces="application/json;charset=utf8")
 	@ResponseBody 
 	public List<FbanswerVO> fbAnsList(@RequestBody Map<String,Object> fbMap , Model model){
-		System.out.println("$$$$$$$$$$$$$$$$$");
 		List<FbanswerVO> fbAnsList = new ArrayList<FbanswerVO>();
 		String fb_fbseq = (String) fbMap.get("fb_fbseq");
 		try {

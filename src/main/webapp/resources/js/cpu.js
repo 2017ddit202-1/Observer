@@ -14,11 +14,11 @@ function LockF5(){
 
 /* 처음 로딩 시 tt 호출 후 setInterval */
 $(function(){
-//    inter = setInterval("tt()",5000);
+    inter = setInterval("tt()",5000);
    $("#loader").show();
    $("#btnZxc").hide();
    $("#btntotal").hide();
-   tt();
+//   tt();
    	
 });
 
@@ -29,7 +29,7 @@ function ss(){
     if(dd==0){
        dd++;
        ff();
-//        inter2 = setInterval("ff()",5000);
+        inter2 = setInterval("ff()",5000);
        dd = 0;
     }
 }

@@ -119,5 +119,11 @@ public class SuperAdminController {
 		return url;
 	}
 	
+	@RequestMapping(value="/reportList")
+	public String reportList(){
+		String url = "/superAdmin/reportList";
+		return url;
+	}
+	
 
 }
