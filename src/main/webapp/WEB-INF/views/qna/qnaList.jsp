@@ -5,16 +5,17 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="sec"
 	uri="http://www.springframework.org/security/tags"%>
-	<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title></title>
+
 
 <script>
 function writeForm_go(){
-	
 	document.formm.action = "<%=request.getContextPath()%>"	+ "/qna/qnaWriteForm";
 		document.formm.submit();
 	}
@@ -27,11 +28,12 @@ function writeForm_go(){
 	}
 	
 </script>
-
-
-
 </head>
 <body>
+
+
+<br>
+<br>
 	<h2>Q&A게시판</h2>
 
 	<form name="formm" method="post">
