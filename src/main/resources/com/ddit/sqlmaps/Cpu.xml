@@ -14,4 +14,13 @@
 		select * from(select * from cpu order by cpu_date desc) where
 			<![CDATA[rownum<=35]]> order by cpu_date asc
 	</select>
+	
+	<insert id = "insertCpuInfo" parameterClass="cpu">
+		insert into cpu(cpu_pcnt, cpu_user_pcnt, cpu_total_pcnt, cpu_idle,cpu_seq, server_code, cpu_ip)
+		values(#cpu_pcnt#,#cpu_user_pcnt#, #cpu_total_pcnt#, #cpu_idle#, cpu_seq.nextval, #server_code#, #cpu_ip#) 
+	</insert>
+	
+	<!-- insert into qna(qseq, qna_subject, qna_content, qna_id)
+   		values(qseq.nextval, #qna_subject#, #qna_content#, #qna_id#)
+	 -->
 	</sqlMap>

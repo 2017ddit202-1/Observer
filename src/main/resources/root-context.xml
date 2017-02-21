@@ -22,10 +22,10 @@
 
 
 
-	<bean id="memberDao" class="com.ddit.ibatis.MemberDAO_iBatis"
+	<bean id="memberDAO" class="com.ddit.ibatis.MemberDAO_iBatis"
 		p:client-ref="SqlMapClient" />
 	<bean id="memberService" class="com.ddit.service.MemberServiceImpl"
-		p:memberIbatis-ref="memberDao" />
+		p:memberIbatis-ref="memberDAO" />
 
 	<bean id="qnaDAO" class="com.ddit.ibatis.QnaDAO_iBatis">
 		<property name="client" ref="SqlMapClient" />
@@ -33,6 +33,23 @@
 	<bean id="QnaService" class="com.ddit.service.QnaServiceImpl">
 		<property name="qnaDAO" ref="qnaDAO" />
 	</bean>
+
+	<bean id="serverDAO" class="com.ddit.ibatis.ServerDAO_iBatis">
+		<property name="client" ref="SqlMapClient" />
+	</bean>
+	<bean id="serverService" class="com.ddit.service.ServerServiceImpl">
+		<property name="serverDAO" ref="serverDAO" />
+	</bean>
+
+	<bean id="memberGroupDAO" class="com.ddit.ibatis.MemberGroupDAO_iBatis">
+		<property name="client" ref="SqlMapClient" />
+	</bean>
+	<bean id="memberGroupService" class="com.ddit.service.MemberGroupServiceImpl">
+		<property name="memberGroupDAO" ref="memberGroupDAO" />
+	</bean>
+
+
+
 
 	<bean id="articleDAO" class="com.ddit.ibatis.Notice_ArticleDAO_iBatis">
 		<property name="client" ref="SqlMapClient" />

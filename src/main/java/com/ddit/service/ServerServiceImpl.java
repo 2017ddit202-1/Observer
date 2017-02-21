@@ -3,19 +3,35 @@ package com.ddit.service;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import com.ddit.dao.ServerDAO;
 import com.ddit.dto.ServerVO;
 
 public class ServerServiceImpl implements ServerService{
 
+	
+	
+	ServerDAO serverDAO;
+	public void setServerDAO(ServerDAO serverDAO){
+		this.serverDAO = serverDAO;
+	}
+	
+	
 	@Override
 	public int insertServer(ServerVO ServerVO) throws SQLException {
-		// TODO Auto-generated method stub
+		serverDAO.insertServer(ServerVO);
 		return 0;
 	}
+	
+	@Override
+	public String selectServerIP(String ip) throws SQLException {
+		String DBip = serverDAO.selectServerIP(ip);
+		return DBip;
+	}
+
 
 	@Override
 	public void updateServer(ServerVO ServerVO) throws SQLException {
-		// TODO Auto-generated method stub
+		serverDAO.updateServer(ServerVO);
 		
 	}
 
@@ -26,10 +42,11 @@ public class ServerServiceImpl implements ServerService{
 	}
 
 	@Override
-	public ServerVO selectServer(int server_ip, int server_code)
+	public ServerVO selectServerVO(String server_ip)
 			throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+		ServerVO serverVO = 
+		serverDAO.selectServerVO(server_ip);
+		return serverVO;
 	}
 
 	@Override

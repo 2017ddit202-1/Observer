@@ -5,18 +5,37 @@ import java.util.ArrayList;
 
 import com.ddit.dao.ServerDAO;
 import com.ddit.dto.ServerVO;
+import com.ibatis.sqlmap.client.SqlMapClient;
 
 public class ServerDAO_iBatis implements ServerDAO{
 
+
+
+	private SqlMapClient client;
+	public void setClient(SqlMapClient client){
+		this.client = client;
+	}
+	
+	
 	@Override
 	public int insertServer(ServerVO ServerVO) throws SQLException {
-		// TODO Auto-generated method stub
+		client.insert("insertServerVO", ServerVO);
 		return 0;
 	}
+	
+	@Override
+	public String selectServerIP(String ip) throws SQLException {
+		String DBip = null;
+		if(client.queryForObject("selectServerIP",ip)!=null){
+			DBip = (String) client.queryForObject("selectServerIP",ip);
+		}
+		return DBip;
+	}
+	
 
 	@Override
 	public void updateServer(ServerVO ServerVO) throws SQLException {
-		// TODO Auto-generated method stub
+		client.update("updateServerVO",ServerVO);
 		
 	}
 
@@ -27,10 +46,10 @@ public class ServerDAO_iBatis implements ServerDAO{
 	}
 
 	@Override
-	public ServerVO selectServer(int server_ip, int server_code)
+	public ServerVO selectServerVO(String server_ip)
 			throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+	 	ServerVO serverVO = (ServerVO)client.queryForObject("selectServerVO", server_ip);
+		return serverVO;
 	}
 
 	@Override

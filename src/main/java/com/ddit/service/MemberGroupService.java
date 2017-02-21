@@ -7,9 +7,9 @@ import com.ddit.dto.MemberGroupVO;
 
 public interface MemberGroupService {
 
-	public int insertCpu(MemberGroupVO cpuVO) throws SQLException;
-	public void updateCpu(MemberGroupVO cpuVO) throws SQLException;
-	public String deleteCpu(String mg_lice) throws SQLException;
-	MemberGroupVO selectCpu(String mg_lice) throws SQLException;
-	public ArrayList<MemberGroupVO> listAllArticle() throws SQLException;
+	public int insertMemberGroupVO(MemberGroupVO memberGroupVO) throws SQLException;
+	public void updateMemberGroupVO(MemberGroupVO MemberGroupVO) throws SQLException;
+	public String deleteMemberGroupVO(String mg_lice) throws SQLException;
+	MemberGroupVO selectMemberGroupVO(String mg_lice) throws SQLException;
+	public ArrayList<MemberGroupVO> listAllMemberGroup() throws SQLException;
 }

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
+    "http://www.ibatis.com/dtd/sql-map-2.dtd">
+ <sqlMap namespace="server">
+ 	<insert id="insertServerVO" parameterClass="server">
+ 		insert into server(server_host,server_os,server_ip,server_id,server_code,saveyn)
+ 			values(#server_host#, #server_os#, #server_ip#, #server_id#, #server_code#, #saveyn#)
+ 	</insert>
+ 	
+ 	<select id="selectServerIP" parameterClass="str" resultClass="str">
+ 		select server_ip from server where server_ip=#server_ip#
+ 	</select>
+ 	
+ 	<update id="updateServerVO" parameterClass="server">
+ 		update server 
+   		set server_host=#server_host#, server_os=#server_os#, server_ip=#server_ip#,server_id=#server_id#, server_code=#server_code#, saveyn=#saveyn#
+   		where server_ip=#server_ip#
+ 	</update>
+ 
+ 	<select id="selectServerVO" parameterClass="str" resultClass="server">
+ 		select * from server where server_ip=#server_ip#
+ 	</select>
+ 
+ </sqlMap>   
+ 
