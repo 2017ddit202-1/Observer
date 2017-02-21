@@ -228,7 +228,8 @@ public class NoticeArticleController {
 		Notice_ArticleVO articleVO = new Notice_ArticleVO();
 		articleVO.setNoar_subject(request.getParameter("noar_subject"));
 		articleVO.setNoar_content(request.getParameter("noar_content"));
-		articleVO.setNoar_seq(Integer.parseInt(request.getParameter("noar_seq")));
+		articleVO
+				.setNoar_seq(Integer.parseInt(request.getParameter("noar_seq")));
 
 		ArrayList<Notice_ArticleVO> articleList = null;
 		try {

@@ -12,4 +12,5 @@ public class ServerVO {
 	private String server_ip;
 	private String server_id;
 	private String server_code;
+	private String saveyn;
 }

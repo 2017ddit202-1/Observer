@@ -11,6 +11,12 @@
 #formm{
 	margin-top:-14%
 }
+#container, #container2, #container3{
+width:70%;
+}
+.highcharts-credits{
+display:none;
+}
 #btnZxc{
 	margin-left: 85%;
 }	
@@ -81,10 +87,11 @@ function LockF5(){
 
 /* 처음 로딩 시 tt 호출 후 setInterval */
 $(function(){
-   inter = setInterval("tt()",5000);
+//    inter = setInterval("tt()",5000);
    $("#loader").show();
    $("#btnZxc").hide();
    $("#btntotal").hide();
+   tt();
 });
 
 /* 1시간 버튼 클릭 시 */
@@ -94,7 +101,7 @@ function ss(){
     if(dd==0){
        dd++;
        ff();
-       inter2 = setInterval("ff()",5000);
+//        inter2 = setInterval("ff()",5000);
        dd = 0;
     }
 }
@@ -106,9 +113,9 @@ function ff(){
             type : "post",
             dataType : 'json',
             success : function(data) {
-               FusionCharts1(data);
-               FusionCharts2(data);
-               FusionCharts3(data);
+            	HighCharts(data);
+            	HighCharts2(data);
+            	HighCharts3(data);
             }
     })
 }
@@ -119,7 +126,7 @@ function vv(){
     if(pp==0){
        pp++;
        tt();
-       inter = setInterval("tt()",5000);
+//        inter = setInterval("tt()",5000);
        pp = 0;
     }
 }
@@ -134,83 +141,81 @@ function tt(){
     	  $("#loader").hide();
     	  $("#btnZxc").show();
     	  $("#btntotal").show();
-            FusionCharts1(data);
-            FusionCharts2(data);
-            FusionCharts3(data);
+            HighCharts(data);
+            HighCharts2(data);
+            HighCharts3(data);
       }
    });
 };
-
-/* 퓨전차트 cpu_total_pcnt */
-   function FusionCharts1(data) {
-         var total =[{value:data[0].cpu_total_pcnt}];
-         
-         var date = new Date(data[0].cpu_date);
-         var hours = date.getHours();
-         var minutes = date.getMinutes();
-         var FullDate = hours +":"+minutes;
-         var time = [{label:FullDate}];
-      
-         $.each(data,function(i){
-         if(i > 0){
-            total.push({value:data[i].cpu_total_pcnt});
-            
-            
-            date = new Date(data[i].cpu_date);
-            hours = date.getHours();
-            minutes = date.getMinutes();
-            FullDate = hours +":"+minutes;
-            
-            time.push({label:FullDate});
-         }
-      })
-      var visitChart = new FusionCharts({
-         type : 'zoomline',
-         renderAt : 'chart-container',
-         width : '600',
-         height : '400',
-         dataFormat : 'json',
-         dataSource : {
-            "chart" : {
-                   "numberSuffix": "%",
-                   "refreshinterval": "5",
-                   "yaxisminvalue": "0",
-                   "yaxismaxvalue": "100",
-                   "displayStartIndex":"0",
-                   "numdisplaysets": "0",
-                   "showValues": "0",
-                   "showRealTimeValue": "0",
-                   "theme": "fint"
-
+	/* CPU Total Pcnt */
+	function HighCharts(data){
+        var total =[window.parseInt(data[0].cpu_total_pcnt)];
+        var date = new Date(data[0].cpu_date);
+        var hours = date.getHours();
+        var minutes = date.getMinutes();
+        var FullDate = hours +":"+minutes;
+        var time = [FullDate];
+        
+     
+        $.each(data,function(i){
+        if(i > 0){
+           total.push(parseInt(data[i].cpu_total_pcnt));
+           
+           date = new Date(data[i].cpu_date);
+           hours = date.getHours();
+           minutes = date.getMinutes();
+           FullDate = hours +":"+minutes;
+           
+           time.push(FullDate);
+        }
+     });
+        Highcharts.chart('container', {
+            chart: {
+                type: 'spline'
             },
-            "categories" : [ {
-               "category" : time
-            } ],
-            "dataset" : [ {
-               "seriesname" : "CPU Total",
+            title: {
+                text: 'CPU Total'
+            },
+            xAxis: {
+            	categories:time
+            },
+            yAxis: {
+                title: {
+                    text: 'Percent (%)'
+                },
+                labels: {
+                    formatter: function () {
+                        return this.value + '%';
+                    }
+                }
+        },
+            series: [{
+                name: 'CPU TOTAL',
+                data: total
+            }],
+            navigation: {
+                menuItemStyle: {
+                    fontSize: '10px'
+                }
+            }
+        })
+	};
 
-               "data" : total
-            }, ]
-         }
-      });
-      visitChart.render();
-   };
-   
-
-   function FusionCharts2(data) {
-	   var pcnt =[{value:data[0].cpu_pcnt}];
-	   var userPcnt = [{value:data[0].cpu_cpu_user_pcnt}];
+	/* Cpu_pcnt , Cpu_pcnt */
+   function HighCharts2(data) {
+	   var pcnt =[window.parseInt(data[0].cpu_pcnt)];
+	   var userPcnt = [window.parseInt(data[0].cpu_user_pcnt)];
        
        var date = new Date(data[0].cpu_date);
        var hours = date.getHours();
        var minutes = date.getMinutes();
        var FullDate = hours +":"+minutes;
-       var time = [{label:FullDate}];
+       var time = [FullDate];
     
        $.each(data,function(i){
        if(i > 0){
-    	   pcnt.push({value:data[i].cpu_pcnt});
-    	   userPcnt.push({value:data[i].cpu_user_pcnt});
+    	   pcnt.push(parseInt(data[i].cpu_pcnt));
+    	   userPcnt.push(parseInt(data[i].cpu_user_pcnt));
           
           
           date = new Date(data[i].cpu_date);
@@ -218,100 +223,100 @@ function tt(){
           minutes = date.getMinutes();
           FullDate = hours +":"+minutes;
           
-          time.push({label:FullDate});
+          time.push(FullDate);
        }
     })
-    var visitChart = new FusionCharts({
-        type: 'zoomline',
-        renderAt: 'chart-container2',
-        width: '600',
-        height: '400',
-        dataFormat: 'json',
-        dataSource: {
-            "chart": {
-                "numberSuffix": "%",
-                "refreshinterval": "5",
-                "yaxisminvalue": "0",
-                "yaxismaxvalue": "100",
-                "usePlotGradientColor": "0",
-                "displayStartIndex":"0",
-                "theme": "fint"
-                
+    Highcharts.chart('container2', {
+        chart: {
+            type: 'area'
+        },
+        title: {
+            text: 'CPU 사용량'
+        },
+        xAxis: {
+        	categories:time
+        },
+        yAxis: {
+            title: {
+                text: 'Percent'
             },
-            "categories": [
-                {
-                    "category":  time
+            labels: {
+                formatter: function () {
+                    return this.value + '%';
                 }
-            ],
-            "dataset": [
-                {
-                    "seriesname": "CPU System",
-                    "data": pcnt
-                    
-                }, 
-                {
-                    "seriesname": "CPU User",
-                    "data": userPcnt
+            }
+        },
+        plotOptions: {
+            area: {
+                marker: {
+                    enabled: false,
+                    symbol: 'circle',
+                    radius: 2,
                 }
-            ]
-        }
+            }
+        },
+        series: [{
+            name: 'CPU USER',
+            data: userPcnt
+        }, {
+            name: 'CPU System',
+            data: pcnt
+        }]
     });
-    visitChart.render();
 };
-
-function FusionCharts3(data) {
-    var idle =[{value:data[0].cpu_idle}];
-    
-    var date = new Date(data[0].cpu_date);
-    var hours = date.getHours();
-    var minutes = date.getMinutes();
-    var FullDate = hours +":"+minutes;
-    var time = [{label:FullDate}];
- 
-    $.each(data,function(i){
-    if(i > 0){
-    	idle.push({value:data[i].cpu_idle});
-       
-       
-       date = new Date(data[i].cpu_date);
-       hours = date.getHours();
-       minutes = date.getMinutes();
-       FullDate = hours +":"+minutes;
-       
-       time.push({label:FullDate});
-    }
- })
- var visitChart = new FusionCharts({
-    type : 'zoomline',
-    renderAt : 'chart-container3',
-    width : '600',
-    height : '400',
-    dataFormat : 'json',
-    dataSource : {
-       "chart" : {
-              "numberSuffix": "%",
-              "refreshinterval": "5",
-              "yaxisminvalue": "0",
-              "yaxismaxvalue": "100",
-              "displayStartIndex":"0",
-              "numdisplaysets": "0",
-              "showValues": "0",
-              "showRealTimeValue": "0",
-              "theme": "fint"
-
-       },
-       "categories" : [ {
-          "category" : time
-       } ],
-       "dataset" : [ {
-          "seriesname" : "CPU Idle",
-
-          "data" : idle
-       }, ]
-    }
- });
- visitChart.render();
-};
+/* Cpu_Idle */
+function HighCharts3(data) {
+	  var idle =[window.parseInt(data[0].cpu_idle)];
+      var date = new Date(data[0].cpu_date);
+      var hours = date.getHours();
+      var minutes = date.getMinutes();
+      var FullDate = hours +":"+minutes;
+      var time = [FullDate];
+      
+   
+      $.each(data,function(i){
+      if(i > 0){
+    	  idle.push(parseInt(data[i].cpu_idle));
+         
+         date = new Date(data[i].cpu_date);
+         hours = date.getHours();
+         minutes = date.getMinutes();
+         FullDate = hours +":"+minutes;
+         
+         time.push(FullDate);
+      }
+   });
+      Highcharts.chart('container3', {
+          chart: {
+              type: 'spline'
+          },
+          title: {
+              text: 'CPU Idle'
+          },
+          xAxis: {
+          	categories:time
+          },
+          yAxis: {
+              title: {
+                  text: 'Percent (%)'
+              },
+              labels: {
+                  formatter: function () {
+                      return this.value + '%';
+                  }
+              }
+      },
+          series: [{
+              name: 'CPU Idle',
+              data: idle
+          }],
+          navigation: {
+              menuItemStyle: {
+                  fontSize: '10px'
+              }
+          }
+      })
+	};
    
    
    
@@ -335,18 +340,14 @@ function FusionCharts3(data) {
       <input type="button" id="btnZxc" class="btnZxc" value="30분" onclick="vv()">
       <input type="button" id="btntotal" class="btnAsd" value="1시간" onclick="ss()">
       <div id="loader"><img id="lodingImg" src="<%=request.getContextPath() %>/resources/img/loader.gif"></div>
-      
       <table border="1">
-        <tr><th><div id="chart-containerHeader">CPU Total</div></th></tr>
-      	<tr><td><div id="chart-container"></div></td></tr>
+      <tr><th><div id="container"></div></th></tr>
+      </table>
+      <table border="1">
+      <tr><th><div id="container2"></div></th></tr>
       </table>
        <table border="1">
-        <tr><th><div id="chart-containerHeader">CPU 사용량</div></th></tr>
-      	<tr><td><div id="chart-container2"></div></td></tr>
-      </table>
-       <table border="1">
-        <tr><th><div id="chart-containerHeader">CPU Idle</div></th></tr>
-      	<tr><td><div id="chart-container3"></div></td></tr>
+      <tr><th><div id="container3"></div></th></tr>
       </table>
    </form>
 </body>

@@ -20,7 +20,6 @@
 	<button type="button" id="btnContactUs" onclick="go_articleWrite()">확인</button>
 	<button type="button" id="btnContactUs" onclick="history.go(-1)">취소하기</button>
 	</form>
-	
 </article>
 
 

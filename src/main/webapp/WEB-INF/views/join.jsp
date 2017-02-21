@@ -3,25 +3,8 @@
 <%@ page trimDirectiveWhitespaces="true"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-
-<style>
-h3{
-margin-left: -18%;
-}
-
-#contract{
-    padding-top: 5%;
-    width: 30%;
-    margin-left: 44%;
-}
-
-article{
-background-color: whitesmoke;
-}
-label{
-margin:1%;
-}
-</style>
+<link href="<%=request.getContextPath()%>/resources/css/join.css"rel="stylesheet">
+<script src="<%=request.getContextPath()%>/resources/js/join.js"></script>
 
 <article>
    <br> <br>
@@ -31,61 +14,61 @@ margin:1%;
    </div>
 
    <form class="form-horizontal" id="formm" name="formm" method="post">
-			<!-- Text input-->
-			<div class="form-group">
-				<div class="col-md-1">
-					<label class="col-md-4 control-label" for="id">ID</label>
-					<input id="fn" type="text" name="mem_id" 
-						class="form-control input-md">
-				</div>
-					<button class="btn btn-primary" onclick="idcheck()" id="check">중복 체크</button><br/>
-			</div>
-			<br>
+         <!-- Text input-->
+         <div class="form-group">
+            <div class="col-md-1">
+               <label class="col-md-4 control-label" for="id">ID</label>
+               <input id="fn" type="text" name="mem_id" 
+                  class="form-control input-md">
+            </div>
+               <button class="btn btn-primary" onclick="idcheck()" id="check">중복 체크</button><br/>
+         </div>
+         <br>
 
-			<div class="form-group">
-				<div class="col-md-1">
-					<label class="col-md-4 control-label" for="id">Name</label>
-					<input id="fn" type="text" name="mem_nm"
-						class="form-control input-md"><br/>
-				</div>
-			</div>
-			<!-- Text input-->
-			<div class="form-group">
-				<div class="col-md-2">
-					<label class="col-md-4 control-label" for="id">Password</label>
-					<input id="fn" name="mem_pwd" type="password"
-						 class="form-control input-md"><br/>
+         <div class="form-group">
+            <div class="col-md-1">
+               <label class="col-md-4 control-label" for="id">Name</label>
+               <input id="fn" type="text" name="mem_nm"
+                  class="form-control input-md"><br/>
+            </div>
+         </div>
+         <!-- Text input-->
+         <div class="form-group">
+            <div class="col-md-2">
+               <label class="col-md-4 control-label" for="id">Password</label>
+               <input id="fn" name="mem_pwd" type="password"
+                   class="form-control input-md"><br/>
 
-				</div>
-			</div>
-			
-				<div class="form-group">
-				<div class="col-md-2">
-					<label class="col-md-4 control-label" for="id">Password 확인</label>
-					<input id="fn" type="password" name="mem_pwd2"
-						 class="form-control input-md"><br/>
+            </div>
+         </div>
+         
+            <div class="form-group">
+            <div class="col-md-2">
+               <label class="col-md-4 control-label" for="id">Password 확인</label>
+               <input id="fn" type="password" name="mem_pwd2"
+                   class="form-control input-md"><br/>
 
-				</div>
-			</div>
+            </div>
+         </div>
 
-			<!-- Text input-->
-			<div class="form-group">
-				<div class="col-md-2">
-					<label class="col-md-4 control-label" for="id">E-Mail</label>
-					<input id="fn" type="text" name="mem_email"
-						class="form-control input-md"><br/>
+         <!-- Text input-->
+         <div class="form-group">
+            <div class="col-md-2">
+               <label class="col-md-4 control-label" for="id">E-Mail</label>
+               <input id="fn" type="text" name="mem_email"
+                  class="form-control input-md"><br/>
 
-				</div>
-			</div>
-			
-			<div class="form-group">
-				<div class="col-md-2">
-					<label class="col-md-4 control-label" for="id">Phone</label>
-					<input id="fn" type="text" name="mem_phone"
-						class="form-control input-md"><br/>
+            </div>
+         </div>
+         
+         <div class="form-group">
+            <div class="col-md-2">
+               <label class="col-md-4 control-label" for="id">Phone</label>
+               <input id="fn" type="text" name="mem_phone"
+                  class="form-control input-md"><br/>
 
-				</div>
-			</div>
+            </div>
+         </div>
       <div>
          <input type="checkbox" name="check1" value="동의">이용약관에
          동의합니다.(필수)
@@ -256,72 +239,10 @@ margin:1%;
       </div>
       <br><br>
       <div style="margin-left:26%;">
-	  <button class="btn btn-primary" id="btnContactUs" onclick="go_save()">계정생성</button>
+     <button class="btn btn-primary" id="btnContactUs" onclick="go_save()">계정생성</button>
       <button class="btn btn-primary" id="btnContactUs" onclick="history.go(-1);" style="margin-left:8%">취소</button>
       </div>
    </form>
-	<br><br><br><br>
+   <br><br><br><br>
 
 </article>
-
-
-
-
-<!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
-
-
-
-
-
-
-<script>
-   function go_save() {
-   
-      if (document.formm.mem_id.value == "") {
-          alert("아이디를 입력하여 주세요.");
-          document.formm.mem_id.focus();
-        } else if (document.formm.mem_id.value != document.formm.mem_id.value) {
-          alert("중복확인을 클릭하여 주세요.");
-          document.formm.mem_id.focus();
-        } else if (document.formm.mem_pwd.value == "") {
-          alert("비밀번호를 입력해 주세요.");
-          document.formm.mem_pwd.focus();
-        } else if (document.formm.mem_pwd.value != document.formm.mem_pwd2.value) {
-          alert("비밀번호가 일치하지 않습니다.");
-          document.formm.mem_pwd2.focus();
-        } else if (document.formm.mem_nm.value == "") {
-          alert("이름을 입력해 주세요.");
-          document.formm.mem_name.focus();
-        } else if (document.formm.mem_email.value == "") {
-          alert("이메일을 입력해 주세요.");
-          document.formm.mem_email.focus();
-        } else if(document.formm.check1.checked==false ||document.formm.check2.checked==false){
-           alert("약관에 동의해 주세여.");
-        }
-        
-        else {
-          document.formm.action = "join";
-          document.formm.submit();
-        }
-      
-   }
-
-   function idcheck() {
-      if (document.formm.mem_id.value == "") {
-         alert('아이디를 입력하여 주십시오.');
-         document.formm.mem_id.focus();
-         return;
-      }
-      var url = "idCheckForm?mem_id=" + document.formm.mem_id.value;
-      window.open(url, "_blank_1",
-                  "toolbar=no, menubar=no, scrollbars=yes, resizable=no, width=400, height=200");
-
-   }
-</script>
-
-
-
-
-
-
-

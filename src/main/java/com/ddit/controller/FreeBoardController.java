@@ -38,11 +38,6 @@ public class FreeBoardController {
 	public void setMemberService(MemberServiceImpl memberService){
 		this.memberService = memberService;
 	}
-	@Autowired
-	private FbanswerServiceImpl fbAnsService;
-	public void setFbAnsService(FbanswerServiceImpl fbAnsService){
-		this.fbAnsService = fbAnsService;
-	}
 	
 	@RequestMapping("/fbList")
 	public String fbList(HttpServletRequest request , HttpSession session , Model model){

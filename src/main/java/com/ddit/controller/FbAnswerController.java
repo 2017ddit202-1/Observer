@@ -31,19 +31,10 @@ public class FbAnswerController {
 		this.fbanswerService = fbanswerService;
 	}
 	
-//	@RequestMapping("/fbAnsWriteForm")
-//	public String fbAnsWriteForm(HttpSession session , HttpServletRequest request , Model model){
-//		String url = "/fbAnsWriteForm";
-//		String id = (String) session.getAttribute("loginUser");
-//		String fb_seq = request.getParameter("fb_seq");
-//		
-//		model.addAttribute("fb_seq",fb_seq);
-//		return url;
-//	}
-	
 	@RequestMapping(value="/fbAnsList",method=RequestMethod.POST,produces="application/json;charset=utf8")
 	@ResponseBody 
 	public List<FbanswerVO> fbAnsList(@RequestBody Map<String,Object> fbMap , Model model){
+		System.out.println("$$$$$$$$$$$$$$$$$");
 		List<FbanswerVO> fbAnsList = new ArrayList<FbanswerVO>();
 		String fb_fbseq = (String) fbMap.get("fb_fbseq");
 		try {
