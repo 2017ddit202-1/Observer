@@ -19,6 +19,7 @@ $(function(){
    $("#btnZxc").hide();
    $("#btntotal").hide();
    tt();
+   	
 });
 
 /* 1시간 버튼 클릭 시 */
@@ -53,7 +54,7 @@ function vv(){
     if(pp==0){
        pp++;
        tt();
-//        inter = setInterval("tt()",5000);
+        inter = setInterval("tt()",5000);
        pp = 0;
     }
 }
@@ -98,13 +99,25 @@ function tt(){
      });
         Highcharts.chart('container', {
             chart: {
-                type: 'spline'
+                type: 'spline',
+                height:400,
+                width:1000,
+                borderColor: '#EBBA95',
+                borderRadius: 20,
+                borderWidth: 5
             },
             title: {
                 text: 'CPU Total'
             },
             xAxis: {
-            	categories:time
+            	categories:time,
+            	gridLineColor:'#ffffff',
+            	tickLength: 10,
+            	tickInterval: 4,
+            	  labels: {
+                      rotation: 0,
+                      align: 'center'
+            	  }
             },
             yAxis: {
                 title: {
@@ -114,7 +127,8 @@ function tt(){
                     formatter: function () {
                         return this.value + '%';
                     }
-                }
+                },
+                minorGridLineColor:'#ffffff'
         },
             series: [{
                 name: 'CPU TOTAL',
@@ -122,7 +136,7 @@ function tt(){
             }],
             navigation: {
                 menuItemStyle: {
-                    fontSize: '10px'
+                    fontSize: '15px'
                 }
             }
         })
@@ -155,13 +169,25 @@ function tt(){
     })
     Highcharts.chart('container2', {
         chart: {
-            type: 'area'
+            type: 'area',
+            height:400,
+            width:1000,
+            borderColor: '#EBBA95',
+            borderRadius: 20,
+            borderWidth: 5
         },
         title: {
             text: 'CPU 사용량'
         },
         xAxis: {
-        	categories:time
+        	categories:time,
+        	gridLineColor:'#ffffff',
+        	tickLength: 10,
+        	tickInterval: 4,
+      	  	labels: {
+                rotation: 0,
+                align: 'center'
+      	  }
         },
         yAxis: {
             title: {
@@ -171,7 +197,8 @@ function tt(){
                 formatter: function () {
                     return this.value + '%';
                 }
-            }
+            },
+            minorGridLineColor:'#ffffff'
         },
         plotOptions: {
             area: {
@@ -215,13 +242,25 @@ function HighCharts3(data) {
    });
       Highcharts.chart('container3', {
           chart: {
-              type: 'spline'
+              type: 'spline',
+              height:400,
+              width:1000,
+              borderColor: '#EBBA95',
+              borderRadius: 20,
+              borderWidth: 5
           },
           title: {
               text: 'CPU Idle'
           },
           xAxis: {
-          	categories:time
+          	categories:time,
+          	gridLineColor:'#ffffff',
+        	tickLength: 10,
+        	tickInterval: 4,
+      	  	labels: {
+                rotation: 0,
+                align: 'center'
+      	  }
           },
           yAxis: {
               title: {
@@ -231,7 +270,8 @@ function HighCharts3(data) {
                   formatter: function () {
                       return this.value + '%';
                   }
-              }
+              },
+              minorGridLineColor:'#ffffff'
       },
           series: [{
               name: 'CPU Idle',

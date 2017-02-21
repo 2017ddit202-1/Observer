@@ -17,15 +17,11 @@
       <input type="button" id="btnZxc" class="btnZxc" value="30분" onclick="vv()">
       <input type="button" id="btntotal" class="btnAsd" value="1시간" onclick="ss()">
       <div id="loader"><img id="lodingImg" src="<%=request.getContextPath() %>/resources/img/loader.gif"></div>
-      <table border="1">
-      <tr><th><div id="container"></div></th></tr>
-      </table>
-      <table border="1">
-      <tr><th><div id="container2"></div></th></tr>
-      </table>
-       <table border="1">
-      <tr><th><div id="container3"></div></th></tr>
-      </table>
+      
+     <div id="container"></div>
+     <div id="container2"></div>
+     <div id="container3"></div>
+     
    </form>
 </body>
 </html>
