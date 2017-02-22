@@ -21,12 +21,14 @@ import com.ddit.dto.MemberGroupVO;
 import com.ddit.dto.MemberVO;
 import com.ddit.dto.MemoryVO;
 import com.ddit.dto.ServerVO;
+import com.ddit.dto.VWmemPosVO;
 import com.ddit.service.AlertServiceImpl;
 import com.ddit.service.CpuServiceImpl;
 import com.ddit.service.MemberGroupServiceImpl;
 import com.ddit.service.MemberServiceImpl;
 import com.ddit.service.MemoryServiceImpl;
 import com.ddit.service.ServerServiceImpl;
+import com.ddit.service.VWmemPosServiceImpl;
 
 @Controller
 @RequestMapping("/server")
@@ -58,8 +60,16 @@ public class ServerController {
 	@Autowired
 	private MemoryServiceImpl memoryServiceImpl;
 	
+	@Autowired
+	private VWmemPosServiceImpl vWmemPosServiceImpl;
 	
 	
+	
+	
+	public void setvWmemPosserviceImpl(VWmemPosServiceImpl vWmemPosServiceImpl) {
+		this.vWmemPosServiceImpl = vWmemPosServiceImpl;
+	}
+
 	public void setMemoryServiceImpl(MemoryServiceImpl memoryServiceImpl) {
 		this.memoryServiceImpl = memoryServiceImpl;
 	}
@@ -80,9 +90,7 @@ public class ServerController {
 		this.alertService = alertService;
 	}
 	
-	/*
-	 * if문으로 ip로
-	 */
+	
 	@RequestMapping(value = "/serverMain", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
 	public String test(HttpServletRequest request,
 			HttpServletResponse response, Model model, HttpSession session) {

@@ -20,7 +20,6 @@ public class VWmemPosServiceImpl implements VWmemposService{
 	@Override
 	public VWmemPosVO memposVO(String id) throws SQLException {
 		VWmemPosVO memposVO =  vWmemPos_iBatis.memposVO(id);
-		System.out.println("()()SERVICE()()");
 		return memposVO;
 	}
 
