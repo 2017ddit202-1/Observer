@@ -48,7 +48,13 @@
 		<property name="memberGroupDAO" ref="memberGroupDAO" />
 	</bean>
 
-
+	<bean id="memoryDAO" class="com.ddit.ibatis.MemoryDAO_iBatis">
+		<property name="client" ref="SqlMapClient" />
+	</bean>
+	<bean id="memoryService" class="com.ddit.service.MemoryServiceImpl">
+		<property name="memoryDAO_iBatis" ref="memoryDAO" />
+	</bean>
+	
 
 
 	<bean id="articleDAO" class="com.ddit.ibatis.Notice_ArticleDAO_iBatis">

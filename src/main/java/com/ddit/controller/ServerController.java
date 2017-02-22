@@ -19,11 +19,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.ddit.dto.CpuVO;
 import com.ddit.dto.MemberGroupVO;
 import com.ddit.dto.MemberVO;
+import com.ddit.dto.MemoryVO;
 import com.ddit.dto.ServerVO;
 import com.ddit.service.AlertServiceImpl;
 import com.ddit.service.CpuServiceImpl;
 import com.ddit.service.MemberGroupServiceImpl;
 import com.ddit.service.MemberServiceImpl;
+import com.ddit.service.MemoryServiceImpl;
 import com.ddit.service.ServerServiceImpl;
 
 @Controller
@@ -53,7 +55,15 @@ public class ServerController {
 	@Autowired
 	private CpuServiceImpl cpuServiceImpl;
 	
+	@Autowired
+	private MemoryServiceImpl memoryServiceImpl;
 	
+	
+	
+	public void setMemoryServiceImpl(MemoryServiceImpl memoryServiceImpl) {
+		this.memoryServiceImpl = memoryServiceImpl;
+	}
+
 	public void setCpuServiceImpl(CpuServiceImpl cpuServiceImpl) {
 		this.cpuServiceImpl = cpuServiceImpl;
 	}
@@ -105,25 +115,35 @@ public class ServerController {
 		classMap.put(currentIp, valueMap);
 
 		CpuVO cpuVO = new CpuVO();
+		MemoryVO memoryVO = new MemoryVO();
+		
 		if (serverVO.getSaveyn().equals("1")) {
 			// cpu 테이블에 인설트
-			
-			
-			System.out.println(classMap.get(currentIp).get("cpu_pcnt"));
 			cpuVO.setCpu_pcnt(classMap.get(currentIp).get("cpu_pcnt"));
 			cpuVO.setCpu_user_pcnt(classMap.get(currentIp).get("cpu_user_pcnt"));
 			cpuVO.setCpu_total_pcnt(classMap.get(currentIp).get("cpu_total_pcnt"));
 			cpuVO.setCpu_idle(classMap.get(currentIp).get("cpu_idle"));
 			cpuVO.setCpu_ip(currentIp);
 			cpuVO.setServer_code(serverVO.getServer_code());
+			
+			memoryVO.setMemory_ip(currentIp);
+			memoryVO.setMemory_total(classMap.get(currentIp).get("memory_total"));
+			memoryVO.setMemory_using(classMap.get(currentIp).get("memory_using"));
+			memoryVO.setMemory_idle(classMap.get(currentIp).get("memory_idle"));
+			memoryVO.setMemory_total_used(classMap.get(currentIp).get("memory_total_used"));
+			memoryVO.setServer_code(serverVO.getServer_code());
+			
+			
 			try {
 				cpuServiceImpl.insertCpu(cpuVO);
+				memoryServiceImpl.insertMemory(memoryVO);
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			
 		}
+		
 
 		// ///////
 
@@ -206,7 +226,9 @@ public class ServerController {
 
 			model.addAttribute("userOK", userOK);
 			model.addAttribute("column", column);
+			
 		}
+		
 		model.addAttribute("map", classMap);
 		return url;
 
@@ -240,10 +262,12 @@ public class ServerController {
 		if (!(memberVO.getMem_group_lice().equals("1"))) {
 
 			serverVO.setServer_host(valueMap.get("hostName"));
-			serverVO.setServer_os("widow7");
+			serverVO.setServer_os_version(valueMap.get("os_version"));
 			serverVO.setServer_ip(currentIp);
 			serverVO.setSaveyn("1");
 			serverVO.setServer_id(adminUser);
+			serverVO.setServer_os_name(valueMap.get("os_name"));
+			serverVO.setServer_os_support("ossupport");
 
 			serverVO.setServer_code("A" + a);
 			a++;
@@ -276,7 +300,7 @@ public class ServerController {
 
 			// serverVO 추가
 			serverVO.setServer_host(valueMap.get("hostName"));
-			serverVO.setServer_os("widow7");
+			serverVO.setServer_os_version("widow7");
 			serverVO.setServer_ip(currentIp);
 			serverVO.setSaveyn("1");
 			serverVO.setServer_id(adminUser);

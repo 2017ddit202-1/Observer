@@ -91,7 +91,10 @@ function test_go(){
        		<tr>
 				<td>ip</td>
 				<td>hostName</td>
-				<td>cpu</td>
+				<td>OS 버전</td>
+				<td>OS 종류</td>
+				
+				
 				
 			</tr>
 
@@ -99,7 +102,8 @@ function test_go(){
             <tr>
                 <td>  ${i.key }</td>
              	  <td>${i.value.hostName }</td>
-             	  <td>${i.value.cpu }</td>
+             	  <td>${i.value.os_version }</td>
+             	  <td>${i.value.os_name }</td>
              	  <input type = "hidden" id="${i.key }" name="${i.key }" value="${i.key }"/>
 					<td><input type="button" id="addlist" value="등록" onclick="addlist_go('${i.key }')"/></td>
              	  

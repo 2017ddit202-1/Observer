@@ -7,10 +7,10 @@ import com.ddit.dto.MemoryVO;
 
 public interface MemoryService {
 	
-	public int insertCpu(MemoryVO cpuVO) throws SQLException;
-	public void updateCpu(MemoryVO cpuVO) throws SQLException;
-	public int deleteCpu(int memory_seq) throws SQLException;
-	MemoryVO selectCpu(int memory_seq) throws SQLException;
-	public ArrayList<MemoryVO> listAllArticle() throws SQLException;
+	public int insertMemory(MemoryVO memoryVO) throws SQLException;
+	public void updateMemory(MemoryVO memoryVO) throws SQLException;
+	public int deleteMemory(int memory_seq) throws SQLException;
+	MemoryVO selectMemory(int memory_seq) throws SQLException;
+	public ArrayList<MemoryVO> listAllMemory() throws SQLException;
 }
 
