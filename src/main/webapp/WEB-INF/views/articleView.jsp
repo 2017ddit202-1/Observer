@@ -51,7 +51,12 @@
 .button2 {
 	background-color: #337ab5;
 } 
-
+#articleTable tr:hover{
+background-color: #337ab5;
+}
+#paging:hover{
+background-color: white;
+}
 </style>
 
 <script>
@@ -163,7 +168,7 @@ function check() {
 							</tr>
 						</c:forEach>
 						<tr>
-							<td colspan="6" style="text-align: center;">${paging}</td>
+							<td id="paging" colspan="6" style="text-align: center;">${paging}</td>
 						</tr>
 					</c:otherwise>
 
