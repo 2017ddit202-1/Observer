@@ -8,6 +8,10 @@ import java.util.Map;
 import com.ddit.dto.Notice_ArticleVO;
 
 public interface Notice_ArticleService {
+	
+	public void iconUpdate(int noar_seq)throws SQLException;
+	public void iconUpdate_n(int noar_seq)throws SQLException;
+	
 	public ArrayList<Notice_ArticleVO> listAllArticle() throws SQLException;
 	public int insertArticle(Notice_ArticleVO articleVO) throws SQLException;
 	public Notice_ArticleVO detailArticle(int noar_seq)throws SQLException;

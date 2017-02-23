@@ -14,4 +14,6 @@ public class Notice_ArticleVO {
 	private Date noar_date;
 	private String noar_id;
 	private int noar_cnt;
+	private Date noar_new;
+	private int noar_icon;
 }
