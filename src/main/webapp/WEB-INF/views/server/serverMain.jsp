@@ -91,7 +91,7 @@ function test_go(){
 			</tr>
          <c:forEach items="${serverListUser}" var="list">
             <tr>
-                  <td>${list.server_host }</td>
+                <td>  ${list.server_host }</td>
              	  <td>${list.server_os_version }</td>
              	  <td>${list.server_ip}</td>
              	  <td>${list.server_os_name }</td>
