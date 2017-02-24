@@ -46,6 +46,11 @@
 		<pattern>/cpu/*</pattern>
 	</decorator>
 	
+	<decorator name="admin" page="user_decorator.jsp">
+		<pattern>/admin/*</pattern>
+	</decorator>
+	
+	
 
 	<excludes>
 		<pattern>/idCheckForm*</pattern>

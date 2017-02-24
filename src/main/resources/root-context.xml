@@ -112,6 +112,12 @@
 		p:client-ref="SqlMapClient" />
 	<bean id="cpuService" class="com.ddit.service.CpuServiceImpl"
 		p:cpuDAO_iBatis-ref="cpuDAO" />
+		
+	
+	<bean id="adminDAO" class="com.ddit.ibatis.AdminDAO_iBatis"
+		p:client-ref="SqlMapClient" />
+	<bean id="adminService" class="com.ddit.service.AdminServiceImpl"
+		p:adminDAO-ref="adminDAO" />
 
 
 

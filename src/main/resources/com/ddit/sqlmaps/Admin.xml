@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
+    "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Admin">
+
+
+	<select id="listAllAdmin" resultClass="admin">
+		select * from admin order
+		by ad_date desc
+	</select>
+
+
+	<insert id="insertAdmin" parameterClass="admin">
+		insert into
+		admin(admin_seq, ad_content, ad_id, ad_subject)
+		values(admin_seq.nextval, #ad_content#,#ad_id#,#ad_subject#)
+	</insert>
+
+	<delete id="deleteAdmin" parameterClass="int">
+		delete from admin
+		where
+		admin_seq=#admin_seq#
+	</delete>
+
+	<select id="select_Seq" parameterClass="int" resultClass="admin">
+		select
+		* from admin where admin_seq=#admin_seq#
+	</select>
+
+	<update id="updateAdmin" parameterClass="admin">
+		update admin
+		set
+		ad_subject=#ad_subject#,ad_content=#ad_content#
+		where
+		admin_seq=#admin_seq#
+	</update>
+
+
+	<update id="nswerAdmin" parameterClass="admin">
+		update admin
+		set
+		ad_nswer=#ad_nswer#, ad_check='1'
+		where admin_seq=#admin_seq#
+	</update>
+
+	<select id="nswerN" resultClass="admin">
+		select * from admin where
+		ad_check='0'
+	</select>
+
+	<select id="nswerY" resultClass="admin">
+		select * from admin where
+		ad_check='1'
+	</select>
+
+
+	<select id="Search_ad_seq" parameterClass="int" resultClass="admin">
+		select * from admin where admin_seq like '%'||#keyword#||'%'
+	</select>
+
+	<select id="Search_ad_id" parameterClass="str" resultClass="admin">
+		select * from admin where ad_id like '%'||#keyword#||'%'
+	</select>
+
+	<select id="Search_ad_subject" parameterClass="str" resultClass="admin">
+		select * from admin where ad_subject like '%'||#keyword#||'%'
+	</select>
+
+
+
+
+	<!-- 페이징 -->
+	<select id="listAdminlist" parameterClass="str" resultClass="admin">
+		select * from admin where ad_id like '%'||#ad_id#||'%'
+		order by
+		ad_date
+		desc
+	</select>
+
+
+	<select id="totalAdmin" parameterClass="str" resultClass="int">
+		select count(*) from admin where ad_id like
+		'%'||#ad_id#||'%'
+	</select>
+
+
+
+</sqlMap>
+    
+    

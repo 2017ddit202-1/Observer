@@ -197,7 +197,7 @@
                                 
                                 <sec:authorize access="hasAnyRole('ROLE_SUPER', 'ROLE_ADMIN')">
                                 <li>
-                                    <a href="<%=request.getContextPath()%>/qna/adminQnaList"> 관리자 Q&A 게시판</a>
+                                    <a href="<%=request.getContextPath()%>/admin/adminQnaList"> 관리자 Q&A 게시판</a>
                                 </li>
                                 </sec:authorize>
                                 
