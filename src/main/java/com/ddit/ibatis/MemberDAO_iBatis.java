@@ -1,6 +1,7 @@
 package com.ddit.ibatis;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import com.ddit.dao.MemberDAO;
 import com.ddit.dto.MemberVO;
@@ -126,7 +127,26 @@ public class MemberDAO_iBatis implements MemberDAO{
 	}
 
 
+	@Override
+	public ArrayList<MemberVO> selectMemberAll() throws SQLException {
+		return (ArrayList<MemberVO>) client.queryForList("selectMemberAll");
+	}
 
+
+	@Override
+	public ArrayList<MemberVO> groupmember(String lice) throws SQLException {	
+		return (ArrayList<MemberVO>) client.queryForList("groupmember",lice);
+	}
+
+
+	@Override
+	public void updateLice(MemberVO memberVO) throws SQLException {
+		client.update("updateLice", memberVO);
+		
+	}
+
+
+	
 
 
 

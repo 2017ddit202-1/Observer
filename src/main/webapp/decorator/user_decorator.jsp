@@ -212,7 +212,28 @@
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
+                        <!--SeungBack start  -->
                        
+                        <sec:authorize access="hasRole('ROLE_ADMIN')">   
+                         <c:if test="${loginUserVO.mem_group_lice ne '1'}">            
+                        <li>
+                            <a href="#"><i class="fa fa-wrench fa-fw"></i> 그룹관리<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                         
+                                    <a href="<%=request.getContextPath()%>/group/meminvalid">회원초대</a>
+                                </li>
+                                <li>
+                                    <a href="<%=request.getContextPath()%>/group/groupList"> 회원관리</a>
+                                </li>
+                           
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                       </c:if>
+                         </sec:authorize>
+                          
+                       <!--SeungBack end  -->
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->

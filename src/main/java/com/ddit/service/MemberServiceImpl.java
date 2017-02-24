@@ -1,6 +1,7 @@
 package com.ddit.service;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import com.ddit.dto.MemberVO;
 import com.ddit.dto.PositionListVO;
@@ -85,6 +86,21 @@ public class MemberServiceImpl implements MemberService{
 	public PositionListVO authoritySelect(String userid) throws SQLException {
 		return memberIbatis.authoritySelect(userid);
 		
+	}
+
+	@Override
+	public ArrayList<MemberVO> selectMemberAll() throws SQLException {
+		return memberIbatis.selectMemberAll();
+	}
+
+	@Override
+	public ArrayList<MemberVO> groupmember(String lice) throws SQLException {
+		return memberIbatis.groupmember(lice);
+	}
+
+	@Override
+	public void updateLice(MemberVO memberVO) throws SQLException {		
+		memberIbatis.updateLice(memberVO);
 	}
 
 

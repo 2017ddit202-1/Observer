@@ -71,6 +71,24 @@
 		select  
 		* from position_list where posl_id=#posl_id#
 	</select> 
-
+	
+	<select id="selectMemberAll"  resultClass="member">
+		select * from member
+	</select>
+	
+	<update id="updateLice" parameterClass="member">
+		update member
+		set
+		mem_group_lice=#mem_group_lice#
+		where mem_id=#mem_id#
+		
+	</update>
+	
+	<select id="groupmember" parameterClass="str" resultClass="member">
+		select *
+		from member where mem_group_lice=#mem_group_lice#
+	</select>
+	
+ 
 
 </sqlMap>  
