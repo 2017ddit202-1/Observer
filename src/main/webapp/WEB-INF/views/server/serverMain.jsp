@@ -83,8 +83,8 @@ function test_go(){
 	<table border=1>
        		<tr>
 				<td>hostName</td>
-				<td>OS 버전</td>
 				<td>ip</td>
+				<td>운영체제</td>
 				<td>OS 종류</td>
 				<td>server_os_support</td>
 				
@@ -92,8 +92,8 @@ function test_go(){
          <c:forEach items="${serverListUser}" var="list">
             <tr>
                 <td>  ${list.server_host }</td>
-             	  <td>${list.server_os_version }</td>
              	  <td><a href="<%=request.getContextPath()%>/server/summary?summaryMenu=1">${list.server_ip}</a></td>
+             	  <td>${list.server_os_version }</td>
              	  <td>${list.server_os_name }</td>
              	  <td>${list.server_os_support }</td>
              	</tr>
