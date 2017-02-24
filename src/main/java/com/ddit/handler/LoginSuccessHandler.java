@@ -2,6 +2,7 @@ package com.ddit.handler;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -11,14 +12,26 @@ import javax.servlet.http.HttpSession;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
+
+import com.ddit.dao.MemberDAO;
+import com.ddit.dto.MemberVO;
+import com.ddit.service.MemberServiceImpl;
 
 public class LoginSuccessHandler extends
       SavedRequestAwareAuthenticationSuccessHandler {
    private static final Logger logger = LoggerFactory
          .getLogger(LoginSuccessHandler.class);
+   
+   @Autowired
+	private MemberServiceImpl memberService;
 
+	public void setMemberService(MemberServiceImpl memberService) {
+		this.memberService = memberService;
+	}
+   
    @Override
    public void onAuthenticationSuccess(HttpServletRequest request,
          HttpServletResponse response, Authentication auth)
@@ -26,9 +39,17 @@ public class LoginSuccessHandler extends
       
       HttpSession session = request.getSession();
       session.setAttribute("loginUser", auth.getName());
-
+      MemberVO mem = new MemberVO();
+      
       String accept = request.getHeader("accept");
       String retUrl = request.getParameter("returl");
+      
+      try {
+    	  mem = memberService.selectMember(auth.getName());
+    	  session.setAttribute("loginUserVO", mem);
+	} catch (SQLException e) {
+		e.printStackTrace();
+	}
       
       if(StringUtils.indexOf(accept, "html")>-1){
          if(retUrl==null||retUrl.isEmpty()){
