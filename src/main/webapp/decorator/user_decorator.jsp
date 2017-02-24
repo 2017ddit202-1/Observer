@@ -159,7 +159,7 @@
                                 <li>
                                     <a href="<%=request.getContextPath()%>/server/serverMain">-전체목록</a>
                                 </li>
-                                
+                                <c:if test="">
                                 <li>
                                     <a href="flot.html">&nbsp;- 요약</a>
                                 </li>
@@ -179,6 +179,7 @@
                                     <a href="morris.html">&nbsp;- 트래픽</a>
                                 </li>
                             </ul>
+                            </c:if>
                             <!-- /.nav-second-level -->
                         </li>
                         <li>

@@ -80,25 +80,30 @@ function test_go(){
 	<c:choose>
 		<c:when test="${loginUserPosl eq 'ROLE_USER' }">
 			<h1>user page</h1>
-		
+	<table border=1>
+       		<tr>
+				<td>hostName</td>
+				<td>OS 버전</td>
+				<td>ip</td>
+				<td>OS 종류</td>
+				<td>server_os_support</td>
+				
+			</tr>
+         <c:forEach items="${serverListUser}" var="list">
+            <tr>
+                  <td>${list.server_host }</td>
+             	  <td>${list.server_os_version }</td>
+             	  <td>${list.server_ip}</td>
+             	  <td>${list.server_os_name }</td>
+             	  <td>${list.server_os_support }</td>
+             	</tr>
+             </c:forEach>
+      </table>
+						
 		</c:when>
 		<c:otherwise>
-	
-
 	<h1>server page</h1>
-
-
 	<h1>전체목록</h1>
-	<input type="text" id="message" value="${clientIP}" />
-	<input type="button" id="sendMessage" value="메세지보내기" />
-	
-
-	<%--  ${map} 에 앞부분에 sessionScope 생략가능하기 때문에 생략했음. --%>
-
-
-
-
-
 <form id="formm" name="formm" method="post">
  <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal" style="font-size:13px; padding:3px 5px; margin:1% auto 1% 20.5%;">추가</button>
 
@@ -153,6 +158,7 @@ function test_go(){
 				<td>OS 종류</td>
 			</tr>
          <c:forEach items="${map}" var="i">
+         <c:if test="${i.value.saveyn eq '0' }">
             <tr>
                 <td>  ${i.key }</td>
              	  <td>${i.value.hostName }</td>
@@ -161,6 +167,7 @@ function test_go(){
              	  <input type = "hidden" id="${i.key }" name="${i.key }" value="${i.key }"/>
 					<td><input type="button" id="addlist" value="등록" onclick="addlist_go('${i.key }')"/></td>
                </tr>
+               </c:if>
              </c:forEach>
       </table>
    </form>

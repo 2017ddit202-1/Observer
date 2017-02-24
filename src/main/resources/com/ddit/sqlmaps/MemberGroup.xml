@@ -8,6 +8,11 @@
  		insert into member_group(mg_nm, mg_lice,mem_id)
  			values(#mg_nm#, #mg_lice#, #mem_id#)
  	</insert>
+ 	
+ 	
+ 	<select id="selectMemGroup" parameterClass="str" resultClass="mg">
+ 		select * from member_group where mg_lice = #mg_lice#
+ 	</select>
  
  </sqlMap>   
  
