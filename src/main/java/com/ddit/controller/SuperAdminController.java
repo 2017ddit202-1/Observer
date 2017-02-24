@@ -187,7 +187,7 @@ public class SuperAdminController {
 		
 		Date date = new Date();
 		SimpleDateFormat format = null;
-		format = new SimpleDateFormat("yyMMdd");
+		format = new SimpleDateFormat("yyMMddHHmm");
 		System.out.println(format.format(date)+"@@@@@@@@@@@");
 		
 		
@@ -204,7 +204,7 @@ public class SuperAdminController {
 			vwMpsVO = reportService.adminMail(email);
 			HSSFWorkbook book = reportService.CpuXls(ip);
 			String name = format.format(date)+".xls";
-			System.out.println("$$$$$$$$$$$$$$$$$$$$$$"+name);
+//			System.out.println("$$$$$$$$$$$$$$$$$$$$$$"+name);
 			// 경로설정
 			ServletContextResource resource = new ServletContextResource(context.getServletContext(),"/WEB-INF/files/"+name);
 			File newFile = resource.getFile();
@@ -212,6 +212,7 @@ public class SuperAdminController {
 			if(newFile.createNewFile()){
 				book.write(newFile);
 			}
+			Thread.sleep(3000);
 			
 //			book.write(response.getOuptputStream());
 			if(vwMpsVO.getMem_email() != null){
@@ -224,13 +225,9 @@ public class SuperAdminController {
 				MimeMessageHelper helper = new MimeMessageHelper(message, true,"UTF-8");
 				helper.setSubject("[ 주간 보고서 안내 ]");
 				helper.setText(content,true);
-				helper.setFrom("observerddit202@gmail.com", "Observer");
 				helper.setTo(new InternetAddress(toEmail));
-				
-				
-//				FileSystemResource atta = new FileSystemResource("d:/pagerank.xls");
+				helper.setFrom("observerddit202@gmail.com", "Observer");
 				helper.addAttachment(resource.getFilename(), resource);
-				
 				jmailSender.send(message);
 			}
 		} catch (Throwable e) {
