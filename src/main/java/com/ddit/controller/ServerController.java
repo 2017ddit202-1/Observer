@@ -195,28 +195,29 @@ public class ServerController {
 		String url = "server/serverMain";
 		System.out.println("GET method");
 		List<String> iplist = new ArrayList<String>();
-
-		/*
-		 * classip = (String)session.getAttribute("ip"); classHost =
-		 * (String)session.getAttribute("hostName");
-		 */
+		
+		
 		classMap = (Map<String, Map<String, String>>) request
 				.getAttribute("classMap");
 		System.out.println(request.getAttribute("classMap").toString());
 		System.out.println("dddddddd" + request.getAttribute("testIp"));
 		System.out.println(classMap.toString() + "()()()()()(");
-
+		
 		// ///////
 
 		String loginUser = (String) session.getAttribute("loginUser");
 		String userOK = null;
 		String column = "";
+		VWmemPosVO vWmemPosVO = new VWmemPosVO();
+		List<ServerVO> serverList = new ArrayList<ServerVO>();
 
 		try {
 			userOK = alertService.select_sessionID(loginUser); // alert테이블에 ID값이
 																// 존재하는지 select
 			column = alertService.authority_content(loginUser);
 			alertService.alertDelete(loginUser);
+			vWmemPosVO = vWmemPosServiceImpl.memposVO(loginUser);
+			serverList = serverService.selectServerList(loginUser);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -237,6 +238,9 @@ public class ServerController {
 			
 		}
 		
+		
+		model.addAttribute("serverList", serverList);
+		model.addAttribute("loginUserPosl", vWmemPosVO.getPosl_pos());
 		model.addAttribute("map", classMap);
 		return url;
 
@@ -275,7 +279,7 @@ public class ServerController {
 			serverVO.setSaveyn("1");
 			serverVO.setServer_id(adminUser);
 			serverVO.setServer_os_name(valueMap.get("os_name"));
-			serverVO.setServer_os_support("ossupport");
+			serverVO.setServer_os_support(valueMap.get("os_support"));
 
 			serverVO.setServer_code("A" + a);
 			a++;
@@ -308,11 +312,12 @@ public class ServerController {
 
 			// serverVO 추가
 			serverVO.setServer_host(valueMap.get("hostName"));
-			serverVO.setServer_os_version("widow7");
+			serverVO.setServer_os_version(valueMap.get("os_version"));
 			serverVO.setServer_ip(currentIp);
 			serverVO.setSaveyn("1");
 			serverVO.setServer_id(adminUser);
-
+			serverVO.setServer_os_name(valueMap.get("os_name"));
+			serverVO.setServer_os_support(valueMap.get("os_support"));
 			serverVO.setServer_code("A" + a);
 			a++;
 			try {

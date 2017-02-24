@@ -2,6 +2,7 @@ package com.ddit.service;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 import com.ddit.dao.ServerDAO;
 import com.ddit.dto.ServerVO;
@@ -10,6 +11,8 @@ public class ServerServiceImpl implements ServerService{
 
 	
 	
+	
+
 	ServerDAO serverDAO;
 	public void setServerDAO(ServerDAO serverDAO){
 		this.serverDAO = serverDAO;
@@ -33,6 +36,13 @@ public class ServerServiceImpl implements ServerService{
 	public void updateServer(ServerVO ServerVO) throws SQLException {
 		serverDAO.updateServer(ServerVO);
 		
+	}
+	
+	@Override
+	public List<ServerVO> selectServerList(String id) throws SQLException {
+		List<ServerVO> serverList = new ArrayList<ServerVO>();
+		serverList =  serverDAO.selectServerList(id);
+		return serverList;
 	}
 
 	@Override

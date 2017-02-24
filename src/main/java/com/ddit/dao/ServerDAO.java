@@ -2,6 +2,7 @@ package com.ddit.dao;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 import com.ddit.dto.ServerVO;
 
@@ -15,4 +16,5 @@ public interface ServerDAO {
 	public ArrayList<ServerVO> listAllArticle() throws SQLException;
 	//
 	public String selectServerIP(String ip) throws SQLException;
+	public List<ServerVO> selectServerList(String id) throws SQLException;
 }
