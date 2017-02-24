@@ -157,7 +157,7 @@ $(document).ready(function() {
 			success:function(fbMap){
 				fbAnsMap = jQuery.map(fbMap , function(a){
 					return a;
-				})
+				}) 
 				$('#'+fbAnsMap).remove();
 			}
 		});

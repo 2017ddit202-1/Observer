@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
+    "http://www.ibatis.com/dtd/sql-map-2.dtd">
+    
+    
+    <sqlMap namespace="Report">
+    	<select id="adminList" resultClass="vwVO">
+	    	select * from vw_mem_pos_ser where posl_pos='ROLE_ADMIN' order by mem_id 
+    	</select>
+    	
+    	<select id="adminMail" resultClass="vwVO" parameterClass="vwVO">
+    		select * from vw_mem_pos_ser where mem_email=#mem_email#
+    	</select>
+    	<select id="ipSerarch" resultClass="vwVO">
+    		select server_ip from vw_mem_pos_ser where mem_id=#mem_id#
+    	</select>
+    	
+  		<select id="cpuReport" parameterClass="str" resultClass="cpu">
+  			SELECT CPU_PCNT
+		          ,CPU_USER_PCNT
+		          ,CPU_TOTAL_PCNT
+		          ,CPU_IDLE
+				FROM   CPU 
+				WHERE CPU_IP = #str#
+				ORDER BY CPU_DATE ASC
+  		</select>
+    </sqlMap>

@@ -33,6 +33,7 @@
 	<beans:bean class="org.springframework.web.servlet.view.BeanNameViewResolver" 
 		p:order="0" />
 	<beans:bean id="download" class="com.test.fileDownload.DownloadView" />
+<!-- 	<beans:bean id="ExcelView" class="com."></beans:bean> -->
 	
 	
 	<beans:bean id="multipartResolver"

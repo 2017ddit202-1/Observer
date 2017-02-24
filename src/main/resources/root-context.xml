@@ -106,7 +106,11 @@
 		p:client-ref="SqlMapClient" />
 	<bean id="cpuService" class="com.ddit.service.CpuServiceImpl"
 		p:cpuDAO_iBatis-ref="cpuDAO" />
-
+	
+	<bean id="ReportDAO" class="com.ddit.ibatis.ReportDAO_iBatis"
+		p:client-ref="SqlMapClient" />
+	<bean id="ReportService" class="com.ddit.service.ReportServiceImpl"
+		p:reportDAO_iBatis-ref="ReportDAO" />	
 
 
 
