@@ -417,6 +417,18 @@ String str="";
 		return articleView;
 	}
 
+	@Override
+	public void iconUpdate(int noar_seq) throws SQLException {
+		
+		client.update("iconUpdate", noar_seq);
+	}
+
+	@Override
+	public void iconUpdate_n(int noar_seq) throws SQLException {
+		client.update("iconUpdate_n", noar_seq);
+	
+	}
+
 
 
 

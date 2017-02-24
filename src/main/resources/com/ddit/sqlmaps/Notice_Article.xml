@@ -8,6 +8,24 @@
 	<typeAlias alias="map" type="java.util.Map" />
 	<typeAlias alias="article" type="com.ddit.dto.Notice_ArticleVO" />
 
+   <update id="iconUpdate" parameterClass="int">
+      update notice_article
+		set
+		noar_icon='1'
+		where
+		noar_seq=#noar_seq#
+   </update>
+   
+     <update id="iconUpdate_n" parameterClass="int">
+      update notice_article
+		set
+		noar_icon='0'
+		where
+		noar_seq=#noar_seq#
+   </update>
+   
+   
+
 	<select id="listArticle" resultClass="article">
 		select * from
 		notice_article order by noar_date desc

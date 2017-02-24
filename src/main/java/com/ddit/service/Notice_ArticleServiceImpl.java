@@ -166,9 +166,20 @@ public class Notice_ArticleServiceImpl implements Notice_ArticleService{
 
 
 
-/*
-	String str = articleDAO.pageNumber(tpage, noar_id);
-	return str;*/
+	@Override
+	public void iconUpdate(int noar_seq) throws SQLException {
+		articleDAO.iconUpdate(noar_seq);
+		
+	}
+
+
+
+	@Override
+	public void iconUpdate_n(int noar_seq) throws SQLException {
+		articleDAO.iconUpdate_n(noar_seq);
+	}
+
+
 
 
 
