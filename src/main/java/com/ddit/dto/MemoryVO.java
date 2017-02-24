@@ -16,5 +16,5 @@ public class MemoryVO {
 	private Date memory_date;
 	private String server_code;
 	private String memory_idle;
-	private String memory_pcnt;
+	private String memory_total_used;
 }

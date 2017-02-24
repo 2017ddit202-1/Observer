@@ -19,12 +19,16 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.ddit.dto.CpuVO;
 import com.ddit.dto.MemberGroupVO;
 import com.ddit.dto.MemberVO;
+import com.ddit.dto.MemoryVO;
 import com.ddit.dto.ServerVO;
+import com.ddit.dto.VWmemPosVO;
 import com.ddit.service.AlertServiceImpl;
 import com.ddit.service.CpuServiceImpl;
 import com.ddit.service.MemberGroupServiceImpl;
 import com.ddit.service.MemberServiceImpl;
+import com.ddit.service.MemoryServiceImpl;
 import com.ddit.service.ServerServiceImpl;
+import com.ddit.service.VWmemPosServiceImpl;
 
 @Controller
 @RequestMapping("/server")
@@ -53,7 +57,23 @@ public class ServerController {
 	@Autowired
 	private CpuServiceImpl cpuServiceImpl;
 	
+	@Autowired
+	private MemoryServiceImpl memoryServiceImpl;
 	
+	@Autowired
+	private VWmemPosServiceImpl vWmemPosServiceImpl;
+	
+	
+	
+	
+	public void setvWmemPosserviceImpl(VWmemPosServiceImpl vWmemPosServiceImpl) {
+		this.vWmemPosServiceImpl = vWmemPosServiceImpl;
+	}
+
+	public void setMemoryServiceImpl(MemoryServiceImpl memoryServiceImpl) {
+		this.memoryServiceImpl = memoryServiceImpl;
+	}
+
 	public void setCpuServiceImpl(CpuServiceImpl cpuServiceImpl) {
 		this.cpuServiceImpl = cpuServiceImpl;
 	}
@@ -70,9 +90,7 @@ public class ServerController {
 		this.alertService = alertService;
 	}
 	
-	/*
-	 * if문으로 ip로
-	 */
+	
 	@RequestMapping(value = "/serverMain", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
 	public String test(HttpServletRequest request,
 			HttpServletResponse response, Model model, HttpSession session) {
@@ -92,34 +110,48 @@ public class ServerController {
 		// 서버 table에서 currentip 로 셀렉해서 saveyn이 1이면
 		ServerVO serverVO = new ServerVO();
 		try {
-			serverVO = serverService.selectServerVO(currentIp);
+			serverVO = serverService.selectServerVO(currentIp);			
 		} catch (SQLException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
+		}
+		if(serverVO == null){
+			serverVO = new ServerVO();
+			serverVO.setSaveyn("0");	
 		}
 		valueMap.put("saveyn", serverVO.getSaveyn());
 		classMap.put(currentIp, valueMap);
 
 		CpuVO cpuVO = new CpuVO();
+		MemoryVO memoryVO = new MemoryVO();
+		
 		if (serverVO.getSaveyn().equals("1")) {
 			// cpu 테이블에 인설트
-			
-			
-			System.out.println(classMap.get(currentIp).get("cpu_pcnt"));
 			cpuVO.setCpu_pcnt(classMap.get(currentIp).get("cpu_pcnt"));
 			cpuVO.setCpu_user_pcnt(classMap.get(currentIp).get("cpu_user_pcnt"));
 			cpuVO.setCpu_total_pcnt(classMap.get(currentIp).get("cpu_total_pcnt"));
 			cpuVO.setCpu_idle(classMap.get(currentIp).get("cpu_idle"));
 			cpuVO.setCpu_ip(currentIp);
 			cpuVO.setServer_code(serverVO.getServer_code());
+			
+			memoryVO.setMemory_ip(currentIp);
+			memoryVO.setMemory_total(classMap.get(currentIp).get("memory_total"));
+			memoryVO.setMemory_using(classMap.get(currentIp).get("memory_using"));
+			memoryVO.setMemory_idle(classMap.get(currentIp).get("memory_idle"));
+			memoryVO.setMemory_total_used(classMap.get(currentIp).get("memory_total_used"));
+			memoryVO.setServer_code(serverVO.getServer_code());
+			
+			
 			try {
 				cpuServiceImpl.insertCpu(cpuVO);
+				memoryServiceImpl.insertMemory(memoryVO);
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			
 		}
+		
 
 		// ///////
 
@@ -163,28 +195,29 @@ public class ServerController {
 		String url = "server/serverMain";
 		System.out.println("GET method");
 		List<String> iplist = new ArrayList<String>();
-
-		/*
-		 * classip = (String)session.getAttribute("ip"); classHost =
-		 * (String)session.getAttribute("hostName");
-		 */
+		
+		
 		classMap = (Map<String, Map<String, String>>) request
 				.getAttribute("classMap");
 		System.out.println(request.getAttribute("classMap").toString());
 		System.out.println("dddddddd" + request.getAttribute("testIp"));
 		System.out.println(classMap.toString() + "()()()()()(");
-
+		
 		// ///////
 
 		String loginUser = (String) session.getAttribute("loginUser");
 		String userOK = null;
 		String column = "";
+		VWmemPosVO vWmemPosVO = new VWmemPosVO();
+		List<ServerVO> serverList = new ArrayList<ServerVO>();
 
 		try {
 			userOK = alertService.select_sessionID(loginUser); // alert테이블에 ID값이
 																// 존재하는지 select
 			column = alertService.authority_content(loginUser);
 			alertService.alertDelete(loginUser);
+			vWmemPosVO = vWmemPosServiceImpl.memposVO(loginUser);
+			serverList = serverService.selectServerList(loginUser);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -202,7 +235,12 @@ public class ServerController {
 
 			model.addAttribute("userOK", userOK);
 			model.addAttribute("column", column);
+			
 		}
+		
+		
+		model.addAttribute("serverList", serverList);
+		model.addAttribute("loginUserPosl", vWmemPosVO.getPosl_pos());
 		model.addAttribute("map", classMap);
 		return url;
 
@@ -236,10 +274,12 @@ public class ServerController {
 		if (!(memberVO.getMem_group_lice().equals("1"))) {
 
 			serverVO.setServer_host(valueMap.get("hostName"));
-			serverVO.setServer_os("widow7");
+			serverVO.setServer_os_version(valueMap.get("os_version"));
 			serverVO.setServer_ip(currentIp);
 			serverVO.setSaveyn("1");
 			serverVO.setServer_id(adminUser);
+			serverVO.setServer_os_name(valueMap.get("os_name"));
+			serverVO.setServer_os_support(valueMap.get("os_support"));
 
 			serverVO.setServer_code("A" + a);
 			a++;
@@ -272,11 +312,12 @@ public class ServerController {
 
 			// serverVO 추가
 			serverVO.setServer_host(valueMap.get("hostName"));
-			serverVO.setServer_os("widow7");
+			serverVO.setServer_os_version(valueMap.get("os_version"));
 			serverVO.setServer_ip(currentIp);
 			serverVO.setSaveyn("1");
 			serverVO.setServer_id(adminUser);
-
+			serverVO.setServer_os_name(valueMap.get("os_name"));
+			serverVO.setServer_os_support(valueMap.get("os_support"));
 			serverVO.setServer_code("A" + a);
 			a++;
 			try {

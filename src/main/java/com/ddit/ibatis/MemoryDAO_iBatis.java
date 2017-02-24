@@ -5,12 +5,19 @@ import java.util.ArrayList;
 
 import com.ddit.dao.MemoryDAO;
 import com.ddit.dto.MemoryVO;
+import com.ibatis.sqlmap.client.SqlMapClient;
 
 public class MemoryDAO_iBatis implements MemoryDAO{
-
+	
+	private SqlMapClient client;
+	public void setClient(SqlMapClient client) {
+		this.client = client;
+	}
+	
+	
 	@Override
 	public int insertMemory(MemoryVO MemoryVO) throws SQLException {
-		// TODO Auto-generated method stub
+		client.insert("insertMemoryVO" ,MemoryVO);
 		return 0;
 	}
 

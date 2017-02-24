@@ -132,6 +132,7 @@ public class MainController {
 		int result=-1;
 		try {
 		result=memberService.confirmID(id);
+		System.out.println(result+"|||||||||||||||||||||||||||||||||||||||");
 		model.addAttribute("message",result);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

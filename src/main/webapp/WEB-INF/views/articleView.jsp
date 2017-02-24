@@ -24,7 +24,6 @@
 
 
 <style type="text/css">
-
 #article_tr td {
 	background-color: #e4eaf2;
 	border-top: 1px solid #c3ced9;
@@ -50,8 +49,15 @@
 
 .button2 {
 	background-color: #337ab5;
-} 
+}
 
+#articleTable tr:hover {
+	background-color: #d5dae2;
+}
+
+#paging:hover {
+	background-color: white;
+}
 </style>
 
 <script>
@@ -74,11 +80,18 @@ function check() {
 
 <body>
 
-	<div
-		style="background-color: #337ab5; width: 100%; height: 50px; padding: 0;"></div>
 	<br>
-	<div style="font-size: 30px; width: 800px; text-align: center;">
+	<br>
+	<br>
+	
+<div style="text-align: center;">
+<img src="<%=request.getContextPath()%>/resources/img/line.jpg"><br><br><br><br>
+</div>
+	<div style="font-size: 30px; width: 1000px; text-align: left; margin-left: 242px;">
 		<img src="<%=request.getContextPath()%>/resources/img/arrow.png">공지사항
+		<span style="font-size: 15px; color: #7c7c7c">각종 안내, 서비스 또는
+			OBSERVER의 소식 버전안내 등의 정보를 확인할 수 있습니다.</span>
+
 	</div>
 
 	<br>
@@ -112,8 +125,8 @@ function check() {
 
 
 	<div class="container">
-	<i class="fa fa-bullhorn" aria-hidden="true"></i>
-	총 게시글은 [${qnaListSize }]개 입니다.
+		<i class="fa fa-bullhorn" aria-hidden="true"></i> 총 게시글은
+		[${qnaListSize }]개 입니다.
 		<table class="table table-hover" style="width: 1000px;" align="center"
 			id="articleTable">
 			<thead>
@@ -154,7 +167,11 @@ function check() {
 								<th>${articleVO.noar_seq}</th>
 								<th>${loginUser}</th>
 								<!-- //////////articleVO.noar_id -->
-								<th><a href="detailArticle?noar_seq=${articleVO.noar_seq}">${articleVO.noar_subject}</a></th>
+								<th><a href="detailArticle?noar_seq=${articleVO.noar_seq}">${articleVO.noar_subject}</a>
+									<c:if test="${articleVO.noar_icon eq 1}">
+										<img
+											src="<%=request.getContextPath()%>/resources/img/new_icon.gif">
+									</c:if></th>
 								<th>${articleVO.noar_content}</th>
 								<td><fmt:formatDate value="${articleVO.noar_date}"
 										pattern="yyyy-MM-dd" /></td>
@@ -162,7 +179,7 @@ function check() {
 							</tr>
 						</c:forEach>
 						<tr>
-							<td colspan="6" style="text-align: center;">${paging}</td>
+							<td id="paging" colspan="6" style="text-align: center;">${paging}</td>
 						</tr>
 					</c:otherwise>
 
@@ -172,13 +189,9 @@ function check() {
 		</table>
 	</div>
 
-<div style="text-align: center;">
-	<sec:authorize access="hasRole('ROLE_SUPER')">
-		<button type="button" onclick="location.href='articleWrite' ">글쓰기</button>
-	</sec:authorize>
+	<div style="text-align: center;">
+		<sec:authorize access="hasRole('ROLE_SUPER')">
+			<button type="button" onclick="location.href='articleWrite' ">글쓰기</button>
+		</sec:authorize>
 	</div>
 </body>
-
-
-
-

@@ -3,8 +3,8 @@
     "http://www.ibatis.com/dtd/sql-map-2.dtd">
  <sqlMap namespace="server">
  	<insert id="insertServerVO" parameterClass="server">
- 		insert into server(server_host,server_os,server_ip,server_id,server_code,saveyn)
- 			values(#server_host#, #server_os#, #server_ip#, #server_id#, #server_code#, #saveyn#)
+ 		insert into server(server_host,server_os_version,server_ip,server_id,server_code,saveyn, server_os_name, server_os_support)
+ 			values(#server_host#, #server_os_version#, #server_ip#, #server_id#, #server_code#, #saveyn#, #server_os_name#, #server_os_support#)
  	</insert>
  	
  	<select id="selectServerIP" parameterClass="str" resultClass="str">
@@ -13,12 +13,16 @@
  	
  	<update id="updateServerVO" parameterClass="server">
  		update server 
-   		set server_host=#server_host#, server_os=#server_os#, server_ip=#server_ip#,server_id=#server_id#, server_code=#server_code#, saveyn=#saveyn#
+   		set server_host=#server_host#, server_os_version=#server_os_version#, server_ip=#server_ip#, server_id=#server_id#, server_code=#server_code#, saveyn=#saveyn#, server_os_name=#server_os_name#, server_os_support=#server_os_support#
    		where server_ip=#server_ip#
  	</update>
  
  	<select id="selectServerVO" parameterClass="str" resultClass="server">
  		select * from server where server_ip=#server_ip#
+ 	</select>
+ 	
+ 	<select id="selectServerList" parameterClass="str" resultClass="server">
+ 		select * from server where server_id=#server_id#
  	</select>
  
  </sqlMap>   

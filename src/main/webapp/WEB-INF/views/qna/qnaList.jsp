@@ -5,109 +5,156 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="sec"
 	uri="http://www.springframework.org/security/tags"%>
-	<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title></title>
 
-<script>
-function writeForm_go(){
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="<%=request.getContextPath()%>/resources/css/qna.css"
+	rel="stylesheet">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	
-	document.formm.action = "<%=request.getContextPath()%>"	+ "/qna/qnaWriteForm";
-		document.formm.submit();
-	}
 	
-	
+	<script>
+
 	function serachQna_go(){
-		document.formm.action = "<%=request.getContextPath()%>"	+ "/qna/qnaList";
+		document.formm.action = "<%=request.getContextPath()%>"+ "/qna/qnaList";
 		document.formm.submit();
-		
 	}
-	
 </script>
-
-
-
 </head>
+
+
 <body>
-	<h2>Q&A게시판</h2>
 
-	<form name="formm" method="post">
-		<div>
-		<select name="keyField" size="1">
-		<option value="qna_seq">게시글번호</option>
-		<option value="qna_seq">제목</option>
-		<option value="qna_seq">내용</option>
-		<option value="qna_seq">작성자</option>
-	</select> 
-			<input type="text" name="key" placeholder="Search...">
-			<button  type="button" onclick="serachQna_go()">
-				<i class="fa fa-search"></i>
-			</button>
-		</div>
-		<table border='1'>
-			<tr>
-				<th>게시글번호</th>
-				<th>작성자</th>
-				<th>제목</th>
-				<th>등록날짜</th>
-				<th>답변여부</th>
+<br><br><br>
+	<div id="div_index">
+		<img src="<%=request.getContextPath()%>/resources/img/arrow.png">QnA게시판 <span style="font-size: 15px; color: #7c7c7c">고객님의 질문에 대해서 운영자가 1:1 답변을 드립니다.</span>
+	</div>
+	
+	<br>
+	<br>
+	
+	
+	
+<!-- 	 <form name="formm" method="post">
+      <div>
+      <select name="keyField" size="1">
+      <option value="qna_seq">게시글번호</option>
+      <option value="qna_seq">제목</option>
+      <option value="qna_seq">내용</option>
+      <option value="qna_seq">작성자</option>
+   </select> 
+         <input type="text" name="key" placeholder="Search...">
+         <button  type="button" onclick="serachQna_go()">
+            <i class="fa fa-search"></i>
+         </button>
+      </div> 
+	
+	 -->
+	
+		<div style="width: 1000px; float: right; text-align: center;">
+		<form name="formm" method="post">
 
-			</tr>
-			
+			<select name="keyField" size="1" style="height: 22px;">
+				 <option value="qna_seq">게시글번호</option>
+      			 <option value="qna_seq">제목</option>
+   				 <option value="qna_seq">내용</option>
+                 <option value="qna_seq">작성자</option>
+			</select> 
+			<input type="text" size="16" name="key" style="height: 24px;">
 
-			<!-- ////////////////////////////////////////////////////////////// -->
-			<c:choose>
-				<c:when test="${qnaListSize<=0}">
-					<tr>
-						<td width="100%" colspan="5" align="center" height="23">
-							There are no registered qna.</td>
-					</tr>
-				</c:when>
-				<c:otherwise>
-					<c:forEach items="${qnaList}" var="qnaVO">
-				
+			<button class="button button2" onClick="serachQna_go()">검색</button>
+		</form>
+	</div>
+	<br>
+	<br>
+	<br>
+	
+	
+	
+	
+
+	
+	
+	
+	<div class="container">
+		<i class="fa fa-question" aria-hidden="true"></i> 총 게시글은
+		[${qnaListSize }]개 입니다.
+		<table class="table table-hover" style="width: 1000px;" align="center"
+			id="articleTable">
+			<thead>
+				<tr id="article_tr">
+					<td style="width: 79px;">번호</td>
+					<td>작성자</td>
+					<td style="width: 353px;">제목</td>
+					<td style="width: 137px;">등록날짜</td>
+					<td style="width: 200px;">답변여부</td>
+				</tr>
+			</thead>
+
+			<tbody>
+				<c:choose>
+					<c:when test="${qnaListSize<=0}">
 						<tr>
-							<td>${qnaVO.qseq}</td>
-							<td>${qnaVO.qna_id}</td>
-							
-					
-					<c:choose>
-					<c:when test="${loginUser eq qnaVO.qna_id || mempos.posl_pos eq 'ROLE_ADMIN'}">
-						<td><a href="detailQna?qna_qseq=${qnaVO.qseq}">${qnaVO.qna_subject}</a></td>
-				</c:when>
-					<c:otherwise>
-							<td>${qnaVO.qna_subject}</td>
-					</c:otherwise>
-					
-					</c:choose>
-							
-							
-							<td><fmt:formatDate value="${qnaVO.qna_date}"
-									pattern="yyyy-MM-dd" /></td>
-
-							<c:choose>
-								<c:when test="${qnaVO.qna_check == 1 }">
-									<td>답변완료</td>
-								</c:when>
-								<c:otherwise>
-									<td>답변진행중</td>
-								</c:otherwise>
-							</c:choose>
+							<td width="100%" colspan="5" align="center" height="23">
+								There are no registered qna.</td>
 						</tr>
-					</c:forEach>
-					<tr>
-						<td colspan="5" style="text-align: center;">${paging}</td>
-					</tr>
+					</c:when>
+					<c:otherwise>
+						<c:forEach items="${qnaList}" var="qnaVO">
 
-				</c:otherwise>
-			</c:choose>
-			<!--  -->
+							<tr>
+								<td>${qnaVO.qseq}</td>
+								<td>${qnaVO.qna_id}</td>
+
+
+								<c:choose>
+									<c:when
+										test="${loginUser eq qnaVO.qna_id || mempos.posl_pos eq 'ROLE_ADMIN'}">
+										<td><a href="detailQna?qna_qseq=${qnaVO.qseq}">${qnaVO.qna_subject}</a></td>
+									</c:when>
+									<c:otherwise>
+										<td>${qnaVO.qna_subject}</td>
+									</c:otherwise>
+
+								</c:choose>
+
+
+								<td><fmt:formatDate value="${qnaVO.qna_date}"
+										pattern="yyyy-MM-dd" /></td>
+
+								<c:choose>
+									<c:when test="${qnaVO.qna_check == 1 }">
+										<td>답변완료</td>
+									</c:when>
+									<c:otherwise>
+										<td>답변진행중</td>
+									</c:otherwise>
+								</c:choose>
+							</tr>
+						</c:forEach>
+						<tr>
+							<td colspan="5" style="text-align: center;">${paging}</td>
+						</tr>
+
+					</c:otherwise>
+				</c:choose>
+			</tbody>
 		</table>
-		<input type="submit" value="질문하기" onclick="writeForm_go()" />
-	</form>
+	</div>
+	<div style="text-align: center;">
+		<button type="button" onclick="location.href='<%=request.getContextPath()%>/qna/qnaWriteForm' ">글쓰기</button>
+	</div>
+
 </body>
 </html>
 

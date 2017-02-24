@@ -22,7 +22,7 @@ function login_go(){
        if(error==false){
           if(returl=='')
 //             returl = '<c:url value="/server/serverMain" />';
-        	  returl = 'server/serverMain';
+        	returl = 'server/serverMain';
           location.href = returl;
        };
     });

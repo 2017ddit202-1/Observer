@@ -2,6 +2,7 @@ package com.ddit.ibatis;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 import com.ddit.dao.ServerDAO;
 import com.ddit.dto.ServerVO;
@@ -10,6 +11,8 @@ import com.ibatis.sqlmap.client.SqlMapClient;
 public class ServerDAO_iBatis implements ServerDAO{
 
 
+
+	
 
 	private SqlMapClient client;
 	public void setClient(SqlMapClient client){
@@ -39,6 +42,16 @@ public class ServerDAO_iBatis implements ServerDAO{
 		
 	}
 
+	@Override
+	public List<ServerVO> selectServerList(String id) throws SQLException {
+		
+		List<ServerVO> serverList = new ArrayList<ServerVO>();
+		serverList = (ArrayList<ServerVO>)client.queryForList("selectServerList", id);
+		return serverList;
+	}
+	
+	
+	
 	@Override
 	public int deleteServer(int server_ip, int server_code) throws SQLException {
 		// TODO Auto-generated method stub

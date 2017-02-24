@@ -6,46 +6,123 @@
 <%@ taglib prefix="sec"
    uri="http://www.springframework.org/security/tags"%>
 
-<br>
-<br>
-<div id="contract">
-   <h2>자료실</h2>
-   <h4>Reference</h4>
-</div>
-<form>
-   <table border=1>
-      <tr>
-         <th>게시글번호</th>
-         <th>제목</th>
-         <th>내용</th>
-         <th>파일이름</th>
-         <th>파일크기</th>
-         <th>등록날짜</th>
-      </tr>
+<style type="text/css">
 
-      <c:forEach items="${referenceList}" var="referenceVO">
-         <tr>
-            <th>${referenceVO.reli_seq}</th>
-            <th><a href="referenceDetail?reli_seq=${referenceVO.reli_seq}">
-                  ${referenceVO.reli_subject} </a></th>
-            <th>${referenceVO.reli_content}</th>
-            <th>${referenceVO.reli_file_nm}</th>
-            <th>${referenceVO.reli_size}</th>
-            <th>${referenceVO.reli_date}</th>
-         </tr>
-      </c:forEach>
+#article_tr td {
+	background-color: #e4eaf2;
+	border-top: 1px solid #c3ced9;
+	border-bottom: 1px solid #ffffff;
+	height: 50px;
+	padding-top: 1.5%;
+	text-align: center;
+}
 
-   </table>
-   <%-- <button type="button" onclick="location.href='<%=request.getContextPath()%>/rf/referenceWrite' ">글쓰기</button> --%>
+.button {
+	background-color: #4CAF50; /* Green */
+	border: none;
+	color: white;
+	padding: 1px 32px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	margin: 4px 2px;
+	cursor: pointer;
+	height: 28px;
+}
 
-   <sec:authorize access="hasRole('ROLE_SUPER')">
+.button2 {
+	background-color: #337ab5;
+} 
+#articleTable tr:hover{
+background-color: #337ab5;
+}
+#paging:hover{
+background-color: white;
+}
+</style>
+
+<br><br><br>
+
+	<div style="font-size: 30px; width: 1000px; text-align: left; margin-left: 242px;">
+		<img src="<%=request.getContextPath()%>/resources/img/arrow.png">자료실 
+	<span style="font-size: 15px; color: #7c7c7c">OBSERVER의 다양한 자료와 정보를 제공해드립니다.</span>
+	
+	</div>
+
+	<br>
+	<br>
+	
+	
+	<div class="container">
+	<i class="fa fa-bullhorn" aria-hidden="true"></i>
+	총 게시글은 [${qnaListSize }]개 입니다.
+		<table class="table table-hover" style="width: 1000px;" align="center"
+			id="articleTable">
+			<thead>
+				<tr id="article_tr">
+					<td style="width: 79px;">번호</td>
+					<td>제목</td>
+					<td>내용</td>
+					<td>파일이름</td>
+					<td>파일크기</td>
+					<td style="width: 150px; text-align: center;">등록날짜</td>
+				</tr>
+			</thead>
+			
+			
+			<tbody>
+				<c:choose>
+					<c:when test="${!empty articleSearch }">
+						<c:forEach items="${articleSearch}" var="articleVO">
+							<tr id="article_tr2" style="text-align: center">
+								<td>${articleVO.noar_seq}</td>
+								<td>${loginUser}</td>
+								<td><a href="detailArticle?noar_seq=${articleVO.noar_seq}">${articleVO.noar_subject}</a></td>
+								<td>${articleVO.noar_content}</td>
+								<td>${articleVO.noar_date}</td>
+								<td>${articleVO.noar_cnt }</td>
+							</tr>
+						</c:forEach>
+						<tr>
+							<td colspan="6" style="text-align: center;">${paging}</td>
+						</tr>
+					</c:when>
+
+
+					<c:otherwise>
+						<c:forEach items="${referenceList}" var="referenceVO">
+							<tr>
+							   <td>${referenceVO.reli_seq}</td>
+                               <td><a href="referenceDetail?reli_seq=${referenceVO.reli_seq}"> ${referenceVO.reli_subject} </a></td>
+                               <td>${referenceVO.reli_content}</td>
+                               <td>${referenceVO.reli_file_nm}</td>
+                               <td>${referenceVO.reli_size}</td>
+                               <td><fmt:formatDate value="${referenceVO.reli_date}"
+										pattern="yyyy-MM-dd" /></td>
+							</tr>
+						</c:forEach>
+						<tr>
+							<td id="paging" colspan="6" style="text-align: center;">${paging}</td>
+						</tr>
+					</c:otherwise>
+
+
+				</c:choose>
+			</tbody>
+		</table>
+	</div>
+	
+	<div style="text-align: center;">
+	   <sec:authorize access="hasRole('ROLE_SUPER')">
       <button type="button" onclick="location.href='<%=request.getContextPath()%>/rf/referenceWrite' ">글쓰기</button>
    </sec:authorize>
+   </div>
+	
+	
+	
+	<!-- ////////////////////////////////////// -->
 
-
-
-
-</form>
 
 
 

@@ -2,6 +2,7 @@ package com.ddit.service;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 import com.ddit.dto.ServerVO;
 
@@ -16,5 +17,6 @@ public interface ServerService {
 	
 	//
 	public String selectServerIP(String ip) throws SQLException;
+	public List<ServerVO> selectServerList(String id) throws SQLException;
 	
 }

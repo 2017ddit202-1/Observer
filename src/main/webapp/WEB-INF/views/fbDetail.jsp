@@ -7,17 +7,113 @@
 
 <script src="<%=request.getContextPath()%>/resources/js/freeboard.js"></script>
 
-<article>
+
+<style>
+#detail_table_tr{
+height: 50px;
+border-top: 1px solid #c3ced9;
+border-bottom: 1px solid #c3ced9;
+text-align: center;
+}
+
+#detail_table_tr2{
+height: 30px;
+border-top: 1px solid #c3ced9;
+border-bottom: 1px solid #c3ced9;
+text-align: center;
+}
+</style>
+
+
+<div style=" height: auto; ">
+
+
+
 	<br> <br>
-	<div id="contract">
+	<div style="text-align: center;">
 		<h2>자유게시판 상세보기</h2>
 		<h4> FreeBoard WRITE</h4>
 	</div>
+	<br><br><br>
+	
+
+	
+	<form id="formm" name="formm" method="post">
+<table style="width: 1000px;" align="center">
+
+<tr id="detail_table_tr">
+<td style="background-color: #e4eaf2; width: 90px; border-top: 1px solid #c3ced9;">제목</td>
+<td><input type="text" name="fb_subject" value="${fbVO.fb_subject}" style="border: none; outline: none; width: 500px; text-align:center;"></td>
+<td></td>
+<td></td>
+</tr>
+
+<tr id="detail_table_tr">
+<td style="background-color: #e4eaf2; border-top: 1px solid #c3ced9;">아이디</td>
+
+<td><input type="text" name="fb_subject" value="${fbVO.fb_id}" style="border: none; outline: none; width: 500px; text-align:center;"></td>
+
+
+<td style="background-color: #e4eaf2; width: 90px; border-top: 1px solid #c3ced9;">등록일</td>
+<td style="border-top: 1px solid #c3ced9;"><fmt:formatDate value="${fbVO.fb_date}" pattern="yyyy-MM-dd" /></td>
+</tr>
+
+
+</table>
+<div style="text-align: center;">
+<textarea name="fb_content" style="border:0; overflow-y:hidden; background:clear; resize: none; width: 1000px; height: 400px; outline: none;">${fbVO.fb_content}</textarea>
+<hr style="border: solid 1px #c3ced9; width: 1000px;">
+</div>	
+	<input type="hidden" name="fb_fbseq" value="${fbVO.fb_seq}" id="fb_fbseq">
+
+<div style="text-align: center;">
+        <button type="button" id="btnContactUs" onclick="fbList_go()">뒤로가기</button>
+		<button type="button" id="btnContactUs" onclick="go_fbWrite()">수정하기</button>
+		<button type="button" id="btnContactUs" onclick="go_fbDelete()">삭제하기</button>
+</div>
+<br><br><br>
+
+<div style="width: 1000px; background-color: #e4eaf2;  margin: auto; border-top: 2px solid #c3ced9;"> &nbsp;&nbsp;&nbsp;&nbsp;>>댓글  <span style="width: 50px; background-color: red;"> 1개</span>
+</div>
+
+<table style="width: 1000px;">
+<tr>
+<div style="text-align: center;">
+<div id="answer"></div>
+</div>
+</tr>
+</table>
+
+<table style="width: 1000px;" align="center">
+<tr id="detail_table_tr2">
+<td style="background-color: #e4eaf2; width: 90px; border-top: 1px solid #c3ced9;">작성자</td>
+<td>${loginUser}</td>
+</tr>
+
+<tr id="detail_table_tr2">
+<td style="background-color: #e4eaf2; width: 90px; border-top: 1px solid #c3ced9;">내용</td>
+<td><textarea style="width: 500px; height: 50px;" name="fbAns_content" id ="fbAns_content"></textarea></td>
+</tr>
+
+<input type = "hidden" value="${loginUser}" id="loginUser">
+<input type="hidden" name="fb_fbseq" value="${fb_seq}" id="fb_fbseq">
+
+
+</table>
+<br>
+<div style="text-align: center;">
+<button type="button" id="btnFbAnswer" class="btnFbAnwer"name="btnFbAnswer">댓글쓰기</button>
+</div>
+</form>
+</div>
+<br><br><br>
+
+<%-- 
 	<form id="formm" name="formm" method="post">
 	아이디:<input type="text" name="fb_id" value="${fbVO.fb_id}"><br>
 	제목:<input type="text" name="fb_subject" value="${fbVO.fb_subject}"><br>
 	내용:<textarea rows="5" cols="30" name="fb_content" id="fb_content">${fbVO.fb_content}</textarea><br>
-	 <input type="hidden" name="fb_fbseq" value="${fbVO.fb_seq}" id="fb_fbseq">
+	 <input type="hidden" name="fb_fbseq" value="${fbVO.fb_seq}" id="fb_fbseq"> 
 
 
 		<button type="button" id="btnContactUs" onclick="fbList_go()">뒤로가기</button>
@@ -34,9 +130,9 @@
 						
 		<button type="button" id="btnFbAnswer" class="btnFbAnwer"name="btnFbAnswer">댓글쓰기</button>
 		
-	</form>
+</form> --%>
 	
-</article>
+
 <script>
 /* 댓글 리스트 */
 $(document).ready(function() {
