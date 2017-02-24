@@ -2,16 +2,6 @@ var cpu_total_pcnt = "";
 var inter="";
 var inter2="";
 var pp = 0;
-
-/* 새로고침 막기 */
-function LockF5(){
-    if (event.keyCode == 116) {
-     event.keyCode = 0;
-     return false;
-    }
-   }
-   document.onkeydown = LockF5;
-
 /* 처음 로딩 시 tt 호출 후 setInterval */
 $(function(){
     inter = setInterval("tt()",5000);
@@ -21,6 +11,15 @@ $(function(){
 //   tt();
    	
 });
+
+/* 새로고침 막기 */
+function LockF5(){
+    if (event.keyCode == 116) {
+     event.keyCode = 0;
+     return false;
+    }
+   }
+   document.onkeydown = LockF5;
 
 /* 1시간 버튼 클릭 시 */
 var dd = 0;

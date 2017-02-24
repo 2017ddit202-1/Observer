@@ -40,9 +40,13 @@ public class MemoryServiceImpl implements MemoryService{
 	}
 
 	@Override
-	public ArrayList<MemoryVO> listAllMemory() throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+	public ArrayList<MemoryVO> listMemory() throws SQLException {
+		return memoryDAO_iBatis.listMemory();
+	}
+
+	@Override
+	public ArrayList<MemoryVO> listMemoryHo() throws SQLException {
+		return memoryDAO_iBatis.listMemoryHo();
 	}
 
 

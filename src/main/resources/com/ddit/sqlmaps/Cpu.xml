@@ -12,7 +12,7 @@
 	<!-- 1시간 List -->
 	<select id="ListAllCpuHo" resultClass="cpu">
 		select * from(select * from cpu order by cpu_date desc) where
-			<![CDATA[rownum<=35]]> order by cpu_date asc
+			<![CDATA[rownum<=40]]> order by cpu_date asc
 	</select>
 	
 	<insert id = "insertCpuInfo" parameterClass="cpu">

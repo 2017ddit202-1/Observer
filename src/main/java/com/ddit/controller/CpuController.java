@@ -44,7 +44,7 @@ public class CpuController {
 	}
 	
 	@RequestMapping("cpuMain")
-	public String summaryMain(){
+	public String cpuMain(){
 		String url = "cpu/cpu";
 		return url;
 	}
