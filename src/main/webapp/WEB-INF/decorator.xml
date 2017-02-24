@@ -46,6 +46,10 @@
 		<pattern>/cpu/*</pattern>
 	</decorator>
 	
+	<decorator name="memory" page="user_decorator.jsp">
+		<pattern>/memory/*</pattern>
+	</decorator>
+	
 	<decorator name="group" page="user_decorator.jsp">
 		<pattern>/group/*</pattern>
 	</decorator>

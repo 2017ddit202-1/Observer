@@ -223,7 +223,7 @@ function HighCharts(data) {
     });
 };
 /*Memory 전체 사용량 (%)*/
-function HighCharts(data) {
+function HighCharts3(data) {
 	   var total_used =[window.parseInt(data[0].memory_total_used)];
  
  var date = new Date(data[0].memory_date);
