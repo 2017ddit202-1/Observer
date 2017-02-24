@@ -199,7 +199,7 @@ public class ServerController {
 		System.out.println("GET method");
 		List<String> iplist = new ArrayList<String>();
 		MemberGroupVO memberGroupVO = new MemberGroupVO();
-		
+		int summaryMenu = 0;
 		classMap = (Map<String, Map<String, String>>) request
 				.getAttribute("classMap");
 		System.out.println(request.getAttribute("classMap").toString());
@@ -256,7 +256,8 @@ public class ServerController {
 			System.out.println("()()()()()()()()()()(");
 			
 		}
-		
+		HttpSession flag = request.getSession();
+		flag.setAttribute("summaryMenu", summaryMenu);
 		model.addAttribute("serverListUser", serverListUser);
 		model.addAttribute("serverList", serverList);
 		model.addAttribute("loginUserPosl", vWmemPosVO.getPosl_pos());
@@ -366,5 +367,15 @@ public class ServerController {
 
 		return url;
 	}
+	
+	@RequestMapping("/summary")
+	public String summary(HttpServletRequest request, HttpServletResponse response, HttpSession session){
+		String url = "server/summaryInfo";
+		session.removeAttribute("summaryMenu");
+		session.setAttribute("summaryMenu", request.getParameter("summaryMenu"));
+			System.out.println(request.getParameter("summaryMenu"));
+		return url;
+	}
+	
 
 }

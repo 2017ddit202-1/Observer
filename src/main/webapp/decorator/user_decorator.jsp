@@ -159,9 +159,9 @@
                                 <li>
                                     <a href="<%=request.getContextPath()%>/server/serverMain">-전체목록</a>
                                 </li>
-                                <c:if test="">
+                                <c:if test="${summaryMenu == 1 }">
                                 <li>
-                                    <a href="flot.html">&nbsp;- 요약</a>
+                                    <a href="<%=request.getContextPath()%>/server/summary?summaryMenu=1">&nbsp;- 요약정보</a>
                                 </li>
                                 <li>
                                     <a href="<%=request.getContextPath()%>/cpu/cpuMain" onclick="cpuBtn()">&nbsp;- CPU</a>
@@ -178,8 +178,8 @@
                                   <li>
                                     <a href="morris.html">&nbsp;- 트래픽</a>
                                 </li>
-                            </ul>
                             </c:if>
+                            </ul>
                             <!-- /.nav-second-level -->
                         </li>
                         <li>

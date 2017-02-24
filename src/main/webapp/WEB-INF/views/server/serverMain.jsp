@@ -93,7 +93,7 @@ function test_go(){
             <tr>
                 <td>  ${list.server_host }</td>
              	  <td>${list.server_os_version }</td>
-             	  <td>${list.server_ip}</td>
+             	  <td><a href="<%=request.getContextPath()%>/server/summary?summaryMenu=1">${list.server_ip}</a></td>
              	  <td>${list.server_os_name }</td>
              	  <td>${list.server_os_support }</td>
              	</tr>
@@ -120,7 +120,7 @@ function test_go(){
             <tr>
                 <td>  ${i.server_host }</td>
              	  <td>${i.server_os_version }</td>
-             	  <td>${i.server_ip}</td>
+             	  <td><a href="<%=request.getContextPath()%>/server/summary?summaryMenu=1">${i.server_ip}</a></td>
              	  <td>${i.server_os_name }</td>
              	  <td>${i.server_os_support }</td>
              	</tr>
