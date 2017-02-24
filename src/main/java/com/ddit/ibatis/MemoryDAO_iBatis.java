@@ -39,10 +39,18 @@ public class MemoryDAO_iBatis implements MemoryDAO{
 		return null;
 	}
 
+
 	@Override
-	public ArrayList<MemoryVO> listAllArticle() throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+	public ArrayList<MemoryVO> listMemory() throws SQLException {
+		ArrayList<MemoryVO> memoryList = (ArrayList<MemoryVO>) client.queryForList("listAllMemory");
+		return memoryList;
+	}
+
+
+	@Override
+	public ArrayList<MemoryVO> listMemoryHo() throws SQLException {
+		ArrayList<MemoryVO> memoryList = (ArrayList<MemoryVO>) client.queryForList("ListAllMemoryHo");
+		return memoryList;
 	}
 
 }

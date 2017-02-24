@@ -11,6 +11,8 @@ public interface MemoryService {
 	public void updateMemory(MemoryVO memoryVO) throws SQLException;
 	public int deleteMemory(int memory_seq) throws SQLException;
 	MemoryVO selectMemory(int memory_seq) throws SQLException;
-	public ArrayList<MemoryVO> listAllMemory() throws SQLException;
+	
+	public ArrayList<MemoryVO> listMemory() throws SQLException;
+	public ArrayList<MemoryVO> listMemoryHo() throws SQLException;
 }
 

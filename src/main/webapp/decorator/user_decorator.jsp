@@ -166,9 +166,9 @@
                                 <li>
                                     <a href="<%=request.getContextPath()%>/cpu/cpuMain" onclick="cpuBtn()">&nbsp;- CPU</a>
                                 </li>
-                                  <li>
-                                    <a href="morris.html">&nbsp;- 메모리</a>
-                                </li>
+								 <li>
+                                    <a href="<%=request.getContextPath()%>/memory/memoryMain" onclick="memoryBtn()">&nbsp;- 메모리</a>
+                                </li>	
                                   <li>
                                     <a href="morris.html">&nbsp;- 프로세스</a>
                                 </li>

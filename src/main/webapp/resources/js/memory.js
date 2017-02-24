@@ -3,15 +3,6 @@ var inter="";
 var inter2="";
 var pp = 0;
 
-/* 새로고침 막기 */
-function LockF5(){
-    if (event.keyCode == 116) {
-     event.keyCode = 0;
-     return false;
-    }
-   }
-   document.onkeydown = LockF5;
-
 /* 처음 로딩 시 tt 호출 후 setInterval */
 $(function(){
     inter = setInterval("tt()",5000);
@@ -21,6 +12,15 @@ $(function(){
 //   tt();
    	
 });
+
+/* 새로고침 막기 */
+function LockF5(){
+    if (event.keyCode == 116) {
+     event.keyCode = 0;
+     return false;
+    }
+   }
+   document.onkeydown = LockF5;
 
 /* 1시간 버튼 클릭 시 */
 var dd = 0;
@@ -37,7 +37,7 @@ function ss(){
 /* 1시간 리스트*/
 function ff(){
        $.ajax({
-            url:"cpuListHours",
+            url:"memoryListHours",
             type : "post",
             dataType : 'json',
             success : function(data) {
@@ -62,7 +62,7 @@ function vv(){
 /* 처음 리스트 */
 function tt(){
    $.ajax({
-	   url:"cpuList",
+	   url:"memoryList",
       type : "post",
       dataType : 'json',
       success : function(data) {
@@ -75,79 +75,83 @@ function tt(){
       }
    });
 };
-	/* CPU Total Pcnt */
-	function HighCharts(data){
-        var total =[window.parseInt(data[0].cpu_total_pcnt)];
-        var date = new Date(data[0].cpu_date);
-        var hours = date.getHours();
-        var minutes = date.getMinutes();
-        var FullDate = hours +":"+minutes;
-        var time = [FullDate];
-        
-     
-        $.each(data,function(i){
-        if(i > 0){
-           total.push(parseInt(data[i].cpu_total_pcnt));
-           
-           date = new Date(data[i].cpu_date);
-           hours = date.getHours();
-           minutes = date.getMinutes();
-           FullDate = hours +":"+minutes;
-           
-           time.push(FullDate);
-        }
-     });
-        Highcharts.chart('container', {
-            chart: {
-                type: 'spline',
-                height:400,
-                width:1000,
-                borderColor: '#EBBA95',
-                borderRadius: 20,
-                borderWidth: 5
-            },
-            title: {
-                text: 'CPU Total'
-            },
-            xAxis: {
-            	categories:time,
-            	gridLineColor:'#ffffff',
-            	tickLength: 10,
-            	tickInterval: 4,
-            	  labels: {
-                      rotation: 0,
-                      align: 'center'
-            	  }
-            },
-            yAxis: {
-                title: {
-                    text: 'Percent (%)'
-                },
-                labels: {
-                    formatter: function () {
-                        return this.value + '%';
-                    }
-                },
-                minorGridLineColor:'#ffffff'
-        },
-            series: [{
-                name: 'CPU TOTAL',
-                data: total
-            }],
-            navigation: {
-                menuItemStyle: {
-                    fontSize: '15px'
-                }
-            }
-        })
-	};
-
-	/* Cpu_pcnt , Cpu_pcnt */
-   function HighCharts2(data) {
-	   var pcnt =[window.parseInt(data[0].cpu_pcnt)];
-	   var userPcnt = [window.parseInt(data[0].cpu_user_pcnt)];
+	/*total Memory*/
+function HighCharts(data) {
+	   var total =[window.parseInt(data[0].memory_total)];
+    
+    var date = new Date(data[0].memory_date);
+    var hours = date.getHours();
+    var minutes = date.getMinutes();
+    var FullDate = hours +":"+minutes;
+    var time = [FullDate];
+ 
+    $.each(data,function(i){
+    if(i > 0){
+    	total.push(parseInt(data[i].memory_total));
        
-       var date = new Date(data[0].cpu_date);
+       date = new Date(data[i].memory_date);
+       hours = date.getHours();
+       minutes = date.getMinutes();
+       FullDate = hours +":"+minutes;
+       
+       time.push(FullDate);
+    }
+ })
+ Highcharts.chart('container', {
+     chart: {
+         type: 'area',
+         height:400,
+         width:1000,
+         borderColor: '#EBBA95',
+         borderRadius: 20,
+         borderWidth: 5
+     },
+     title: {
+     	 text: 'MEMORY TOTAL'
+     },
+     xAxis: {
+     	categories:time,
+     	gridLineColor:'#ffffff',
+     	tickLength: 10,
+     	tickInterval: 4,
+   	  	labels: {
+             rotation: 0,
+             align: 'center'
+   	  }
+     },
+     yAxis: {
+         title: {
+         	text: 'Gigabyte (GB)'
+         },
+         labels: {
+             formatter: function () {
+                 return this.value + 'GB';
+             }
+         },
+         minorGridLineColor:'#ffffff'
+     },
+     plotOptions: {
+         area: {
+             marker: {
+                 enabled: false,
+                 symbol: 'circle',
+                 radius: 2,
+             }
+         }
+     },
+     series: [{
+         name: 'MEMORY TOTAL',
+         data: total
+     }]
+ });
+};
+
+	/*Memory_using , Memory_Idle*/
+   function HighCharts2(data) {
+	   var using =[window.parseInt(data[0].memory_using)];
+	   var idle = [window.parseInt(data[0].memory_idle)];
+       
+       var date = new Date(data[0].memory_date);
        var hours = date.getHours();
        var minutes = date.getMinutes();
        var FullDate = hours +":"+minutes;
@@ -155,11 +159,11 @@ function tt(){
     
        $.each(data,function(i){
        if(i > 0){
-    	   pcnt.push(parseInt(data[i].cpu_pcnt));
-    	   userPcnt.push(parseInt(data[i].cpu_user_pcnt));
+    	   using.push(parseInt(data[i].memory_using));
+    	   idle.push(parseInt(data[i].memory_idle));
           
           
-          date = new Date(data[i].cpu_date);
+          date = new Date(data[i].memory_date);
           hours = date.getHours();
           minutes = date.getMinutes();
           FullDate = hours +":"+minutes;
@@ -177,7 +181,7 @@ function tt(){
             borderWidth: 5
         },
         title: {
-            text: 'CPU 사용량'
+        	 text: 'MEMORY 사용량'
         },
         xAxis: {
         	categories:time,
@@ -191,11 +195,11 @@ function tt(){
         },
         yAxis: {
             title: {
-                text: 'Percent'
+            	text: 'Gigabyte (GB)'
             },
             labels: {
                 formatter: function () {
-                    return this.value + '%';
+                    return this.value + 'GB';
                 }
             },
             minorGridLineColor:'#ffffff'
@@ -210,77 +214,81 @@ function tt(){
             }
         },
         series: [{
-            name: 'CPU USER',
-            data: userPcnt
+            name: 'MEMORY USER',
+            data: using
         }, {
-            name: 'CPU System',
-            data: pcnt
+            name: 'MEMORY IDLE',
+            data: idle
         }]
     });
 };
-/* Cpu_Idle */
-function HighCharts3(data) {
-	  var idle =[window.parseInt(data[0].cpu_idle)];
-      var date = new Date(data[0].cpu_date);
-      var hours = date.getHours();
-      var minutes = date.getMinutes();
-      var FullDate = hours +":"+minutes;
-      var time = [FullDate];
-      
-   
-      $.each(data,function(i){
-      if(i > 0){
-    	  idle.push(parseInt(data[i].cpu_idle));
-         
-         date = new Date(data[i].cpu_date);
-         hours = date.getHours();
-         minutes = date.getMinutes();
-         FullDate = hours +":"+minutes;
-         
-         time.push(FullDate);
-      }
-   });
-      Highcharts.chart('container3', {
-          chart: {
-              type: 'spline',
-              height:400,
-              width:1000,
-              borderColor: '#EBBA95',
-              borderRadius: 20,
-              borderWidth: 5
-          },
-          title: {
-              text: 'CPU Idle'
-          },
-          xAxis: {
-          	categories:time,
-          	gridLineColor:'#ffffff',
-        	tickLength: 10,
-        	tickInterval: 4,
-      	  	labels: {
-                rotation: 0,
-                align: 'center'
-      	  }
-          },
-          yAxis: {
-              title: {
-                  text: 'Percent (%)'
-              },
-              labels: {
-                  formatter: function () {
-                      return this.value + '%';
-                  }
-              },
-              minorGridLineColor:'#ffffff'
+/*Memory 전체 사용량 (%)*/
+function HighCharts(data) {
+	   var total_used =[window.parseInt(data[0].memory_total_used)];
+ 
+ var date = new Date(data[0].memory_date);
+ var hours = date.getHours();
+ var minutes = date.getMinutes();
+ var FullDate = hours +":"+minutes;
+ var time = [FullDate];
+
+ $.each(data,function(i){
+ if(i > 0){
+	   total_used.push(parseInt(data[i].memory_total_used));
+    
+    date = new Date(data[i].memory_date);
+    hours = date.getHours();
+    minutes = date.getMinutes();
+    FullDate = hours +":"+minutes;
+    
+    time.push(FullDate);
+ }
+})
+Highcharts.chart('container3', {
+  chart: {
+      type: 'area',
+      height:400,
+      width:1000,
+      borderColor: '#EBBA95',
+      borderRadius: 20,
+      borderWidth: 5
+  },
+  title: {
+  	 text: 'MEMORY 전체 사용량 (%)'
+  },
+  xAxis: {
+  	categories:time,
+  	gridLineColor:'#ffffff',
+  	tickLength: 10,
+  	tickInterval: 4,
+	  	labels: {
+          rotation: 0,
+          align: 'center'
+	  }
+  },
+  yAxis: {
+      title: {
+      	text: 'Percent (%)'
       },
-          series: [{
-              name: 'CPU Idle',
-              data: idle
-          }],
-          navigation: {
-              menuItemStyle: {
-                  fontSize: '10px'
-              }
+      labels: {
+          formatter: function () {
+              return this.value + '%';
           }
-      })
-	};
+      },
+      minorGridLineColor:'#ffffff'
+  },
+  plotOptions: {
+      area: {
+          marker: {
+              enabled: false,
+              symbol: 'circle',
+              radius: 2,
+          }
+      }
+  },
+  series: [{
+      name: 'MEMORY 전체 사용량(%)',
+      data: total_used
+  }]
+});
+};
