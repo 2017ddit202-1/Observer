@@ -40,13 +40,13 @@ public class MemoryServiceImpl implements MemoryService{
 	}
 
 	@Override
-	public ArrayList<MemoryVO> listMemory() throws SQLException {
-		return memoryDAO_iBatis.listMemory();
+	public ArrayList<MemoryVO> listMemory(String ip) throws SQLException {
+		return memoryDAO_iBatis.listMemory(ip);
 	}
 
 	@Override
-	public ArrayList<MemoryVO> listMemoryHo() throws SQLException {
-		return memoryDAO_iBatis.listMemoryHo();
+	public ArrayList<MemoryVO> listMemoryHo(String ip) throws SQLException {
+		return memoryDAO_iBatis.listMemoryHo(ip);
 	}
 
 

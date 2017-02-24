@@ -44,13 +44,13 @@ public class CpuServiceImpl implements CpuService{
 	}
 
 	@Override
-	public ArrayList<CpuVO> listCpu() throws SQLException {
-		return cpuDAO_iBatis.listCpu();
+	public ArrayList<CpuVO> listCpu(String ip) throws SQLException {
+		return cpuDAO_iBatis.listCpu(ip);
 	}
 
 	@Override
-	public ArrayList<CpuVO> listCpuHo() throws SQLException {
-		return cpuDAO_iBatis.listCpuHo();
+	public ArrayList<CpuVO> listCpuHo(String ip) throws SQLException {
+		return cpuDAO_iBatis.listCpuHo(ip);
 	}
 
 }

@@ -4,15 +4,17 @@
     
     <sqlMap namespace="cpu">
     <!-- 30분List -->
-	<select id="listAllCpu" resultClass="cpu">
-		select * from(select * from cpu order by cpu_date desc) where
-			<![CDATA[rownum<=30]]> order by cpu_date asc
+	<select id="listAllCpu" resultClass="cpu" parameterClass="str">
+		select * 
+		from(select * from cpu order by cpu_date desc) 
+		where cpu_ip=#str# and <![CDATA[rownum<=30]]> order by cpu_date asc
 	</select>
 	
 	<!-- 1시간 List -->
-	<select id="ListAllCpuHo" resultClass="cpu">
-		select * from(select * from cpu order by cpu_date desc) where
-			<![CDATA[rownum<=40]]> order by cpu_date asc
+	<select id="ListAllCpuHo" resultClass="cpu" parameterClass="str">
+		select * 
+		from(select * from cpu order by cpu_date desc) 
+		where cpu_ip=#str# and <![CDATA[rownum<=40]]> order by cpu_date asc
 	</select>
 	
 	<insert id = "insertCpuInfo" parameterClass="cpu">

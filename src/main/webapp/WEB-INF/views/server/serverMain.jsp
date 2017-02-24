@@ -23,8 +23,6 @@ function addlist_go(ip){
 	document.formm.submit();
 }
 
-
-
 function test_go(){
 	document.formm.action = "<%=request.getContextPath()%>"+"/server/testForm";
 		document.formm.submit();
@@ -120,7 +118,9 @@ function test_go(){
             <tr>
                 <td>  ${i.server_host }</td>
              	  <td>${i.server_os_version }</td>
-             	  <td><a href="<%=request.getContextPath()%>/server/summary?summaryMenu=1">${i.server_ip}</a></td>
+             	  <td><a href="<%=request.getContextPath()%>/server/summary?summaryMenu=1&ip=${i.server_ip}">${i.server_ip}</a>
+             	  <input type="hidden" name="${i.server_host}" value="${i.server_ip}">
+             	  </td>
              	  <td>${i.server_os_name }</td>
              	  <td>${i.server_os_support }</td>
              	</tr>

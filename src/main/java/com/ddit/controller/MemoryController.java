@@ -3,6 +3,8 @@ package com.ddit.controller;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,19 +26,20 @@ public class MemoryController {
 	}
 	
 	@RequestMapping("memoryMain")
-	public String memoryMian(){
+	public String memoryMian(HttpSession session){
 		String url = "memory/memory";
+		String ip = (String) session.getAttribute("ip");
 		return url;
 	}
 	
 	@RequestMapping(value="memoryList",method=RequestMethod.POST)
 	@ResponseBody
-	public ArrayList<MemoryVO> memoryList(Model model){
-		
+	public ArrayList<MemoryVO> memoryList(Model model , HttpSession session){
+		String ip = (String) session.getAttribute("ip");
 		ArrayList<MemoryVO> memoList = null;
 		
 		try {
-			memoList = memoryService.listMemory();
+			memoList = memoryService.listMemory(ip);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -45,11 +48,11 @@ public class MemoryController {
 	}
 	@RequestMapping(value="memoryListHours",method=RequestMethod.POST)
 	@ResponseBody
-	public ArrayList<MemoryVO> memoryListHours(Model model){
+	public ArrayList<MemoryVO> memoryListHours(Model model,HttpSession session){
 		ArrayList<MemoryVO> memoListHo = null;
-		
+		String ip = (String) session.getAttribute("ip");
 		try {
-			memoListHo = memoryService.listMemoryHo();
+			memoListHo = memoryService.listMemoryHo(ip);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

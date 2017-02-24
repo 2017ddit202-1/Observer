@@ -2,9 +2,9 @@ package com.ddit.controller;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -44,18 +44,20 @@ public class CpuController {
 	}
 	
 	@RequestMapping("cpuMain")
-	public String cpuMain(){
+	public String cpuMain(HttpServletRequest request,HttpSession session){
 		String url = "cpu/cpu";
+		
+		String ip = (String) session.getAttribute("ip");
 		return url;
 	}
 	
 	@RequestMapping(value="/cpuList",method=RequestMethod.POST)
 	@ResponseBody
-	public ArrayList<CpuVO > cpuList(Model model){
-		
+	public ArrayList<CpuVO > cpuList(Model model,HttpSession session){
+		String ip = (String) session.getAttribute("ip");
 		ArrayList<CpuVO> cpuVO = null;
 		try {
-			cpuVO = cpuService.listCpu();
+			cpuVO = cpuService.listCpu(ip);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -66,11 +68,12 @@ public class CpuController {
 	
 	@RequestMapping(value="/cpuListHours",method=RequestMethod.POST)
 	@ResponseBody
-	public ArrayList<CpuVO> cpuListHo(){
+	public ArrayList<CpuVO> cpuListHo(HttpSession session){
+		String ip = (String) session.getAttribute("ip");
 		
 		ArrayList<CpuVO> cpuVO = null;
 		try {
-			cpuVO = cpuService.listCpuHo();
+			cpuVO = cpuService.listCpuHo(ip);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

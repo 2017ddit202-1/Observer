@@ -12,7 +12,7 @@ public interface MemoryService {
 	public int deleteMemory(int memory_seq) throws SQLException;
 	MemoryVO selectMemory(int memory_seq) throws SQLException;
 	
-	public ArrayList<MemoryVO> listMemory() throws SQLException;
-	public ArrayList<MemoryVO> listMemoryHo() throws SQLException;
+	public ArrayList<MemoryVO> listMemory(String ip) throws SQLException;
+	public ArrayList<MemoryVO> listMemoryHo(String ip) throws SQLException;
 }
 

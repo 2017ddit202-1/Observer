@@ -45,14 +45,14 @@ public class CpuDAO_iBatis implements CpuDAO{
 	}
 
 	@Override
-	public ArrayList<CpuVO> listCpu() throws SQLException {
-		ArrayList<CpuVO> cpuList =   (ArrayList<CpuVO>) client.queryForList("listAllCpu");
+	public ArrayList<CpuVO> listCpu(String ip) throws SQLException {
+		ArrayList<CpuVO> cpuList =   (ArrayList<CpuVO>) client.queryForList("listAllCpu",ip);
 		return cpuList;
 	}
 
 	@Override
-	public ArrayList<CpuVO> listCpuHo() throws SQLException {
-		ArrayList<CpuVO> cpuList =   (ArrayList<CpuVO>) client.queryForList("ListAllCpuHo");
+	public ArrayList<CpuVO> listCpuHo(String ip) throws SQLException {
+		ArrayList<CpuVO> cpuList =   (ArrayList<CpuVO>) client.queryForList("ListAllCpuHo",ip);
 		return cpuList;
 	}
 
