@@ -4,7 +4,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import com.ddit.dao.MemberGroupDAO;
-import com.ddit.dao.ServerDAO;
 import com.ddit.dto.MemberGroupVO;
 
 public class MemberGroupServiceImpl implements MemberGroupService{
@@ -34,8 +33,7 @@ public class MemberGroupServiceImpl implements MemberGroupService{
 	@Override
 	public MemberGroupVO selectMemberGroupVO(String mg_lice)
 			throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+		return memberGroupDAO.selectMemGroup(mg_lice);
 	}
 	@Override
 	public ArrayList<MemberGroupVO> listAllMemberGroup() throws SQLException {

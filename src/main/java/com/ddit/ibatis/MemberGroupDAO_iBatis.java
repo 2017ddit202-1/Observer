@@ -2,9 +2,11 @@ package com.ddit.ibatis;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 import com.ddit.dao.MemberGroupDAO;
 import com.ddit.dto.MemberGroupVO;
+import com.ddit.dto.ServerVO;
 import com.ibatis.sqlmap.client.SqlMapClient;
 
 public class MemberGroupDAO_iBatis implements MemberGroupDAO {
@@ -28,7 +30,7 @@ public class MemberGroupDAO_iBatis implements MemberGroupDAO {
 	}
 
 	@Override
-	public void updateMemGroup(MemberGroupVO MemGroupVO) throws SQLException {
+	public void updateMemGroup(MemberGroupVO MemGroupVO) throws SQLException {   
 		// TODO Auto-generated method stub
 
 	}
@@ -41,8 +43,9 @@ public class MemberGroupDAO_iBatis implements MemberGroupDAO {
 
 	@Override
 	public MemberGroupVO selectMemGroup(String mg_lice) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+		MemberGroupVO mem = new MemberGroupVO();
+		mem = (MemberGroupVO)client.queryForObject("selectMemGroup", mg_lice);
+		return mem;
 	}
 
 	@Override

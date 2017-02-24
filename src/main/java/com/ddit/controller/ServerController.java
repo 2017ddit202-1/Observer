@@ -2,6 +2,7 @@ package com.ddit.controller;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -34,7 +35,7 @@ import com.ddit.service.VWmemPosServiceImpl;
 @RequestMapping("/server")
 public class ServerController {
 
-	Map<String, Map<String, String>> classMap = new LinkedHashMap<String, Map<String, String>>();
+	static Map<String, Map<String, String>> classMap = new LinkedHashMap<String, Map<String, String>>();
 
 	/*
 	 * String classip = "";
@@ -63,9 +64,10 @@ public class ServerController {
 	@Autowired
 	private VWmemPosServiceImpl vWmemPosServiceImpl;
 	
-	
-	
-	
+	public void setMemberGroupService(MemberGroupServiceImpl memberGroupService) {
+		this.memberGroupService = memberGroupService;
+	}
+
 	public void setvWmemPosserviceImpl(VWmemPosServiceImpl vWmemPosServiceImpl) {
 		this.vWmemPosServiceImpl = vWmemPosServiceImpl;
 	}
@@ -183,8 +185,9 @@ public class ServerController {
 			model.addAttribute("column", column);
 		}
 
+		
 		model.addAttribute("map", classMap);
-
+		
 		return url;
 
 	}
@@ -195,8 +198,8 @@ public class ServerController {
 		String url = "server/serverMain";
 		System.out.println("GET method");
 		List<String> iplist = new ArrayList<String>();
-		
-		
+		MemberGroupVO memberGroupVO = new MemberGroupVO();
+		int summaryMenu = 0;
 		classMap = (Map<String, Map<String, String>>) request
 				.getAttribute("classMap");
 		System.out.println(request.getAttribute("classMap").toString());
@@ -210,6 +213,8 @@ public class ServerController {
 		String column = "";
 		VWmemPosVO vWmemPosVO = new VWmemPosVO();
 		List<ServerVO> serverList = new ArrayList<ServerVO>();
+		List<ServerVO> serverListUser= new ArrayList<ServerVO>();
+		
 
 		try {
 			userOK = alertService.select_sessionID(loginUser); // alert테이블에 ID값이
@@ -217,6 +222,13 @@ public class ServerController {
 			column = alertService.authority_content(loginUser);
 			alertService.alertDelete(loginUser);
 			vWmemPosVO = vWmemPosServiceImpl.memposVO(loginUser);
+			  memberGroupVO = (MemberGroupVO) memberGroupService.selectMemberGroupVO(vWmemPosVO.getMem_group_lice());
+			  if(memberGroupVO != null){
+				  if(!(memberGroupVO.getMg_lice().equals("1"))){
+					  serverListUser = serverService.selectServerList(memberGroupVO.getMem_id());
+					  System.out.println(serverListUser.toString());
+				  }			 
+			  }
 			serverList = serverService.selectServerList(loginUser);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -238,10 +250,19 @@ public class ServerController {
 			
 		}
 		
-		
+		for(ServerVO serverVO : serverListUser){
+			System.out.println("()()()()()()()()()()(");
+			System.out.println(serverVO.getServer_ip());
+			System.out.println("()()()()()()()()()()(");
+			
+		}
+		HttpSession flag = request.getSession();
+		flag.setAttribute("summaryMenu", summaryMenu);
+		model.addAttribute("serverListUser", serverListUser);
 		model.addAttribute("serverList", serverList);
 		model.addAttribute("loginUserPosl", vWmemPosVO.getPosl_pos());
 		model.addAttribute("map", classMap);
+		
 		return url;
 
 	}
@@ -297,7 +318,7 @@ public class ServerController {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			classMap.remove(currentIp);
+			/*classMap.remove(currentIp);*/
 		} else if (memberVO.getMem_group_lice().equals("1")) {
 			// 이부분에서 라이센스변경 후 서버테이블에 추가
 			int result = (int) (Math.floor(Math.random() * 1000000) + 100000);
@@ -338,7 +359,7 @@ public class ServerController {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			classMap.remove(currentIp);
+			/*classMap.remove(currentIp);*/
 		}
 
 		System.out.println("serverHandling");
@@ -346,5 +367,15 @@ public class ServerController {
 
 		return url;
 	}
+	
+	@RequestMapping("/summary")
+	public String summary(HttpServletRequest request, HttpServletResponse response, HttpSession session){
+		String url = "server/summaryInfo";
+		session.removeAttribute("summaryMenu");
+		session.setAttribute("summaryMenu", request.getParameter("summaryMenu"));
+			System.out.println(request.getParameter("summaryMenu"));
+		return url;
+	}
+	
 
 }
