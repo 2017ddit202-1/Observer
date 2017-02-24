@@ -341,6 +341,7 @@ text-align: center;
  function qAnswer_go(){
 	 $('#btn').click(function() {
          $("#hiddenDiv").hide();
+     
         }) 
  }
 	

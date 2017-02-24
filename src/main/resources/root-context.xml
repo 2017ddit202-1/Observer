@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:util="http://www.springframework.org/schema/util"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
@@ -54,7 +53,7 @@
 	<bean id="memoryService" class="com.ddit.service.MemoryServiceImpl">
 		<property name="memoryDAO_iBatis" ref="memoryDAO" />
 	</bean>
-	
+
 
 
 	<bean id="articleDAO" class="com.ddit.ibatis.Notice_ArticleDAO_iBatis">
@@ -101,7 +100,6 @@
 	<bean id="VWmemPosService" class="com.ddit.service.VWmemPosServiceImpl"
 		p:VWmemPos-ref="VWmemPosDAO" />
 
-
 	<bean id="alertDAO" class="com.ddit.ibatis.AlertDAO_iBatis"
 		p:client-ref="SqlMapClient" />
 
@@ -112,27 +110,28 @@
 		p:client-ref="SqlMapClient" />
 	<bean id="cpuService" class="com.ddit.service.CpuServiceImpl"
 		p:cpuDAO_iBatis-ref="cpuDAO" />
-	
+
 	<bean id="ReportDAO" class="com.ddit.ibatis.ReportDAO_iBatis"
 		p:client-ref="SqlMapClient" />
 	<bean id="ReportService" class="com.ddit.service.ReportServiceImpl"
-		p:reportDAO_iBatis-ref="ReportDAO" />	
+		p:reportDAO_iBatis-ref="ReportDAO" />
+
+	<bean id="adminDAO" class="com.ddit.ibatis.AdminDAO_iBatis"
+		p:client-ref="SqlMapClient" />
+	<bean id="adminService" class="com.ddit.service.AdminServiceImpl"
+		p:adminDAO-ref="adminDAO" />
 
 
 
-<!-- 
-	<bean id="test" class="com.ddit.controller.ServerController">
-		<property name="classMap">
-			<map>
-				<entry key="ip" value=""/>
-				<entry key="hostName" value="" />
-			</map>
-		</property>
-	</bean> -->
+
+
+	<!-- <bean id="test" class="com.ddit.controller.ServerController"> <property 
+		name="classMap"> <map> <entry key="ip" value=""/> <entry key="hostName" value="" 
+		/> </map> </property> </bean> -->
 
 	<util:map id="classMap" map-class="java.util.HashMap">
-				<entry key="ip" value=""/>
-				<entry key="hostName" value="" />
+		<entry key="ip" value="" />
+		<entry key="hostName" value="" />
 	</util:map>
 
 
