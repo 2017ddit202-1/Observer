@@ -41,15 +41,15 @@ public class MemoryDAO_iBatis implements MemoryDAO{
 
 
 	@Override
-	public ArrayList<MemoryVO> listMemory() throws SQLException {
-		ArrayList<MemoryVO> memoryList = (ArrayList<MemoryVO>) client.queryForList("listAllMemory");
+	public ArrayList<MemoryVO> listMemory(String ip) throws SQLException {
+		ArrayList<MemoryVO> memoryList = (ArrayList<MemoryVO>) client.queryForList("listAllMemory",ip);
 		return memoryList;
 	}
 
 
 	@Override
-	public ArrayList<MemoryVO> listMemoryHo() throws SQLException {
-		ArrayList<MemoryVO> memoryList = (ArrayList<MemoryVO>) client.queryForList("ListAllMemoryHo");
+	public ArrayList<MemoryVO> listMemoryHo(String ip) throws SQLException {
+		ArrayList<MemoryVO> memoryList = (ArrayList<MemoryVO>) client.queryForList("ListAllMemoryHo",ip);
 		return memoryList;
 	}
 

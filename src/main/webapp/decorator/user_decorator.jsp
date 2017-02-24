@@ -164,10 +164,10 @@
                                     <a href="<%=request.getContextPath()%>/server/summary?summaryMenu=1">&nbsp;- 요약정보</a>
                                 </li>
                                 <li>
-                                    <a href="<%=request.getContextPath()%>/cpu/cpuMain" onclick="cpuBtn()">&nbsp;- CPU</a>
+                                    <a href="<%=request.getContextPath()%>/cpu/cpuMain">&nbsp;- CPU</a>
                                 </li>
 								 <li>
-                                    <a href="<%=request.getContextPath()%>/memory/memoryMain" onclick="memoryBtn()">&nbsp;- 메모리</a>
+                                    <a href="<%=request.getContextPath()%>/memory/memoryMain">&nbsp;- 메모리</a>
                                 </li>	
                                   <li>
                                     <a href="morris.html">&nbsp;- 프로세스</a>

@@ -8,14 +8,16 @@
    				values(memory_seq.nextval, #memory_total#, #memory_using#, #memory_ip#, #server_code#, #memory_idle#, #memory_total_used#)
     	</insert>
     	
-    	<select id="listAllMemory" resultClass="memo">
-			select * from(select * from memory order by memory_date desc) where
-			<![CDATA[rownum<=30]]> order by memory_date asc
+    	<select id="listAllMemory" resultClass="memo" parameterClass="str">
+				select * 
+				from(select * from memory order by memory_date desc) 
+				where memory_ip=#str# and <![CDATA[rownum<=30]]> order by memory_date asc
 		</select>
 		
-		<select id="ListAllMemoryHo" resultClass="memo">
-		select * from(select * from memory order by memory_date desc) where
-			<![CDATA[rownum<=40]]> order by memory_date asc
+		<select id="ListAllMemoryHo" resultClass="memo" parameterClass="str">
+				select * 
+				from(select * from memory order by memory_date desc) 
+				where memory_ip=#str# and <![CDATA[rownum<=40]]> order by memory_date asc
 	</select>
     
     

@@ -374,6 +374,11 @@ public class ServerController {
 		session.removeAttribute("summaryMenu");
 		session.setAttribute("summaryMenu", request.getParameter("summaryMenu"));
 			System.out.println(request.getParameter("summaryMenu"));
+		
+		String ip = request.getParameter("ip");
+		
+		session.setAttribute("ip", ip);
+		
 		return url;
 	}
 	
