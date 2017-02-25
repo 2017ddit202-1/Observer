@@ -11,12 +11,19 @@ import com.ibatis.sqlmap.client.SqlMapClient;
 public class ServerDAO_iBatis implements ServerDAO{
 
 
-
-	
-
 	private SqlMapClient client;
 	public void setClient(SqlMapClient client){
 		this.client = client;
+	}
+	
+	
+	/**
+	 * ip로 server_host, server_os_name, server_ip 를 select
+	 */
+	@Override
+	public ServerVO SelectServerInfo(String ip) throws SQLException {
+		 ServerVO serverVO= (ServerVO)client.queryForObject("selectServerInfo", ip);
+		return serverVO;
 	}
 	
 	
@@ -70,5 +77,17 @@ public class ServerDAO_iBatis implements ServerDAO{
 		// TODO Auto-generated method stub
 		return null;
 	}
+			
+		/**
+		 * admin계정의 아이디를 이용해서 해당 서버에 등록되어있는 ip를 리스트로 가져온다
+		 */
+	@Override
+	public List<String> selectServerIpList(String id) throws SQLException {
+		List<String> ipList = new ArrayList<String>();
+		
+		ipList = client.queryForList("selectSeverIpList", id);
+		return ipList;
+	}
+	
 
 }
