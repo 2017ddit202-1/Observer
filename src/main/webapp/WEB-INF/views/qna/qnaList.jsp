@@ -36,6 +36,11 @@
 <body>
 
 <br><br><br>
+
+<div style="text-align: center;">
+<img src="<%=request.getContextPath()%>/resources/img/line.jpg"><br><br><br><br>
+</div>
+
 	<div id="div_index">
 		<img src="<%=request.getContextPath()%>/resources/img/arrow.png">QnA게시판 <span style="font-size: 15px; color: #7c7c7c">고객님의 질문에 대해서 운영자가 1:1 답변을 드립니다.</span>
 	</div>
@@ -152,7 +157,7 @@
 		</table>
 	</div>
 	<div style="text-align: center;">
-		<button type="button" onclick="location.href='<%=request.getContextPath()%>/qna/qnaWriteForm' ">글쓰기</button>
+		<button type="button" class="btn btn-default" onclick="location.href='<%=request.getContextPath()%>/qna/qnaWriteForm' ">글쓰기</button>
 	</div>
 
 </body>
