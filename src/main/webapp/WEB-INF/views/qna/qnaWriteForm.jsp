@@ -63,8 +63,8 @@
 		</table>
 		<div style="text-align: center;">
 			<hr style="border: solid 1px #c3ced9; width: 1000px;">
-			<input type="submit" value="글 등록" onclick="write_go()"> <input
-				type="reset" value="취소" onclick="list_go()">
+			<input type="submit" class="btn btn-default" value="글 등록" onclick="write_go()"> <input
+				type="reset" class="btn btn-default" value="취소" onclick="list_go()">
 		</div>
 
 	</form>

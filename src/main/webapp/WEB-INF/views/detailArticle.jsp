@@ -85,7 +85,7 @@ function articleList_go(){
  
  <div style="text-align: center;">
 	
-	 <button type="button" id="btnContactUs" onclick="articleList_go();">목록</button>
+	 <button type="button" id="btnContactUs" class="btn btn-default" onclick="articleList_go();">목록</button>
 	
 	<sec:authorize access="hasRole('ROLE_SUPER')">
       <button type="button" id="btnContactUs" onclick="go_articleWrite()">수정하기</button>

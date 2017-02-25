@@ -129,7 +129,7 @@
 
 
 		<div id="buttons" style="text-align: center;">
-			<input type="button" value="목록보기" class="submit"
+			<input type="button" class="btn btn-default" value="목록보기" class="submit"
 				onclick="adminlist_go()">
 			<c:choose>
 				<c:when test="${loginUserVO.mem_id eq adminVO.ad_id}">
@@ -140,7 +140,7 @@
 				</c:when>
 			</c:choose>
 			<sec:authorize access="hasRole('ROLE_SUPER')">
-				<input type="button" value="답변하기" id="forget">
+				<input type="button" class="btn btn-default" value="답변하기" id="forget">
 			</sec:authorize>
 			</div>
 

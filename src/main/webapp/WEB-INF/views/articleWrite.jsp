@@ -14,6 +14,9 @@ text-align: center;
 </style>
 
 	<br> <br>
+	
+	<div style="height: 1000px;">
+	
 	<div style="text-align: center;">
 		<h2>공지사항 글쓰기</h2>
 		<h4> ARTICLE WRITE</h4>
@@ -42,12 +45,14 @@ text-align: center;
 
 <div style="text-align: center;">
 <hr style="border: solid 1px #c3ced9; width: 1000px;">
-<button type="button" id="btnContactUs" onclick="go_articleWrite()">글쓰기</button>
-<button type="button" id="btnContactUs" onclick="history.go(-1);">취소</button>
+<button type="button" id="btnContactUs" class="btn btn-default" onclick="go_articleWrite()">글쓰기</button>
+<button type="button" id="btnContactUs" class="btn btn-default" onclick="history.go(-1);">취소</button>
 
 </div>	
 
 </form>
+
+</div>
 
 
 <script>
