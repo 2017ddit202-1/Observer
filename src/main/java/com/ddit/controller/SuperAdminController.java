@@ -161,13 +161,13 @@ public class SuperAdminController {
 		
 		String url = "superAdmin/memberList";
 		
-		/*String key = "";
+		String key = "";
 		String tpage = request.getParameter("tpage");
 
 		if (request.getParameter("key") != null) {
 			key = request.getParameter("key");
 		}
-
+		System.out.println("key@@@@@@: "+key);
 		if (tpage == null) {
 			tpage = "1";
 		} else if (tpage.equals("")) {
@@ -175,18 +175,20 @@ public class SuperAdminController {
 		}
 		
 		request.setAttribute("key", key);
-	    request.setAttribute("tpage",tpage);*/
+	    request.setAttribute("tpage",tpage);
 		
 		ArrayList<VWmemPosVO> memberList = null;
+		String paging=null;
 		
 		try {
-			memberList= superAdminService.VWmemPosMemberAll();
+			memberList= superAdminService.VWmemSerchId(Integer.parseInt(tpage), key);
+			paging = superAdminService.pageNumberId(Integer.parseInt(tpage), key);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		
-		/*String paging=null;
-		try {
+		
+		/*try {
 			memberList = memberDAO.listMember(Integer.parseInt(tpage),key);
 			paging = memberDAO.pageNumber(Integer.parseInt(tpage), key);
 		} catch (SQLException e) {
@@ -194,9 +196,9 @@ public class SuperAdminController {
 		}*/
 
 		request.setAttribute("memberList", memberList);
-		/*int n=memberList.size();   
+		int n=memberList.size();   
 	    request.setAttribute("memberListSize",n); 
-	    request.setAttribute("paging", paging);   */
+	    request.setAttribute("paging", paging);   
 		
 		return url;
 	}
@@ -230,7 +232,6 @@ public class SuperAdminController {
 		
 		MemberVO memberVO = new MemberVO();
 		PositionListVO posiotionVO = new PositionListVO();
-		
 		memberVO.setMem_id(request.getParameter("editId").trim());
 		memberVO.setMem_email(request.getParameter("editEmail"));
 		memberVO.setMem_pwd(request.getParameter("editPwd"));
