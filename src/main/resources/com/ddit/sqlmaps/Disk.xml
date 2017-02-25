@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
+    "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="disk">
+	<select id="listAllDisk" resultClass="disk" parameterClass="str">
+		select *
+		from(select * from cpu order by disk_date desc)
+		where disk_ip=#str# and <![CDATA[rownum<=30]]>
+		order by disk_date asc
+	</select>
+
+	<!-- 1시간 List -->
+	<select id="ListAllDiskHo" resultClass="disk" parameterClass="str">
+		select *
+		from(select * from cpu order by disk_date desc)
+		where disk_ip=#str# and <![CDATA[rownum<=40]]>
+		order by disk_date asc
+	</select>
+
+	<insert id="insertDiskInfo" parameterClass="disk">
+		insert into
+		disk(disk_nm, disk_total, disk_using, disk_ip,server_code,disk_seq)
+		values(#disk_nm#,#disk_total#,#disk_using#,#disk_ip#,#server_code#,disk_seq.nextval)
+	</insert>
+
+</sqlMap> 

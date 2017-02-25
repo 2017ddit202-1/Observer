@@ -176,7 +176,7 @@
                                     <a href="morris.html">&nbsp;- 디스크</a>
                                 </li>
                                   <li>
-                                    <a href="morris.html">&nbsp;- 트래픽</a>
+                                    <a href="<%=request.getContextPath()%>/traffic/trafficMain">&nbsp;- 트래픽</a>
                                 </li>
                             </c:if>
                             </ul>

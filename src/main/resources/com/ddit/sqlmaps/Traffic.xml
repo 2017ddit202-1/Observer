@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
+    "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Traffic">
+	<insert id="insertTrafficInfo" parameterClass="traffic">
+		insert into
+		traffic(traffic_ip, traffic_use, traffic_rece,traffic_trans,server_code,traffic_seq,traffic_net)
+		values(#traffic_ip#,#traffic_use#,#traffic_rece#,#traffic_trans#,#server_code#,traffic_seq.nextval,#traffic_net#)
+	</insert>
+
+	<select id="listAllTra" resultClass="traffic" parameterClass="str">
+		select *
+		from(select * from traffic order by traffic_date desc)
+		where traffic_ip=#str# and <![CDATA[rownum<=30]]>
+		order by traffic_date asc
+	</select>
+
+	<!-- 1시간 List -->
+	<select id="ListAllTraHo" resultClass="traffic" parameterClass="str">
+		select *
+		from(select * from traffic order by traffic_date desc)
+		where traffic_ip=#str# and <![CDATA[rownum<=40]]>
+		order by traffic_date asc
+	</select>
+	
+<!-- 	<select id="trafficNet" resultClass="str" parameterClass="traffic"> -->
+<!-- 		select * from traffic where traffic_seq=#traffic_seq# -->
+<!-- 	</select> -->
+
+
+
+</sqlMap>
