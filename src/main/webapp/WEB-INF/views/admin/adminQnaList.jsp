@@ -225,7 +225,7 @@ function check() {
 	
 	<div style="text-align: center;">
 		<sec:authorize access="hasRole('ROLE_ADMIN')">
-			<button type="button" onclick="location.href='adminWrite' ">질문하기</button>
+			<button type="button" class="btn btn-default" onclick="location.href='adminWrite' ">질문하기</button>
 		</sec:authorize>
 	</div>
 	

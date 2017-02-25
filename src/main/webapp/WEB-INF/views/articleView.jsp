@@ -84,13 +84,19 @@ function check() {
 	<br>
 	<br>
 	
+
+	
 <div style="text-align: center;">
+
 <img src="<%=request.getContextPath()%>/resources/img/line.jpg"><br><br><br><br>
+
 </div>
 	<div style="font-size: 30px; width: 1000px; text-align: left; margin-left: 242px;">
 		<img src="<%=request.getContextPath()%>/resources/img/arrow.png">공지사항
 		<span style="font-size: 15px; color: #7c7c7c">각종 안내, 서비스 또는
 			OBSERVER의 소식 버전안내 등의 정보를 확인할 수 있습니다.</span>
+			
+			<img src="<%=request.getContextPath()%>/resources/img/notice_image.png">
 
 	</div>
 
@@ -151,7 +157,8 @@ function check() {
 								<td>${loginUser}</td>
 								<td><a href="detailArticle?noar_seq=${articleVO.noar_seq}">${articleVO.noar_subject}</a></td>
 								<td>${articleVO.noar_content}</td>
-								<td>${articleVO.noar_date}</td>
+								<td><fmt:formatDate value="${articleVO.noar_date}"
+										pattern="yyyy-MM-dd" /></td>
 								<td>${articleVO.noar_cnt }</td>
 							</tr>
 						</c:forEach>
@@ -191,7 +198,8 @@ function check() {
 
 	<div style="text-align: center;">
 		<sec:authorize access="hasRole('ROLE_SUPER')">
-			<button type="button" onclick="location.href='articleWrite' ">글쓰기</button>
+			<button type="button" class="btn btn-default" onclick="location.href='articleWrite' ">글쓰기</button>
 		</sec:authorize>
 	</div>
+	
 </body>

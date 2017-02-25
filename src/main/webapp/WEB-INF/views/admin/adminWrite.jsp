@@ -56,8 +56,8 @@ function go_adminWrite() {
 
 <div style="text-align: center;">
 <hr style="border: solid 1px #c3ced9; width: 1000px;">
-<button type="button" id="btnContactUs" onclick="go_adminWrite()">글쓰기</button>
-<button type="button" id="btnContactUs" onclick="history.go(-1);">취소</button>
+<button type="button" id="btnContactUs" class="btn btn-default" onclick="go_adminWrite()">글쓰기</button>
+<button type="button" id="btnContactUs" class="btn btn-default" onclick="history.go(-1);">취소</button>
 
 </div>	
 
