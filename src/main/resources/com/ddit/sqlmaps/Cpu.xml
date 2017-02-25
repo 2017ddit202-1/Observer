@@ -23,4 +23,23 @@
 	<!-- insert into qna(qseq, qna_subject, qna_content, qna_id)
    		values(qseq.nextval, #qna_subject#, #qna_content#, #qna_id#)
 	 -->
+	 
+	 
+	 
+	 <select id="selectTotalCpu" parameterClass="str" resultClass="str">
+			 	 SELECT *
+		    FROM
+		    (
+		    SELECT CPU_TOTAL_PCNT
+		    FROM CPU
+		    WHERE
+		    CPU_IP=#cpu_ip#
+		    ORDER BY CPU_DATE DESC
+		    )
+		    WHERE ROWNUM = 1
+		    
+	 </select>
+	 
+	 
+	 
 	</sqlMap>

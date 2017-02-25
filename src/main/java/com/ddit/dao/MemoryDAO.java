@@ -15,4 +15,5 @@ public interface MemoryDAO {
 	
 	public ArrayList<MemoryVO> listMemory() throws SQLException;
 	public ArrayList<MemoryVO> listMemoryHo() throws SQLException;
+	public String selectMemoryTotal(String ip) throws SQLException;
 }

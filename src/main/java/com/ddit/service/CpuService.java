@@ -15,5 +15,6 @@ public interface CpuService {
 	
 	public ArrayList<CpuVO> listCpu() throws SQLException;
 	public ArrayList<CpuVO> listCpuHo() throws SQLException;
+	public String SelectCpuTotalpcnt(String ip) throws SQLException;
 	
 }

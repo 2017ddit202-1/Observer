@@ -9,11 +9,22 @@ import com.ibatis.sqlmap.client.SqlMapClient;
 
 public class CpuDAO_iBatis implements CpuDAO{
 	
+	
+
 	private SqlMapClient client;
 	public void setClient(SqlMapClient client) {
 		this.client = client;
 	}
 
+	/**
+	 * ip로 cpu_total_pcnt의 가장 최근값 1개를 select 
+	 */
+	@Override
+	public String SelectCpuTotalpcnt(String ip) throws SQLException {
+		String cpu_total_pcnt = (String)client.queryForObject("selectTotalCpu", ip);
+		return cpu_total_pcnt;
+	}
+	
 	@Override
 	public int insertCpu(CpuVO cpuVO) throws SQLException {
 		client.insert("insertCpuInfo",cpuVO);

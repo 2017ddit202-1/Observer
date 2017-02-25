@@ -8,11 +8,24 @@ import com.ddit.ibatis.CpuDAO_iBatis;
 
 public class CpuServiceImpl implements CpuService{
 	
+	
+
 	private CpuDAO_iBatis cpuDAO_iBatis;
 	public void setCpuDAO_iBatis(CpuDAO_iBatis cpuDAO_iBatis){
 		this.cpuDAO_iBatis = cpuDAO_iBatis;
 	}
 
+	/**
+	 * cpu_total_pcnt를 가져오기 위한 서비스
+	 */
+	@Override
+	public String SelectCpuTotalpcnt(String ip) throws SQLException {
+		String cpu =  cpuDAO_iBatis.SelectCpuTotalpcnt(ip);
+		return cpu;
+	}
+	
+	
+	
 	@Override
 	public int insertCpu(CpuVO cpuVO) throws SQLException {
 		cpuDAO_iBatis.insertCpu(cpuVO);
