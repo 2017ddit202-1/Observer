@@ -38,12 +38,6 @@ public class CpuServiceImpl implements CpuService{
 	}
 
 	@Override
-	public ArrayList<CpuVO> listAllArticle() throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public ArrayList<CpuVO> listCpu(String ip) throws SQLException {
 		return cpuDAO_iBatis.listCpu(ip);
 	}

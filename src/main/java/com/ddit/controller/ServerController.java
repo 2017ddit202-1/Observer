@@ -2,7 +2,6 @@ package com.ddit.controller;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,17 +17,21 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.ddit.dto.CpuVO;
+import com.ddit.dto.DiskVO;
 import com.ddit.dto.MemberGroupVO;
 import com.ddit.dto.MemberVO;
 import com.ddit.dto.MemoryVO;
 import com.ddit.dto.ServerVO;
+import com.ddit.dto.TrafficVO;
 import com.ddit.dto.VWmemPosVO;
 import com.ddit.service.AlertServiceImpl;
 import com.ddit.service.CpuServiceImpl;
+import com.ddit.service.DiskServiceImpl;
 import com.ddit.service.MemberGroupServiceImpl;
 import com.ddit.service.MemberServiceImpl;
 import com.ddit.service.MemoryServiceImpl;
 import com.ddit.service.ServerServiceImpl;
+import com.ddit.service.TrafficServiceImpl;
 import com.ddit.service.VWmemPosServiceImpl;
 
 @Controller
@@ -63,6 +66,18 @@ public class ServerController {
 	
 	@Autowired
 	private VWmemPosServiceImpl vWmemPosServiceImpl;
+	
+	@Autowired
+	private DiskServiceImpl diskServiceImpl;
+	public void setDiskServiceImpl(DiskServiceImpl diskServiceImpl){
+		this.diskServiceImpl = diskServiceImpl;
+	}
+	@Autowired
+	private TrafficServiceImpl trafficServiceImpl;
+	public void setTrafficServiceImpl(TrafficServiceImpl trafficServiceImpl){
+		this.trafficServiceImpl = trafficServiceImpl;
+	}
+	
 	
 	public void setMemberGroupService(MemberGroupServiceImpl memberGroupService) {
 		this.memberGroupService = memberGroupService;
@@ -106,7 +121,6 @@ public class ServerController {
 		System.out.println("dddddddd" + request.getAttribute("testIp"));
 		System.out.println(classMap.toString() + "()()()()()(");
 		System.out.println(classMap.toString() + "()()()()()(");
-
 		Map<String, String> valueMap = classMap.get(currentIp);
 
 		// 서버 table에서 currentip 로 셀렉해서 saveyn이 1이면
@@ -126,6 +140,8 @@ public class ServerController {
 
 		CpuVO cpuVO = new CpuVO();
 		MemoryVO memoryVO = new MemoryVO();
+		DiskVO diskVO = new DiskVO();
+		TrafficVO trafficVO = new TrafficVO();
 		
 		if (serverVO.getSaveyn().equals("1")) {
 			// cpu 테이블에 인설트
@@ -143,10 +159,42 @@ public class ServerController {
 			memoryVO.setMemory_total_used(classMap.get(currentIp).get("memory_total_used"));
 			memoryVO.setServer_code(serverVO.getServer_code());
 			
+			String rx = classMap.get(currentIp).get("networkrx");
+			String tx = classMap.get(currentIp).get("networktx");
+			double rxTt = 0;
+			double txTt = 0;
+			double txrxTotal=0;
+			String total = "";
+			int k = 1000;
+			if(rx.contains("K")){
+				rxTt = Double.parseDouble(rx.replaceAll("K", "").trim())*k;
+			}else{
+				rxTt = Double.parseDouble(rx);
+			}
+			
+			if(tx.contains("K")){
+				txTt = Double.parseDouble(tx.replaceAll("K", "").trim())*k;
+			}else{
+				txTt = Double.parseDouble(tx);
+			}
+			
+			txrxTotal = rxTt + txTt;
+			if(txrxTotal >= 1000){
+				total = (txrxTotal/k+"K").trim();
+			}else{
+				total = (txrxTotal+"").trim();
+			}
+			trafficVO.setTraffic_ip(currentIp);
+			trafficVO.setTraffic_use(total.trim());
+			trafficVO.setTraffic_rece(classMap.get(currentIp).get("networkrx"));
+			trafficVO.setTraffic_trans(classMap.get(currentIp).get("networktx"));
+			trafficVO.setServer_code(serverVO.getServer_code());
+			trafficVO.setTraffic_net(classMap.get(currentIp).get("networkcard"));
 			
 			try {
 				cpuServiceImpl.insertCpu(cpuVO);
 				memoryServiceImpl.insertMemory(memoryVO);
+				trafficServiceImpl.insertTraffic(trafficVO);
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

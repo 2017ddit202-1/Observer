@@ -117,18 +117,17 @@
 		p:client-ref="SqlMapClient" />
 	<bean id="ReportService" class="com.ddit.service.ReportServiceImpl"
 		p:reportDAO_iBatis-ref="ReportDAO" />	
+	
+	<bean id="diskDAO" class="com.ddit.ibatis.DiskDAO_iBatis"
+		p:client-ref="SqlMapClient" />
+	<bean id="diskService" class="com.ddit.service.DiskServiceImpl"
+		p:diskDAO_iBatis-ref="diskDAO" />		
+	<bean id="trafficDAO" class="com.ddit.ibatis.TrafficDAO_iBatis"
+		p:client-ref="SqlMapClient" />
+	<bean id="trafficService" class="com.ddit.service.TrafficServiceImpl"
+		p:traaticDAO_iBatis-ref="trafficDAO" />	
 
 
-
-<!-- 
-	<bean id="test" class="com.ddit.controller.ServerController">
-		<property name="classMap">
-			<map>
-				<entry key="ip" value=""/>
-				<entry key="hostName" value="" />
-			</map>
-		</property>
-	</bean> -->
 
 	<util:map id="classMap" map-class="java.util.HashMap">
 				<entry key="ip" value=""/>

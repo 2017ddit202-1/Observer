@@ -39,12 +39,6 @@ public class CpuDAO_iBatis implements CpuDAO{
 	}
 
 	@Override
-	public ArrayList<CpuVO> listAllArticle() throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public ArrayList<CpuVO> listCpu(String ip) throws SQLException {
 		ArrayList<CpuVO> cpuList =   (ArrayList<CpuVO>) client.queryForList("listAllCpu",ip);
 		return cpuList;
