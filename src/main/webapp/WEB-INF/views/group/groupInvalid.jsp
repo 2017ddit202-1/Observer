@@ -10,7 +10,7 @@
 <title></title>
 </head>
 <body>
-
+<h1>회원등록 화면 입니다.</h1>
 
 <button type="button" onclick="allcheckBox()">전체선택</button>
 <button type="button" onclick="allcheckBoxDelete()">전체해제</button>

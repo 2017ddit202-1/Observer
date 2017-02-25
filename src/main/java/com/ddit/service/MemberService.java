@@ -29,4 +29,6 @@ public interface MemberService {
 	public ArrayList<MemberVO> groupmember(String lice) throws SQLException; //그룹 리스트 검색
 	
 	public void updateLice(MemberVO memberVO) throws SQLException;
+	public void updatePositionList(PositionListVO positionListVO)throws SQLException;
+	
 }

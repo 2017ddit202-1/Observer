@@ -146,6 +146,13 @@ public class MemberDAO_iBatis implements MemberDAO{
 	}
 
 
+	@Override
+	public void updatePositionList(PositionListVO positionListVO)
+			throws SQLException {
+		client.update("updatePositionList",positionListVO);
+	}
+
+
 	
 
 

@@ -49,7 +49,6 @@ public class AuthorityController {
 		System.out.println(authority);
 		request.setAttribute("authority", authority);
 		
-		
 		return url;
 	}
 

@@ -9,5 +9,5 @@
 <br>
 슈퍼어드민 관리 페이지<br>
 
-<a href="#">회원관리</a><br>
+<a href="<%=request.getContextPath()%>/superAdmin/authorityMemberList">회원관리</a><br>
 <a href="<%=request.getContextPath()%>/superAdmin/authorityList">권한요청관리</a>
