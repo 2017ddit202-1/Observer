@@ -1,6 +1,8 @@
 package com.ddit.controller;
 
+
 import java.io.File;
+import java.io.UnsupportedEncodingException;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -13,6 +15,8 @@ import javax.inject.Inject;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,12 +32,19 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.ServletContextResource;
 
+
 import com.ddit.dto.CpuVO;
 import com.ddit.dto.VwMemPosSerVO;
+import com.ddit.dto.MemberVO;
+import com.ddit.dto.PositionListVO;
+import com.ddit.dto.VWmemPosVO;
 import com.ddit.dto.Vw_AuthorityVO;
 import com.ddit.service.AlertServiceImpl;
 import com.ddit.service.AuthorityServiceImpl;
 import com.ddit.service.ReportServiceImpl;
+import com.ddit.service.MemberServiceImpl;
+import com.ddit.service.PositionListServiceImpl;
+import com.ddit.service.SuperAdminServiceImpl;
 
 @Controller
 @RequestMapping("/superAdmin")
@@ -48,6 +59,13 @@ public class SuperAdminController {
 
 	public void setAuthorityService(AuthorityServiceImpl authorityService) {
 		this.authorityService = authorityService;
+	}
+	
+	@Autowired
+	private MemberServiceImpl memberService;
+
+	public void setMemberService(MemberServiceImpl memberService) {
+		this.memberService = memberService;
 	}
 
 	@Autowired
@@ -69,7 +87,14 @@ public class SuperAdminController {
 	public void setMailSender(MailSender mailSender){
 		this.mailSender = mailSender;
 	}
-
+	
+	@Autowired
+	private SuperAdminServiceImpl superAdminService;
+	
+	public void setSuperAdminService(SuperAdminServiceImpl superAdminService) {
+		this.superAdminService = superAdminService;
+	}
+	
 	// 관리페이지
 	@RequestMapping("/management")
 	public String management() {
@@ -114,6 +139,7 @@ public class SuperAdminController {
 		return url;
 	}
 	
+
 	/*보고서보내기 위한 adminList */
 	@RequestMapping(value="/reportList")
 	public String reportList(Model model){
@@ -130,6 +156,102 @@ public class SuperAdminController {
 		return url;
 	}
 
+	@RequestMapping(value="/authorityMemberList", method = RequestMethod.GET)
+	public String authorityListUpdate(HttpServletRequest request){
+		
+		String url = "superAdmin/memberList";
+		
+		/*String key = "";
+		String tpage = request.getParameter("tpage");
+
+		if (request.getParameter("key") != null) {
+			key = request.getParameter("key");
+		}
+
+		if (tpage == null) {
+			tpage = "1";
+		} else if (tpage.equals("")) {
+			tpage = "1";
+		}
+		
+		request.setAttribute("key", key);
+	    request.setAttribute("tpage",tpage);*/
+		
+		ArrayList<VWmemPosVO> memberList = null;
+		
+		try {
+			memberList= superAdminService.VWmemPosMemberAll();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		/*String paging=null;
+		try {
+			memberList = memberDAO.listMember(Integer.parseInt(tpage),key);
+			paging = memberDAO.pageNumber(Integer.parseInt(tpage), key);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}*/
+
+		request.setAttribute("memberList", memberList);
+		/*int n=memberList.size();   
+	    request.setAttribute("memberListSize",n); 
+	    request.setAttribute("paging", paging);   */
+		
+		return url;
+	}
+	
+	@RequestMapping(value="/adminUpdatemember", method = RequestMethod.POST)
+	public String adminUpdatemember(HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException{
+		
+		String url = "redirect:/superAdmin/authorityMemberList";
+	
+		HttpSession session = request.getSession();
+		request.setCharacterEncoding("utf-8");
+		response.setContentType("text/html;charset=utf-8");
+		String strenabled = request.getParameter("editUseyn");
+		String strposition = request.getParameter("editPosition");
+		int enabled = 1;
+		String position="유저";
+		
+		System.out.println(strenabled);
+		System.out.println(strposition);
+		if(strenabled.equals("y")){
+			enabled = 1;
+		}else{
+			enabled = 0;
+		}
+		
+		/*if(strposition.equals("유저")){
+			position = "ROLE_USER";
+		}else{
+			position = "ROLE_ADMIN";
+		}*/
+		
+		MemberVO memberVO = new MemberVO();
+		PositionListVO posiotionVO = new PositionListVO();
+		
+		memberVO.setMem_id(request.getParameter("editId").trim());
+		memberVO.setMem_email(request.getParameter("editEmail"));
+		memberVO.setMem_pwd(request.getParameter("editPwd"));
+		memberVO.setMem_nm(request.getParameter("editName"));
+		memberVO.setMem_phone(request.getParameter("editPhone"));		
+		memberVO.setEnabled(enabled);
+		memberVO.setMem_group_lice(request.getParameter("editlice"));
+		
+		posiotionVO.setPosl_id(request.getParameter("editId").trim());
+		posiotionVO.setPosl_pos(request.getParameter("editPosition"));
+		
+		try {
+			superAdminService.authorityUpdateMember(memberVO);
+			memberService.updatePositionList(posiotionVO);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return url;
+	}
+	
 	@RequestMapping(value="reportGo",method = RequestMethod.POST , produces="application/json;charset=utf8")
 	@ResponseBody
 	public String reportEmail(@RequestBody Map<String,Object> reportMap ,HttpServletRequest request,Model model){

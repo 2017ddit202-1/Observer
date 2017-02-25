@@ -103,6 +103,12 @@ public class MemberServiceImpl implements MemberService{
 		memberIbatis.updateLice(memberVO);
 	}
 
+	@Override
+	public void updatePositionList(PositionListVO positionListVO)
+			throws SQLException {
+		memberIbatis.updatePositionList(positionListVO);
+	}
+
 
 	
 	
