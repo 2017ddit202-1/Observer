@@ -23,5 +23,13 @@
 		select * from vw_mem_pos
 	</select>
 	
+	<select id="VWmemSerchId" parameterClass="str" resultClass="VWmempos">
+    select * from vw_mem_pos where mem_id like '%'||#mem_id#||'%'
+    </select>
+    
+      <select id="totalVWmemSerchId" parameterClass="str" resultClass="int">
+		select count(*) from vw_mem_pos where mem_id like '%'||#mem_id#||'%'
+	</select>
+	
 
 </sqlMap>

@@ -15,13 +15,13 @@
 <div class="container">
 		<h3 class="text-center">MEMBER LIST</h3>
 
-		<form class="form-inline" action="memberSearch" id="memberSearch"
-			method="post">
+		<form class="form-inline" id="memberSearch" name="searchform"
+			method="get">
 			<div class="form-group">
 				<label for="pwd">Member Id :</label> <input type="text"
 					class="form-control" id="memberName" name="memberName">
 			</div>
-			<input type="submit" class="btn btn-default" value="Search">
+			<input type="button" class="btn btn-default" value="Search" onclick="adminSearch()">
 		</form>
 
 
@@ -235,6 +235,11 @@ $(document).ready(function() {
 	
 	function modalclose(){
 		location.reload();
+	}
+	
+	function adminSearch(){
+		var keyword = $('#memberName').val();
+		location.href = "<%=request.getContextPath()%>/superAdmin/authorityMemberList?key="+keyword;
 	}
 </script>
 
