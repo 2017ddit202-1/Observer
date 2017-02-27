@@ -2,6 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@ page trimDirectiveWhitespaces="true"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,11 +13,53 @@
 <title></title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script type="text/javascript"
 	src="<%=request.getContextPath()%>/resources/js/jquery-1.11.0.min.js"></script>
 <script type="text/javascript"
 	src="<%=request.getContextPath()%>/resources/js/sockjs-0.3.min.js"></script>
 <script type="text/javascript">
+
+/* function checkBox() {
+	$("input[name=server_id]").prop("checked", true);
+
+} */
+
+function serverStop(ip){
+	alert('전송정지합니다.');
+	 var ip = "";
+	 $("input:checkbox:checked").each(function (index){
+		 ip += $(this).val();
+	 });
+		 
+	 alert(ip);
+	 
+	document.formm.action = "<%=request.getContextPath()%>"+"/server/serverStop?stopIp="+ip; 
+	document.formm.submit();
+}
+
+function serverStart(ip){
+	alert('전송시작합니다.');
+	 var ip = "";
+	 $("input:checkbox:checked").each(function (index){
+		 ip += $(this).val();
+	 });
+	 alert(ip);
+	document.formm.action = "<%=request.getContextPath()%>"+"/server/serverStart?starIp="+ip;
+	document.formm.submit();
+}
+
+function serverRemove(ip){
+	alert('서버해제합니다.');
+	 var ip = "";
+	 $("input:checkbox:checked").each(function (index){
+		 ip += $(this).val();
+	 });
+	 alert(ip);
+	document.formm.action = "<%=request.getContextPath()%>"+"/server/serverRemove?removeIp="+ip;
+	document.formm.submit();
+}
+
 
 function addlist_go(ip){
 	alert("추가되었습니다."); 
@@ -78,6 +122,14 @@ function test_go(){
 	<c:choose>
 		<c:when test="${loginUserPosl eq 'ROLE_USER' }">
 			<h1>user page</h1>
+			<div class="container">
+  
+	  <span class="label label-success">&nbsp&nbsp</span> 정상
+	  <span class="label label-warning">&nbsp&nbsp</span> 경고
+	  <span class="label label-danger">&nbsp&nbsp</span> 위험
+  <br><br>  
+  
+</div>
 	<table border=1>
        		<tr>
 				<td>위험도</td>
@@ -88,12 +140,22 @@ function test_go(){
 				<td>MEMORY 사용량</td>
 			</tr>
          <c:forEach items="${serverMap}" var="i">
-            <tr>
-            	<td>위험도</td>
-				<td>  ${i.value.server_host }</td>
-             	<td><a href="<%=request.getContextPath()%>/server/summary?summaryMenu=1&ip=${i.value.server_ip}">${i.value.server_ip}</a></td>
+              <tr>
+            	<c:choose>
+            		<c:when test="${cpu_total_pcnt <= 50 }">
+            			<td style="background-color: green;"></td>
+            		</c:when>
+            		<c:when test="${cpu_total_pcnt <= 80 }">
+            			<td style="background-color: yellow;"></td>
+            		</c:when>
+            		<c:otherwise>
+            			<td style="background-color: red;"></td>
+            		</c:otherwise>
+            	</c:choose>
+				  <td>${i.value.server_host }</td>
+             	  <td><a href="<%=request.getContextPath()%>/server/summary?summaryMenu=1&ip=${i.value.server_ip}">${i.value.server_ip}</a></td>
              	  <td>${i.value.server_os_name}</td>
-            	  <td>${i.value.cpu_total_pcnt }</td>
+            	  <td>${cpu_total_pcnt }</td>
 				  <td>${i.value.memory_total }</td>
 			 	</tr>
              </c:forEach>
@@ -101,14 +163,23 @@ function test_go(){
 						
 		</c:when>
 		<c:otherwise>
-	<h1>server page</h1>
 	<h1>전체목록</h1>
+		<div class="container">
+  <span class="label label-success">&nbsp&nbsp</span> 정상
+  <span class="label label-warning">&nbsp&nbsp</span> 경고
+  <span class="label label-danger">&nbsp&nbsp</span> 위험
+  <br><br>  
+  	</div>
 <form id="formm" name="formm" method="post">
- <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal" style="font-size:13px; padding:3px 5px; margin:1% auto 1% 20.5%;">추가</button>
-
+ <button type="button" class="btn btn-info btn-sm" style="font-size:13px; padding:3px 5px; margin:auto auto auto 423px;" onclick="serverStop()">정지</button>
+ <button type="button" class="btn btn-info btn-sm" style="font-size:13px; padding:3px 5px;" onclick="serverRemove()">해제</button>
+ <button type="button" class="btn btn-info btn-sm" style="font-size:13px; padding:3px 5px;" onclick="serverStart()">시작</button>
+ <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal" style="font-size:13px; padding:3px 5px;">추가</button>
+ 
       <table border=1>
        		<tr>
-				<td>위험도</td>
+       			<td>선택</td>
+       			<td>위험도</td>
 				<td>hostName</td>
 				<td>ip</td>
 				<td>OS VERSION</td>
@@ -117,12 +188,25 @@ function test_go(){
 			</tr>
          <c:forEach items="${serverMap}" var="i">
             <tr>
-
-      			  <td>위험도</td>
-				  <td>  ${i.value.server_host }</td>
+            	<th><input type="checkbox" name="server_ip" id="server_ip" value="${i.value.server_ip}"></th>
+					<c:set var="test" value="${i.value.cpu_total_pcnt}" />
+					<fmt:parseNumber  value="${test}" pattern="###.###" var="cputest"/>
+				 <c:choose>
+            		<c:when test="${cputest <= 50.0}">
+            			<td style="background-color: green;"></td>
+            		</c:when>
+            		<c:when test="${cputest <=80.0}">
+            			<td style="background-color: yellow;"></td>
+            		</c:when>
+            		<c:otherwise>
+            			<td style="background-color: red;"></td>
+            		</c:otherwise>
+            	</c:choose>
+        			
+				  <td>${i.value.server_host }</td>
              	  <td><a href="<%=request.getContextPath()%>/server/summary?summaryMenu=1&ip=${i.value.server_ip}">${i.value.server_ip}</a></td>
              	  <td>${i.value.server_os_name}</td>
-            	  <td>${i.value.cpu_total_pcnt }</td>
+            	  <td>${i.value.cpu_total_pcnt}</td>
 				  <td>${i.value.memory_total }</td>
 			 	</tr>
 
@@ -166,7 +250,7 @@ function test_go(){
              	  <td>${i.value.hostName }</td>
              	  <td>${i.value.os_version }</td>
              	  <td>${i.value.os_name }</td>
-             	  <input type = "hidden" id="${i.key }" name="${i.key }" value="${i.key }"/>
+             	 <%--  <input type = "hidden" id="${i.key }" name="${i.key }" value="${i.key }"/> --%>
 					<td><input type="button" id="addlist" value="등록" onclick="addlist_go('${i.key }')"/></td>
                </tr>
                </c:if>

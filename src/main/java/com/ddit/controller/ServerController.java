@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -273,7 +274,7 @@ public class ServerController {
 		List<String> serverIpList= new ArrayList<String>();
 		
 		Map<String, Map> serverMap = new HashMap<String, Map>();
-		
+		  Map<String, String> ipMap = new HashMap<String, String>();
 		try {
 			userOK = alertService.select_sessionID(loginUser); // alert테이블에 ID값이
 			column = alertService.authority_content(loginUser);
@@ -285,13 +286,23 @@ public class ServerController {
 					  /*serverListUser = serverService.selectServerList(memberGroupVO.getMem_id());*/
 					  serverIpList = (List<String>)serverService.selectServerIpList(memberGroupVO.getMem_id());
 					  System.out.println("()()()()()()()()()(string)()()()()" + serverIpList.toString());
+					
 					  for(String ip : serverIpList){
+						  
 						  ServerVO serverVO = new ServerVO();
 						  ServerInfoVO serverInfoVO = new ServerInfoVO();
 						  Map<String, String> infoMap = new HashMap<String, String>();
+						
+						  
 						  //IP 를 이용해서 필요한 정보를 SELECT하여 MAP(해당IP/vo)로 넣는다
-						 serverInfoVO.setCpu_total_pcnt(cpuServiceImpl.SelectCpuTotalpcnt(ip));
+						  String cpu = cpuServiceImpl.SelectCpuTotalpcnt(ip);
+					/*	if(cpu != null){
+							serverInfoVO.setCpu_total_pcnt(Double.parseDouble(cpu));
+							
+						}*/
+						
 						 serverInfoVO.setMemory_total(memoryServiceImpl.selectMemoryTotal(ip));
+						 serverInfoVO.setCpu_total_pcnt(cpuServiceImpl.SelectCpuTotalpcnt(ip));
 						 serverVO = serverService.SelectServerInfo(ip);
 						 serverInfoVO.setServer_host(serverVO.getServer_host());
 						 serverInfoVO.setServer_os_name(serverVO.getServer_os_name());
@@ -302,8 +313,10 @@ public class ServerController {
 						 infoMap.put("server_ip", serverInfoVO.getServer_ip());
 						 infoMap.put("cpu_total_pcnt", serverInfoVO.getCpu_total_pcnt());
 						 infoMap.put("memory_total", serverInfoVO.getMemory_total());
-						 
+						 /*model.addAttribute("cpu_total_pcnt",serverInfoVO.getCpu_total_pcnt());*/
+						 ipMap.put(ip, cpu);
 						 serverMap.put(ip, infoMap);
+						 
 					  }
 					  
 					  System.out.println(serverListUser.toString());
@@ -334,12 +347,13 @@ public class ServerController {
 		
 		HttpSession flag = request.getSession();
 		flag.setAttribute("summaryMenu", summaryMenu);
+		
 		model.addAttribute("serverMap",serverMap);
 		model.addAttribute("serverListUser", serverListUser);
 		model.addAttribute("serverList", serverList);
 		model.addAttribute("loginUserPosl", vWmemPosVO.getPosl_pos());
 		model.addAttribute("map", classMap);
-		
+		/*model.addAttribute("ipMap", ipMap);*/
 		return url;
 
 	}
@@ -460,6 +474,80 @@ public class ServerController {
 		
 		return url;
 	}
+	
+	
+	/**
+	 * stopIp를 이용하여 해당 ip의 savayn을 0으로 바꾸어 정지시킨다. 
+	 * @param request
+	 * @param response
+	 * @param session
+	 * @return
+	 */
+	@RequestMapping("/serverStop")
+	public String serverStop(HttpServletRequest request, HttpServletResponse response, HttpSession session){
+		String url = "redirect:/server/serverMain";
+		ServerVO serverVO = new ServerVO();
+		System.out.println("serverstop 로직");
+		String stopIp = request.getParameter("stopIp");
+		System.out.println("@@@@@@@@@@@@@"+stopIp+"@@@@@@@@@@@@@@@@");
+		
+			try {
+					 serverVO = serverService.selectServerVO(stopIp);
+					if(serverVO.getSaveyn().equals("1")){
+						serverVO.setSaveyn("0");
+					}
+					serverService.updateServer(serverVO);
+				
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		return url;
+	}
+	
+	@RequestMapping("/serverStart")
+	public String serverStart(HttpServletRequest request, HttpServletResponse response, HttpSession session){
+		String url = "redirect:/server/serverMain";
+		ServerVO serverVO = new ServerVO();
+		String startIp = request.getParameter("startIp");
+			try {
+					 serverVO = serverService.selectServerVO(startIp);
+					if(serverVO.getSaveyn().equals("0")){
+						serverVO.setSaveyn("1");
+					}
+					serverService.updateServer(serverVO);
+				
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		return url;
+	}
+	
+	
+	@RequestMapping("/serverRemove")
+	public String serverRemove(HttpServletRequest request, HttpServletResponse response, HttpSession session){
+		String url = "redirect:/server/serverMain";
+			ServerVO serverVO = new ServerVO();
+			String removeIp = request.getParameter("removeIp");
+		
+			try {
+				 serverVO = serverService.selectServerVO(removeIp);
+				if(serverVO != null){
+					serverService.deleteServerIp(removeIp);
+				}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+			
+		return url;
+	}
+	
 	
 
 }
