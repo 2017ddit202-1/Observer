@@ -38,13 +38,13 @@ function ss(){
 /* 1시간 리스트*/
 function ff(){
        $.ajax({
-            url:"TrafficListHours",
+            url:"trafficListHours",
             type : "post",
             dataType : 'json',
             success : function(data) {
-            	$("#net").text(data[0].traffic_net);
             	HighCharts(data);
             	HighCharts2(data);
+            	$("#net").html(data[0].traffic_net);
             }
     })
 }
@@ -72,9 +72,9 @@ function tt(){
     	  $("#card").show();
     	  $("#btnZxc").show();
     	  $("#btntotal").show();
-    	  $("#net").text(data[0].traffic_net);
             HighCharts(data);
             HighCharts2(data);
+            $("#net").html(data[0].traffic_net);
       }
    });
 };

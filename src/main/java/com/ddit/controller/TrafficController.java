@@ -33,7 +33,7 @@ public class TrafficController {
 		return url;
 	}
 	
-	@RequestMapping(value="trafficList",method=RequestMethod.POST)
+	@RequestMapping(value="/trafficList",method=RequestMethod.POST)
 	@ResponseBody
 	public ArrayList<TrafficVO> memoryList(Model model , HttpSession session){
 		String ip = (String) session.getAttribute("ip");
@@ -48,7 +48,7 @@ public class TrafficController {
 		}
 		return traList;
 	}
-	@RequestMapping(value="TrafficListHours",method=RequestMethod.POST)
+	@RequestMapping(value="/trafficListHours",method=RequestMethod.POST)
 	@ResponseBody
 	public ArrayList<TrafficVO> memoryListHours(Model model,HttpSession session){
 		ArrayList<TrafficVO> trafficListHo = null;
