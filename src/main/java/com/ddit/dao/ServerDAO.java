@@ -11,7 +11,6 @@ public interface ServerDAO {
 
 	public int insertServer(ServerVO ServerVO) throws SQLException;
 	public void updateServer(ServerVO ServerVO) throws SQLException;
-	public int deleteServer(int server_ip , int server_code) throws SQLException;
 	ServerVO selectServerVO(String server_ip) throws SQLException;
 	public ArrayList<ServerVO> listAllArticle() throws SQLException;
 	//
@@ -19,4 +18,6 @@ public interface ServerDAO {
 	public List<ServerVO> selectServerList(String id) throws SQLException;
 	public List<String> selectServerIpList(String id) throws SQLException;
 	public ServerVO SelectServerInfo(String ip) throws SQLException;
+	public void updateServerIp(String ip) throws SQLException;
+	public void deleteServerIp(String ip) throws SQLException; 
 }

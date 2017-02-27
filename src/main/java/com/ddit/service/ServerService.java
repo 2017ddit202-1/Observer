@@ -20,5 +20,6 @@ public interface ServerService {
 	public List<ServerVO> selectServerList(String id) throws SQLException;
 	public List<String> selectServerIpList(String id) throws SQLException;
 	public ServerVO SelectServerInfo(String ip) throws SQLException;
-	
+	public void updateServerIp(String ip) throws SQLException;
+	public void deleteServerIp(String ip) throws SQLException; 
 }
