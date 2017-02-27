@@ -128,8 +128,9 @@ a:hover {text-decoration: underline; color: red;}
 
                         </c:choose>
 
+                 <form name=formm>
                         <button class="btn btn-primary btn-sm" type="button" id="authorityBtn" onclick="autority_go()">신청하기</button>
-
+                 </form>
 
                         <!-- <script src="http://code.jquery.com/jquery-latest.min.js"></script> 아작스-->
 

@@ -101,16 +101,18 @@ public class SuperAdminController {
 		String url = "/superAdmin/management";
 		
 		int memberCnt=0;
+		int authorityCnt=0;
 		
 		try {
 			memberCnt = memberService.memberCnt();
+			authorityCnt = memberService.authorityCnt();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
-		model.addAttribute("memberCnt",memberCnt);
-		
+		model.addAttribute("memberCnt",memberCnt-1);
+		model.addAttribute("authorityCnt",authorityCnt);
 
 		return url;
 	}
@@ -200,6 +202,23 @@ public class SuperAdminController {
 		}
 		
 		
+		
+             int memberCnt=0;
+             int enabledCnt=0;
+             int userCnt=0;
+             int adminCnt=0;
+		
+			try {
+				memberCnt = memberService.memberCnt();
+				enabledCnt = memberService.enabledCnt();
+				userCnt = memberService.userCnt();
+				adminCnt = memberService.adminCnt();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		
+		
 		/*try {
 			memberList = memberDAO.listMember(Integer.parseInt(tpage),key);
 			paging = memberDAO.pageNumber(Integer.parseInt(tpage), key);
@@ -210,7 +229,11 @@ public class SuperAdminController {
 		request.setAttribute("memberList", memberList);
 		int n=memberList.size();   
 	    request.setAttribute("memberListSize",n); 
-	    request.setAttribute("paging", paging);   
+	    request.setAttribute("paging", paging); 
+	    request.setAttribute("memberCnt", memberCnt-1);
+	    request.setAttribute("enabledCnt", enabledCnt);
+	    request.setAttribute("userCnt", userCnt);
+	    request.setAttribute("adminCnt", adminCnt);
 		
 		return url;
 	}
