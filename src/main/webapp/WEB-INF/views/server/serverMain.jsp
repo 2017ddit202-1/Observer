@@ -80,21 +80,22 @@ function test_go(){
 			<h1>user page</h1>
 	<table border=1>
        		<tr>
+				<td>위험도</td>
 				<td>hostName</td>
-				<td>OS 버전</td>
 				<td>ip</td>
-				<td>OS 종류</td>
-				<td>server_os_support</td>
-				
+				<td>OS VERSION</td>
+				<td>CPU 사용량</td>
+				<td>MEMORY 사용량</td>
 			</tr>
-         <c:forEach items="${serverListUser}" var="list">
+         <c:forEach items="${serverMap}" var="i">
             <tr>
-                <td>  ${list.server_host }</td>
-             	  <td>${list.server_os_version }</td>
-             	  <td><a href="<%=request.getContextPath()%>/server/summary?summaryMenu=1">${list.server_ip}</a></td>
-             	  <td>${list.server_os_name }</td>
-             	  <td>${list.server_os_support }</td>
-             	</tr>
+            	<td>위험도</td>
+				<td>  ${i.value.server_host }</td>
+             	<td><a href="<%=request.getContextPath()%>/server/summary?summaryMenu=1&ip=${i.value.server_ip}">${i.value.server_ip}</a></td>
+             	  <td>${i.value.server_os_name}</td>
+            	  <td>${i.value.cpu_total_pcnt }</td>
+				  <td>${i.value.memory_total }</td>
+			 	</tr>
              </c:forEach>
       </table>
 						
@@ -107,23 +108,24 @@ function test_go(){
 
       <table border=1>
        		<tr>
+				<td>위험도</td>
 				<td>hostName</td>
-				<td>OS 버전</td>
 				<td>ip</td>
-				<td>OS 종류</td>
-				<td>server_os_support</td>
-				
+				<td>OS VERSION</td>
+				<td>CPU 사용량</td>
+				<td>MEMORY 사용량</td>
 			</tr>
-         <c:forEach items="${serverList}" var="i">
+         <c:forEach items="${serverMap}" var="i">
             <tr>
-                <td>  ${i.server_host }</td>
-             	  <td>${i.server_os_version }</td>
-             	  <td><a href="<%=request.getContextPath()%>/server/summary?summaryMenu=1&ip=${i.server_ip}">${i.server_ip}</a>
-             	  <input type="hidden" name="${i.server_host}" value="${i.server_ip}">
-             	  </td>
-             	  <td>${i.server_os_name }</td>
-             	  <td>${i.server_os_support }</td>
-             	</tr>
+
+      			  <td>위험도</td>
+				  <td>  ${i.value.server_host }</td>
+             	  <td><a href="<%=request.getContextPath()%>/server/summary?summaryMenu=1&ip=${i.value.server_ip}">${i.value.server_ip}</a></td>
+             	  <td>${i.value.server_os_name}</td>
+            	  <td>${i.value.cpu_total_pcnt }</td>
+				  <td>${i.value.memory_total }</td>
+			 	</tr>
+
              </c:forEach>
       </table>
    </form>

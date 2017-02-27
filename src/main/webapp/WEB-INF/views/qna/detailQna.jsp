@@ -146,7 +146,7 @@ text-align: center;
 		<hr style="border: solid 1px #c3ced9; width: 1000px;">
 
 		<div id="buttons" style="text-align: center;">
-			<input type="button" value="목록보기" class="submit" onclick="list_go()">
+			<input type="button" class="btn btn-default" value="목록보기" class="submit" onclick="list_go()">
 			<c:choose>
 				<c:when test="${loginUserVO.mem_id eq qnaVO.qna_id}">
 				<input type="button" value="수정" class="submit"
@@ -158,7 +158,7 @@ text-align: center;
 					test="${loginUserVO.mem_group_lice eq qnaWriterVO.mem_group_lice}">
 							
 					<sec:authorize access="hasAnyRole('ROLE_ADMIN','ROLE_SUPER')">
-						<input type="button" value="답변하기" id="forget">
+						<input type="button" class="btn btn-default" value="답변하기" id="forget">
 					</sec:authorize>
 				</c:when>
 				
@@ -341,6 +341,7 @@ text-align: center;
  function qAnswer_go(){
 	 $('#btn').click(function() {
          $("#hiddenDiv").hide();
+     
         }) 
  }
 	

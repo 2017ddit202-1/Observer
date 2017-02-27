@@ -50,7 +50,7 @@
     <!-- Custom Fonts -->
     <link href="<%=request.getContextPath()%>/resources/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     
-   	<!-- HighChart -->
+      <!-- HighChart -->
     <script src="<%=request.getContextPath()%>/resources/js/highcharts.js"></script>
     <script src="<%=request.getContextPath()%>/resources/js/exporting.js"></script>
     <script src="<%=request.getContextPath()%>/resources/js/grid-light.js"></script>
@@ -166,9 +166,9 @@
                                 <li>
                                     <a href="<%=request.getContextPath()%>/cpu/cpuMain">&nbsp;- CPU</a>
                                 </li>
-								 <li>
+                         <li>
                                     <a href="<%=request.getContextPath()%>/memory/memoryMain">&nbsp;- 메모리</a>
-                                </li>	
+                                </li>   
                                   <li>
                                     <a href="morris.html">&nbsp;- 프로세스</a>
                                 </li>
@@ -198,7 +198,7 @@
                                 
                                 <sec:authorize access="hasAnyRole('ROLE_SUPER', 'ROLE_ADMIN')">
                                 <li>
-                                    <a href="<%=request.getContextPath()%>/qna/adminQnaList"> 관리자 Q&A 게시판</a>
+                                    <a href="<%=request.getContextPath()%>/admin/adminQnaList"> 관리자 Q&A 게시판</a>
                                 </li>
                                 </sec:authorize>
                                 

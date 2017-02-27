@@ -7,9 +7,29 @@
 <!-- 	<typeAlias alias="int" type="java.lang.Integer" /> -->
 <!-- 	<typeAlias alias="superAdmin" type="com.ddit.dto.Vw_AuthorityVO" /> -->
 
+	<update id="authorityUpdateMember" parameterClass="member">
+		update member
+		set
+		mem_pwd=#mem_pwd#,mem_nm=#mem_nm#,mem_email=#mem_email#,mem_phone=#mem_phone#,mem_group_lice=#mem_group_lice#,enabled=#enabled#
+		where mem_id=#mem_id# 
+	</update>
+	
 	<select id="authorityList" resultClass="superAdmin">
 		select * from
 		vw_authority order by atrt_date desc 
 	</select>
+	
+	<select id="VWmemPosMemberAll"  resultClass="VWmempos">
+		select * from vw_mem_pos
+	</select>
+	
+	<select id="VWmemSerchId" parameterClass="str" resultClass="VWmempos">
+    select * from vw_mem_pos where mem_id like '%'||#mem_id#||'%'
+    </select>
+    
+      <select id="totalVWmemSerchId" parameterClass="str" resultClass="int">
+		select count(*) from vw_mem_pos where mem_id like '%'||#mem_id#||'%'
+	</select>
+	
 
 </sqlMap>

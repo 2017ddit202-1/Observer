@@ -2,6 +2,7 @@ package com.ddit.controller;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -21,6 +22,7 @@ import com.ddit.dto.DiskVO;
 import com.ddit.dto.MemberGroupVO;
 import com.ddit.dto.MemberVO;
 import com.ddit.dto.MemoryVO;
+import com.ddit.dto.ServerInfoVO;
 import com.ddit.dto.ServerVO;
 import com.ddit.dto.TrafficVO;
 import com.ddit.dto.VWmemPosVO;
@@ -228,18 +230,20 @@ public class ServerController {
 			} else if (column.equals("ROLE_USER")) {
 				column = "USER로 등급신청 완료";
 			}
-
 			model.addAttribute("userOK", userOK);
 			model.addAttribute("column", column);
 		}
 
-		
+		session.setAttribute("currentIp", currentIp);
 		model.addAttribute("map", classMap);
 		
 		return url;
 
 	}
 
+	
+	///////////@@@@@
+	
 	@RequestMapping(value = "/serverMain", method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
 	public String test2(HttpServletRequest request,
 			HttpServletResponse response, Model model, HttpSession session) {
@@ -253,7 +257,11 @@ public class ServerController {
 		System.out.println(request.getAttribute("classMap").toString());
 		System.out.println("dddddddd" + request.getAttribute("testIp"));
 		System.out.println(classMap.toString() + "()()()()()(");
-		
+					 String currentIp = (String)session.getAttribute("currentIp");
+					 System.out.println("()()()()()()()()()()()()");
+					 System.out.println(currentIp);
+					 System.out.println("()()()()()()()()()()()()");
+					 
 		// ///////
 
 		String loginUser = (String) session.getAttribute("loginUser");
@@ -262,21 +270,46 @@ public class ServerController {
 		VWmemPosVO vWmemPosVO = new VWmemPosVO();
 		List<ServerVO> serverList = new ArrayList<ServerVO>();
 		List<ServerVO> serverListUser= new ArrayList<ServerVO>();
+		List<String> serverIpList= new ArrayList<String>();
 		
-
+		Map<String, Map> serverMap = new HashMap<String, Map>();
+		
 		try {
 			userOK = alertService.select_sessionID(loginUser); // alert테이블에 ID값이
-																// 존재하는지 select
 			column = alertService.authority_content(loginUser);
 			alertService.alertDelete(loginUser);
 			vWmemPosVO = vWmemPosServiceImpl.memposVO(loginUser);
 			  memberGroupVO = (MemberGroupVO) memberGroupService.selectMemberGroupVO(vWmemPosVO.getMem_group_lice());
 			  if(memberGroupVO != null){
 				  if(!(memberGroupVO.getMg_lice().equals("1"))){
-					  serverListUser = serverService.selectServerList(memberGroupVO.getMem_id());
+					  /*serverListUser = serverService.selectServerList(memberGroupVO.getMem_id());*/
+					  serverIpList = (List<String>)serverService.selectServerIpList(memberGroupVO.getMem_id());
+					  System.out.println("()()()()()()()()()(string)()()()()" + serverIpList.toString());
+					  for(String ip : serverIpList){
+						  ServerVO serverVO = new ServerVO();
+						  ServerInfoVO serverInfoVO = new ServerInfoVO();
+						  Map<String, String> infoMap = new HashMap<String, String>();
+						  //IP 를 이용해서 필요한 정보를 SELECT하여 MAP(해당IP/vo)로 넣는다
+						 serverInfoVO.setCpu_total_pcnt(cpuServiceImpl.SelectCpuTotalpcnt(ip));
+						 serverInfoVO.setMemory_total(memoryServiceImpl.selectMemoryTotal(ip));
+						 serverVO = serverService.SelectServerInfo(ip);
+						 serverInfoVO.setServer_host(serverVO.getServer_host());
+						 serverInfoVO.setServer_os_name(serverVO.getServer_os_name());
+						 serverInfoVO.setServer_ip(serverVO.getServer_ip());
+						 
+						 infoMap.put("server_host", serverInfoVO.getServer_host());
+						 infoMap.put("server_os_name", serverInfoVO.getServer_os_name());
+						 infoMap.put("server_ip", serverInfoVO.getServer_ip());
+						 infoMap.put("cpu_total_pcnt", serverInfoVO.getCpu_total_pcnt());
+						 infoMap.put("memory_total", serverInfoVO.getMemory_total());
+						 
+						 serverMap.put(ip, infoMap);
+					  }
+					  
 					  System.out.println(serverListUser.toString());
 				  }			 
 			  }
+			  System.out.println(serverMap.toString());
 			serverList = serverService.selectServerList(loginUser);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -298,14 +331,10 @@ public class ServerController {
 			
 		}
 		
-		for(ServerVO serverVO : serverListUser){
-			System.out.println("()()()()()()()()()()(");
-			System.out.println(serverVO.getServer_ip());
-			System.out.println("()()()()()()()()()()(");
-			
-		}
+		
 		HttpSession flag = request.getSession();
 		flag.setAttribute("summaryMenu", summaryMenu);
+		model.addAttribute("serverMap",serverMap);
 		model.addAttribute("serverListUser", serverListUser);
 		model.addAttribute("serverList", serverList);
 		model.addAttribute("loginUserPosl", vWmemPosVO.getPosl_pos());
@@ -315,6 +344,8 @@ public class ServerController {
 
 	}
 
+	
+	//@@@@@
 	/**
 	 * Db쪽에 인설트 순서는 adminUser의 라이센스가 있는지 확인 있다면 currentip 서버에 해당 라이선스 키를 입력함 없다면
 	 * 새로 라이선스키를 받아(그룹생성) adminUser의 라이센스 변경후 currentip 서버에 해당 라이선스 키를 입력함

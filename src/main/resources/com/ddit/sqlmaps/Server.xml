@@ -24,6 +24,19 @@
  	<select id="selectServerList" parameterClass="str" resultClass="server">
  		select * from server where server_id=#server_id#
  	</select>
+ 	
+ 	<select id="selectSeverIpList" parameterClass="str" resultClass="str">
+ 		select server_ip from server where server_id = #server_id#
+ 	</select>
+ 	
+ 	<select id="selectServerInfo" parameterClass="str" resultClass="server">
+ 		select server_host
+          , server_os_name
+          , server_ip
+          from server
+          where server_ip=#server_ip#
+ 	</select>
+ 
  
  </sqlMap>   
  

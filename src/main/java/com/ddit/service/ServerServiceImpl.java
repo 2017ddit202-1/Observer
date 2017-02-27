@@ -13,9 +13,30 @@ public class ServerServiceImpl implements ServerService{
 	
 	
 
+	
+
+	
+
 	ServerDAO serverDAO;
 	public void setServerDAO(ServerDAO serverDAO){
 		this.serverDAO = serverDAO;
+	}
+	
+	/*
+	 * selectServerIpList 질의를 수행하기 위한 service 
+	 * 
+	 */
+	@Override
+	public List<String> selectServerIpList(String id) throws SQLException {
+		List<String> ipList = new ArrayList<String>();
+		ipList = serverDAO.selectServerIpList(id);
+		return ipList;
+	}
+	
+	@Override
+	public ServerVO SelectServerInfo(String ip) throws SQLException {
+		ServerVO serverVO = serverDAO.SelectServerInfo(ip);
+		return serverVO;
 	}
 	
 	

@@ -20,5 +20,19 @@
 				where memory_ip=#str# and <![CDATA[rownum<=40]]> order by memory_date asc
 	</select>
     
+    <select id="selectMemoryTotal" parameterClass="str" resultClass="str">
+	   	SELECT *
+	    FROM
+	    (
+	    SELECT memory_total
+	    FROM memory
+	    WHERE
+	    memory_ip=#memory_ip#
+	    ORDER BY memory_date DESC
+	    )
+	    WHERE ROWNUM = 1
+	</select>
+    
+    
     
     </sqlMap>
