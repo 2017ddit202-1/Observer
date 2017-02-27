@@ -3,16 +3,69 @@
 	pageEncoding="UTF-8"%>
 <%@ page trimDirectiveWhitespaces="true"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset=UTF-8">
+<title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+
 
 <br>
 <br>
-<br>
-<br>
-<h1>권한리스트입니다.</h1>
-<button type="button" onclick="allcheckBox()">전체선택</button>
+<div class="container">
+  <ul class="nav nav-tabs">
+    <li class="active"><a href="#">SUPER ADMIN</a></li>
+    <li><a href="#">회원관리</a></li>
+    <li><a href="#">권한요청관리</a></li>
+    <li><a href="#">보고서</a></li>
+  </ul>
+  <br>
+  <p><strong>Notice:</strong> OBSERVER의 회원관리, 회원의 권한신청을 관리 할 수 있습니다. </p>
+</div><br><br>
+
+
+<!-- <button type="button" onclick="allcheckBox()">전체선택</button>
 <button type="button" onclick="allcheckBoxDelete()">전체해제</button>
 <button type="button" onclick="authorityAccept_go()">수락</button>
 <button type="button" onclick="authorityAcceptNO_go()">거절</button>
+ -->
+
+<div class="container">
+  <button type="button" class="btn btn-default"><i class="fa fa-check-square-o" aria-hidden="true"></i>&nbsp;전체선택</button>
+  <button type="button" class="btn btn-default"><i class="fa fa-check-square-o" aria-hidden="true"></i>&nbsp;전체해제</button>
+   <div class="btn-group">
+    <button type="button" class="btn btn-primary" >&nbsp;&nbsp;수락&nbsp;&nbsp;</button>
+    <button type="button" class="btn btn-primary" >&nbsp;&nbsp;거절&nbsp;&nbsp;</button>
+  </div>
+</div>
+
+
+<form id="formm" name="formm" method="post">
+	<table id="memberList" class="table table-striped">
+			<thead>
+				<tr>
+				<th>선택</th>
+				<th>아이디</th>
+				<th>현재권한</th>
+				<th>요청권한</th>
+				<th>신청날짜</th>
+				<th>수락여부</th>
+				</tr>
+			</thead>
+			
+			
+			
+			
+			
+			</table>
+
 
 
 
@@ -56,8 +109,9 @@
 
 		</table>
 	</form>
-<thead>
 
+</thead>
+</body>
 
 	<%--  <form action="<%=request.getContextPath() %>/test/authority" method="GET" >
    <input type="submit" value="testtest"/>

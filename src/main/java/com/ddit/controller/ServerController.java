@@ -18,17 +18,22 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.ddit.dto.CpuVO;
+import com.ddit.dto.DiskVO;
 import com.ddit.dto.MemberGroupVO;
 import com.ddit.dto.MemberVO;
 import com.ddit.dto.MemoryVO;
+import com.ddit.dto.ServerInfoVO;
 import com.ddit.dto.ServerVO;
+import com.ddit.dto.TrafficVO;
 import com.ddit.dto.VWmemPosVO;
 import com.ddit.service.AlertServiceImpl;
 import com.ddit.service.CpuServiceImpl;
+import com.ddit.service.DiskServiceImpl;
 import com.ddit.service.MemberGroupServiceImpl;
 import com.ddit.service.MemberServiceImpl;
 import com.ddit.service.MemoryServiceImpl;
 import com.ddit.service.ServerServiceImpl;
+import com.ddit.service.TrafficServiceImpl;
 import com.ddit.service.VWmemPosServiceImpl;
 
 @Controller
@@ -63,6 +68,18 @@ public class ServerController {
 	
 	@Autowired
 	private VWmemPosServiceImpl vWmemPosServiceImpl;
+	
+	@Autowired
+	private DiskServiceImpl diskServiceImpl;
+	public void setDiskServiceImpl(DiskServiceImpl diskServiceImpl){
+		this.diskServiceImpl = diskServiceImpl;
+	}
+	@Autowired
+	private TrafficServiceImpl trafficServiceImpl;
+	public void setTrafficServiceImpl(TrafficServiceImpl trafficServiceImpl){
+		this.trafficServiceImpl = trafficServiceImpl;
+	}
+	
 	
 	public void setMemberGroupService(MemberGroupServiceImpl memberGroupService) {
 		this.memberGroupService = memberGroupService;
@@ -106,7 +123,6 @@ public class ServerController {
 		System.out.println("dddddddd" + request.getAttribute("testIp"));
 		System.out.println(classMap.toString() + "()()()()()(");
 		System.out.println(classMap.toString() + "()()()()()(");
-
 		Map<String, String> valueMap = classMap.get(currentIp);
 
 		// 서버 table에서 currentip 로 셀렉해서 saveyn이 1이면
@@ -126,6 +142,8 @@ public class ServerController {
 
 		CpuVO cpuVO = new CpuVO();
 		MemoryVO memoryVO = new MemoryVO();
+		DiskVO diskVO = new DiskVO();
+		TrafficVO trafficVO = new TrafficVO();
 		
 		if (serverVO.getSaveyn().equals("1")) {
 			// cpu 테이블에 인설트
@@ -143,10 +161,42 @@ public class ServerController {
 			memoryVO.setMemory_total_used(classMap.get(currentIp).get("memory_total_used"));
 			memoryVO.setServer_code(serverVO.getServer_code());
 			
+			String rx = classMap.get(currentIp).get("networkrx");
+			String tx = classMap.get(currentIp).get("networktx");
+			double rxTt = 0;
+			double txTt = 0;
+			double txrxTotal=0;
+			String total = "";
+			int k = 1000;
+			if(rx.contains("K")){
+				rxTt = Double.parseDouble(rx.replaceAll("K", "").trim())*k;
+			}else{
+				rxTt = Double.parseDouble(rx);
+			}
+			
+			if(tx.contains("K")){
+				txTt = Double.parseDouble(tx.replaceAll("K", "").trim())*k;
+			}else{
+				txTt = Double.parseDouble(tx);
+			}
+			
+			txrxTotal = rxTt + txTt;
+			if(txrxTotal >= 1000){
+				total = (txrxTotal/k+"K").trim();
+			}else{
+				total = (txrxTotal+"").trim();
+			}
+			trafficVO.setTraffic_ip(currentIp);
+			trafficVO.setTraffic_use(total.trim());
+			trafficVO.setTraffic_rece(classMap.get(currentIp).get("networkrx"));
+			trafficVO.setTraffic_trans(classMap.get(currentIp).get("networktx"));
+			trafficVO.setServer_code(serverVO.getServer_code());
+			trafficVO.setTraffic_net(classMap.get(currentIp).get("networkcard"));
 			
 			try {
 				cpuServiceImpl.insertCpu(cpuVO);
 				memoryServiceImpl.insertMemory(memoryVO);
+				trafficServiceImpl.insertTraffic(trafficVO);
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -180,18 +230,20 @@ public class ServerController {
 			} else if (column.equals("ROLE_USER")) {
 				column = "USER로 등급신청 완료";
 			}
-
 			model.addAttribute("userOK", userOK);
 			model.addAttribute("column", column);
 		}
 
-		
+		session.setAttribute("currentIp", currentIp);
 		model.addAttribute("map", classMap);
 		
 		return url;
 
 	}
 
+	
+	///////////@@@@@
+	
 	@RequestMapping(value = "/serverMain", method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
 	public String test2(HttpServletRequest request,
 			HttpServletResponse response, Model model, HttpSession session) {
@@ -205,7 +257,11 @@ public class ServerController {
 		System.out.println(request.getAttribute("classMap").toString());
 		System.out.println("dddddddd" + request.getAttribute("testIp"));
 		System.out.println(classMap.toString() + "()()()()()(");
-		
+					 String currentIp = (String)session.getAttribute("currentIp");
+					 System.out.println("()()()()()()()()()()()()");
+					 System.out.println(currentIp);
+					 System.out.println("()()()()()()()()()()()()");
+					 
 		// ///////
 
 		String loginUser = (String) session.getAttribute("loginUser");
@@ -214,21 +270,46 @@ public class ServerController {
 		VWmemPosVO vWmemPosVO = new VWmemPosVO();
 		List<ServerVO> serverList = new ArrayList<ServerVO>();
 		List<ServerVO> serverListUser= new ArrayList<ServerVO>();
+		List<String> serverIpList= new ArrayList<String>();
 		
-
+		Map<String, Map> serverMap = new HashMap<String, Map>();
+		
 		try {
 			userOK = alertService.select_sessionID(loginUser); // alert테이블에 ID값이
-																// 존재하는지 select
 			column = alertService.authority_content(loginUser);
 			alertService.alertDelete(loginUser);
 			vWmemPosVO = vWmemPosServiceImpl.memposVO(loginUser);
 			  memberGroupVO = (MemberGroupVO) memberGroupService.selectMemberGroupVO(vWmemPosVO.getMem_group_lice());
 			  if(memberGroupVO != null){
 				  if(!(memberGroupVO.getMg_lice().equals("1"))){
-					  serverListUser = serverService.selectServerList(memberGroupVO.getMem_id());
+					  /*serverListUser = serverService.selectServerList(memberGroupVO.getMem_id());*/
+					  serverIpList = (List<String>)serverService.selectServerIpList(memberGroupVO.getMem_id());
+					  System.out.println("()()()()()()()()()(string)()()()()" + serverIpList.toString());
+					  for(String ip : serverIpList){
+						  ServerVO serverVO = new ServerVO();
+						  ServerInfoVO serverInfoVO = new ServerInfoVO();
+						  Map<String, String> infoMap = new HashMap<String, String>();
+						  //IP 를 이용해서 필요한 정보를 SELECT하여 MAP(해당IP/vo)로 넣는다
+						 serverInfoVO.setCpu_total_pcnt(cpuServiceImpl.SelectCpuTotalpcnt(ip));
+						 serverInfoVO.setMemory_total(memoryServiceImpl.selectMemoryTotal(ip));
+						 serverVO = serverService.SelectServerInfo(ip);
+						 serverInfoVO.setServer_host(serverVO.getServer_host());
+						 serverInfoVO.setServer_os_name(serverVO.getServer_os_name());
+						 serverInfoVO.setServer_ip(serverVO.getServer_ip());
+						 
+						 infoMap.put("server_host", serverInfoVO.getServer_host());
+						 infoMap.put("server_os_name", serverInfoVO.getServer_os_name());
+						 infoMap.put("server_ip", serverInfoVO.getServer_ip());
+						 infoMap.put("cpu_total_pcnt", serverInfoVO.getCpu_total_pcnt());
+						 infoMap.put("memory_total", serverInfoVO.getMemory_total());
+						 
+						 serverMap.put(ip, infoMap);
+					  }
+					  
 					  System.out.println(serverListUser.toString());
 				  }			 
 			  }
+			  System.out.println(serverMap.toString());
 			serverList = serverService.selectServerList(loginUser);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -250,14 +331,10 @@ public class ServerController {
 			
 		}
 		
-		for(ServerVO serverVO : serverListUser){
-			System.out.println("()()()()()()()()()()(");
-			System.out.println(serverVO.getServer_ip());
-			System.out.println("()()()()()()()()()()(");
-			
-		}
+		
 		HttpSession flag = request.getSession();
 		flag.setAttribute("summaryMenu", summaryMenu);
+		model.addAttribute("serverMap",serverMap);
 		model.addAttribute("serverListUser", serverListUser);
 		model.addAttribute("serverList", serverList);
 		model.addAttribute("loginUserPosl", vWmemPosVO.getPosl_pos());
@@ -267,6 +344,8 @@ public class ServerController {
 
 	}
 
+	
+	//@@@@@
 	/**
 	 * Db쪽에 인설트 순서는 adminUser의 라이센스가 있는지 확인 있다면 currentip 서버에 해당 라이선스 키를 입력함 없다면
 	 * 새로 라이선스키를 받아(그룹생성) adminUser의 라이센스 변경후 currentip 서버에 해당 라이선스 키를 입력함

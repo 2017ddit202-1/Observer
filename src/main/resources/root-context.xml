@@ -110,6 +110,11 @@
 		p:client-ref="SqlMapClient" />
 	<bean id="cpuService" class="com.ddit.service.CpuServiceImpl"
 		p:cpuDAO_iBatis-ref="cpuDAO" />
+		
+	<bean id="superadminDAO" class="com.ddit.ibatis.SuperAdminDAO_iBatis"
+		p:client-ref="SqlMapClient" />
+	<bean id="superadminService" class="com.ddit.service.SuperAdminServiceImpl"
+		p:superAdminDAO-ref="superadminDAO" />
 
 	<bean id="ReportDAO" class="com.ddit.ibatis.ReportDAO_iBatis"
 		p:client-ref="SqlMapClient" />
@@ -120,14 +125,16 @@
 		p:client-ref="SqlMapClient" />
 	<bean id="adminService" class="com.ddit.service.AdminServiceImpl"
 		p:adminDAO-ref="adminDAO" />
+	
+	<bean id="diskDAO" class="com.ddit.ibatis.DiskDAO_iBatis"
+		p:client-ref="SqlMapClient" />
+	<bean id="diskService" class="com.ddit.service.DiskServiceImpl"
+		p:diskDAO_iBatis-ref="diskDAO" />		
+	<bean id="trafficDAO" class="com.ddit.ibatis.TrafficDAO_iBatis"
+		p:client-ref="SqlMapClient" />
+	<bean id="trafficService" class="com.ddit.service.TrafficServiceImpl"
+		p:traaticDAO_iBatis-ref="trafficDAO" />	
 
-
-
-
-
-	<!-- <bean id="test" class="com.ddit.controller.ServerController"> <property 
-		name="classMap"> <map> <entry key="ip" value=""/> <entry key="hostName" value="" 
-		/> </map> </property> </bean> -->
 
 	<util:map id="classMap" map-class="java.util.HashMap">
 		<entry key="ip" value="" />

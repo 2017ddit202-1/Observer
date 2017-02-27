@@ -84,11 +84,21 @@
 		
 	</update>
 	
+	<update id="updatePositionList" parameterClass="position_list">
+		update position_list
+		set
+		posl_pos=#posl_pos#
+		where posl_id=#posl_id#
+	</update> 
+	
 	<select id="groupmember" parameterClass="str" resultClass="member">
 		select *
 		from member where mem_group_lice=#mem_group_lice#
 	</select>
 	
+    <select id="memberCnt" resultClass="int">
+     select count(mem_id) from member
+    </select>
  
 
 </sqlMap>  

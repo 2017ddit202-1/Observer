@@ -15,5 +15,6 @@ public class TrafficVO {
 	private int traffic_seq;
 	private Date traffic_date;
 	private String server_code;
+	private String traffic_net;
 	
 }

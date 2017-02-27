@@ -18,5 +18,7 @@ public interface ServerService {
 	//
 	public String selectServerIP(String ip) throws SQLException;
 	public List<ServerVO> selectServerList(String id) throws SQLException;
+	public List<String> selectServerIpList(String id) throws SQLException;
+	public ServerVO SelectServerInfo(String ip) throws SQLException;
 	
 }

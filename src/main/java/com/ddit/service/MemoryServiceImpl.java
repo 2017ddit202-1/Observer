@@ -9,12 +9,22 @@ import com.ddit.ibatis.MemoryDAO_iBatis;
 
 public class MemoryServiceImpl implements MemoryService{
 
+	
+
 	MemoryDAO_iBatis memoryDAO_iBatis;
 
 	public void setMemoryDAO_iBatis(MemoryDAO_iBatis memoryDAO_iBatis) {
 		this.memoryDAO_iBatis = memoryDAO_iBatis;
 	}
 
+	
+	@Override
+	public String selectMemoryTotal(String ip) throws SQLException {
+		 String momoryTotal = memoryDAO_iBatis.selectMemoryTotal(ip);
+		return momoryTotal;
+	}
+	
+	
 	@Override
 	public int insertMemory(MemoryVO memoryVO) throws SQLException {
 		memoryDAO_iBatis.insertMemory(memoryVO);

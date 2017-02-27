@@ -10,7 +10,7 @@
 <title></title>
 </head>
 <body>
-
+<h1>그룹 관리 화면 입니다.</h1>
 
 <button type="button" onclick="allcheckBox()">전체선택</button>
 <button type="button" onclick="allcheckBoxDelete()">전체해제</button>
@@ -28,7 +28,7 @@
 				</tr>
 			</thead>
 <tbody>
-				<c:set var="loginUser" value="${loginUser}"></c:set>
+				<%-- <c:set var="loginUser" value="${loginUser}"></c:set> --%>
 				<c:forEach items="${groupList}" var="memList" varStatus="status">
 					<c:if test="${ memList.mem_id ne loginUser}">
 					<tr>		

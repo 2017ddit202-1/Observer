@@ -9,11 +9,20 @@ import com.ibatis.sqlmap.client.SqlMapClient;
 
 public class MemoryDAO_iBatis implements MemoryDAO{
 	
+	
+
+
 	private SqlMapClient client;
 	public void setClient(SqlMapClient client) {
 		this.client = client;
 	}
 	
+	
+	@Override
+	public String selectMemoryTotal(String ip) throws SQLException {
+		String memoryTotal = (String)client.queryForObject("selectMemoryTotal", ip);
+		return memoryTotal;
+	}
 	
 	@Override
 	public int insertMemory(MemoryVO MemoryVO) throws SQLException {

@@ -4,13 +4,19 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import com.ddit.dto.DiskVO;
+import com.ddit.ibatis.DiskDAO_iBatis;
 
 public class DiskServiceImpl implements DiskService{
+	
+	private DiskDAO_iBatis diskDAO_iBatis;
+	public void setDiskDAO_iBatis(DiskDAO_iBatis diskDAO_iBatis){
+		this.diskDAO_iBatis = diskDAO_iBatis;
+	}
 
 	@Override
 	public int insertCpu(DiskVO diskVO) throws SQLException {
-		// TODO Auto-generated method stub
-		return 0;
+		int result = diskDAO_iBatis.insertDisk(diskVO);
+		return result;
 	}
 
 	@Override
