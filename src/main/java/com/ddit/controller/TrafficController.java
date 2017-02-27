@@ -41,7 +41,6 @@ public class TrafficController {
 		String trafficNet = null;
 		try {
 			traList = trafficService.listTra(ip);
-			trafficNet = traList.get(0).getTraffic_net();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
