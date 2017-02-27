@@ -10,19 +10,44 @@
 <title></title>
 </head>
 <body>
-<h1>회원정보 수정</h1>
+<br>
+<br>
+<div class="container">
+  <ul class="nav nav-tabs">
+    <li class="active"><a href="#">SUPER ADMIN</a></li>
+    <li><a href="#">회원관리</a></li>
+    <li><a href="#">권한요청관리</a></li>
+    <li><a href="#">보고서</a></li>
+  </ul>
+  <br>
+  <p><strong>Notice:</strong> OBSERVER의 회원관리, 회원의 권한신청을 관리 할 수 있습니다. </p>
+</div>
+
+
+
 
 <div class="container">
 		<h3 class="text-center">MEMBER LIST</h3>
 
 		<form class="form-inline" id="memberSearch" name="searchform"
-			method="get">
+			method="get" style="margin-left: 69%;">
 			<div class="form-group">
-				<label for="pwd">Member Id :</label> <input type="text"
+				<label for="pwd">ID :</label> <input type="text"
 					class="form-control" id="memberName" name="memberName">
 			</div>
 			<input type="button" class="btn btn-default" value="Search" onclick="adminSearch()">
-		</form>
+		</form><br><br>
+
+
+
+<div class="container">
+  <span class="label label-default">총회원수</span>
+  <span class="label label-danger">탈퇴회원</span>
+  <span class="label label-success">USER</span>
+  <span class="label label-info">ADMIN</span>
+</div>
+
+
 
 
 		<table id="memberList" class="table table-striped">

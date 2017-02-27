@@ -97,8 +97,20 @@ public class SuperAdminController {
 	
 	// 관리페이지
 	@RequestMapping("/management")
-	public String management() {
+	public String management(Model model) {
 		String url = "/superAdmin/management";
+		
+		int memberCnt=0;
+		
+		try {
+			memberCnt = memberService.memberCnt();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		model.addAttribute("memberCnt",memberCnt);
+		
 
 		return url;
 	}

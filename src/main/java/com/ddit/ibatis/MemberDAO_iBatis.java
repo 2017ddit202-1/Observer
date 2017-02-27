@@ -153,6 +153,12 @@ public class MemberDAO_iBatis implements MemberDAO{
 	}
 
 
+	@Override
+	public int memberCnt() throws SQLException {
+		return (int) client.queryForObject("memberCnt");
+	}
+
+
 	
 
 

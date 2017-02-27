@@ -109,6 +109,11 @@ public class MemberServiceImpl implements MemberService{
 		memberIbatis.updatePositionList(positionListVO);
 	}
 
+	@Override
+	public int memberCnt() throws SQLException {
+		return memberIbatis.memberCnt();
+	}
+
 
 	
 	

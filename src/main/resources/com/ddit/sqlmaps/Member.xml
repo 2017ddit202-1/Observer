@@ -96,6 +96,9 @@
 		from member where mem_group_lice=#mem_group_lice#
 	</select>
 	
+    <select id="memberCnt" resultClass="int">
+     select count(mem_id) from member
+    </select>
  
 
 </sqlMap>  
