@@ -18,7 +18,7 @@
 </table>
 <br><br>
 
-<div>
+<div style="width: 100%; margin-left: 12%;">
 
            <!-- 회원관리 -->
           <div class="col-lg-3 col-md-6">
@@ -26,7 +26,7 @@
                         <div class="panel-heading">
                             <div class="row">
                                 <div class="col-xs-3">
-                                    <i class="fa fa-support fa-5x"></i>
+                                    <i class="fa fa-child fa-5x" ></i>
                                 </div>
                                 <div class="col-xs-9 text-right">
                                     <div style="font-size: 24px;" class="huge">총 회원 ${memberCnt }명</div>
@@ -36,7 +36,7 @@
                         </div>
                         <a href="<%=request.getContextPath()%>/superAdmin/authorityMemberList">
                             <div class="panel-footer">
-                                <span class="pull-left">회원관리</span>
+                                <span class="pull-left">member list</span>
                                 <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
                                 <div class="clearfix"></div>
                             </div>
@@ -54,8 +54,8 @@
                                     <i class="fa fa-support fa-5x"></i>
                                 </div>
                                 <div class="col-xs-9 text-right">
-                                    <div style="font-size: 24px;" class="huge">총 권한 요청 ${memberCnt }명</div>
-                                    <div>권한 요청 건 수 </div>
+                                    <div style="font-size: 24px;" class="huge">총 권한 요청 ${authorityCnt }명</div>
+                                    <div>authority list</div>
                                 </div>
                             </div>
                         </div>
@@ -80,8 +80,8 @@
                                     <i class="fa fa-area-chart fa-5x"></i>
                                 </div>
                                 <div class="col-xs-9 text-right">
-                                    <div class="huge">13</div>
-                                    <div>Support Tickets!</div>
+                                    <div style="font-size: 24px;" class="huge">주간 보고서</div>
+                                    <div>weekly reports</div>
                                 </div>
                             </div>
                         </div>

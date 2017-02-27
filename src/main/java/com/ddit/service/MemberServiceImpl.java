@@ -114,6 +114,26 @@ public class MemberServiceImpl implements MemberService{
 		return memberIbatis.memberCnt();
 	}
 
+	@Override
+	public int enabledCnt() throws SQLException {
+		return memberIbatis.enabledCnt();
+	}
+
+	@Override
+	public int userCnt() throws SQLException {
+		return memberIbatis.userCnt();
+	}
+
+	@Override
+	public int adminCnt() throws SQLException {
+		return memberIbatis.adminCnt();
+	}
+
+	@Override
+	public int authorityCnt() throws SQLException {
+		return memberIbatis.authorityCnt();
+	}
+
 
 	
 	

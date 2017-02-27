@@ -7,6 +7,23 @@
 
 <link href="<%=request.getContextPath()%>/resources/css/modal2.css"rel="stylesheet">
 <body>
+<br>
+<br>
+<div class="container">
+  <ul class="nav nav-tabs">
+    <li class="active"><a href="#">SUPER ADMIN</a></li>
+    <li><a href="<%=request.getContextPath()%>/superAdmin/authorityMemberList">회원관리</a></li>
+    <li><a href="<%=request.getContextPath()%>/superAdmin/authorityList">권한요청관리</a></li>
+    <li><a href="<%=request.getContextPath()%>/superAdmin/reportList">보고서</a></li>
+  </ul>
+  <br>
+  <p><strong>Notice:</strong> OBSERVER의 회원관리, 회원의 권한신청을 관리 할 수 있습니다. </p>
+</div><br><br>
+
+
+
+<div class="container">
+
 	     <table class="table table-striped table-bordered">
   <thead>
     <tr>
@@ -25,10 +42,11 @@
   </tbody>
  </c:forEach> 
 </table>
+</div>
 
 <div class="modal" id="myModal">
   <div class="modal-dialog">
-    <div class="modal-content">
+    <div class="modal-content" style="margin-top: 50%;">
       <div class="modal-header">
         <h2 class="modal-title">보고서</h2>
       </div>

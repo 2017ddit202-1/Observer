@@ -3,10 +3,11 @@
     "http://www.ibatis.com/dtd/sql-map-2.dtd">
 
 <sqlMap namespace="Member">
-<!-- 	<typeAlias alias="str" type="java.lang.String" /> -->
-<!-- 	<typeAlias alias="int" type="java.lang.Integer" /> -->
-<!-- 	<typeAlias alias="member" type="com.ddit.dto.MemberVO" /> -->
-<!-- 	<typeAlias alias="position_list" type="com.ddit.dto.PositionListVO" /> -->
+	<!-- <typeAlias alias="str" type="java.lang.String" /> -->
+	<!-- <typeAlias alias="int" type="java.lang.Integer" /> -->
+	<!-- <typeAlias alias="member" type="com.ddit.dto.MemberVO" /> -->
+	<!-- <typeAlias alias="position_list" type="com.ddit.dto.PositionListVO" 
+		/> -->
 
 	<update id="insertMember" parameterClass="member">
 		insert into
@@ -19,7 +20,7 @@
 		set
 		mem_pwd=#mem_pwd#,mem_nm=#mem_nm#,mem_email=#mem_email#,mem_phone=#mem_phone#,mem_group_lice=#mem_group_lice#
 		where mem_id=#mem_id#
-		
+
 	</update>
 
 	<delete id="deleteMember" parameterClass="member">
@@ -68,37 +69,67 @@
 
 
 	<select id="authoritySelect" parameterClass="str" resultClass="position_list">
-		select  
+		select
 		* from position_list where posl_id=#posl_id#
-	</select> 
-	
-	<select id="selectMemberAll"  resultClass="member">
+	</select>
+
+	<select id="selectMemberAll" resultClass="member">
 		select * from member
 	</select>
-	
+
 	<update id="updateLice" parameterClass="member">
 		update member
 		set
 		mem_group_lice=#mem_group_lice#
 		where mem_id=#mem_id#
-		
+
 	</update>
-	
+
 	<update id="updatePositionList" parameterClass="position_list">
-		update position_list
+		update
+		position_list
 		set
 		posl_pos=#posl_pos#
 		where posl_id=#posl_id#
-	</update> 
-	
+	</update>
+
 	<select id="groupmember" parameterClass="str" resultClass="member">
 		select *
 		from member where mem_group_lice=#mem_group_lice#
 	</select>
-	
-    <select id="memberCnt" resultClass="int">
-     select count(mem_id) from member
-    </select>
- 
+
+	<select id="memberCnt" resultClass="int">
+		select count(mem_id) from
+		member
+	</select>
+
+	<select id="enabledCnt" resultClass="int">
+		select count(*) from member
+		where enabled='0'
+	</select>
+
+	<select id="userCnt" resultClass="int">
+		select count(*) from
+		position_list where posl_pos='ROLE_USER'
+	</select>
+
+
+	<select id="adminCnt" resultClass="int">
+		select count(*) from
+		position_list where posl_pos='ROLE_ADMIN'
+	</select>
+
+	<select id="authorityCnt" resultClass="int">
+		select count(atrt_id) from
+		authority
+	</select>
 
 </sqlMap>  
+
+
+
+
+
+
+
+

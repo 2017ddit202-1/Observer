@@ -10,13 +10,73 @@
 <title></title>
 </head>
 <body>
-<h1>그룹 관리 화면 입니다.</h1>
 
-<button type="button" onclick="allcheckBox()">전체선택</button>
-<button type="button" onclick="allcheckBoxDelete()">전체해제</button>
-<button type="button" onclick="groupOut_go()">그룹해제</button>
+<br>
+<br>
+<div class="container">
+  <ul class="nav nav-tabs">
+    <li class="active"><a href="#">ADMIN</a></li>
+    <li><a href="<%=request.getContextPath()%>/group/meminvalid">그룹초대</a></li>
+    <li><a href="<%=request.getContextPath()%>/group/groupList">그룹관리</a></li>
+  </ul>
+  <br>
+  <p><strong>Notice:</strong> ADMIN이 회원을 그룹에 초대하고, 관리할 수 있습니다. </p>
+</div>
+<br><br>
+
 
 <div class="container">
+  <button type="button"onclick="allcheckBox()" class="btn btn-default"><i class="fa fa-check-square-o" aria-hidden="true"></i>&nbsp;전체선택</button>
+  <button type="button" onclick="allcheckBoxDelete()" class="btn btn-default"><i class="fa fa-check-square-o" aria-hidden="true"></i>&nbsp;전체해제</button>
+   <div class="btn-group">
+    <button type="button" onclick="groupOut_go()" class="btn btn-primary" >&nbsp;&nbsp;그룹해제&nbsp;&nbsp;</button>
+  </div>
+</div>
+
+
+
+<div class="container">
+<form id="formm" name="formm" method="post">
+<table id="groupTable" class="table table-striped">
+			<thead>
+				<tr id="group_tr">
+					<td style="width: 79px;">번호</td>
+					<td>아이디</td>
+					<td>메일</td>
+				</tr>
+			</thead>
+			<tbody>
+					<c:forEach items="${groupList}" var="memList" varStatus="status">
+					<c:if test="${ memList.mem_id ne loginUser}">
+					<tr>		
+						<th><input type="checkbox" name="mem_id" id="mem_id"
+						value="${memList.mem_id }"></th>
+						<td>${memList.mem_id}</td>
+						<td>${memList.mem_email}</td>
+					</tr>
+					</c:if>
+				</c:forEach>
+			</tbody>
+		</table>
+		</form>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <button type="button" onclick="allcheckBox()">전체선택</button>
+<button type="button" onclick="allcheckBoxDelete()">전체해제</button>
+<button type="button" onclick="groupOut_go()">그룹해제</button> -->
+
+<%-- <div class="container">
 	<form id="formm" name="formm" method="post">
 		<table class="table table-hover" style="width: 1000px;" align="center"
 			id="groupTable">
@@ -28,7 +88,7 @@
 				</tr>
 			</thead>
 <tbody>
-				<%-- <c:set var="loginUser" value="${loginUser}"></c:set> --%>
+				<c:set var="loginUser" value="${loginUser}"></c:set>
 				<c:forEach items="${groupList}" var="memList" varStatus="status">
 					<c:if test="${ memList.mem_id ne loginUser}">
 					<tr>		
@@ -43,7 +103,7 @@
 			</tbody>
 		</table>
 		</form>
-	</div>
+	</div> --%>
 
 	<script>
 	function groupOut_go(){

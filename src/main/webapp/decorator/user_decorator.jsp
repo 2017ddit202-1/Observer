@@ -82,7 +82,7 @@
        
                 </li>
                 
-                
+                <sec:authorize access="hasAnyRole('ROLE_USER,ROLE_ADMIN')">
                          <!-- /.dropdown -->
                 <li class="dropdown">
                     <a class="dropdown-toggle" href="<%=request.getContextPath()%>/user/mypage">
@@ -104,18 +104,18 @@
                         <li class="divider"></li>
                         <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> 회원탈퇴</a>
                         </li>
-                        
-         </ul>
-               
+         </ul> 
                 </li>
-                <%-- <sec:authorize access="isAuthenticated()">
-                     <li><a href="#">관리</a></li>
-               </sec:authorize> --%>
+                </sec:authorize>
+
                 <!-- /.dropdown -->
+                    <sec:authorize access="hasRole('ROLE_SUPER')">
                 <li class="dropdown">      
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    <a class="dropdown-toggle" href="<%=request.getContextPath()%>/superAdmin/management">
                         <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
                     </a>
+                      </sec:authorize>
+                    
                     <!-- <ul class="dropdown-menu dropdown-user"> -->
                         <!-- <li class="divider"></li> -->
                         <%-- <sec:authorize access="isAuthenticated()">
@@ -123,9 +123,9 @@
                         </sec:authorize> --%>
                         
                         
-                        <sec:authorize access="hasRole('ROLE_SUPER')">
+                     <%--    <sec:authorize access="hasRole('ROLE_SUPER')">
                      <li><a href="<%=request.getContextPath()%>/superAdmin/management">관리</a></li>
-                  </sec:authorize>
+                  </sec:authorize> --%>
                   <sec:authorize access="isAuthenticated()">
                              <li><a href="<%=request.getContextPath()%>/logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                         </li>

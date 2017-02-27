@@ -10,16 +10,36 @@
 <title></title>
 </head>
 <body>
-<h1>회원등록 화면 입니다.</h1>
 
-<button type="button" onclick="allcheckBox()">전체선택</button>
-<button type="button" onclick="allcheckBoxDelete()">전체해제</button>
-<button type="button" onclick="invalidAccept_go()">그룹등록</button>
+<br>
+<br>
+<div class="container">
+  <ul class="nav nav-tabs">
+    <li class="active"><a href="#">ADMIN</a></li>
+    <li><a href="<%=request.getContextPath()%>/group/meminvalid">그룹초대</a></li>
+    <li><a href="<%=request.getContextPath()%>/group/groupList">그룹관리</a></li>
+  </ul>
+  <br>
+  <p><strong>Notice:</strong> ADMIN이 회원을 그룹에 초대하고, 관리할 수 있습니다. </p>
+</div>
+<br><br>
+
 
 <div class="container">
-	<form id="formm" name="formm" method="post">
-		<table class="table table-hover" style="width: 1000px;" align="center"
-			id="groupTable">
+  <button type="button"onclick="allcheckBox()" class="btn btn-default"><i class="fa fa-check-square-o" aria-hidden="true"></i>&nbsp;전체선택</button>
+  <button type="button" onclick="allcheckBoxDelete()" class="btn btn-default"><i class="fa fa-check-square-o" aria-hidden="true"></i>&nbsp;전체해제</button>
+   <div class="btn-group">
+    <button type="button" onclick="invalidAccept_go()" class="btn btn-primary" >&nbsp;&nbsp;그룹등록&nbsp;&nbsp;</button>
+  </div>
+</div>
+
+
+
+
+
+<div class="container">
+<form id="formm" name="formm" method="post">
+<table id="memberList" class="table table-striped">
 			<thead>
 				<tr id="group_tr">
 					<td style="width: 79px;">번호</td>
@@ -27,9 +47,8 @@
 					<td>메일</td>
 				</tr>
 			</thead>
-<tbody>
-				
-				<c:forEach items="${LiceList}" var="memList" varStatus="status">
+			<tbody>
+					<c:forEach items="${LiceList}" var="memList" varStatus="status">
 					<tr>
 						<th><input type="checkbox" name="mem_id" id="mem_id"
 						value="${memList.mem_id }"></th>
@@ -37,14 +56,15 @@
 						<td>${memList.mem_email}</td>
 					</tr>
 				</c:forEach>
-
 			</tbody>
 		</table>
 		</form>
-	</div>
+</div>
+
 
 <script>
 	function invalidAccept_go(){
+
 		
 		var chklen = document.formm.mem_id.length;
 		var member="";
