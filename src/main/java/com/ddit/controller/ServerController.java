@@ -290,7 +290,8 @@ public class ServerController {
 						  ServerInfoVO serverInfoVO = new ServerInfoVO();
 						  Map<String, String> infoMap = new HashMap<String, String>();
 						  //IP 를 이용해서 필요한 정보를 SELECT하여 MAP(해당IP/vo)로 넣는다
-						 serverInfoVO.setCpu_total_pcnt(cpuServiceImpl.SelectCpuTotalpcnt(ip));
+						  String cpu = cpuServiceImpl.SelectCpuTotalpcnt(ip);
+						 serverInfoVO.setCpu_total_pcnt(Double.parseDouble(cpu));
 						 serverInfoVO.setMemory_total(memoryServiceImpl.selectMemoryTotal(ip));
 						 serverVO = serverService.SelectServerInfo(ip);
 						 serverInfoVO.setServer_host(serverVO.getServer_host());
@@ -300,9 +301,9 @@ public class ServerController {
 						 infoMap.put("server_host", serverInfoVO.getServer_host());
 						 infoMap.put("server_os_name", serverInfoVO.getServer_os_name());
 						 infoMap.put("server_ip", serverInfoVO.getServer_ip());
-						 infoMap.put("cpu_total_pcnt", serverInfoVO.getCpu_total_pcnt());
+						 /*infoMap.put("cpu_total_pcnt", serverInfoVO.getCpu_total_pcnt());*/
 						 infoMap.put("memory_total", serverInfoVO.getMemory_total());
-						 
+						 model.addAttribute("cpu_total_pcnt",serverInfoVO.getCpu_total_pcnt());
 						 serverMap.put(ip, infoMap);
 					  }
 					  
@@ -334,6 +335,7 @@ public class ServerController {
 		
 		HttpSession flag = request.getSession();
 		flag.setAttribute("summaryMenu", summaryMenu);
+		
 		model.addAttribute("serverMap",serverMap);
 		model.addAttribute("serverListUser", serverListUser);
 		model.addAttribute("serverList", serverList);

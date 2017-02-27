@@ -9,7 +9,7 @@ public class ServerInfoVO {
 	String server_host;
 	String server_ip;
 	String server_os_name;
-	String cpu_total_pcnt;
+	double cpu_total_pcnt;
 	String memory_total;
 	
 	
