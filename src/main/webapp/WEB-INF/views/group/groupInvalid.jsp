@@ -3,25 +3,60 @@
 <%@ page trimDirectiveWhitespaces="true" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset=UTF-8">
 <title></title>
+<style>
+ #page-wrapper3 {
+    position: inherit;
+    margin: 0 0 0 250px;
+    padding: 65px 30px;
+     box-shadow: 5px 5px 5px lightgray;
+     border-radius: 10px; 
+   
+} 
+#page-wrapper3 {
+    padding: 0 15px;
+    min-height: 568px;
+    background-color: white;
+    margin-left: 10%;
+    width: 79%;
+    height: 700px;
+}
+</style>
+
+
 </head>
 <body>
 
 <br>
 <br>
+
+
+<div id="page-wrapper3" class="in">
 <div class="container">
-  <ul class="nav nav-tabs">
+  <ul class="nav nav-tabs" style="margin-top: 3%;">
     <li class="active"><a href="#">ADMIN</a></li>
     <li><a href="<%=request.getContextPath()%>/group/meminvalid">그룹초대</a></li>
     <li><a href="<%=request.getContextPath()%>/group/groupList">그룹관리</a></li>
   </ul>
   <br>
-  <p><strong>Notice:</strong> ADMIN이 회원을 그룹에 초대하고, 관리할 수 있습니다. </p>
+ 
+ <div class="media">
+    <div class="media-left">
+   <img src="<%=request.getContextPath()%>/resources/img/target.png" class="media-object" style="width:60px;margin-left: 39%;">
+    </div>
+    <div class="media-body">
+      <h4 class="media-heading" style="margin-left: 3%; margin-top: 1%;"><strong>그룹초대</strong></h4>
+      <p style="margin-left: 3%;">ADMIN이 회원을 그룹에 초대하고, 관리할 수 있습니다.</p>
+    </div>
+  </div>
+  <hr>
 </div>
+
 <br><br>
 
 
@@ -37,13 +72,14 @@
 
 
 
+
 <div class="container">
 <form id="formm" name="formm" method="post">
 <table id="memberList" class="table table-striped">
 			<thead>
 				<tr id="group_tr">
 					<td style="width: 79px;">번호</td>
-					<td>아이디</td>
+					<td style="width: 300px;">아이디</td>
 					<td>메일</td>
 				</tr>
 			</thead>
@@ -61,7 +97,7 @@
 		</form>
 </div>
 
-
+</div>
 <script>
 	function invalidAccept_go(){
 
