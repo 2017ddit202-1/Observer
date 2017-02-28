@@ -58,3 +58,9 @@ display:none;
   display: none;
   text-align: center;
 }
+
+#trafficNet{
+	float:right;
+	margin-top: 4%;
+    margin-right: 12%;	
+}

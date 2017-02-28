@@ -16,5 +16,7 @@ public class DiskVO {
 	private int disk_seq;
 	private Date disk_date;
 	private String server_code;
+	private String disk_idle;
+	private String disk_pcnt;
 	
 }

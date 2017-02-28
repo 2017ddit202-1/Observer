@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.StringTokenizer;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -192,6 +193,40 @@ public class ServerController {
 			trafficVO.setTraffic_trans(classMap.get(currentIp).get("networktx"));
 			trafficVO.setServer_code(serverVO.getServer_code());
 			trafficVO.setTraffic_net(classMap.get(currentIp).get("networkcard"));
+			
+			String diskMap = classMap.get(currentIp).get("diskAll");
+			System.out.println(diskMap);
+			String replaceMap = diskMap.replaceAll("\\[", "");
+			String temp = "";
+			int count = 0;
+			Map<Integer,String> mapList = new HashMap<Integer, String>();
+			StringTokenizer token = new StringTokenizer(replaceMap,"]");
+			while(token.hasMoreTokens()){
+				temp += token.nextToken()+",";
+			}
+			StringTokenizer token2 = new StringTokenizer(temp,",");
+			while(token2.hasMoreTokens()){
+				mapList.put(count++, token2.nextToken().trim());
+			}
+			int size = mapList.size();
+			int tsize = size/5;
+			int cnt = 0;
+			for(int i=0; i<tsize; i++){
+				diskVO.setDisk_nm(mapList.get(cnt));
+				diskVO.setDisk_total(mapList.get(cnt+1));
+				diskVO.setDisk_using(mapList.get(cnt+2));
+				diskVO.setDisk_idle(mapList.get(cnt+3));
+				diskVO.setDisk_pcnt(mapList.get(cnt+4));
+				diskVO.setDisk_ip(currentIp);
+				diskVO.setServer_code(serverVO.getServer_code());
+				cnt = cnt+5;
+				try {
+					diskServiceImpl.insertDisk(diskVO);
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
 			
 			try {
 				cpuServiceImpl.insertCpu(cpuVO);

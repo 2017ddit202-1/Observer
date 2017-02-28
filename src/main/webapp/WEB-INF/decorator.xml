@@ -63,6 +63,9 @@
 		<pattern>/admin/*</pattern>
 	</decorator>
 	
+	<decorator name="disk" page="user_decorator.jsp">
+		<pattern>/disk/*</pattern>
+	</decorator>
 
 	
 

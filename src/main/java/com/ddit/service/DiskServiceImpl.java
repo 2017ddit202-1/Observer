@@ -2,6 +2,7 @@ package com.ddit.service;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 import com.ddit.dto.DiskVO;
 import com.ddit.ibatis.DiskDAO_iBatis;
@@ -14,33 +15,42 @@ public class DiskServiceImpl implements DiskService{
 	}
 
 	@Override
-	public int insertCpu(DiskVO diskVO) throws SQLException {
-		int result = diskDAO_iBatis.insertDisk(diskVO);
-		return result;
+	public int insertDisk(DiskVO diskVO) throws SQLException {
+		return diskDAO_iBatis.insertDisk(diskVO);
 	}
 
 	@Override
-	public void updateCpu(DiskVO diskVO) throws SQLException {
+	public void updateDisk(DiskVO diskVO) throws SQLException {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public int deleteCpu(int disk_seq) throws SQLException {
+	public int deleteDisk(int disk_seq) throws SQLException {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public DiskVO selectCpu(int disk_seq) throws SQLException {
+	public DiskVO selectDisk(int disk_seq) throws SQLException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public ArrayList<DiskVO> listAllArticle() throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+	public ArrayList<DiskVO> diskList(DiskVO diskVO) throws SQLException {
+		return diskDAO_iBatis.diskList(diskVO);
 	}
+
+	@Override
+	public List<DiskVO> driverList(String ip) throws SQLException {
+		return diskDAO_iBatis.driverList(ip);
+	}
+
+	@Override
+	public ArrayList<DiskVO> diskListHo(DiskVO diskVO) throws SQLException {
+		return diskDAO_iBatis.diskListHo(diskVO);
+	}
+
 
 }

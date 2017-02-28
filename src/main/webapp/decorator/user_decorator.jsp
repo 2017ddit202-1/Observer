@@ -173,7 +173,7 @@
                                     <a href="morris.html">&nbsp;- 프로세스</a>
                                 </li>
                                   <li>
-                                    <a href="morris.html">&nbsp;- 디스크</a>
+                                    <a href="<%=request.getContextPath()%>/disk/diskMain">&nbsp;- 디스크</a>
                                 </li>
                                   <li>
                                     <a href="<%=request.getContextPath()%>/traffic/trafficMain">&nbsp;- 트래픽</a>
