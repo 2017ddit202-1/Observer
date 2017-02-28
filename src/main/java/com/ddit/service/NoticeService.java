@@ -13,5 +13,6 @@ public interface NoticeService {
 	public int deleteCpu(int notice_seq) throws SQLException;
 	NoticeVO selectCpu(int notice_seq) throws SQLException;
 	public ArrayList<NoticeVO> listAllArticle() throws SQLException;
+	public void insertNotice(NoticeVO noticeVO) throws SQLException;
 	
 }

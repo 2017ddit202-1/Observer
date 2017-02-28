@@ -34,6 +34,8 @@ import com.ddit.service.DiskServiceImpl;
 import com.ddit.service.MemberGroupServiceImpl;
 import com.ddit.service.MemberServiceImpl;
 import com.ddit.service.MemoryServiceImpl;
+import com.ddit.service.NoticeServiceImpl;
+import com.ddit.service.Notice_ArticleServiceImpl;
 import com.ddit.service.ServerServiceImpl;
 import com.ddit.service.TrafficServiceImpl;
 import com.ddit.service.VWmemPosServiceImpl;
@@ -70,6 +72,9 @@ public class ServerController {
 	
 	@Autowired
 	private VWmemPosServiceImpl vWmemPosServiceImpl;
+	
+	@Autowired
+	private NoticeServiceImpl noticeServiceImpl;
 	
 	@Autowired
 	private DiskServiceImpl diskServiceImpl;
@@ -151,6 +156,7 @@ public class ServerController {
 		
 		if (serverVO.getSaveyn().equals("1")) {
 		        if(classMap.get(currentIp).get("alertcpu") != null){
+		        	System.out.println("^^^^^^^^^^^^^^^^^^^^^^^^^");
 		           cpuNotice(currentIp);
 		         }else if(classMap.get(currentIp).get("alertmemory") != null){
 		            System.out.println("메모리 과다 알림 : " + classMap.get(currentIp).get("memory_total_used"));
@@ -614,25 +620,33 @@ public class ServerController {
 	      MemberVO memberVO = new MemberVO();
 	      String id ="";
 	      String lice="";
+	      String code="";
+	      
 	      try {
-	         serverVO = serverService.SelectServerInfo(currentIp);
+	    	  code = serverService.selectServercode_Info(currentIp);
 	      } catch (SQLException e) {
 	         e.printStackTrace();
 	      }
 	      
 	      
+	      
 	      //notice 테이블에 알림내역 insert
 	      NoticeVO noticeVO = new NoticeVO();
 			
-	      
 	        String cpu=classMap.get(currentIp).get("cpu_total_pcnt");
 			noticeVO.setNotice_server_nm(classMap.get(currentIp).get("hostName")); 
 			noticeVO.setNotice_dng_lv("위험");
-			noticeVO.setContent("현재 CPU 사용량은"+cpu+"% 입니다. 80% 초과되었습니다. CPU를 점검하세요");
+			noticeVO.setNotice_content("현재 CPU 사용량은"+cpu+"% 입니다. 80% 초과되었습니다. CPU를 점검하세요");
 			noticeVO.setNotice_ip(currentIp);
-			noticeVO.setServer_code(serverVO.getServer_code());
-	
-	   }
+			noticeVO.setServer_code(code);
+			try {
+				noticeServiceImpl.insertNotice(noticeVO);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+	}
 	
 	//Memory사용량 초과되었을때
 	public void memoryNotice(String currentIp){
@@ -653,9 +667,16 @@ public class ServerController {
 	        String memory=classMap.get(currentIp).get("memory_total");
 			noticeVO.setNotice_server_nm(classMap.get(currentIp).get("hostName"));
 			noticeVO.setNotice_dng_lv("위험");
-			noticeVO.setContent("현재 Memory 사용량은"+memory+"% 입니다. 80% 초과되었습니다. Memory를 점검하세요");
+			noticeVO.setNotice_content("현재 Memory 사용량은"+memory+"% 입니다. 80% 초과되었습니다. Memory를 점검하세요");
 			noticeVO.setNotice_ip(currentIp);
 			noticeVO.setServer_code(serverVO.getServer_code());
+			
+			try {
+				noticeServiceImpl.insertNotice(noticeVO);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 	}
 	
 	//CUP, Memory 사용량 초과되었을때
@@ -678,9 +699,16 @@ public class ServerController {
 	        String memory=classMap.get(currentIp).get("memory_total");
 			noticeVO.setNotice_server_nm(classMap.get(currentIp).get("hostName"));
 			noticeVO.setNotice_dng_lv("위험");
-			noticeVO.setContent("현재 Memory 사용량은"+memory+"% CPU 사용량은"+cpu+"입니다. 80% 초과되었습니다. Memory, CPU를 점검하세요");
+			noticeVO.setNotice_content("현재 Memory 사용량은"+memory+"% CPU 사용량은"+cpu+"입니다. 80% 초과되었습니다. Memory, CPU를 점검하세요");
 			noticeVO.setNotice_ip(currentIp);
 			noticeVO.setServer_code(serverVO.getServer_code());
+			
+			try {
+				noticeServiceImpl.insertNotice(noticeVO);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 	}	
 	
 

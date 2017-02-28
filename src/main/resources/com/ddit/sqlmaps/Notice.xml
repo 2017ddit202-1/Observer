@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
+    "http://www.ibatis.com/dtd/sql-map-2.dtd">
+ 
+ <sqlMap namespace="notice">
+ 
+ <insert id="insertNotice" parameterClass="notice">
+ insert into notice(notice_content,notice_dng_lv,notice_ip,notice_server_nm,server_code,notice_seq)
+ values(#notice_content#,#notice_dng_lv#,#notice_ip#,#notice_server_nm#,#server_code#,notice_seq.nextval)
+ </insert>
+ 
+ 
+ 
+ </sqlMap>
+ 

@@ -20,4 +20,5 @@ public interface ServerDAO {
 	public ServerVO SelectServerInfo(String ip) throws SQLException;
 	public void updateServerIp(String ip) throws SQLException;
 	public void deleteServerIp(String ip) throws SQLException; 
+    public String selectServercode_Info(String ip)throws SQLException;
 }
