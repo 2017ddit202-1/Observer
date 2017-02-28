@@ -13,7 +13,7 @@ public class NoticeVO {
 	private Date notice_date;
 	private String notice_dng_lv;
 	private String notice_server_nm;
-	private String content;
+	private String notice_content;
 	private String notice_ip;
 	private String server_code;
 }

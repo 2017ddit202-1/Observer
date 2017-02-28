@@ -4,12 +4,17 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
+<style>
+/* . */
+</style>
+
 <br>
 <br>
 <br>
 
 
-
+<div class="pull-right">sdf
+</div>
 <table align="center">
 <tr>
 <td style="width: 700px; background-color: #ebebeb; height: 30px;">  &nbsp;&nbsp;&nbsp;<i class="fa fa-cogs" aria-hidden="true"></i>&nbsp;&nbsp;   SUPER ADMIN</td>

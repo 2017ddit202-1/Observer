@@ -6,13 +6,21 @@ import java.util.ArrayList;
 import com.ddit.dao.NoticeDAO;
 import com.ddit.dao.Notice_ArticleDAO;
 import com.ddit.dto.NoticeVO;
+import com.ibatis.sqlmap.client.SqlMapClient;
 
 public class NoticeDAO_iBatis implements NoticeDAO{
+	
+	private SqlMapClient client;
+	public void setClient(SqlMapClient client){
+		this.client = client; 
+	}
+	
+	
 
 	@Override
-	public int insertNotice(NoticeVO noticeVO) throws SQLException {
+	public void insertNotice(NoticeVO noticeVO) throws SQLException {
 		// TODO Auto-generated method stub
-		return 0;
+		client.insert("insertNotice",noticeVO);
 	}
 
 	@Override
