@@ -16,34 +16,33 @@
 	}
 	
 	</script> 
+	
+	<style>
+ #page-wrapper3 {
+    position: inherit;
+    margin: 0 0 0 250px;
+    padding: 65px 30px;
+     box-shadow: 5px 5px 5px lightgray;
+     border-radius: 10px; 
+   
+} 
+#page-wrapper3 {
+    padding: 0 15px;
+    min-height: 568px;
+    background-color: white;
+    margin-left: 10%;
+    width: 79%;
+    height: 700px;
+}
+</style>
 	<br> <br>
+	
+	<div id="page-wrapper3" class="in">
 	<div style="text-align: center;">
-	<img src="<%=request.getContextPath()%>/resources/img/memberUpdate_main.jpg">
-	
-<!-- 	<div id="contract">
-		<h2>회원정보 수정</h2>
-		<h4>Member Info Edit</h4>
-	</div> -->
-	
-	
-<%-- 	
-	<form id="formm" name="formm" method="post">
-	
-	ID: <input type="text" name="mem_id" readonly="readonly" value="${loginUser.mem_id}"><br /> 
-	PW1:<input type="text" name="mem_pwd" value="${loginUser.mem_pwd}"><br /> 
-	NAME: <input type="text" name="mem_nm" value="${loginUser.mem_nm}"><br /> 
-	E-MAIL: <input type="text" name="mem_email" value="${loginUser.mem_email}"><br /> 
-	PHONE: <input type="text" name="mem_phone" value="${loginUser.mem_phone}"><br />
-	 
-	
 
-	 <input type="button" value="수정" class="submit" onclick="go_update(this.form)">
-	 <input type="button" value="뒤로가기" class="submit" onclick="history.go(-1);">
-	 <input type="button" value="뒤로가기" class="submit" onclick="go_mypage()">
-	</form> --%>
 	<br><br><br>
 
-<div style="margin-left: -56%;">회원정보 변경</div>
+<div style="margin-left: -63%;">회원정보 변경</div>
 <table align="center" style="width: 1000px; background-color: #f6f7f2; height: 100px;">
 <tr>
 <td style="border-top: 2px solid #dbdbdb; text-align: left; color: #777873">&nbsp;&nbsp;회원정보 수정을 원하시면 아래의 내용들을 해당 정보의 수정입력을 부탁드립니다.<br>
@@ -89,8 +88,8 @@
 	<!--  <input type="button" value="뒤로가기" class="submit" onclick="history.go(-1);"> -->
 	 <input id="btnContactUs" class="btn btn-default" type="button" value="뒤로가기" class="submit" onclick="go_mypage()"> 
 </form>
-
-
+</div>
+</div>
 
 
 

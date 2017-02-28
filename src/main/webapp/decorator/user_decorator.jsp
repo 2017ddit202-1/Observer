@@ -151,7 +151,7 @@ background-color: #1f2123;
             <!-- /.navbar-top-links -->
 
             <div class="navbar-default sidebar" role="navigation">
-                <div class="sidebar-nav navbar-collapse" style="padding-bottom:294%; background-color: #2b2e30;">
+                <div class="sidebar-nav navbar-collapse" style="padding-bottom:339%; background-color: #2b2e30;">
                     <ul class="nav" id="side-menu">
                         <li class="sidebar-search">
                             <div class="input-group custom-search-form">
@@ -262,7 +262,7 @@ background-color: #1f2123;
 
 
    <footer>
-      <div class="container" style="text-align: center; background-color: #f7f7f7; margin-left:13.1111%; width:86.6%; border-left:1px solid #e7e7e7;">
+      <div class="container" style="text-align: center; background-color: #f7f7f7; margin-left:13.1111%; width:86.6%; ">
       
          
           
@@ -275,7 +275,6 @@ background-color: #1f2123;
                   <a href="https://bootstrapmade.com/">사용자 메뉴얼</a> 
                   <br/><br/>
 
-       
       </div>
    </footer>
 

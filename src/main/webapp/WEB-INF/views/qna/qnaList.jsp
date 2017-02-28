@@ -30,6 +30,25 @@
 		document.formm.submit();
 	}
 </script>
+
+<style>
+ #page-wrapper3 {
+    position: inherit;
+    margin: 0 0 0 250px;
+    padding: 65px 30px;
+     box-shadow: 5px 5px 5px lightgray;
+     border-radius: 10px; 
+   
+} 
+#page-wrapper3 {
+    padding: 0 15px;
+    min-height: 568px;
+    background-color: white;
+    margin-left: 10%;
+    width: 79%;
+   height: 860px;
+}
+</style>
 </head>
 
 
@@ -37,6 +56,7 @@
 
 <br><br><br>
 
+<div id="page-wrapper3" class="in">
 <div style="text-align: center;">
 <img src="<%=request.getContextPath()%>/resources/img/line.jpg"><br><br><br><br>
 </div>
@@ -158,6 +178,7 @@
 	</div>
 	<div style="text-align: center;">
 		<button type="button" class="btn btn-default" onclick="location.href='<%=request.getContextPath()%>/qna/qnaWriteForm' ">글쓰기</button>
+	</div>
 	</div>
 
 </body>

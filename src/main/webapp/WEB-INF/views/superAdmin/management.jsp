@@ -5,19 +5,33 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <style>
-/* . */
+#page-wrapper3 {
+    position: inherit;
+    margin: 0 0 0 250px;
+    padding: 65px 30px;
+     box-shadow: 5px 5px 5px lightgray;
+     border-radius: 10px; 
+   
+} 
+#page-wrapper3 {
+    padding: 0 15px;
+    min-height: 568px;
+    background-color: white;
+    margin-left: 10%;
+    width: 79%;
+   height: 860px;
+}
 </style>
 
 <br>
 <br>
 <br>
 
-
-<div class="pull-right">sdf
-</div>
+<div id="page-wrapper3" class="in">
+<br><br><br>
 <table align="center">
 <tr>
-<td style="width: 700px; background-color: #ebebeb; height: 30px;">  &nbsp;&nbsp;&nbsp;<i class="fa fa-cogs" aria-hidden="true"></i>&nbsp;&nbsp;   SUPER ADMIN</td>
+<td style="width: 834px; background-color: #ebebeb; height: 30px; color: #727272; font-weight: bold;">  &nbsp;&nbsp;&nbsp;<i class="fa fa-cogs" aria-hidden="true"></i>&nbsp;&nbsp;   SUPER ADMIN</td>
 <td style="width: 300px; background-color: #c1c1c1; color: white; font-weight: bold; text-align: right;"> 관리자 페이지 >>&nbsp;&nbsp;&nbsp;</td>
 </tr>
 </table>
@@ -99,5 +113,6 @@
                         </a>
                     </div>
                 </div> 
+                </div>
                 </div>
 
