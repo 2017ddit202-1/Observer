@@ -37,7 +37,6 @@ public class DiskController {
 		
 		try {
 			nmList = diskService.driverList(ip);
-			System.out.println(nmList+"@@@@@@@@@@@@@@@@@@@@");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
