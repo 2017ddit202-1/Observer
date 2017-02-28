@@ -37,6 +37,16 @@
           where server_ip=#server_ip#
  	</select>
  
+ 	<update id="updateIpSaveyn" parameterClass="str" >
+ 		update server 
+   		set saveyn=#saveyn#
+   		where server_ip=#server_ip#
+ 	</update>
+ 	
+ 	<delete id="serverRemove" parameterClass="str">
+ 		delete from server where server_ip=#server_ip#
+ 	</delete>
+ 
  
  </sqlMap>   
  

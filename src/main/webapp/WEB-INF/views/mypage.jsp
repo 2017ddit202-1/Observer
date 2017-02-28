@@ -21,15 +21,30 @@
 <body>
 
 
-   <!-- ///////////////////////////////////////////////////////////////////////////////// -->
+
+<br>
+<br>
+
+
+<div id="page-wrapper3">
+<div class="container">
+ 
+ <div class="media" style="margin-top: 4%;">
+    <div class="media-left">
+   <img src="<%=request.getContextPath()%>/resources/img/pay-per-click.png" class="media-object" style="width:60px;margin-left: 39%;">
+    </div>
+    <div class="media-body">
+      <h4 class="media-heading" style="margin-left: 3%; margin-top: 14.5px;"><strong>MY PAGE</strong></h4>
+      <p style="margin-left: 3%;">OBSERVER 회원의 정보를 관리하고, 권한 신청 / 회원 탈퇴를 할 수 있습니다.</p>
+    </div>
+  </div>
+  <hr>
+</div>
 
 <br><br>
-<div style="text-align: center;">
-<img src="<%=request.getContextPath()%>/resources/img/mypage_main.jpg">
 
 
 
-<hr color="red"/>
 
 
 <!-- <style>
@@ -73,10 +88,27 @@ a:hover {text-decoration: underline; color: red;}
  text-align: left;
  }
  
+ 
+  #page-wrapper3 {
+    position: inherit;
+    margin: 0 0 0 250px;
+    padding: 65px 30px;
+     box-shadow: 5px 5px 5px lightgray;
+     border-radius: 10px; 
+   
+} 
+#page-wrapper3 {
+    padding: 0 15px;
+    min-height: 568px;
+    background-color: white;
+    margin-left: 10%;
+    width: 79%;
+   height: 860px;
+}
  </style>
 
 <tr><tr><tr><tr><tr>
-<div style="margin-left: -35%;">
+<div style="margin-left: 18%; margin-top: -2%;">
 &nbsp;안녕하세요! &nbsp; <span style="color: #6a91ba; font-weight: bold;">${loginUser }</span>님의 &nbsp; MyPage입니다.
 </div>
 
@@ -128,8 +160,9 @@ a:hover {text-decoration: underline; color: red;}
 
                         </c:choose>
 
+                 <form name=formm>
                         <button class="btn btn-primary btn-sm" type="button" id="authorityBtn" onclick="autority_go()">신청하기</button>
-
+                 </form>
 
                         <!-- <script src="http://code.jquery.com/jquery-latest.min.js"></script> 아작스-->
 
@@ -263,6 +296,7 @@ $(function(){
 
 
 
+</div>
 
 
 

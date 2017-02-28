@@ -31,6 +31,10 @@ public interface MemberService {
 	public void updateLice(MemberVO memberVO) throws SQLException;
 	public void updatePositionList(PositionListVO positionListVO)throws SQLException;
 	public int memberCnt()throws SQLException;
+	public int enabledCnt()throws SQLException;
+	public int userCnt()throws SQLException;
+	public int adminCnt()throws SQLException;
+	public int authorityCnt()throws SQLException;
 
 	
 }

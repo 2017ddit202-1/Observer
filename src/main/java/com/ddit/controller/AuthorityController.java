@@ -30,6 +30,7 @@ public class AuthorityController {
 	@RequestMapping("/authorityReq")
 	public String authorityReq(HttpSession session, HttpServletRequest request){
 		String url="mypage";
+		System.out.println("권한신청 왔다!!!!!!!!!!!!!!!!!!!");
 		
 		String userid=(String)session.getAttribute("loginUser");
 		try {

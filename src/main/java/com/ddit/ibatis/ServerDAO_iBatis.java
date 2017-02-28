@@ -17,6 +17,23 @@ public class ServerDAO_iBatis implements ServerDAO{
 	}
 	
 	
+	
+	@Override
+	public void deleteServerIp(String ip) throws SQLException {
+		client.delete("serverRemove", ip);
+		
+	}
+	
+	/**
+	 * ip를 이용하여 update
+	 */
+	@Override
+	public void updateServerIp(String ip) throws SQLException {
+		client.update("updateIpSaveyn",ip );
+		
+	}
+	
+	
 	/**
 	 * ip로 server_host, server_os_name, server_ip 를 select
 	 */
@@ -57,14 +74,6 @@ public class ServerDAO_iBatis implements ServerDAO{
 		return serverList;
 	}
 	
-	
-	
-	@Override
-	public int deleteServer(int server_ip, int server_code) throws SQLException {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
 	@Override
 	public ServerVO selectServerVO(String server_ip)
 			throws SQLException {

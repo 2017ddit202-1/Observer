@@ -159,8 +159,30 @@ public class MemberDAO_iBatis implements MemberDAO{
 	}
 
 
+	@Override
+	public int enabledCnt() throws SQLException {
+		return (int) client.queryForObject("enabledCnt");
+	}
+
+
+	@Override
+	public int userCnt() throws SQLException {
+		return (int) client.queryForObject("userCnt");
+	}
+
+
+	@Override
+	public int adminCnt() throws SQLException {
+		return (int) client.queryForObject("adminCnt");
+	}
+
+
+	@Override
+	public int authorityCnt() throws SQLException {
+		return (int) client.queryForObject("authorityCnt");
+	}
+
+
 	
-
-
 
 }

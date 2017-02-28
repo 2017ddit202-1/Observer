@@ -23,6 +23,7 @@ import com.ddit.dto.DiskVO;
 import com.ddit.dto.MemberGroupVO;
 import com.ddit.dto.MemberVO;
 import com.ddit.dto.MemoryVO;
+import com.ddit.dto.NoticeVO;
 import com.ddit.dto.ServerInfoVO;
 import com.ddit.dto.ServerVO;
 import com.ddit.dto.TrafficVO;
@@ -127,16 +128,17 @@ public class ServerController {
 		Map<String, String> valueMap = classMap.get(currentIp);
 
 		// 서버 table에서 currentip 로 셀렉해서 saveyn이 1이면
+		
 		ServerVO serverVO = new ServerVO();
 		try {
-			serverVO = serverService.selectServerVO(currentIp);			
+			serverVO = serverService.selectServerVO(currentIp);
 		} catch (SQLException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		if(serverVO == null){
 			serverVO = new ServerVO();
-			serverVO.setSaveyn("0");	
+			serverVO.setSaveyn("0"); //0이면 db에 insert를 안함
 		}
 		valueMap.put("saveyn", serverVO.getSaveyn());
 		classMap.put(currentIp, valueMap);
@@ -145,8 +147,20 @@ public class ServerController {
 		MemoryVO memoryVO = new MemoryVO();
 		DiskVO diskVO = new DiskVO();
 		TrafficVO trafficVO = new TrafficVO();
+			
 		
 		if (serverVO.getSaveyn().equals("1")) {
+		        if(classMap.get(currentIp).get("alertcpu") != null){
+		           cpuNotice(currentIp);
+		         }else if(classMap.get(currentIp).get("alertmemory") != null){
+		            System.out.println("메모리 과다 알림 : " + classMap.get(currentIp).get("memory_total_used"));
+		            memoryNotice(currentIp);
+		         }else if(classMap.get(currentIp).get("alertcpu") != null && classMap.get(currentIp).get("alertmemory") != null){
+		            System.out.println("메모리 + 시피유 과다 알림 : ");
+		            cpu_memory_Notice(currentIp);
+		         }
+		        
+		        
 			// cpu 테이블에 인설트
 			cpuVO.setCpu_pcnt(classMap.get(currentIp).get("cpu_pcnt"));
 			cpuVO.setCpu_user_pcnt(classMap.get(currentIp).get("cpu_user_pcnt"));
@@ -308,7 +322,7 @@ public class ServerController {
 		List<String> serverIpList= new ArrayList<String>();
 		
 		Map<String, Map> serverMap = new HashMap<String, Map>();
-		
+		  Map<String, String> ipMap = new HashMap<String, String>();
 		try {
 			userOK = alertService.select_sessionID(loginUser); // alert테이블에 ID값이
 			column = alertService.authority_content(loginUser);
@@ -320,13 +334,16 @@ public class ServerController {
 					  /*serverListUser = serverService.selectServerList(memberGroupVO.getMem_id());*/
 					  serverIpList = (List<String>)serverService.selectServerIpList(memberGroupVO.getMem_id());
 					  System.out.println("()()()()()()()()()(string)()()()()" + serverIpList.toString());
+					
 					  for(String ip : serverIpList){
+						  
 						  ServerVO serverVO = new ServerVO();
 						  ServerInfoVO serverInfoVO = new ServerInfoVO();
 						  Map<String, String> infoMap = new HashMap<String, String>();
 						  //IP 를 이용해서 필요한 정보를 SELECT하여 MAP(해당IP/vo)로 넣는다
-						 serverInfoVO.setCpu_total_pcnt(cpuServiceImpl.SelectCpuTotalpcnt(ip));
+						  String cpu = cpuServiceImpl.SelectCpuTotalpcnt(ip);
 						 serverInfoVO.setMemory_total(memoryServiceImpl.selectMemoryTotal(ip));
+						 serverInfoVO.setCpu_total_pcnt(cpuServiceImpl.SelectCpuTotalpcnt(ip));
 						 serverVO = serverService.SelectServerInfo(ip);
 						 serverInfoVO.setServer_host(serverVO.getServer_host());
 						 serverInfoVO.setServer_os_name(serverVO.getServer_os_name());
@@ -337,8 +354,10 @@ public class ServerController {
 						 infoMap.put("server_ip", serverInfoVO.getServer_ip());
 						 infoMap.put("cpu_total_pcnt", serverInfoVO.getCpu_total_pcnt());
 						 infoMap.put("memory_total", serverInfoVO.getMemory_total());
-						 
+						 /*model.addAttribute("cpu_total_pcnt",serverInfoVO.getCpu_total_pcnt());*/
+						 ipMap.put(ip, cpu);
 						 serverMap.put(ip, infoMap);
+						 
 					  }
 					  
 					  System.out.println(serverListUser.toString());
@@ -369,12 +388,13 @@ public class ServerController {
 		
 		HttpSession flag = request.getSession();
 		flag.setAttribute("summaryMenu", summaryMenu);
+		
 		model.addAttribute("serverMap",serverMap);
 		model.addAttribute("serverListUser", serverListUser);
 		model.addAttribute("serverList", serverList);
 		model.addAttribute("loginUserPosl", vWmemPosVO.getPosl_pos());
 		model.addAttribute("map", classMap);
-		
+		/*model.addAttribute("ipMap", ipMap);*/
 		return url;
 
 	}
@@ -495,6 +515,173 @@ public class ServerController {
 		
 		return url;
 	}
+	
+	
+	/**
+	 * stopIp를 이용하여 해당 ip의 savayn을 0으로 바꾸어 정지시킨다. 
+	 * saveyn은 전송되어지는 데이터를 DB에 저장할것인지를 정해주는 속성
+	 * @param request
+	 * @param response
+	 * @param session
+	 * @return
+	 */
+	@RequestMapping("/serverStop")
+	public String serverStop(HttpServletRequest request, HttpServletResponse response, HttpSession session){
+		String url = "redirect:/server/serverMain";
+		ServerVO serverVO = new ServerVO();
+		System.out.println("serverstop 로직");
+		String ipArray = request.getParameter("ipArray");
+		
+		StringTokenizer ip = new StringTokenizer(ipArray, ",");
+		
+		try{
+			while(ip.hasMoreElements()){
+				serverVO = serverService.selectServerVO(ip.nextToken());
+				if(serverVO.getSaveyn().equals("1")){
+					serverVO.setSaveyn("0");
+				}
+				serverService.updateServer(serverVO);
+			}
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+		
+		return url;
+	}
+	
+	
+	
+	/**
+	 * ip를 이용해서 해당 ip의 saveyn을 0에서 1로 update 
+	 * saveyn은 전송되어지는 데이터를 DB에 저장할것인지를 정해주는 속성
+	 * @param request
+	 * @param response
+	 * @param session
+	 * @return
+	 */
+	@RequestMapping("/serverStart")
+	public String serverStart(HttpServletRequest request, HttpServletResponse response, HttpSession session){
+		String url = "redirect:/server/serverMain";
+		ServerVO serverVO = new ServerVO();
+		String ipArray = request.getParameter("ipArray");
+		StringTokenizer ip = new StringTokenizer(ipArray, ",");
+			try{
+				while(ip.hasMoreElements()){
+					serverVO = serverService.selectServerVO(ip.nextToken());
+					if(serverVO.getSaveyn().equals("0")){
+						serverVO.setSaveyn("1");
+					}
+					serverService.updateServer(serverVO);
+				}
+			}catch(SQLException e){
+				e.printStackTrace();
+			}
+	
+		return url;
+	}
+	
+	
+	/**
+	 * ip를 이용하여 해당 ip의 정보를 db에서 삭제 
+	 * 
+	 * @param request
+	 * @param response
+	 * @param session
+	 * @return
+	 */
+	@RequestMapping("/serverRemove")
+	public String serverRemove(HttpServletRequest request, HttpServletResponse response, HttpSession session){
+		String url = "redirect:/server/serverMain";
+			ServerVO serverVO = new ServerVO();
+			String ipArray = request.getParameter("ipArray");
+			StringTokenizer ip = new StringTokenizer(ipArray, ",");
+			
+			try{
+				while(ip.hasMoreElements()){
+					serverVO = serverService.selectServerVO(ip.nextToken());
+					if(serverVO != null){
+						serverService.deleteServerIp(ip.nextToken());
+					}
+				}
+			}catch(SQLException e){
+				e.printStackTrace();
+			}
+		return url;
+	}
+//CPU사용량 초과되었을때
+	public void cpuNotice(String currentIp){
+	      ServerVO serverVO = new ServerVO();
+	      MemberVO memberVO = new MemberVO();
+	      String id ="";
+	      String lice="";
+	      try {
+	         serverVO = serverService.SelectServerInfo(currentIp);
+	      } catch (SQLException e) {
+	         e.printStackTrace();
+	      }
+	      
+	      
+	      //notice 테이블에 알림내역 insert
+	      NoticeVO noticeVO = new NoticeVO();
+			
+	      
+	        String cpu=classMap.get(currentIp).get("cpu_total_pcnt");
+			noticeVO.setNotice_server_nm(classMap.get(currentIp).get("hostName")); 
+			noticeVO.setNotice_dng_lv("위험");
+			noticeVO.setContent("현재 CPU 사용량은"+cpu+"% 입니다. 80% 초과되었습니다. CPU를 점검하세요");
+			noticeVO.setNotice_ip(currentIp);
+			noticeVO.setServer_code(serverVO.getServer_code());
+	
+	   }
+	
+	//Memory사용량 초과되었을때
+	public void memoryNotice(String currentIp){
+		  ServerVO serverVO = new ServerVO();
+	      MemberVO memberVO = new MemberVO();
+	      String id ="";
+	      String lice="";
+	      try {
+	         serverVO = serverService.SelectServerInfo(currentIp);
+	      } catch (SQLException e) {
+	         e.printStackTrace();
+	      }
+	      
+	      //notice 테이블에 알림내역 insert
+	      NoticeVO noticeVO = new NoticeVO();
+			
+	      
+	        String memory=classMap.get(currentIp).get("memory_total");
+			noticeVO.setNotice_server_nm(classMap.get(currentIp).get("hostName"));
+			noticeVO.setNotice_dng_lv("위험");
+			noticeVO.setContent("현재 Memory 사용량은"+memory+"% 입니다. 80% 초과되었습니다. Memory를 점검하세요");
+			noticeVO.setNotice_ip(currentIp);
+			noticeVO.setServer_code(serverVO.getServer_code());
+	}
+	
+	//CUP, Memory 사용량 초과되었을때
+	public void cpu_memory_Notice(String currentIp){
+		  ServerVO serverVO = new ServerVO();
+	      MemberVO memberVO = new MemberVO();
+	      String id ="";
+	      String lice="";
+	      try {
+	         serverVO = serverService.SelectServerInfo(currentIp);
+	      } catch (SQLException e) {
+	         e.printStackTrace();
+	      }
+	      
+	      //notice 테이블에 알림내역 insert
+	      NoticeVO noticeVO = new NoticeVO();
+			
+	      
+	        String cpu=classMap.get(currentIp).get("cpu_total_pcnt");
+	        String memory=classMap.get(currentIp).get("memory_total");
+			noticeVO.setNotice_server_nm(classMap.get(currentIp).get("hostName"));
+			noticeVO.setNotice_dng_lv("위험");
+			noticeVO.setContent("현재 Memory 사용량은"+memory+"% CPU 사용량은"+cpu+"입니다. 80% 초과되었습니다. Memory, CPU를 점검하세요");
+			noticeVO.setNotice_ip(currentIp);
+			noticeVO.setServer_code(serverVO.getServer_code());
+	}	
 	
 
 }

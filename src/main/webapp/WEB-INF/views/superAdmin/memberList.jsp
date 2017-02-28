@@ -15,9 +15,9 @@
 <div class="container">
   <ul class="nav nav-tabs">
     <li class="active"><a href="#">SUPER ADMIN</a></li>
-    <li><a href="#">회원관리</a></li>
-    <li><a href="#">권한요청관리</a></li>
-    <li><a href="#">보고서</a></li>
+    <li><a href="<%=request.getContextPath()%>/superAdmin/authorityMemberList">회원관리</a></li>
+    <li><a href="<%=request.getContextPath()%>/superAdmin/authorityList">권한요청관리</a></li>
+    <li><a href="<%=request.getContextPath()%>/superAdmin/reportList">보고서</a></li>
   </ul>
   <br>
   <p><strong>Notice:</strong> OBSERVER의 회원관리, 회원의 권한신청을 관리 할 수 있습니다. </p>
@@ -27,7 +27,7 @@
 
 
 <div class="container">
-		<h3 class="text-center">MEMBER LIST</h3>
+	
 
 		<form class="form-inline" id="memberSearch" name="searchform"
 			method="get" style="margin-left: 69%;">
@@ -41,12 +41,11 @@
 
 
 <div class="container">
-  <span class="label label-default">총회원수</span>
-  <span class="label label-danger">탈퇴회원</span>
-  <span class="label label-success">USER</span>
-  <span class="label label-info">ADMIN</span>
+  <span class="label label-default"><i class="fa fa-child" aria-hidden="true"></i>&nbsp;총회원 &nbsp;${memberCnt }명</span>
+  <span class="label label-danger"><i class="fa fa-child" aria-hidden="true"></i>&nbsp;탈퇴회원 &nbsp;${enabledCnt }명</span>
+  <span class="label label-success"><i class="fa fa-child" aria-hidden="true"></i>&nbsp;USER &nbsp;${userCnt }명</span>
+  <span class="label label-info"><i class="fa fa-child" aria-hidden="true"></i>&nbsp;ADMIN &nbsp;${adminCnt }명</span>
 </div>
-
 
 
 
@@ -112,7 +111,7 @@
 		<!-- Modal -->
 		<div class="modal fade" id="myModal" role="dialog">
 			<div class="modal-dialog modal-lg" >
-				<div class="modal-content" style="width:500px;">
+				<div class="modal-content" style="width:500px; margin-top: 29%; margin-left: 25%;">
 					<form action="" id="updateInfoAdmin" name="updateInfoAdmin">
 						<div class="modal-header">
 							<button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -120,9 +119,9 @@
 						</div>
 						<div class="modal-body">
 
-							<table>
+							<table style="margin-left: 15%;">
 								<tr>
-									<td><label>User ID</label></td>
+									<td style="width: 128px;"><label>User ID</label></td>
 									<td><input type="text" class="form-control" id="editId"
 										name="editId" readonly="readonly"></td>
 									<td></td>
@@ -163,7 +162,7 @@
 								<tr>
 									<td><label>ENABLED</label></td>
 									<td>
-									<input type="radio" class="" name="editUseyn" id="editUseyn" value="y"> 가능<br />
+									<input type="radio" class="" name="editUseyn" id="editUseyn" value="y"> 가능
 									<input type="radio" class="" name="editUseyn" id="editUseyn" value="n"> 불가능<br />
 									</td>
 								</tr>
@@ -171,7 +170,7 @@
 								<tr>
 									<td><label>POSITION</label></td>
 									<td><input type="radio" class=""
-										name="editPosition" id="editPosition" value="ROLE_USER">유저<br /> <input
+										name="editPosition" id="editPosition" value="ROLE_USER"> 유저 <input
 										type="radio" class="" name="editPosition"
 										id="editPosition" value="ROLE_ADMIN"> 관리자<br /></td>
 								</tr>
