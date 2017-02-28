@@ -7,7 +7,7 @@ import com.ddit.dto.NoticeVO;
 
 public interface NoticeDAO {
 
-	public int insertNotice(NoticeVO noticeVO) throws SQLException;
+	public void insertNotice(NoticeVO noticeVO) throws SQLException;
 	public void updateNotice(NoticeVO noticeVO) throws SQLException;
 	public int deleteNotice(int notice_seq) throws SQLException;
 	NoticeVO selectNotice(int notice_seq) throws SQLException;

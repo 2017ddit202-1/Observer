@@ -97,6 +97,13 @@ public class ServerDAO_iBatis implements ServerDAO{
 		ipList = client.queryForList("selectSeverIpList", id);
 		return ipList;
 	}
+
+
+
+		@Override
+		public String selectServercode_Info(String ip) throws SQLException {
+			return (String) client.queryForObject("selectServercode_Info",ip);
+		}
 	
 
 }
