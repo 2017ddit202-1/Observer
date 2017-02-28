@@ -105,9 +105,9 @@ a:hover {text-decoration: underline; color: red;}
     width: 79%;
    height: 860px;
 }
+
  </style>
 
-<tr><tr><tr><tr><tr>
 <div style="margin-left: 18%; margin-top: -2%;">
 &nbsp;안녕하세요! &nbsp; <span style="color: #6a91ba; font-weight: bold;">${loginUser }</span>님의 &nbsp; MyPage입니다.
 </div>
@@ -117,7 +117,7 @@ a:hover {text-decoration: underline; color: red;}
  <td id="mypage_td"><img src="<%=request.getContextPath()%>/resources/img/mypage_1.jpg"></td>
  <td id="mypage_td2" data-toggle="modal" data-target="#myModal1">
  
-  <div style="font-size: 18px; font-weight: bold;">&nbsp;&nbsp;&nbsp;권한신청<br>&nbsp;&nbsp;&nbsp;<span style="font-size: 15px; color: #a3a3a3">권한을 신청하고, 승인여부를 확인할 수 있는 메뉴입니다.</span></div>
+  <div style="cursor:pointer; font-size: 18px; font-weight: bold;">&nbsp;&nbsp;&nbsp;권한신청<br>&nbsp;&nbsp;&nbsp;<span style="font-size: 15px; color: #a3a3a3">권한을 신청하고, 승인여부를 확인할 수 있는 메뉴입니다.</span></div>
   
   </td>
  <!-- 권한신청모달 -->
@@ -133,7 +133,7 @@ a:hover {text-decoration: underline; color: red;}
                   <button type="button" class="close" data-dismiss="modal">&times;</button>
                   <h4 class="modal-title">권한신청</h4>
                </div>
-               <div class="modal-body">
+               <div class="modal-body" style="text-align: center;">
 
                   <!-- //////////////내용//////////////// -->
 
@@ -197,13 +197,13 @@ a:hover {text-decoration: underline; color: red;}
  
 <tr id="mypage_tr" onclick="document.location='<%=request.getContextPath()%>/user/update'">
  <td id="mypage_td"><img src="<%=request.getContextPath()%>/resources/img/mypage_2.jpg"></td>
- <td id="mypage_td2"><div style="font-size: 18px; font-weight: bold;">회원수정</div><div>회원가입 시 등록하셨던 정보를 수정/조회하실 수 있습니다.</div></td>
+ <td id="mypage_td2"><div style="cursor:pointer; font-size: 18px; font-weight: bold;">회원수정</div><div style="cursor:pointer;">회원가입 시 등록하셨던 정보를 수정/조회하실 수 있습니다.</div></td>
 </tr>
 
 
 <tr id="mypage_tr">
  <td id="mypage_td"><img src="<%=request.getContextPath()%>/resources/img/mypage_3.jpg"></td>
- <td id="mypage_td2" data-toggle="modal" data-target="#myModal"><div style="font-size: 18px; font-weight: bold;">회원탈퇴</div><div>한번 탈퇴하시면, 재가입이 불가합니다.</div></td>
+ <td id="mypage_td2" data-toggle="modal" data-target="#myModal"><div style="cursor:pointer; font-size: 18px; font-weight: bold;">회원탈퇴</div><div style="cursor:pointer;">한번 탈퇴하시면, 재가입이 불가합니다.</div></td>
 
 
 <!-- 회원탈퇴모달 -->

@@ -58,6 +58,23 @@
 #paging:hover {
 	background-color: white;
 }
+#page-wrapper3 {
+    position: inherit;
+    margin: 0 0 0 250px;
+    padding: 65px 30px;
+     box-shadow: 5px 5px 5px lightgray;
+     border-radius: 10px; 
+   
+} 
+#page-wrapper3 {
+    padding: 0 15px;
+    min-height: 568px;
+    background-color: white;
+    margin-left: 10%;
+    width: 79%;
+    height: 820px;
+}
+
 </style>
 
 <script>
@@ -85,10 +102,10 @@ function check() {
 	<br>
 	
 
-	
+<div id="page-wrapper3" class="in">	
 <div style="text-align: center;">
 
-<img src="<%=request.getContextPath()%>/resources/img/line.jpg"><br><br><br><br>
+<img src="<%=request.getContextPath()%>/resources/img/line.jpg" style="margin-top: 6%;"><br><br><br><br>
 
 </div>
 	<div style="font-size: 30px; width: 1000px; text-align: left; margin-left: 242px;">
@@ -96,7 +113,7 @@ function check() {
 		<span style="font-size: 15px; color: #7c7c7c">각종 안내, 서비스 또는
 			OBSERVER의 소식 버전안내 등의 정보를 확인할 수 있습니다.</span>
 			
-			<img src="<%=request.getContextPath()%>/resources/img/notice_image.png">
+			<%-- <img src="<%=request.getContextPath()%>/resources/img/notice_image.png"> --%>
 
 	</div>
 
@@ -200,6 +217,7 @@ function check() {
 		<sec:authorize access="hasRole('ROLE_SUPER')">
 			<button type="button" class="btn btn-default" onclick="location.href='articleWrite' ">글쓰기</button>
 		</sec:authorize>
+	</div>
 	</div>
 	
 </body>
