@@ -12,13 +12,13 @@ body {
 #page-wrapper {
   padding: 0 15px;
   min-height: 568px;
-  background-color: white;
+  background-color: #f7f7f7;
 }
 @media (min-width: 768px) {
   #page-wrapper {
     position: inherit;
     margin: 0 0 0 250px;
-    padding: 0 30px;
+    padding: 65px 30px;
     border-left: 1px solid #e7e7e7;
     height: 1000px;
   }
@@ -76,10 +76,7 @@ body {
   padding: 15px;
 }
 .sidebar ul li {
-  border-bottom: 1px solid #e7e7e7;
-}
-.sidebar ul li a.active {
-  background-color: #eeeeee;
+  border-bottom: 1px solid #2b2e30;
 }
 .sidebar .arrow {
   float: right;

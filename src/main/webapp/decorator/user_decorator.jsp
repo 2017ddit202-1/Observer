@@ -15,6 +15,19 @@
 %>
 
 <!DOCTYPE html>
+<style>
+#side-menu li a{
+color:#888;
+}
+#side-menu li a:hover{
+background-color: #1f2123;
+border-left:5px solid #07C758;
+color: white;
+}
+#side-menu li a:FOCUS {
+background-color: #1f2123;
+}
+</style>
 <html>
 
 <script src="<%=request.getContextPath()%>/resources/js/jquery.js"></script>
@@ -55,7 +68,7 @@
     <script src="<%=request.getContextPath()%>/resources/js/exporting.js"></script>
     <script src="<%=request.getContextPath()%>/resources/js/grid-light.js"></script>
 
-        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0; position:fixed; width:100%;">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="sr-only">Toggle navigation</span>
@@ -63,7 +76,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">OBSERVER</a>
+                <a class="navbar-brand" href="index.html"><i class="fa fa-heartbeat" aria-hidden="true"></i>&nbsp;OBSERVER</a>
             </div>
             <!-- /.navbar-header -->
 
@@ -138,7 +151,7 @@
             <!-- /.navbar-top-links -->
 
             <div class="navbar-default sidebar" role="navigation">
-                <div class="sidebar-nav navbar-collapse">
+                <div class="sidebar-nav navbar-collapse" style="padding-bottom:294%; background-color: #2b2e30;">
                     <ul class="nav" id="side-menu">
                         <li class="sidebar-search">
                             <div class="input-group custom-search-form">
@@ -222,10 +235,10 @@
                             <ul class="nav nav-second-level">
                                 <li>
                          
-                                    <a href="<%=request.getContextPath()%>/group/meminvalid">회원초대</a>
+                                    <a href="<%=request.getContextPath()%>/group/meminvalid">그룹초대</a>
                                 </li>
                                 <li>
-                                    <a href="<%=request.getContextPath()%>/group/groupList"> 회원관리</a>
+                                    <a href="<%=request.getContextPath()%>/group/groupList"> 그룹 회원 관리</a>
                                 </li>
                            
                             </ul>
@@ -245,6 +258,26 @@
          <div id="page-wrapper">
                <decorator:body />
          </div>
+
+
+
+   <footer>
+      <div class="container" style="text-align: center; background-color: #f7f7f7; margin-left:13.1111%; width:86.6%; border-left:1px solid #e7e7e7;">
+      
+         
+          
+               <p>Copyright © 2017 OBSERVER Labs Inc. All rights reserved.</p>
+              
+             
+                  <a href="https://bootstrapmade.com/">회사소개</a>  &nbsp;&nbsp;|&nbsp;&nbsp;
+                  <a href="https://bootstrapmade.com/">이용약관</a>  &nbsp;&nbsp;|&nbsp;&nbsp;
+                  <a href="https://bootstrapmade.com/">개인정보보호정책</a>  &nbsp;&nbsp;|&nbsp;&nbsp;
+                  <a href="https://bootstrapmade.com/">사용자 메뉴얼</a> 
+                  <br/><br/>
+
+       
+      </div>
+   </footer>
 
 
 
