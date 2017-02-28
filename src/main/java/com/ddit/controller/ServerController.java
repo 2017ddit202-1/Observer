@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.StringTokenizer;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -14,7 +15,6 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -292,15 +292,8 @@ public class ServerController {
 						  ServerVO serverVO = new ServerVO();
 						  ServerInfoVO serverInfoVO = new ServerInfoVO();
 						  Map<String, String> infoMap = new HashMap<String, String>();
-						
-						  
 						  //IP 를 이용해서 필요한 정보를 SELECT하여 MAP(해당IP/vo)로 넣는다
 						  String cpu = cpuServiceImpl.SelectCpuTotalpcnt(ip);
-					/*	if(cpu != null){
-							serverInfoVO.setCpu_total_pcnt(Double.parseDouble(cpu));
-							
-						}*/
-						
 						 serverInfoVO.setMemory_total(memoryServiceImpl.selectMemoryTotal(ip));
 						 serverInfoVO.setCpu_total_pcnt(cpuServiceImpl.SelectCpuTotalpcnt(ip));
 						 serverVO = serverService.SelectServerInfo(ip);
@@ -478,6 +471,7 @@ public class ServerController {
 	
 	/**
 	 * stopIp를 이용하여 해당 ip의 savayn을 0으로 바꾸어 정지시킨다. 
+	 * saveyn은 전송되어지는 데이터를 DB에 저장할것인지를 정해주는 속성
 	 * @param request
 	 * @param response
 	 * @param session
@@ -488,63 +482,82 @@ public class ServerController {
 		String url = "redirect:/server/serverMain";
 		ServerVO serverVO = new ServerVO();
 		System.out.println("serverstop 로직");
-		String stopIp = request.getParameter("stopIp");
-		System.out.println("@@@@@@@@@@@@@"+stopIp+"@@@@@@@@@@@@@@@@");
+		String ipArray = request.getParameter("ipArray");
 		
-			try {
-					 serverVO = serverService.selectServerVO(stopIp);
-					if(serverVO.getSaveyn().equals("1")){
-						serverVO.setSaveyn("0");
-					}
-					serverService.updateServer(serverVO);
-				
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+		StringTokenizer ip = new StringTokenizer(ipArray, ",");
+		
+		try{
+			while(ip.hasMoreElements()){
+				serverVO = serverService.selectServerVO(ip.nextToken());
+				if(serverVO.getSaveyn().equals("1")){
+					serverVO.setSaveyn("0");
+				}
+				serverService.updateServer(serverVO);
 			}
-			
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+		
 		return url;
 	}
 	
+	
+	
+	/**
+	 * ip를 이용해서 해당 ip의 saveyn을 0에서 1로 update 
+	 * saveyn은 전송되어지는 데이터를 DB에 저장할것인지를 정해주는 속성
+	 * @param request
+	 * @param response
+	 * @param session
+	 * @return
+	 */
 	@RequestMapping("/serverStart")
 	public String serverStart(HttpServletRequest request, HttpServletResponse response, HttpSession session){
 		String url = "redirect:/server/serverMain";
 		ServerVO serverVO = new ServerVO();
-		String startIp = request.getParameter("startIp");
-			try {
-					 serverVO = serverService.selectServerVO(startIp);
+		String ipArray = request.getParameter("ipArray");
+		StringTokenizer ip = new StringTokenizer(ipArray, ",");
+			try{
+				while(ip.hasMoreElements()){
+					serverVO = serverService.selectServerVO(ip.nextToken());
 					if(serverVO.getSaveyn().equals("0")){
 						serverVO.setSaveyn("1");
 					}
 					serverService.updateServer(serverVO);
-				
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
+				}
+			}catch(SQLException e){
 				e.printStackTrace();
 			}
-			
+	
 		return url;
 	}
 	
 	
+	/**
+	 * ip를 이용하여 해당 ip의 정보를 db에서 삭제 
+	 * 
+	 * @param request
+	 * @param response
+	 * @param session
+	 * @return
+	 */
 	@RequestMapping("/serverRemove")
 	public String serverRemove(HttpServletRequest request, HttpServletResponse response, HttpSession session){
 		String url = "redirect:/server/serverMain";
 			ServerVO serverVO = new ServerVO();
-			String removeIp = request.getParameter("removeIp");
-		
-			try {
-				 serverVO = serverService.selectServerVO(removeIp);
-				if(serverVO != null){
-					serverService.deleteServerIp(removeIp);
+			String ipArray = request.getParameter("ipArray");
+			StringTokenizer ip = new StringTokenizer(ipArray, ",");
+			
+			try{
+				while(ip.hasMoreElements()){
+					serverVO = serverService.selectServerVO(ip.nextToken());
+					if(serverVO != null){
+						serverService.deleteServerIp(ip.nextToken());
+					}
 				}
-			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-			
+			}catch(SQLException e){
+				e.printStackTrace();
+			}
 		return url;
 	}
 	

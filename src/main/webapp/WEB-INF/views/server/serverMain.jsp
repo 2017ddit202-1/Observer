@@ -27,45 +27,91 @@
 
 function serverStop(ip){
 	alert('전송정지합니다.');
-	 var ip = "";
-	 $("input:radio:checked").each(function (index){
-		 ip += $(this).val();
-	 });
-		 
-	 alert(ip);
-	 
-	document.formm.action = "<%=request.getContextPath()%>"+"/server/serverStop?stopIp="+ip; 
+	 var chklen = document.formm.server_ip.length;
+	 var count=0;
+	 var ipArray = "";
+	 if(chklen == undefined){
+		 chklen = 1;
+	 }
+	 if(chklen != 1){
+		 for(i=0; i<chklen; i++){
+			 if(document.formm.server_ip[i].checked == true && chklen != 1){
+				 if(count == 0){
+					 ipArray = ipArray + server_ip[i].value;
+					 count++;
+				 }else{
+					 ipArray = ipArray +','+ server_ip[i].value;
+				 }
+			 }
+		 }
+	 }else if(chklen == 1){
+		 ipArray = document.formm.server_ip.value;
+	 }
+	 alert(ipArray);
+	document.formm.action = "<%=request.getContextPath()%>"+"/server/serverStop?ipArray="+ipArray; 
 	document.formm.submit();
+
 }
 
-function serverStart(ip){
-	alert('전송시작합니다.');
-	 var ip = "";
-	 $("input:radio:checked").each(function (index){
-		 ip += $(this).val();
-	 });
-	 alert(ip);
-	document.formm.action = "<%=request.getContextPath()%>"+"/server/serverStart?starIp="+ip;
+ function serverStart(ip){
+	 var chklen = document.formm.server_ip.length;
+	 var count=0;
+	 var ipArray = "";
+	 if(chklen == undefined){
+		 chklen = 1;
+	 }
+	 if(chklen != 1){
+		 for(i=0; i<chklen; i++){
+			 if(document.formm.server_ip[i].checked == true && chklen != 1){
+				 if(count == 0){
+					 ipArray = ipArray + server_ip[i].value;
+					 count++;
+				 }else{
+					 ipArray = ipArray +','+ server_ip[i].value;
+				 }
+			 }
+		 }
+	 }else if(chklen == 1){
+		 ipArray = document.formm.server_ip.value;
+	 }
+	 alert(ipArray);
+	document.formm.action = "<%=request.getContextPath()%>"+"/server/serverStart?ipArray="+ipArray;
 	document.formm.submit();
 }
-
+ 
 function serverRemove(ip){
-	alert('서버해제합니다.');
-	 var ip = "";
-	 $("input:radio:checked").each(function (index){
-		 ip += $(this).val();
-	 });
-	 alert(ip);
-	document.formm.action = "<%=request.getContextPath()%>"+"/server/serverRemove?removeIp="+ip;
+	 var chklen = document.formm.server_ip.length;
+	 var count=0;
+	 var ipArray = "";
+	 if(chklen == undefined){
+		 chklen = 1;
+	 }
+	 if(chklen != 1){
+		 for(i=0; i<chklen; i++){
+			 if(document.formm.server_ip[i].checked == true && chklen != 1){
+				 if(count == 0){
+					 ipArray = ipArray + server_ip[i].value;
+					 count++;
+				 }else{
+					 ipArray = ipArray +','+ server_ip[i].value;
+				 }
+			 }
+		 }
+	 }else if(chklen == 1){
+		 ipArray = document.formm.server_ip.value;
+	 }
+	 alert(ipArray);
+	document.formm.action = "<%=request.getContextPath()%>"+"/server/serverRemove?ipArray="+ipArray;
 	document.formm.submit();
 }
 
 
+ 
 function addlist_go(ip){
 	alert("추가되었습니다."); 
 	document.formm.action = "<%=request.getContextPath()%>"	+ "/server/serverHandling?currentIp="+ip;
 	document.formm.submit();
-}
+} 
 
 function test_go(){
 	document.formm.action = "<%=request.getContextPath()%>"+"/server/testForm";
@@ -99,7 +145,6 @@ function test_go(){
 				sock.onclose = function() {
 					sock.send("퇴장");
 				}
-
 				$("#sendMessage").click(
 						function() {
 							if ($("#message").val() != "") {
@@ -109,7 +154,6 @@ function test_go(){
 								$("message").val("");
 							}
 						});
-
 			});
 	
 	
@@ -188,7 +232,7 @@ function test_go(){
 			</tr>
          <c:forEach items="${serverMap}" var="i">
             <tr>
-            	<th><input type="radio" name="server_ip" id="server_ip" value="${i.value.server_ip}"></th>
+            	<th><input type="checkbox" name="server_ip" id="server_ip" value="${i.value.server_ip}"></th>
 					<c:set var="test" value="${i.value.cpu_total_pcnt}" />
 					<fmt:parseNumber  value="${test}" pattern="###.###" var="cputest"/>
 				 <c:choose>
@@ -257,11 +301,7 @@ function test_go(){
              </c:forEach>
       </table>
    </form>
-        
-        
         </div>
-
-
 </div></div></div></div>
 
 
