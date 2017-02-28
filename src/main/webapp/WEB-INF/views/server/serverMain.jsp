@@ -185,11 +185,13 @@ function test_go(){
 			</tr>
          <c:forEach items="${serverMap}" var="i">
               <tr>
-            	<c:choose>
-            		<c:when test="${cpu_total_pcnt <= 50 }">
+           <c:set var="test" value="${i.value.cpu_total_pcnt}" />
+					<fmt:parseNumber  value="${test}" pattern="###.###" var="cputest"/>
+				 <c:choose>
+            		<c:when test="${cputest <= 50.0}">
             			<td style="background-color: green;"></td>
             		</c:when>
-            		<c:when test="${cpu_total_pcnt <= 80 }">
+            		<c:when test="${cputest <=80.0}">
             			<td style="background-color: yellow;"></td>
             		</c:when>
             		<c:otherwise>
@@ -199,7 +201,27 @@ function test_go(){
 				  <td>${i.value.server_host }</td>
              	  <td><a href="<%=request.getContextPath()%>/server/summary?summaryMenu=1&ip=${i.value.server_ip}">${i.value.server_ip}</a></td>
              	  <td>${i.value.server_os_name}</td>
-            	  <td>${cpu_total_pcnt }</td>
+            	  <td>
+            	  	  <c:choose>
+            		<c:when test="${cputest <= 50.0}">
+            			<div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: ${i.value.cpu_total_pcnt}%">
+      							 ${i.value.cpu_total_pcnt}
+    					</div>
+            		</c:when>
+            		<c:when test="${cputest <=80.0}">
+            			<div class="progress-bar progress-bar-warning progress-bar-striped" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: ${i.value.cpu_total_pcnt}%">
+      							 ${i.value.cpu_total_pcnt}
+    					</div>
+            		</c:when>
+            		<c:otherwise>
+            			<div class="progress-bar progress-bar-danger progress-bar-striped" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: ${i.value.cpu_total_pcnt}%">
+      							 ${i.value.cpu_total_pcnt}
+    					</div>
+            		</c:otherwise>
+            	</c:choose>
+            	  ${i.value.cpu_total_pcnt}
+            	  
+            	  </td>
 				  <td>${i.value.memory_total }</td>
 			 	</tr>
              </c:forEach>
@@ -224,11 +246,11 @@ function test_go(){
        		<tr>
        			<td>선택</td>
        			<td>위험도</td>
-				<td>hostName</td>
-				<td>ip</td>
+				<td>Host Name</td>
+				<td>IP</td>
 				<td>OS VERSION</td>
-				<td>CPU 사용량</td>
-				<td>MEMORY 사용량</td>
+				<td>CPU 사용량(%)</td>
+				<td>MEMORY 사용량(%)</td>
 			</tr>
          <c:forEach items="${serverMap}" var="i">
             <tr>
@@ -250,7 +272,27 @@ function test_go(){
 				  <td>${i.value.server_host }</td>
              	  <td><a href="<%=request.getContextPath()%>/server/summary?summaryMenu=1&ip=${i.value.server_ip}">${i.value.server_ip}</a></td>
              	  <td>${i.value.server_os_name}</td>
-            	  <td>${i.value.cpu_total_pcnt}</td>
+            	  <td>
+            
+            	   <c:choose>
+            		<c:when test="${cputest <= 50.0}">
+            			<div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: ${i.value.cpu_total_pcnt}%">
+      							 ${i.value.cpu_total_pcnt}
+    					</div>
+            		</c:when>
+            		<c:when test="${cputest <=80.0}">
+            			<div class="progress-bar progress-bar-warning progress-bar-striped" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: ${i.value.cpu_total_pcnt}%">
+      							 ${i.value.cpu_total_pcnt}
+    					</div>
+            		</c:when>
+            		<c:otherwise>
+            			<div class="progress-bar progress-bar-danger progress-bar-striped" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: ${i.value.cpu_total_pcnt}%">
+      							 ${i.value.cpu_total_pcnt}
+    					</div>
+            		</c:otherwise>
+            	</c:choose>
+            	  ${i.value.cpu_total_pcnt}
+            	  </td>
 				  <td>${i.value.memory_total }</td>
 			 	</tr>
 
@@ -320,9 +362,9 @@ function test_go(){
 
 </body>
 </html>
-
+ <!--  ///////////////////////////////////////////////////////////////////////////////////////////////  -->
  
-      <table border=1>
+     <%--  <table border=1>
        		<tr>
        			<td>선택</td>
        			<td>위험도</td>
@@ -394,7 +436,7 @@ function test_go(){
              	  <td>${i.value.hostName }</td>
              	  <td>${i.value.os_version }</td>
              	  <td>${i.value.os_name }</td>
-             	 <%--  <input type = "hidden" id="${i.key }" name="${i.key }" value="${i.key }"/> --%>
+             	  <input type = "hidden" id="${i.key }" name="${i.key }" value="${i.key }"/>
 					<td><input type="button" id="addlist" value="등록" onclick="addlist_go('${i.key }')"/></td>
                </tr>
                </c:if>
@@ -413,7 +455,7 @@ function test_go(){
 
 	<!-- //////////////////////////////////////////////////////////////// -->
 
-	<%-- <a href="<%=request.getContextPath()%>/server/testForm">테스트get</a> --%>
+	<a href="<%=request.getContextPath()%>/server/testForm">테스트get</a>
 	
 
 	<c:if test="${!empty userOK}">
@@ -423,4 +465,4 @@ function test_go(){
 	</c:if>
 
 </body>
-</html>
+</html> --%>
