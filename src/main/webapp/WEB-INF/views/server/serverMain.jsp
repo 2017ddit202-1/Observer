@@ -177,11 +177,11 @@ function test_go(){
 	<table border=1>
        		<tr>
 				<td>위험도</td>
-				<td>hostName</td>
-				<td>ip</td>
+				<td>Host Nmae</td>
+				<td>IP</td>
 				<td>OS VERSION</td>
-				<td>CPU 사용량</td>
-				<td>MEMORY 사용량</td>
+				<td>CPU 사용량(%)</td>
+				<td>MEMORY 사용량(%)</td>
 			</tr>
          <c:forEach items="${serverMap}" var="i">
               <tr>
