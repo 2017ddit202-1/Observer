@@ -76,7 +76,9 @@ background-color: #1f2123;
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html"><i class="fa fa-heartbeat" aria-hidden="true"></i>&nbsp;OBSERVER</a>
+                <script>
+                </script>
+                <a class="navbar-brand" href="<%=request.getContextPath()%>/server/serverMain"><i class="fa fa-heartbeat" aria-hidden="true"></i>&nbsp;OBSERVER</a>
             </div>
             <!-- /.navbar-header -->
 

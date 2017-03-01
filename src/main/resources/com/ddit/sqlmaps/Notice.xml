@@ -12,7 +12,7 @@
 <select id="listNotice" parameterClass="str" resultClass="notice">
 	select * from notice where notice_lice=#notice_lice#
 </select>
- 
- 
+
+
  </sqlMap>
  

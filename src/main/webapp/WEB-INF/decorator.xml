@@ -76,6 +76,7 @@
 	<excludes>
 		<pattern>/idCheckForm*</pattern>
 		<pattern>/index.jsp</pattern>
+		<pattern>/relogin</pattern>
 	</excludes>
 
 </decorators>

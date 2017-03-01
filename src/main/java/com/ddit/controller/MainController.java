@@ -77,6 +77,14 @@ public class MainController {
 		
 	}
 	
+	@RequestMapping("/relogin")
+	public String relogin(HttpServletResponse res){
+		
+		String url ="relogin";
+		
+		return url;
+	}
+	
 	//회원가입
 	@RequestMapping(value = "/join", method = RequestMethod.GET)
 	public String getj() {
