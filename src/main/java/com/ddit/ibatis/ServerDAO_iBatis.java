@@ -104,6 +104,14 @@ public class ServerDAO_iBatis implements ServerDAO{
 		public String selectServercode_Info(String ip) throws SQLException {
 			return (String) client.queryForObject("selectServercode_Info",ip);
 		}
+
+
+
+		@Override
+		public ServerVO selectCode(String ip) throws SQLException {
+			ServerVO serverVO = (ServerVO) client.queryForObject("serverCode", ip);
+			return serverVO;
+		}
 	
 
 }

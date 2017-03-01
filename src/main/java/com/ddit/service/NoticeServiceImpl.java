@@ -53,4 +53,10 @@ public class NoticeServiceImpl implements NoticeService {
 		noticeDAO.insertNotice(noticeVO);
 	}
 
+
+	@Override
+	public ArrayList<NoticeVO> listAllNotice(String lice) throws SQLException {
+		return noticeDAO.listAllNotice(lice);
+	}
+
 }

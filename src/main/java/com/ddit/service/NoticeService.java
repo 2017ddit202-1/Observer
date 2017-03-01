@@ -15,4 +15,6 @@ public interface NoticeService {
 	public ArrayList<NoticeVO> listAllArticle() throws SQLException;
 	public void insertNotice(NoticeVO noticeVO) throws SQLException;
 	
+	public ArrayList<NoticeVO> listAllNotice(String lice) throws SQLException;
+	
 }

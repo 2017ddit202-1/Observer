@@ -12,4 +12,5 @@ public interface MemberGroupService {
 	public String deleteMemberGroupVO(String mg_lice) throws SQLException;
 	MemberGroupVO selectMemberGroupVO(String mg_lice) throws SQLException;
 	public ArrayList<MemberGroupVO> listAllMemberGroup() throws SQLException;
+	public MemberGroupVO selectLice(String userId) throws SQLException;
 }

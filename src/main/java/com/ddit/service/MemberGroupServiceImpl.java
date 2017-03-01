@@ -40,6 +40,13 @@ public class MemberGroupServiceImpl implements MemberGroupService{
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public MemberGroupVO selectLice(String userId)
+			throws SQLException {
+		return memberGroupDAO.selectLice(userId);
+				
+	}
 	
 	
 }

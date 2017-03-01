@@ -19,7 +19,7 @@
       <div id="loader"><img id="lodingImg" src="<%=request.getContextPath() %>/resources/img/loader.gif"></div>
       
      <div id="trafficNet">
-     	<table>
+     	<table id="diskTb">
      		<tr>
      			<th id="card">Disk</th>
      		</tr>

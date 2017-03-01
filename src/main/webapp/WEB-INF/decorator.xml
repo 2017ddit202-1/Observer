@@ -66,6 +66,10 @@
 	<decorator name="disk" page="user_decorator.jsp">
 		<pattern>/disk/*</pattern>
 	</decorator>
+	
+	<decorator name="notice" page="user_decorator.jsp">
+		<pattern>/notice/*</pattern>
+	</decorator>
 
 	
 

@@ -54,4 +54,12 @@ public class MemberGroupDAO_iBatis implements MemberGroupDAO {
 		return null;
 	}
 
+	@Override
+	public MemberGroupVO selectLice(String userId)
+			throws SQLException {
+		MemberGroupVO vo =  (MemberGroupVO) client.queryForObject("selectLice", userId);
+		return vo;
+	}
+
+
 }

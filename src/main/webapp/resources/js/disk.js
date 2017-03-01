@@ -9,6 +9,7 @@ $(function(){
    $("#loader").show();
    $("#btnZxc").hide();
    $("#btntotal").hide();
+   $("#diskTb").hide();
 //   tt();
    	
 });
@@ -83,6 +84,7 @@ function tt(){
     	  $("#loader").hide();
     	  $("#btnZxc").show();
     	  $("#btntotal").show();
+    	  $("#diskTb").show();
             HighCharts(data);
             HighCharts2(data);
             HighCharts3(data);

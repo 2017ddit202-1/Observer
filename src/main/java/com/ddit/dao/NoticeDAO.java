@@ -11,5 +11,5 @@ public interface NoticeDAO {
 	public void updateNotice(NoticeVO noticeVO) throws SQLException;
 	public int deleteNotice(int notice_seq) throws SQLException;
 	NoticeVO selectNotice(int notice_seq) throws SQLException;
-	public ArrayList<NoticeVO> listAllArticle() throws SQLException;
+	public ArrayList<NoticeVO> listAllNotice(String lice) throws SQLException;
 }

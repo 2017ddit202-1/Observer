@@ -617,13 +617,16 @@ public class ServerController {
 //CPU사용량 초과되었을때
 	public void cpuNotice(String currentIp){
 	      ServerVO serverVO = new ServerVO();
-	      MemberVO memberVO = new MemberVO();
-	      String id ="";
 	      String lice="";
 	      String code="";
-	      
+	      String id = null;
+	      MemberGroupVO mgRroupVO = null;
 	      try {
 	    	  code = serverService.selectServercode_Info(currentIp);
+	    	  serverVO =  serverService.selectCode(currentIp);
+	    	  id = serverVO.getServer_id();
+	    	  mgRroupVO = memberGroupService.selectLice(id);
+	    	  lice = mgRroupVO.getMg_lice();
 	      } catch (SQLException e) {
 	         e.printStackTrace();
 	      }
@@ -632,13 +635,13 @@ public class ServerController {
 	      
 	      //notice 테이블에 알림내역 insert
 	      NoticeVO noticeVO = new NoticeVO();
-			
 	        String cpu=classMap.get(currentIp).get("cpu_total_pcnt");
 			noticeVO.setNotice_server_nm(classMap.get(currentIp).get("hostName")); 
 			noticeVO.setNotice_dng_lv("위험");
 			noticeVO.setNotice_content("현재 CPU 사용량은"+cpu+"% 입니다. 80% 초과되었습니다. CPU를 점검하세요");
 			noticeVO.setNotice_ip(currentIp);
 			noticeVO.setServer_code(code);
+			noticeVO.setNotice_lice(lice);
 			try {
 				noticeServiceImpl.insertNotice(noticeVO);
 			} catch (SQLException e) {
