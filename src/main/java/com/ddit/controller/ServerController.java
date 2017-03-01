@@ -624,10 +624,8 @@ public class ServerController {
 	      try {
 	    	  code = serverService.selectServercode_Info(currentIp);
 	    	  serverVO =  serverService.selectCode(currentIp);
-	    	  System.out.println("@@@@@@@@@@"+serverVO);
 	    	  id = serverVO.getServer_id();
 	    	  mgRroupVO = memberGroupService.selectLice(id);
-	    	  System.out.println("######"+mgRroupVO);
 	    	  lice = mgRroupVO.getMg_lice();
 	      } catch (SQLException e) {
 	         e.printStackTrace();
