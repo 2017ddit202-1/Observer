@@ -196,7 +196,7 @@ background-color: #1f2123;
                             <!-- /.nav-second-level -->
                         </li>
                         <li>
-                            <a href="forms.html"><i class="fa fa-edit fa-fw"></i> 알림내역</a>
+                            <a href="<%=request.getContextPath()%>/notice/noticeList"><i class="fa fa-edit fa-fw"></i> 알림내역</a>
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-wrench fa-fw"></i> 게시판<span class="fa arrow"></span></a>

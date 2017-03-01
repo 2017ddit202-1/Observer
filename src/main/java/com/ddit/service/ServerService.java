@@ -23,4 +23,6 @@ public interface ServerService {
 	public void updateServerIp(String ip) throws SQLException;
 	public void deleteServerIp(String ip) throws SQLException; 
 	public String selectServercode_Info(String ip)throws SQLException;
+	
+	public ServerVO selectCode(String ip) throws SQLException; 
 }

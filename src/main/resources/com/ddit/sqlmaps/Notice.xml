@@ -5,10 +5,13 @@
  <sqlMap namespace="notice">
  
  <insert id="insertNotice" parameterClass="notice">
- insert into notice(notice_content,notice_dng_lv,notice_ip,notice_server_nm,server_code,notice_seq)
- values(#notice_content#,#notice_dng_lv#,#notice_ip#,#notice_server_nm#,#server_code#,notice_seq.nextval)
+ insert into notice(notice_content,notice_dng_lv,notice_ip,notice_server_nm,server_code,notice_seq,notice_lice)
+ values(#notice_content#,#notice_dng_lv#,#notice_ip#,#notice_server_nm#,#server_code#,notice_seq.nextval,#notice_lice#)
  </insert>
  
+<select id="listNotice" parameterClass="str" resultClass="notice">
+	select * from notice where notice_lice=#notice_lice#
+</select>
  
  
  </sqlMap>

@@ -54,6 +54,10 @@
  	<delete id="serverRemove" parameterClass="str">
  		delete from server where server_ip=#server_ip#
  	</delete>
+ 	
+ 	<select id="serverCode" parameterClass="str" resultClass="server">
+ 		select * from server where server_ip=#server_ip#
+ 	</select>
  
  
  </sqlMap>   

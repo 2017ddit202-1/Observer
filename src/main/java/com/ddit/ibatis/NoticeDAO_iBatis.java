@@ -41,11 +41,13 @@ public class NoticeDAO_iBatis implements NoticeDAO{
 		return null;
 	}
 
+
+
 	@Override
-	public ArrayList<NoticeVO> listAllArticle() throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+	public ArrayList<NoticeVO> listAllNotice(String lice) throws SQLException {
+		ArrayList<NoticeVO> noticeList = (ArrayList<NoticeVO>) client.queryForList("listNotice", lice);
+		return noticeList;
 	}
-	
+
 
 }

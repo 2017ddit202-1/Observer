@@ -12,4 +12,6 @@ public interface MemberGroupDAO {
 	public int deleteMemGroup(String mg_lice) throws SQLException;
 	MemberGroupVO selectMemGroup(String mg_lice) throws SQLException;
 	public ArrayList<MemberGroupVO> listAllArticle() throws SQLException;
+	
+	public MemberGroupVO selectLice(String userId) throws SQLException;
 }

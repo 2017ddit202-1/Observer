@@ -97,4 +97,12 @@ public class ServerServiceImpl implements ServerService {
 		return serverDAO.selectServercode_Info(ip);
 	}
 
+
+	@Override
+	public ServerVO selectCode(String ip) throws SQLException {
+		return serverDAO.selectCode(ip);
+	}
+
+
+
 }

@@ -16,4 +16,5 @@ public class NoticeVO {
 	private String notice_content;
 	private String notice_ip;
 	private String server_code;
+	private String notice_lice;
 }

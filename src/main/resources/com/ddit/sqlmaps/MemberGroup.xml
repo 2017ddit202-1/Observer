@@ -13,6 +13,9 @@
  	<select id="selectMemGroup" parameterClass="str" resultClass="mg">
  		select * from member_group where mg_lice = #mg_lice#
  	</select>
+ 	<select id="selectLice" parameterClass="str" resultClass="mg">
+ 		select * from member_group where mem_id=#mem_id#
+ 	</select>
  
  </sqlMap>   
  
