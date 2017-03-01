@@ -38,11 +38,12 @@
 		 <intercept-url pattern="/user/**" access="hasAnyRole('ROLE_SUPER,ROLE_ADMIN,ROLE_USER')"/>
 		
 		<intercept-url pattern="/qna/**" access="hasRole('ROLE_ADMIN')"/>
-		<intercept-url pattern="/qna/**" access="hasAnyRole('ROLE_USER,ROLE_SUPER,ROLE_ADMIN')"/>
+		<intercept-url pattern="/group/**" access="hasAnyRole('ROLE_SUPER,ROLE_ADMIN')"/>
 		
 		<intercept-url pattern="/**" access="permitAll"/>
 	
 		<form-login
+			login-page="/relogin"
 		    login-processing-url="/loginList"
 			username-parameter="mem_id"
 			password-parameter="mem_pwd"
