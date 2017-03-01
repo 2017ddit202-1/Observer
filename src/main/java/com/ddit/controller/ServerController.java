@@ -606,7 +606,7 @@ public class ServerController {
 				while(ip.hasMoreElements()){
 					serverVO = serverService.selectServerVO(ip.nextToken());
 					if(serverVO != null){
-						serverService.deleteServerIp(ip.nextToken());
+						serverService.deleteServerIp(serverVO.getServer_ip());
 					}
 				}
 			}catch(SQLException e){

@@ -154,6 +154,15 @@ function test_go(){
 								$("message").val("");
 							}
 						});
+			
+				function refresh(){
+		               location.reload();
+		            }
+		          tid = setInterval(refresh,3000); 
+		             
+		 
+			
+			
 			});
 	
 	
@@ -349,9 +358,6 @@ function test_go(){
 
 	<div id="chatMessage" style="overflow: auto; max-height: 500px;"></div>
 
-	<!-- //////////////////////////////////////////////////////////////// -->
-
-	<%-- <a href="<%=request.getContextPath()%>/server/testForm">테스트get</a> --%>
 	
 
 	<c:if test="${!empty userOK}">
@@ -362,107 +368,3 @@ function test_go(){
 
 </body>
 </html>
- <!--  ///////////////////////////////////////////////////////////////////////////////////////////////  -->
- 
-     <%--  <table border=1>
-       		<tr>
-       			<td>선택</td>
-       			<td>위험도</td>
-				<td>hostName</td>
-				<td>ip</td>
-				<td>OS VERSION</td>
-				<td>CPU 사용량</td>
-				<td>MEMORY 사용량</td>
-			</tr>
-         <c:forEach items="${serverMap}" var="i">
-            <tr>
-            	<td><input type="radio" name="server_ip" id="server_ip" value="${i.value.server_ip}"></td>
-					<c:set var="test" value="${i.value.cpu_total_pcnt}" />
-					<fmt:parseNumber  value="${test}" pattern="###.###" var="cputest"/>
-				 <c:choose>
-            		<c:when test="${cputest <= 50.0}">
-            			<td style="background-color: green;"></td>
-            		</c:when>
-            		<c:when test="${cputest <=80.0}">
-            			<td style="background-color: yellow;"></td>
-            		</c:when>
-            		<c:otherwise>
-            			<td style="background-color: red;"></td>
-            		</c:otherwise>
-            	</c:choose>
-        			
-				  <td>${i.value.server_host }</td>
-             	  <td><a href="<%=request.getContextPath()%>/server/summary?summaryMenu=1&ip=${i.value.server_ip}">${i.value.server_ip}</a></td>
-             	  <td>${i.value.server_os_name}</td>
-            	  <td>${i.value.cpu_total_pcnt}</td>
-				  <td>${i.value.memory_total }</td>
-			 	</tr>
-
-             </c:forEach>
-      </table>
-   </form>
-   
- 
-
-
-<div class="container">
- 
-  <!-- Trigger the modal with a button -->
-
-  <!-- Modal -->
-  <div class="modal fade" id="myModal" role="dialog">
-    <div class="modal-dialog">
-    
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">서버추가</h4>
-        </div>
-        <div class="modal-body">
-        리스트자리
-        <form id="formm" name=" " method="post">
-      <table border=1>
-       		<tr>
-				<td>ip</td>
-				<td>hostName</td>
-				<td>OS 버전</td>
-				<td>OS 종류</td>
-			</tr>
-         <c:forEach items="${map}" var="i">
-         <c:if test="${i.value.saveyn eq '0' }">
-            <tr>
-                <td>  ${i.key }</td>
-             	  <td>${i.value.hostName }</td>
-             	  <td>${i.value.os_version }</td>
-             	  <td>${i.value.os_name }</td>
-             	  <input type = "hidden" id="${i.key }" name="${i.key }" value="${i.key }"/>
-					<td><input type="button" id="addlist" value="등록" onclick="addlist_go('${i.key }')"/></td>
-               </tr>
-               </c:if>
-             </c:forEach>
-      </table>
-   </form>
-        
-        
-        </div>
-
-
-</div></div></div></div>
-
-
-	<div id="chatMessage" style="overflow: auto; max-height: 500px;"></div>
-
-	<!-- //////////////////////////////////////////////////////////////// -->
-
-	<a href="<%=request.getContextPath()%>/server/testForm">테스트get</a>
-	
-
-	<c:if test="${!empty userOK}">
-		<script>
-			alert('${column}');
-		</script>
-	</c:if>
-
-</body>
-</html> --%>
