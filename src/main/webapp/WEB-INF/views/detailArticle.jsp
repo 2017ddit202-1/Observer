@@ -13,6 +13,23 @@ border-top: 1px solid #c3ced9;
 border-bottom: 1px solid #c3ced9;
 text-align: center;
 }
+
+#page-wrapper3 {
+    position: inherit;
+    margin: 0 0 0 250px;
+    padding: 65px 30px;
+     box-shadow: 5px 5px 5px lightgray;
+     border-radius: 10px; 
+   
+} 
+#page-wrapper3 {
+    padding: 0 15px;
+    min-height: 568px;
+    background-color: white;
+    margin-left: 10%;
+    width: 79%;
+    height: 820px;
+}
 </style>
 
 <script>
@@ -32,6 +49,10 @@ function articleList_go(){
 }
 </script>
 
+    
+	<br>
+	<br>
+<div id="page-wrapper3" class="in">	
 	<br> <br>
 	<div style="text-align: center;">
 		<h2>공지사항 상세보기</h2>
@@ -88,14 +109,14 @@ function articleList_go(){
 	 <button type="button" id="btnContactUs" class="btn btn-default" onclick="articleList_go();">목록</button>
 	
 	<sec:authorize access="hasRole('ROLE_SUPER')">
-      <button type="button" id="btnContactUs" onclick="go_articleWrite()">수정하기</button>
-	  <button type="button" id="btnContactUs" onclick="go_articleDelete()">삭제하기</button>
+      <button type="button" id="btnContactUs" class="btn btn-default" onclick="go_articleWrite()">수정하기</button>
+	  <button type="button" id="btnContactUs" class="btn btn-default" onclick="go_articleDelete()">삭제하기</button>
 
     </sec:authorize>
        </div>
 
 		</form> 
-	
+	</div>
 
 
 

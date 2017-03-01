@@ -54,21 +54,33 @@
 
 <body>
 
-<br><br><br>
+<br><br>
 
 <div id="page-wrapper3" class="in">
-<div style="text-align: center;">
-<img src="<%=request.getContextPath()%>/resources/img/line.jpg"><br><br><br><br>
+
+<div class="container">
+  <ul class="nav nav-tabs" style="margin-top: 3%;">
+    <li class="active" style="color: #7a7a7a;"><a href="#" style="background-color: #f7f7f7;
+    margin-left: 9%; text-align: center; width: 100%;">QNA</a></li>
+   
+  </ul>
+  <br>
+ 
+ <div class="media">
+    <div class="media-left">
+   <img src="<%=request.getContextPath()%>/resources/img/analysis.png" class="media-object" style="width:60px;margin-left: 39%;">
+    </div>
+    <div class="media-body">
+      <h4 class="media-heading" style="margin-left: 3%; margin-top: 1%;"><strong>QnA게시판</strong></h4>
+      <p style="margin-left: 3%;">고객님의 질문에 대해서 운영자가 1:1 답변을 드립니다.</p>
+    </div>
+  </div>
+  <hr>
 </div>
 
-	<div id="div_index">
-		<img src="<%=request.getContextPath()%>/resources/img/arrow.png">QnA게시판 <span style="font-size: 15px; color: #7c7c7c">고객님의 질문에 대해서 운영자가 1:1 답변을 드립니다.</span>
-	</div>
-	
-	<br>
-	<br>
-	
-	
+<br><br>
+
+
 	
 <!-- 	 <form name="formm" method="post">
       <div>
@@ -97,7 +109,9 @@
 			</select> 
 			<input type="text" size="16" name="key" style="height: 24px;">
 
-			<button class="button button2" onClick="serachQna_go()">검색</button>
+			<!-- <button class="button button2" onClick="serachQna_go()">검색</button> -->
+			
+			<input type="button" class="btn btn-default" value="Search" onClick="serachQna_go()">
 		</form>
 	</div>
 	<br>

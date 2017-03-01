@@ -5,6 +5,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="sec"
 	uri="http://www.springframework.org/security/tags"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
 
 <html lang="en">
@@ -72,7 +73,7 @@
     background-color: white;
     margin-left: 10%;
     width: 79%;
-    height: 820px;
+    height: 870px;
 }
 
 </style>
@@ -97,28 +98,36 @@ function check() {
 
 <body>
 
-	<br>
+	
 	<br>
 	<br>
 	
 
 <div id="page-wrapper3" class="in">	
-<div style="text-align: center;">
 
-<img src="<%=request.getContextPath()%>/resources/img/line.jpg" style="margin-top: 6%;"><br><br><br><br>
-
+<div class="container">
+  <ul class="nav nav-tabs" style="margin-top: 3%;">
+    <li class="active" style="color: #7a7a7a;"><a href="#" style="background-color: #f7f7f7;
+    margin-left: 9%; text-align: center; width: 100%;">NOTICE</a></li>
+   
+  </ul>
+  <br>
+ 
+ <div class="media">
+    <div class="media-left">
+   <img src="<%=request.getContextPath()%>/resources/img/promotion.png" class="media-object" style="width:60px;margin-left: 39%;">
+    </div>
+    <div class="media-body">
+      <h4 class="media-heading" style="margin-left: 3%; margin-top: 1%;"><strong>공지사항</strong></h4>
+      <p style="margin-left: 3%;">각종 안내, 서비스 또는
+			OBSERVER의 소식 버전안내 등의 정보를 확인할 수 있습니다.</p>
+    </div>
+  </div>
+  <hr>
 </div>
-	<div style="font-size: 30px; width: 1000px; text-align: left; margin-left: 242px;">
-		<img src="<%=request.getContextPath()%>/resources/img/arrow.png">공지사항
-		<span style="font-size: 15px; color: #7c7c7c">각종 안내, 서비스 또는
-			OBSERVER의 소식 버전안내 등의 정보를 확인할 수 있습니다.</span>
-			
-			<%-- <img src="<%=request.getContextPath()%>/resources/img/notice_image.png"> --%>
 
-	</div>
+<br><br>
 
-	<br>
-	<br>
 
 
 	<!-- 서치 -->
@@ -133,9 +142,10 @@ function check() {
 				<option value="noar_content">내용</option>
 			</select> <input type="text" size="16" name="keyWord" id="keyWord"
 				style="height: 24px;">
-			<!-- <input type="button" value="검색" onClick="check()" class="">  -->
 
-			<button class="button button2" onClick="check()">검색</button>
+			<!-- <button class="button button2" onClick="check()">검색</button> -->
+			<input type="button" class="btn btn-default" value="Search" onclick="check()">
+			
 			<input type="hidden" name="page" value="0">
 		</form>
 	</div>
@@ -148,8 +158,7 @@ function check() {
 
 
 	<div class="container">
-		<i class="fa fa-bullhorn" aria-hidden="true"></i> 총 게시글은
-		[${qnaListSize }]개 입니다.
+		<i class="fa fa-bullhorn" aria-hidden="true"></i>&nbsp;총 게시글은[${qnaListSize}]개 입니다.
 		<table class="table table-hover" style="width: 1000px;" align="center"
 			id="articleTable">
 			<thead>
@@ -172,8 +181,40 @@ function check() {
 							<tr id="article_tr2" style="text-align: center">
 								<td>${articleVO.noar_seq}</td>
 								<td>${loginUser}</td>
-								<td><a href="detailArticle?noar_seq=${articleVO.noar_seq}">${articleVO.noar_subject}</a></td>
-								<td>${articleVO.noar_content}</td>
+									<c:choose>
+           <c:when test="${fn:length(articleVO.noar_subject) > 25}">
+            <td><a href="detailArticle?noar_seq=${articleVO.noar_seq}"> <c:out value="${fn:substring(articleVO.noar_subject,0,25)}"/>....</a>
+            <c:if test="${articleVO.noar_icon eq 1}">
+										<img src="<%=request.getContextPath()%>/resources/img/new_icon.gif">
+									</c:if>
+  
+            </td>
+           
+           </c:when>
+           <c:otherwise>
+           <td> <a href="detailArticle?noar_seq=${articleVO.noar_seq}"><c:out value="${articleVO.noar_subject}"/></a>
+           <c:if test="${articleVO.noar_icon eq 1}">
+										<img
+											src="<%=request.getContextPath()%>/resources/img/new_icon.gif">
+									</c:if>
+           
+           </td>
+           </c:otherwise> 
+          </c:choose>
+          
+          
+          
+          
+								<c:choose>
+           <c:when test="${fn:length(articleVO.noar_content) > 14}">
+            <td> <c:out value="${fn:substring(articleVO.noar_content,0,13)}"/>....</td>
+           
+           </c:when>
+           <c:otherwise>
+           <td> <c:out value="${articleVO.noar_content}"/></td>
+           </c:otherwise> 
+          </c:choose>
+
 								<td><fmt:formatDate value="${articleVO.noar_date}"
 										pattern="yyyy-MM-dd" /></td>
 								<td>${articleVO.noar_cnt }</td>
@@ -185,21 +226,61 @@ function check() {
 					</c:when>
 
 
+
+
 					<c:otherwise>
 						<c:forEach items="${articleList}" var="articleVO">
 							<tr>
-								<th>${articleVO.noar_seq}</th>
-								<th>${loginUser}</th>
-								<!-- //////////articleVO.noar_id -->
-								<th><a href="detailArticle?noar_seq=${articleVO.noar_seq}">${articleVO.noar_subject}</a>
+								<td>${articleVO.noar_seq}</td>
+								<td>${loginUser}</td>
+								
+						<c:choose>
+           <c:when test="${fn:length(articleVO.noar_subject) > 25}">
+            <td><a href="detailArticle?noar_seq=${articleVO.noar_seq}"> <c:out value="${fn:substring(articleVO.noar_subject,0,25)}"/>....</a>
+            <c:if test="${articleVO.noar_icon eq 1}">
+										<img src="<%=request.getContextPath()%>/resources/img/new_icon.gif">
+									</c:if>
+            
+            </td>
+           
+           </c:when>
+           <c:otherwise>
+           <td> <a href="detailArticle?noar_seq=${articleVO.noar_seq}"><c:out value="${articleVO.noar_subject}"/></a>
+           <c:if test="${articleVO.noar_icon eq 1}">
+										<img
+											src="<%=request.getContextPath()%>/resources/img/new_icon.gif">
+									</c:if>
+           
+           </td>
+           </c:otherwise> 
+          </c:choose>
+								
+								
+								
+							 <%-- <th><a href="detailArticle?noar_seq=${articleVO.noar_seq}">${articleVO.noar_subject}</a> 
 									<c:if test="${articleVO.noar_icon eq 1}">
 										<img
 											src="<%=request.getContextPath()%>/resources/img/new_icon.gif">
-									</c:if></th>
-								<th>${articleVO.noar_content}</th>
+									</c:if></th> --%>
+									
+									
+									<c:choose>
+           <c:when test="${fn:length(articleVO.noar_content) > 14}">
+            <td> <c:out value="${fn:substring(articleVO.noar_content,0,13)}"/>....</td>
+           
+           </c:when>
+           <c:otherwise>
+           <td> <c:out value="${articleVO.noar_content}"/></td>
+           </c:otherwise> 
+          </c:choose>
+
+
+		
+									
+								<%-- <th>${articleVO.noar_content}</th> --%>
 								<td><fmt:formatDate value="${articleVO.noar_date}"
 										pattern="yyyy-MM-dd" /></td>
-								<th>${articleVO.noar_cnt }</th>
+								<td>${articleVO.noar_cnt }</td>
 							</tr>
 						</c:forEach>
 						<tr>

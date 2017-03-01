@@ -54,6 +54,25 @@
 #paging:hover {
 	background-color: white;
 }
+
+#page-wrapper3 {
+    position: inherit;
+    margin: 0 0 0 250px;
+    padding: 65px 30px;
+     box-shadow: 5px 5px 5px lightgray;
+     border-radius: 10px; 
+   
+} 
+#page-wrapper3 {
+    padding: 0 15px;
+    min-height: 568px;
+    background-color: white;
+    margin-left: 10%;
+    width: 79%;
+    height: 870px;
+}
+
+
 </style>
 
 
@@ -75,28 +94,41 @@ function check() {
 
 </head>
 <body>
-	<br>
-	<br>
+<br>
 	<br>
 	
-	
-	
+
+<div id="page-wrapper3" class="in">	
+
+<div class="container">
+  <ul class="nav nav-tabs" style="margin-top: 3%;">
+    <li class="active" style="color: #7a7a7a;"><a href="#" style="background-color: #f7f7f7;
+    margin-left: 9%; text-align: center; width: 100%;">ADMIN QNA</a></li>
+   
+  </ul>
+  <br>
+  
+ <div class="media">
+    <div class="media-left">
+   <img src="<%=request.getContextPath()%>/resources/img/analysis.png" class="media-object" style="width:60px;margin-left: 39%;">
+    </div>
+    <div class="media-body">
+      <h4 class="media-heading" style="margin-left: 3%; margin-top: 1%;"><strong>ADMIN QnA</strong></h4>
+      <p style="margin-left: 3%;">ADMIN 권한을 가진 회원의 문의사항을 관리자가 1:1로 답변해드립니다.</p>
+    </div>
+  </div>
+  <hr>
+</div>
+
+<br><br>
+
+
+
+
 	<div style="height: 1000px;">
 	
-<div style="text-align: center;">
-<img src="<%=request.getContextPath()%>/resources/img/line.jpg"><br><br><br><br>
-</div>
-	<div style="font-size: 30px; width: 1000px; text-align: left; margin-left: 242px;">
-		<img src="<%=request.getContextPath()%>/resources/img/arrow.png">ADMIN QnA
-		<span style="font-size: 15px; color: #7c7c7c">각종 안내, 서비스 또는
-			OBSERVER의 소식 버전안내 등의 정보를 확인할 수 있습니다.</span>
-	</div>
-	
 	<br>
 	<br>
-	
-	
-	
 	
 		<!-- 서치 -->
 	<div style="width: 1000px; float: right; text-align: center;">
@@ -229,6 +261,7 @@ function check() {
 		</sec:authorize>
 	</div>
 	
+	</div>
 	</div>
 	
 

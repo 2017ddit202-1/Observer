@@ -11,15 +11,36 @@ border-top: 1px solid #c3ced9;
 border-bottom: 1px solid #c3ced9;
 text-align: center;
 }
+
+#page-wrapper3 {
+    position: inherit;
+    margin: 0 0 0 250px;
+    padding: 65px 30px;
+     box-shadow: 5px 5px 5px lightgray;
+     border-radius: 10px; 
+   
+} 
+#page-wrapper3 {
+    padding: 0 15px;
+    min-height: 568px;
+    background-color: white;
+    margin-left: 10%;
+    width: 79%;
+   height: 860px;
+}
 </style>
 
-	<br> <br>
+	<br><br>
 	
-	<div style="height: 1000px;">
 	
-	<div style="text-align: center;">
-		<h2>공지사항 글쓰기</h2>
-		<h4> ARTICLE WRITE</h4>
+	<div id="page-wrapper3" class="in">
+	<!-- <div style="height: 1200px;"> -->
+	
+
+	<br><br>
+ 	<div style="text-align: center;">
+		<h2 style="color: #787878;"><i class="fa fa-bullhorn" aria-hidden="true"></i> 공지사항 글쓰기</h2>
+		<h4 style="color: #aaaaaa"> ARTICLE WRITE</h4>
 	</div>
 	<br><br><br>
 	
@@ -53,6 +74,7 @@ text-align: center;
 </form>
 
 </div>
+<!-- </div> -->
 
 
 <script>
