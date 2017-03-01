@@ -20,6 +20,22 @@ border-top: 1px solid #c3ced9;
 border-bottom: 1px solid #c3ced9;
 text-align: center;
 }
+#page-wrapper3 {
+    position: inherit;
+    margin: 0 0 0 250px;
+    padding: 65px 30px;
+     box-shadow: 5px 5px 5px lightgray;
+     border-radius: 10px; 
+   
+} 
+#page-wrapper3 {
+    padding: 0 15px;
+    min-height: 568px;
+    background-color: white;
+    margin-left: 10%;
+    width: 79%;
+   height: 860px;
+}
 </style>
 <%-- 					 <sec:authorize access="hasRole('ROLE_SUPER')">
 							<li><a href="#">관리</a></li>
@@ -33,6 +49,8 @@ text-align: center;
 
 </head>
 <body>
+<br><br>
+<div id="page-wrapper3" class="in">
 
 <br> <br>
 	<div style="text-align: center;">
@@ -144,14 +162,14 @@ text-align: center;
 		<div class="clear"></div>
 		
 		<hr style="border: solid 1px #c3ced9; width: 1000px;">
-
+<br>
 		<div id="buttons" style="text-align: center;">
 			<input type="button" class="btn btn-default" value="목록보기" class="submit" onclick="list_go()">
 			<c:choose>
 				<c:when test="${loginUserVO.mem_id eq qnaVO.qna_id}">
-				<input type="button" value="수정" class="submit"
+				<input type="button" class="btn btn-default" value="수정" class="submit"
 				onclick="modify_go()">
-					<input type="button" value="삭제" class="submit"
+					<input type="button" class="btn btn-default" value="삭제" class="submit"
 						onclick="delete_go()">
 				</c:when>
 				<c:when
@@ -167,19 +185,16 @@ text-align: center;
 					test="${loginUserVO.mem_id == 'SUADMIN1'}">
 							
 					<sec:authorize access="hasAnyRole('ROLE_ADMIN','ROLE_SUPER')">
-						<input type="button" value="답변하기" id="forget">
+						<input type="button" value="답변하기" id="forget" class="btn btn-default">
 					</sec:authorize>
 				</c:when>
 			</c:choose>
-			
-			
-
-</table>
+			</div>
 
 
 	
 	</form>
-
+</div>
 
 
 

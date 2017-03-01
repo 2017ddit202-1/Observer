@@ -24,21 +24,40 @@
 	}
 </script>
 
+<style>
+ #page-wrapper3 {
+    position: inherit;
+    margin: 0 0 0 250px;
+    padding: 65px 30px;
+     box-shadow: 5px 5px 5px lightgray;
+     border-radius: 10px; 
+   
+} 
+#page-wrapper3 {
+    padding: 0 15px;
+    min-height: 568px;
+    background-color: white;
+    margin-left: 10%;
+    width: 79%;
+   height: 860px;
+}
+</style>
+
 
 </head>
 <body>
 
+<br>
 
-	<br>
-	<br>
-	<div style="text-align: center;">
-		<h2>QnA 글쓰기</h2>
-		<h4>ARTICLE WRITE</h4>
+<div id="page-wrapper3" class="in">
+
+
+	<br><br>
+ 	<div style="text-align: center;">
+		<h2 style="color: #787878;"><i class="fa fa-bullhorn" aria-hidden="true"></i> QnA 글쓰기</h2>
+		<h4 style="color: #aaaaaa"> QNA WRITE</h4>
 	</div>
-	<br>
-	<br>
-	<br>
-
+	<br><br><br>
 
 	<form id="formm" name="formm" method="post">
 		<table style="width: 1000px;" align="center">
@@ -68,6 +87,7 @@
 		</div>
 
 	</form>
+	</div>
 
 </body>
 </html>
