@@ -186,10 +186,10 @@ function test_go(){
 	  <span class="label label-success">&nbsp&nbsp</span> 정상
 	  <span class="label label-warning">&nbsp&nbsp</span> 경고
 	  <span class="label label-danger">&nbsp&nbsp</span> 위험
+	  <span class="label" style="background-color: black">&nbsp&nbsp</span> 정지
   <br><br>  
   
 </div>
-<button>test button </button>
 	<table border=1>
        		<tr>
 				<td>위험도</td>
@@ -203,16 +203,23 @@ function test_go(){
               <tr>
            <c:set var="test" value="${i.value.cpu_total_pcnt}" />
 					<fmt:parseNumber  value="${test}" pattern="###.###" var="cputest"/>
-				 <c:choose>
-            		<c:when test="${cputest <= 50.0}">
-            			<td style="background-color: green;"></td>
-            		</c:when>
-            		<c:when test="${cputest <=80.0}">
-            			<td style="background-color: yellow;"></td>
-            		</c:when>
-            		<c:otherwise>
-            			<td style="background-color: red;"></td>
-            		</c:otherwise>
+				<c:choose>
+					<c:when test="${i.value.server_saveyn eq '0'}">
+						<td style="background-color: black;"></td>
+					</c:when>
+					<c:otherwise>
+					 <c:choose>
+	            		<c:when test="${cputest <= 50.0}">
+	            			<td style="background-color: green;"></td>
+	            		</c:when>
+	            		<c:when test="${cputest <=80.0}">
+	            			<td style="background-color: yellow;"></td>
+	            		</c:when>
+	            		<c:when test="${cputest <=100.0}">
+	            			<td style="background-color: red;"></td>
+	            		</c:when>
+	           		</c:choose>
+	           		</c:otherwise>
             	</c:choose>
 				  <td>${i.value.server_host }</td>
              	  <td><a href="<%=request.getContextPath()%>/server/summary?summaryMenu=1&ip=${i.value.server_ip}">${i.value.server_ip}</a></td>
