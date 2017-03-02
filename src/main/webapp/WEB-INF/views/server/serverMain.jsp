@@ -155,15 +155,22 @@ function test_go(){
 							}
 						});
 			
-		/* 		function refresh(){
+		 	/* 	function refresh(){
 		               location.reload();
 		            }
-		          tid = setInterval(refresh,3000); */ 
-		 });
-/* 	function ssss(){
+		          tid = setInterval(refresh,3000);  
+					 */
+		          
+/* 		        	$("button").click(function(){
+		        	 	$("#testDiv").load("serverMap"); 
+		          });
+ */		          
+		         
+			});
+ 	/* function ssss(){
 		 clearInterval(tid);
-	} */
-	
+	} 
+	 */
 	
 
 </script>
@@ -182,6 +189,7 @@ function test_go(){
   <br><br>  
   
 </div>
+<button>test button </button>
 	<table border=1>
        		<tr>
 				<td>위험도</td>
@@ -212,23 +220,24 @@ function test_go(){
             	  <td>
             	  	  <c:choose>
             		<c:when test="${cputest <= 50.0}">
-            			<div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: ${i.value.cpu_total_pcnt}%">
+            			<div id="testDiv" class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: ${i.value.cpu_total_pcnt}%">
       							 ${i.value.cpu_total_pcnt}
     					</div>
+    					
             		</c:when>
             		<c:when test="${cputest <=80.0}">
-            			<div class="progress-bar progress-bar-warning progress-bar-striped" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: ${i.value.cpu_total_pcnt}%">
+            			<div id="testDiv" class="progress-bar progress-bar-warning progress-bar-striped" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: ${i.value.cpu_total_pcnt}%">
       							 ${i.value.cpu_total_pcnt}
     					</div>
             		</c:when>
             		<c:otherwise>
-            			<div class="progress-bar progress-bar-danger progress-bar-striped" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: ${i.value.cpu_total_pcnt}%">
+            			<div id="testDiv" class="progress-bar progress-bar-danger progress-bar-striped" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: ${i.value.cpu_total_pcnt}%">
       							 ${i.value.cpu_total_pcnt}
     					</div>
             		</c:otherwise>
             	</c:choose>
             	  ${i.value.cpu_total_pcnt}
-            	  
+            	  <div id="testDiv"></div>
             	  </td>
 				  <td>${i.value.memory_total }</td>
 			 	</tr>
@@ -242,6 +251,8 @@ function test_go(){
   <span class="label label-success">&nbsp&nbsp</span> 정상
   <span class="label label-warning">&nbsp&nbsp</span> 경고
   <span class="label label-danger">&nbsp&nbsp</span> 위험
+  <span class="label" style="background-color: black">&nbsp&nbsp</span> 정지
+  
   <br><br>  
   	</div>
 <form id="formm" name="formm" method="post">
@@ -265,18 +276,26 @@ function test_go(){
             	<th><input type="checkbox" name="server_ip" id="server_ip" value="${i.value.server_ip}"></th>
 					<c:set var="test" value="${i.value.cpu_total_pcnt}" />
 					<fmt:parseNumber  value="${test}" pattern="###.###" var="cputest"/>
-				 <c:choose>
-            		<c:when test="${cputest <= 50.0}">
-            			<td style="background-color: green;"></td>
-            		</c:when>
-            		<c:when test="${cputest <=80.0}">
-            			<td style="background-color: yellow;"></td>
-            		</c:when>
-            		<c:otherwise>
-            			<td style="background-color: red;"></td>
-            		</c:otherwise>
+			
+				<c:choose>
+					<c:when test="${i.value.server_saveyn eq '0'}">
+						<td style="background-color: black;"></td>
+					</c:when>
+					<c:otherwise>
+					 <c:choose>
+	            		<c:when test="${cputest <= 50.0}">
+	            			<td style="background-color: green;"></td>
+	            		</c:when>
+	            		<c:when test="${cputest <=80.0}">
+	            			<td style="background-color: yellow;"></td>
+	            		</c:when>
+	            		<c:when test="${cputest <=100.0}">
+	            			<td style="background-color: red;"></td>
+	            		</c:when>
+	           		</c:choose>
+	           		</c:otherwise>
             	</c:choose>
-        			
+				
 				  <td>${i.value.server_host }</td>
              	  <td><a href="<%=request.getContextPath()%>/server/summary?summaryMenu=1&ip=${i.value.server_ip}">${i.value.server_ip}</a></td>
              	  <td>${i.value.server_os_name}</td>

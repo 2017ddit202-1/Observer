@@ -33,6 +33,7 @@
  		select server_host
           , server_os_name
           , server_ip
+          , saveyn
           from server
           where server_ip=#server_ip#
  	</select>
