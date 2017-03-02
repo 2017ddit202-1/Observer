@@ -184,9 +184,7 @@ background-color: #1f2123;
                          <li>
                                     <a href="<%=request.getContextPath()%>/memory/memoryMain">&nbsp;- 메모리</a>
                                 </li>   
-                                  <li>
-                                    <a href="morris.html">&nbsp;- 프로세스</a>
-                                </li>
+                            
                                   <li>
                                     <a href="<%=request.getContextPath()%>/disk/diskMain">&nbsp;- 디스크</a>
                                 </li>
