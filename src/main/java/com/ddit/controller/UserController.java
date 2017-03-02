@@ -76,10 +76,6 @@ public class UserController {
 		request.setAttribute("authority", authority);
 		
 		
-		
-		
-		
-
 		return url;
 	}
 
@@ -179,13 +175,12 @@ public class UserController {
 
 	// 회원탈퇴
 	@RequestMapping(value = "/memberDelete", method = RequestMethod.POST, produces = "application/text;charset=utf8")
-	@ResponseBody
-	// 아작스에서 데이터를 넘겨받기위해 필요한 어노테이션
+	@ResponseBody     // 아작스에서 데이터를 넘겨받기위해 필요한 어노테이션
 	public String memberDelete(HttpServletRequest request,
 			HttpServletResponse response) {
 
 		String data = "1"; // 성공시 1, 실패시0
-
+		
 		String mem_id = request.getParameter("mem_id");
 
 		MemberVO memberVO = null;
@@ -196,6 +191,7 @@ public class UserController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 
 		String mem_pwd = memberVO.getMem_pwd();
 

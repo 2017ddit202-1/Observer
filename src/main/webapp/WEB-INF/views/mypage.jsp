@@ -253,14 +253,10 @@ table {
 
 
 
-			<tr id="mypage_tr"
-				onclick="document.location='<%=request.getContextPath()%>/user/update'">
-				<td id="mypage_td"><img
-					src="<%=request.getContextPath()%>/resources/img/mypage_2.jpg"></td>
-				<td id="mypage_td2"><div
-						style="cursor: pointer; font-size: 18px; font-weight: bold;">회원수정</div>
-					<div style="cursor: pointer;">회원가입 시 등록하셨던 정보를 수정/조회하실 수
-						있습니다.</div></td>
+			<tr id="mypage_tr" onclick="document.location='<%=request.getContextPath()%>/user/update'">
+				<td id="mypage_td"><img src="<%=request.getContextPath()%>/resources/img/mypage_2.jpg"></td>
+				<td id="mypage_td2"><div style="cursor: pointer; font-size: 18px; font-weight: bold;">회원수정</div>
+					<div style="cursor: pointer;">회원가입 시 등록하셨던 정보를 수정/조회하실 수 있습니다.</div></td>
 			</tr>
 
 
@@ -301,30 +297,17 @@ table {
 										<p style="color: #787878;">회원탈퇴를 진행하기 위해 본인 확인이 필요합니다.</p>
 
 										<form id="formmm" name="formmm" method="post">
-											<input type="text" id="mem_id" name="mem_id" placeholder="${loginUser}"> 
+											<input type="text" id="mem_id" name="mem_id" value="${loginUser}"> 
 											<input type="password" id="mem_pwd" name="mem_pwd" placeholder="Password를 입력해 주세요!"
 												style="margin-top: 7px; margin-left: 5.5px;"> <br>
-											<button class="btn btn-primary btn-sm" type="button" id="DeleteBtn"
+											<button class="btn btn-primary btn-sm" type="button" id="DeleteBtn" 
 												style="margin-top: 2%; border-color: #87adab;">탈퇴하기</button>
 											<br> <span id="resultId"></span>
 										</form>
 									</div>
 
 
-									<%--     
-       <form id="formmm" name="formmm" method="post">
-                     ID:<input type="text" id="mem_id" name="mem_id"
-                        value="${loginUser}"><br> 
-                        PWD:<input type="password" id="mem_pwd" name="mem_pwd"><br><br>
-                     <button class="btn btn-primary btn-sm" type="button" id="DeleteBtn">탈퇴하기</button>
-                    
-                     <br> <span id="resultId"></span>
-                     <!-- //데이터를 입력받기위한 스판태그 -->
-                  </form> 
-       --%>
-
-
-									<style>
+<style>
 input[type=password] {
 	background: url(../img/keyIcon.png) 12px 11px no-repeat,
 		linear-gradient(to bottom, #f7f7f8 0%, #ffffff 100%);
@@ -401,27 +384,17 @@ input[type=text] {
 </style>
 
 
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 
 
-
-									<script src="http://code.jquery.com/jquery-latest.min.js"></script>
-
-									<script>
-<%-- function memberDelete(){
-   document.formm.action="<%=request.getContextPath()%>/user/memberDelete";
-   document.formm.submit();   
-}  --%>
-
-
+<script>
 
 $(function(){
    $('#DeleteBtn').click(function(){
-    /*   var id = $('#mem_id').val();
-      alert(id); */
       $.ajax({
          url : "<%=request.getContextPath()%>/user/memberDelete",
          type : "post",
-         data : $('#formmm input').serialize(),
+         data : $('#formmm').serialize(),
           success:function(data){
             if(data=="0"){ //일치하지 않으면
                $('#resultId').text('비밀번호가 일치하지 않습니다.')
@@ -461,204 +434,5 @@ $(function(){
 		</table>
 
 
-
-
-
-
 	</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	<%-- 
-
-<table>
-  <tr> 
-    <td onmouseover="this.style.background='#fffff3'" 
-          onmouseout="this.style.background='#ffffff'"  
-bgColor=#ffffff align="center"> 
-<img src="<%=request.getContextPath()%>/resources/img/contract.png">
-
-
-<!-- 권한신청모달 -->
-   <div class="container" style="width: 200px;">
-
-      <a data-toggle="modal" data-target="#myModal1">권한신청</a>
-
-      <!-- Modal -->
-      <div class="modal fade" id="myModal1" role="dialog">
-         <div class="modal-dialog">
-
-            <!-- Modal content-->
-            <div class="modal-content">
-               <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal">&times;</button>
-                  <h4 class="modal-title">권한신청</h4>
-               </div>
-               <div class="modal-body">
-
-                  <!-- //////////////내용//////////////// -->
-
-                  <c:choose>
-                     <c:when test="${authority.atrt_admin_accept eq 'n'}">
-                        <p>권한요청이 진행중입니다.</p>
-                     </c:when>
-
-                     <c:otherwise>
-
-                        <p>현재 나의 권한은${positionList.posl_pos}입니다.</p>
-
-
-                        <c:choose>
-                           <c:when test="${positionList.posl_pos eq 'ROLE_USER'}">
-
-                              <p>ADMIN으로 변경합니다.</p>
-
-                           </c:when>
-                           <c:otherwise>
-                              <p>USER로 변경합니다.</p>
-
-                           </c:otherwise>
-
-                        </c:choose>
-
-                        <button type="button" id="authorityBtn" onclick="autority_go()">신청하기</button>
-
-
-                        <!-- <script src="http://code.jquery.com/jquery-latest.min.js"></script> 아작스-->
-
-                        <script>
- function autority_go(){
-   alert('신청하기 alert');
-   document.formm.action="<%=request.getContextPath()%>/atrt/authorityReq";
-   document.formm.submit();   
-} 
-
-</script>
-
-                     </c:otherwise>
-
-                  </c:choose>
-
-
-               </div>
-               <div class="modal-footer">
-                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-               </div>
-            </div>
-
-         </div>
-      </div>
-
-   </div>
-</td>
-
-   <td style="background-color: #f7f7f7" align="center" width="200px"><p style="font-size: 16px; font-weight: bold; color: #919191" >회원탈퇴</p><p style="color: #b5b5b5; font-size: 11px;"> 아래의 회원탈퇴 버튼을 누르면 회원 탈퇴처리</p><img src="<%=request.getContextPath()%>/resources/img/down-arrow.png"></td>
-
- <td onmouseover="this.style.background='#fffff6'" 
-          onmouseout="this.style.background='#ffffff'" width="200px"
-bgColor=#ffffff align="center" ><img src="<%=request.getContextPath()%>/resources/img/id-card.png"><br><font size="2"><a href="<%=request.getContextPath()%>/user/update">회원수정</a></font></td>
-  </tr>
-  
-    <tr> 
-    <td style="background-color: #f7f7f7" width="200px"></td>
-
-   <td onmouseover="this.style.background='#fffff6'" 
-          onmouseout="this.style.background='#ffffff'"  
-bgColor=#ffffff align="center">
-<img src="<%=request.getContextPath()%>/resources/img/id-card.png">
-<!-- 회원탈퇴모달 -->
-
-   <div class="container" style="width: 200px;">
-
-      <a data-toggle="modal" data-target="#myModal">회원탈퇴</a>
-
-      <!-- Modal -->
-      <div class="modal fade" id="myModal" role="dialog">
-         <div class="modal-dialog">
-
-            <!-- Modal content-->
-            <div class="modal-content">
-               <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal">&times;</button>
-                  <h4 class="modal-title">회원탈퇴</h4>
-               </div>
-               <div class="modal-body">
-
-
-
-                  <!-- //////////////내용//////////////// -->
-
-                  <form id="formm" name="formm" method="post">
-                     ID:<input type="text" id="mem_id" name="mem_id"
-                        value="${loginUser}"><br> PWD:<input
-                        type="password" id="mem_pwd" name="mem_pwd"><br>
-                     <button type="button" id="DeleteBtn" onclick="memberDelete()">탈퇴하기</button>
-                     <br> <span id="resultId"></span>
-                     <!-- //데이터를 입력받기위한 스판태그 -->
-                  </form>
-
-
-                  <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-
-                  <script>
-function memberDelete(){
-   document.formm.action="<%=request.getContextPath()%>/user/memberDelete";
-   document.formm.submit();   
-}
-
-$(function(){
-   $('#DeleteBtn').click(function(){
-      $.ajax({
-         url : "<%=request.getContextPath()%>/user/memberDelete",
-         type : "post",
-         data : $('#formm input').serialize(),
-          success:function(data){
-            if(data=="0"){ //일치하지 않으면
-               $('#resultId').text('비밀번호가 일치하지 않습니다.')
-            }else{
-               alert('탈퇴완료되었습니다.')
-               location.href="<%=request.getContextPath()%>/index";
-            }
-         },
-      });
-      
-   });
-});
-
-
-
-</script>
-
-               </div>
-               <div class="modal-footer">
-                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-               </div>
-            </div>
-
-         </div>
-      </div>
-
-   </div></td>
-
- <td style="background-color: #f7f7f7" width="200px"></td>
-  </tr>
-  
-  
-</table> --%>
-
 </body>
