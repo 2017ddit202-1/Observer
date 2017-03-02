@@ -155,15 +155,14 @@ function test_go(){
 							}
 						});
 			
-				function refresh(){
+		/* 		function refresh(){
 		               location.reload();
 		            }
-		          tid = setInterval(refresh,3000); 
-		             
-		 
-			
-			
-			});
+		          tid = setInterval(refresh,3000); */ 
+		 });
+/* 	function ssss(){
+		 clearInterval(tid);
+	} */
 	
 	
 
@@ -249,7 +248,7 @@ function test_go(){
  <button type="button" class="btn btn-info btn-sm" style="font-size:13px; padding:3px 5px; margin:auto auto auto 423px;" onclick="serverStop()">정지</button>
  <button type="button" class="btn btn-info btn-sm" style="font-size:13px; padding:3px 5px;" onclick="serverRemove()">해제</button>
  <button type="button" class="btn btn-info btn-sm" style="font-size:13px; padding:3px 5px;" onclick="serverStart()">시작</button>
- <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal" style="font-size:13px; padding:3px 5px;">추가</button>
+ <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal" style="font-size:13px; padding:3px 5px;"  data-backdrop="static" data-keyboard="false" onclick="ssss()" >추가</button>
  
       <table border=1>
        		<tr>

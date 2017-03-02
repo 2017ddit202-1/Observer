@@ -24,7 +24,7 @@
 	   	SELECT *
 	    FROM
 	    (
-	    SELECT memory_total
+	    SELECT memory_total_used
 	    FROM memory
 	    WHERE
 	    memory_ip=#memory_ip#
