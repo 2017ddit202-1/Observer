@@ -134,6 +134,13 @@ public class MemberServiceImpl implements MemberService{
 		return memberIbatis.authorityCnt();
 	}
 
+	@Override
+	public int joinKeyUp(String mem_id) throws SQLException {
+		int result = -1;
+		result = memberIbatis.joinKeyUp(mem_id);
+		return result;
+	}
+
 
 	
 	
