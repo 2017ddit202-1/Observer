@@ -94,6 +94,29 @@ public class MainController {
 		return url;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
 	}
 	
+	
+	@RequestMapping(value="/joinKeyUp", method = RequestMethod.POST)
+	@ResponseBody
+	public String joinKeyUp(HttpServletRequest request, Model model){
+		String url = "NotExist";
+		
+		String mem_id = request.getParameter("mem_id");
+		
+		try {
+		  if(memberService.joinKeyUp(mem_id)==1){
+			  url="Exit";
+		  }
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return url;
+	}
+	
+
+	
+	
 	//회원가입
 	@RequestMapping(value = "/join", method = RequestMethod.POST)
 	public String join(HttpServletRequest request,

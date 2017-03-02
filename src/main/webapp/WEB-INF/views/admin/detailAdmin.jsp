@@ -75,22 +75,46 @@
 		<!-- // -->
 
 
-		<!-- 댓글이 있으면 테이블이 보여짐 -->
+<%-- 		<!-- 댓글이 있으면 테이블이 보여짐 -->
+		<div class="container" id="hiddenDiv2">
 		<table style="width: 1000px;" align="center">
 			<c:if test="${adminVO.ad_nswer != ' ' }">
 				<tr id="detail_table_tr">
 					<td
-						style="background-color: #e4eaf2; border-top: 1px solid #c3ced9; width: 90px;">답변
-						내용</td>
+						style="background-color: #e4eaf2; border-top: 1px solid #c3ced9; width: 90px;">답변내용</td>
 					<td><div id="sss">${adminVO.ad_nswer}</div></td>
 				</tr>
 			</c:if>
 		</table>
 		<br>
+		</div>
+ --%>
 
+<c:choose>
+       <c:when test="${adminVO.ad_nswer != ' ' }">
+          <table style="width: 1000px;" align="center">
+          <tr id="detail_table_tr">
+          
+					<td
+						style="background-color: #e4eaf2; border-top: 1px solid #c3ced9; width: 90px;">답변내용</td>
+					<td><div id="sss">${adminVO.ad_nswer}</div></td>
+				</tr>
+				</table>
+       </c:when>
 
-
-
+       <c:otherwise>
+           <div class="container" id="hiddenDiv2" style="display: none">
+            <table style="width: 1000px;" align="center">
+          <tr id="detail_table_tr">
+          
+					<td style="background-color: #e4eaf2; border-top: 1px solid #c3ced9; width: 90px;">답변내용</td>
+					<td><div id="sss">${adminVO.ad_nswer}</div></td>
+				</tr>
+				</table>
+           
+           </div>
+       </c:otherwise>
+   </c:choose>
 
 
 
@@ -103,8 +127,7 @@
 					<table style="width: 1000px;" align="center">
 						<tr id="detail_table_tr">
 							<td
-								style="background-color: #e4eaf2; border-top: 1px solid #c3ced9; width: 90px;">답변
-								내용</td>
+								style="background-color: #e4eaf2; border-top: 1px solid #c3ced9; width: 90px;">답변내용</td>
 							<td><textarea rows="10" cols="100" name="email"
 									placeholder="답변 내용 작성하기"
 									style="width: 901px; border: 0; overflow-y: hidden; background: clear; resize: none; height: 200px; outline: none;"></textarea></td>
@@ -194,6 +217,7 @@
 			       		 seqNum:${param.admin_seq}  }),
 			       	success:function(data){
 			       		document.getElementById("sss").innerHTML = data;
+			       		$("#hiddenDiv2").show();
 			       	}
 			       	
 			});

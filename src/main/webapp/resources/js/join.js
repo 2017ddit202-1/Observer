@@ -43,4 +43,35 @@
                   "toolbar=no, menubar=no, scrollbars=yes, resizable=no, width=400, height=200");
 
    }
+   
+   
+   
+   function checkDepulicateId() {
+	 
+		$.ajax({
+ 
+					url : "joinKeyUp",
+					type : "post",
+					data : $("#formm").serialize(),
+					success : function(data) {
+			
+						if (data == "Exit") {
+							document.getElementById("idCheck").innerHTML = "* 이미 회원이 존재합니다.";
+						} else {
+							if ($("#fn").val().length < 6) {
+								document.getElementById("idCheck").innerHTML = "* 아이디를 6자 이상 입력해주세요.";
+							} else if($("#fn").val().length >8){
+								document.getElementById("idCheck").innerHTML = "* 아이디를 8자 이하로 입력해주세요.";
+							}else {
+								document.getElementById("idCheck").innerHTML = "";
+							}
+						}
+					},
+					error : function(error) {
+
+					}
+				});
+	}
+
+   
 

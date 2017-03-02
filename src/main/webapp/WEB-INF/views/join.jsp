@@ -10,7 +10,7 @@
    <br> <br>
    <div id="contract">
       <h2><img id="joinLogo" src = "<%=request.getContextPath()%>/resources/img/observer1.png" style="width:7%;float:left">&nbsp;OBSERVER</h2>
-      <h3>간편한 회원가입을 통해 모니터링 하세요</h3><br>
+      <h3 style="margin-left: -13.9%; color: #707070">간편한 회원가입을 통해 모니터링 하세요</h3><br>
    </div>
 
    <form class="form-horizontal" id="formm" name="formm" method="post">
@@ -18,18 +18,19 @@
          <div class="form-group">
             <div class="col-md-1">
                <label class="col-md-4 control-label" for="id">ID</label>
-               <input id="fn" type="text" name="mem_id" 
-                  class="form-control input-md">
+               <span id="idCheck" class="col-md-4 control-label"></span>
+               <input id="fn" type="text" name="mem_id" class="form-control input-md" onkeyup="checkDepulicateId()">
+               <!-- <span id="idCheck"></span> -->
             </div>
-               <button class="btn btn-primary" onclick="idcheck()" id="check">중복 체크</button><br/>
+               <!-- <button class="btn btn-primary" onclick="idcheck()" id="check">중복 체크</button><br/> -->
          </div>
          <br>
 
          <div class="form-group">
             <div class="col-md-1">
                <label class="col-md-4 control-label" for="id">Name</label>
-               <input id="fn" type="text" name="mem_nm"
-                  class="form-control input-md"><br/>
+               <input id="fn" type="text" name="mem_nm" 
+                  class="form-control input-md" onkeyup="nameCheck()"><br/>
             </div>
          </div>
          <!-- Text input-->

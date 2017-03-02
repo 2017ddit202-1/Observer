@@ -183,6 +183,19 @@ public class MemberDAO_iBatis implements MemberDAO{
 	}
 
 
+	@Override
+	public int joinKeyUp(String mem_id) throws SQLException {
+		int result= -1;
+		MemberVO memberVO= (MemberVO) client.queryForObject("confirmID",mem_id);
+		if(memberVO != null){
+			result = 1;
+		}else{
+			result = -1;
+		}
+		return result;
+	}
+
+
 	
 
 }
