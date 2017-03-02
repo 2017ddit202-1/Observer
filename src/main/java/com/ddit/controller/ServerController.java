@@ -124,12 +124,8 @@ public class ServerController {
 		String currentIp = request.getParameter("testIp");
 		String saveyn = null;
 		List<String> iplist = new ArrayList<String>();
-		System.out.println("POST method");
 		classMap = (Map<String, Map<String, String>>) request
 				.getAttribute("classMap");
-		System.out.println("dddddddd" + request.getAttribute("testIp"));
-		System.out.println(classMap.toString() + "()()()()()(");
-		System.out.println(classMap.toString() + "()()()()()(");
 		Map<String, String> valueMap = classMap.get(currentIp);
 
 		// 서버 table에서 currentip 로 셀렉해서 saveyn이 1이면
@@ -156,8 +152,7 @@ public class ServerController {
 		
 		if (serverVO.getSaveyn().equals("1")) {
 		        if(classMap.get(currentIp).get("alertcpu") != null){
-		        	System.out.println("^^^^^^^^^^^^^^^^^^^^^^^^^");
-		           cpuNotice(currentIp);
+		        	cpuNotice(currentIp);
 		         }else if(classMap.get(currentIp).get("alertmemory") != null){
 		            System.out.println("메모리 과다 알림 : " + classMap.get(currentIp).get("memory_total_used"));
 		            memoryNotice(currentIp);
@@ -215,7 +210,6 @@ public class ServerController {
 			trafficVO.setTraffic_net(classMap.get(currentIp).get("networkcard"));
 			
 			String diskMap = classMap.get(currentIp).get("diskAll");
-			System.out.println(diskMap);
 			String replaceMap = diskMap.replaceAll("\\[", "");
 			String temp = "";
 			int count = 0;
@@ -309,13 +303,7 @@ public class ServerController {
 		int summaryMenu = 0;
 		classMap = (Map<String, Map<String, String>>) request
 				.getAttribute("classMap");
-		System.out.println(request.getAttribute("classMap").toString());
-		System.out.println("dddddddd" + request.getAttribute("testIp"));
-		System.out.println(classMap.toString() + "()()()()()(");
 					 String currentIp = (String)session.getAttribute("currentIp");
-					 System.out.println("()()()()()()()()()()()()");
-					 System.out.println(currentIp);
-					 System.out.println("()()()()()()()()()()()()");
 					 
 		// ///////
 
@@ -339,8 +327,6 @@ public class ServerController {
 				  if(!(memberGroupVO.getMg_lice().equals("1"))){
 					  /*serverListUser = serverService.selectServerList(memberGroupVO.getMem_id());*/
 					  serverIpList = (List<String>)serverService.selectServerIpList(memberGroupVO.getMem_id());
-					  System.out.println("()()()()()()()()()(string)()()()()" + serverIpList.toString());
-					
 					  for(String ip : serverIpList){
 						  
 						  ServerVO serverVO = new ServerVO();
@@ -363,13 +349,9 @@ public class ServerController {
 						 /*model.addAttribute("cpu_total_pcnt",serverInfoVO.getCpu_total_pcnt());*/
 						 ipMap.put(ip, cpu);
 						 serverMap.put(ip, infoMap);
-						 
 					  }
-					  
-					  System.out.println(serverListUser.toString());
 				  }			 
 			  }
-			  System.out.println(serverMap.toString());
 			serverList = serverService.selectServerList(loginUser);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -501,10 +483,6 @@ public class ServerController {
 			}
 			/*classMap.remove(currentIp);*/
 		}
-
-		System.out.println("serverHandling");
-		System.out.println(classMap.toString());
-
 		return url;
 	}
 	
@@ -535,7 +513,6 @@ public class ServerController {
 	public String serverStop(HttpServletRequest request, HttpServletResponse response, HttpSession session){
 		String url = "redirect:/server/serverMain";
 		ServerVO serverVO = new ServerVO();
-		System.out.println("serverstop 로직");
 		String ipArray = request.getParameter("ipArray");
 		
 		StringTokenizer ip = new StringTokenizer(ipArray, ",");
