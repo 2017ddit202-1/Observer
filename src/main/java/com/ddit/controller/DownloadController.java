@@ -53,7 +53,7 @@ public class DownloadController implements ApplicationContextAware {
 			return new File(baseDir, "observer.pdf");
 
 		} else if (fileId.equals("installer")) {
-			return new File(baseDir, "InstallSetup.zip");
+			return new File(baseDir, "InstallSetup.exe");
 		}
 		return null;
 	}
