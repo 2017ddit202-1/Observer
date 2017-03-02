@@ -344,6 +344,7 @@ public class ServerController {
 						 infoMap.put("server_host", serverInfoVO.getServer_host());
 						 infoMap.put("server_os_name", serverInfoVO.getServer_os_name());
 						 infoMap.put("server_ip", serverInfoVO.getServer_ip());
+						 infoMap.put("server_saveyn", serverVO.getSaveyn());
 						 infoMap.put("cpu_total_pcnt", serverInfoVO.getCpu_total_pcnt());
 						 infoMap.put("memory_total", serverInfoVO.getMemory_total());
 						 /*model.addAttribute("cpu_total_pcnt",serverInfoVO.getCpu_total_pcnt());*/
@@ -591,6 +592,11 @@ public class ServerController {
 			}
 		return url;
 	}
+	
+	
+	
+	
+	
 //CPU사용량 초과되었을때
 	public void cpuNotice(String currentIp){
 	      ServerVO serverVO = new ServerVO();
