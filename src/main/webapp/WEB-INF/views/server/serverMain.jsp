@@ -166,11 +166,11 @@ function test_go(){
 		          });
  */		          
 		         
+ 			setInterval(function(){
+ 				$('#mm').load("serverMain #mm");
+ 			},3000);
 			});
- 	/* function ssss(){
-		 clearInterval(tid);
-	} 
-	 */
+ 
 	
 
 </script>
@@ -190,7 +190,7 @@ function test_go(){
   <br><br>  
   
 </div>
-	<table border=1>
+	<table border=1 id="mm">
        		<tr>
 				<td>위험도</td>
 				<td>Host Nmae</td>
@@ -268,7 +268,7 @@ function test_go(){
  <button type="button" class="btn btn-info btn-sm" style="font-size:13px; padding:3px 5px;" onclick="serverStart()">시작</button>
  <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal" style="font-size:13px; padding:3px 5px;"  data-backdrop="static" data-keyboard="false" onclick="ssss()" >추가</button>
  
-      <table border=1>
+      <table border=1 id="mm">
        		<tr>
        			<td>선택</td>
        			<td>위험도</td>
