@@ -16,6 +16,7 @@
     <http pattern="/less/*" security="none"/>
     <http pattern="/pages/*" security="none"/>
     <http pattern="/vendor/*" security="none"/>
+    <http pattern="/**/*.png" security="none"/>
 
 	<authentication-manager>
 		<authentication-provider>
