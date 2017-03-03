@@ -18,7 +18,7 @@
 			<th>I P</th>
 			<th>위험도</th>
 			<th>위험 내용</th>
-			<th></th>
+			<th>발생시간</th>
 		</tr>
 		<c:forEach var="noticeList" items="${noticeList}" varStatus="status">
 		<tr>
@@ -27,6 +27,8 @@
 			<td>${noticeList.notice_ip}</td>
 			<td>${noticeList.notice_dng_lv}</td>
 			<td>${noticeList.notice_content}</td>
+			<td>${noticeList.notice_date}</td>
+			
 		</tr>
 		</c:forEach>
 	</table>

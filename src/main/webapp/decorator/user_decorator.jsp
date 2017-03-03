@@ -315,8 +315,13 @@ background-color: #1f2123;
 
 
    
+<<<<<<< HEAD
     <%-- <!-- jQuery -->
     <script src="<%=request.getContextPath()%>/resources/vendor/jquery/jquery.min.js"></script> --%>
+=======
+<!--     jQuery -->
+<%--     <script src="<%=request.getContextPath()%>/resources/vendor/jquery/jquery.min.js"></script> --%>
+>>>>>>> refs/heads/LJG
 
     <!-- Bootstrap Core JavaScript -->
     <script src="<%=request.getContextPath()%>/resources/vendor/bootstrap/js/bootstrap.min.js"></script>

@@ -270,7 +270,7 @@ function HighCharts3(data) {
               borderWidth: 5
           },
           title: {
-              text: 'CPU Idle'
+              text: 'DISK 사용률'
           },
           xAxis: {
           	categories:time,
