@@ -484,6 +484,9 @@ public class ServerController {
 			}
 			/*classMap.remove(currentIp);*/
 		}
+		session.setAttribute("loginUserVO", memberVO);
+		
+		
 		return url;
 	}
 	

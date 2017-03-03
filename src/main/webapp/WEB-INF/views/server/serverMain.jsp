@@ -123,8 +123,7 @@ function test_go(){
 			function() {
 
 				
-				sock = new SockJS("http://" + document.domain
-						+ ":8181/observer/server/serverMain");
+				sock = new SockJS("http://" + document.domain + ":8181/observer/server/serverMain");
 
 				function createSock(sock) {
 					sock2 = sock;
@@ -154,30 +153,57 @@ function test_go(){
 								$("message").val("");
 							}
 						});
-			
-		 	/* 	function refresh(){
-		               location.reload();
-		            }
-		          tid = setInterval(refresh,3000);  
-					 */
-		          
-/* 		        	$("button").click(function(){
-		        	 	$("#testDiv").load("serverMap"); 
-		          });
- */		          
-		         
- 			setInterval(function(){
- 				$('#mm').load("serverMain #mm");
- 			},3000);
-			});
- 
-	
 
+				
+ 			 var bulhwi = setInterval(function(){
+ 			 	$('#mm').load("serverMain #mm"); 
+ 			},10000); 
+
+				
+			 	$('.server_ip').on("click", function(){
+			 		if($(this).is(":checked")){
+						clearInterval(bulhwi);
+						bulhwi=null;
+					}else{
+						if(bulhwi==null){
+							bulhwi = setInterval(function(){
+								$('#mm').load("serverMain #mm");
+							},10000);
+								
+						}
+					}
+				});
+	 
+	});
+ 			
+			////
+			 //인터벌 시작 
+			
+		
+	
+	/* 
+	//인터벌 주체
+	function refrech(){
+		$('#mm').load("serverMain #mm");
+	};
+
+	//인터벌 정지
+	function Stop(){
+		clearInterval(objRun);
+	};
+	
+			function run(){
+				objRun = setInterval("refresh()",5000);
+			};			
+ */
 </script>
 
 
 </head>
 <body>
+
+	
+
 	<c:choose>
 		<c:when test="${loginUserPosl eq 'ROLE_USER' }">
 			<h1>user page</h1>
@@ -192,8 +218,8 @@ function test_go(){
 </div>
 	<table border=1 id="mm">
        		<tr>
-				<td>위험도</td>
-				<td>Host Nmae</td>
+				<td >위험도</td>
+				<td>Host Name</td>
 				<td>IP</td>
 				<td>OS VERSION</td>
 				<td>CPU 사용량(%)</td>
@@ -251,7 +277,7 @@ function test_go(){
              </c:forEach>
       </table>
 						
-		</c:when>
+		</c:when>	
 		<c:otherwise>
 	<h1>전체목록</h1>
 		<div class="container">
@@ -267,21 +293,22 @@ function test_go(){
  <button type="button" class="btn btn-info btn-sm" style="font-size:13px; padding:3px 5px;" onclick="serverRemove()">해제</button>
  <button type="button" class="btn btn-info btn-sm" style="font-size:13px; padding:3px 5px;" onclick="serverStart()">시작</button>
  <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal" style="font-size:13px; padding:3px 5px;"  data-backdrop="static" data-keyboard="false" onclick="ssss()" >추가</button>
- 
-      <table border=1 id="mm">
+
+    <table border=1 id="mm">
+     
        		<tr>
        			<td>선택</td>
-       			<td>위험도</td>
+       			<td id="td1">위험도</td>
 				<td>Host Name</td>
 				<td>IP</td>
 				<td>OS VERSION</td>
 				<td>CPU 사용량(%)</td>
 				<td>MEMORY 사용량(%)</td>
 			</tr>
-         <c:forEach items="${serverMap}" var="i">
-            <tr>
-            	<th><input type="checkbox" name="server_ip" id="server_ip" value="${i.value.server_ip}"></th>
-					<c:set var="test" value="${i.value.cpu_total_pcnt}" />
+         <c:forEach items="${serverMap}" var="i" varStatus="a">
+          		  <tr>
+            			<td><input type="checkbox" name="server_ip" class="server_ip" id='server_ip' value="${i.value.server_ip}"></td>
+            		<c:set var="test" value="${i.value.cpu_total_pcnt}" />
 					<fmt:parseNumber  value="${test}" pattern="###.###" var="cputest"/>
 			
 				<c:choose>
@@ -327,16 +354,41 @@ function test_go(){
             	</c:choose>
             	  ${i.value.cpu_total_pcnt}
             	  </td>
-				  <td>${i.value.memory_total }</td>
+				  <td>
+				  	<c:set var="mom" value="${i.value.memory_total }" />
+					<fmt:parseNumber  value="${mom}" pattern="###.###" var="memoryTest"/>
+				  
+				   <c:choose>
+            		<c:when test="${ memoryTest<= 50.0}">
+            			<div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width:   ${i.value.memory_total }%">
+      							  ${i.value.memory_total }
+    					</div>
+            		</c:when>
+            		<c:when test="${memoryTest <=80.0}">
+            			<div class="progress-bar progress-bar-warning progress-bar-striped" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width:   ${i.value.memory_total }%">
+      							  ${i.value.memory_total }
+    					</div>
+            		</c:when>
+            		<c:otherwise>
+            			<div class="progress-bar progress-bar-danger progress-bar-striped" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width:   ${i.value.memory_total }%">
+      							  ${i.value.memory_total }
+    					</div>
+            		</c:otherwise>
+            	</c:choose>
+				  ${i.value.memory_total }
+				  
+				  
+				  
+				  </td>
 			 	</tr>
 
              </c:forEach>
       </table>
-   </form>
+ </form>
    </c:otherwise>
 </c:choose>
 
- 
+
 
 
 <div class="container">
@@ -378,7 +430,8 @@ function test_go(){
       </table>
    </form>
         </div>
-</div></div></div></div>
+</div>
+</div></div></div>
 
 
 	<div id="chatMessage" style="overflow: auto; max-height: 500px;"></div>
