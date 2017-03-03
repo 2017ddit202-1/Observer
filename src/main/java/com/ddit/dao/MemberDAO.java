@@ -30,6 +30,8 @@ public interface MemberDAO {
 	
 	public ArrayList<MemberVO> selectMemberAll() throws SQLException; //전체 회원 리스트 검색
 	public ArrayList<MemberVO> groupmember(String lice) throws SQLException; //그룹 회원 검색
+	public ArrayList<MemberVO> groupmember(int tpage, String lice) throws SQLException; //그룹 리스트 검색(라이선스1)
+	public String pageNumberlice(int tpage, String lice) throws SQLException;
 	
 	public void updateLice(MemberVO memberVO)throws SQLException;
 	public void updatePositionList(PositionListVO positionListVO)throws SQLException;

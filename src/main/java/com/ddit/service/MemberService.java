@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import com.ddit.dto.MemberVO;
 import com.ddit.dto.PositionListVO;
+import com.ddit.dto.VWmemPosVO;
 
 public interface MemberService {
 	
@@ -27,6 +28,9 @@ public interface MemberService {
 	
 	public ArrayList<MemberVO> selectMemberAll() throws SQLException; //전체 리스트 검색
 	public ArrayList<MemberVO> groupmember(String lice) throws SQLException; //그룹 리스트 검색
+	public ArrayList<MemberVO> groupmember(int tpage,String lice) throws SQLException;
+	public String pageNumberlice(int tpage, String lice) throws SQLException;
+	
 	
 	public void updateLice(MemberVO memberVO) throws SQLException;
 	public void updatePositionList(PositionListVO positionListVO)throws SQLException;

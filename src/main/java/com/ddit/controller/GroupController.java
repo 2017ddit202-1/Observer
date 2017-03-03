@@ -32,26 +32,32 @@ public class GroupController {
 	public String groupList(HttpSession session, HttpServletRequest request){
 		String url="group/groupInvalid";
 		
+		String key = "";
+		String tpage = request.getParameter("tpage");
+		
+		
+		if (tpage == null) {
+			tpage = "1";
+		} else if (tpage.equals("")) {
+			tpage = "1";
+		}
+		
 		ArrayList<MemberVO> list = new ArrayList<MemberVO>();
 		ArrayList<MemberVO> LiceList = new ArrayList<MemberVO>();
+		String paging=null;
+		
 		try {
-			list= memberService.selectMemberAll(); 
+			list= memberService.groupmember(Integer.parseInt(tpage), "1");
+			paging = memberService.pageNumberlice(Integer.parseInt(tpage), key);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
-		if(list != null){
-			for(MemberVO member : list){
-				if((member.getMem_id().equals("SUADMIN1"))){
-					continue;
-				}
-				if((member.getMem_group_lice().equals("1"))){
-					LiceList.add(member);				}
-			}
-		}
-		
-		request.setAttribute("LiceList", LiceList);
-		
+				
+		request.setAttribute("LiceList", list);
+		int n=list.size();   
+	    request.setAttribute("memberListSize",n); 
+	    request.setAttribute("paging", paging); 
+	    
 		return url;
 	}
 	

@@ -91,6 +91,9 @@
 					</tr>
 					</c:if>
 				</c:forEach>
+				<tr>
+					<td colspan="3" style="text-align: center;">${paging}</td>
+				</tr>
 			</tbody>
 		</table>
 		</form>
