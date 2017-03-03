@@ -48,6 +48,7 @@
    
    function checkDepulicateId() {
 	 
+	   
 		$.ajax({
  
 					url : "joinKeyUp",
@@ -72,6 +73,23 @@
 					}
 				});
 	}
+   
+   function nameCheck(){
+	   
+		   var input = $("#id_mem").val();
+		   alert(input);
+	   
+	   alert('탄다요');
+	   /*var nameCheck = document.getElementsByName('mem_nm')[0].value;*/
+	 /*  var input = $("#mem_nm").value();
+
+	  
+	   alert(input);*/
+	   
+	   if(nameCheck.length < 3){
+		   document.getElementById("nameCheck").innerHTML = "* 아이디를 6자 이상 입력해주세요.";
+	   }
+   }
 
    
 
