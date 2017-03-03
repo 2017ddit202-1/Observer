@@ -8,10 +8,38 @@
 <head>
 <meta charset=UTF-8">
 <title></title>
+
+<style>
+#page-wrapper3 {
+    position: inherit;
+    margin: 0 0 0 250px;
+    padding: 65px 30px;
+     box-shadow: 5px 5px 5px lightgray;
+     border-radius: 10px; 
+   
+} 
+#page-wrapper3 {
+    padding: 0 15px;
+    min-height: 568px;
+    background-color: white;
+    margin-left: 10%;
+    width: 79%;
+    height: 870px;
+}
+</style>
+
 </head>
+
+
+
 <body>
 <br>
 <br>
+
+
+<div id="page-wrapper3" class="in">	
+
+<br><br>
 <div class="container">
   <ul class="nav nav-tabs">
     <li class="active"><a href="#">SUPER ADMIN</a></li>
@@ -198,7 +226,7 @@
 		</div>
 
 	</div>
-
+</div>
 <script>
 $(document).ready(function() {
 		/* $('[data-toggle="tooltip"]').tooltip({

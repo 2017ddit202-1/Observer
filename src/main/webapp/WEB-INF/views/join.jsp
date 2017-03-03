@@ -29,7 +29,8 @@
          <div class="form-group">
             <div class="col-md-1">
                <label class="col-md-4 control-label" for="id">Name</label>
-               <input id="fn" type="text" name="mem_nm" 
+               <span id="nameCheck" class="col-md-4 control-label"></span>
+               <input id="id_mem" type="text" name="mem_nm" 
                   class="form-control input-md" onkeyup="nameCheck()"><br/>
             </div>
          </div>
@@ -71,6 +72,7 @@
             </div>
          </div>
       <div>
+      
          <input type="checkbox" name="check1" value="동의">이용약관에
          동의합니다.(필수)
          <!-- Trigger the modal with a button -->
