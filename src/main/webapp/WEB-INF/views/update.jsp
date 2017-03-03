@@ -17,6 +17,11 @@
 	
 	</script> 
 	
+	
+<%-- <script src="<%=request.getContextPath()%>/resources/alert/dist/sweetalert.min.js"></script>
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/alert/dist/sweetalert.css"> --%>
+	
+	
 	<style>
  #page-wrapper3 {
     position: inherit;
@@ -91,7 +96,19 @@
 </div>
 </div>
 
-
+<!-- <script>
+alert('jjjj');
+ /* swal("Good job!", "You clicked the button!", "success");  */
+$(document).ready(function() {
+swal({
+title: "Error!",
+text: "Here's my error message!",
+type: "error",
+confirmButtonText: "Cool"
+});
+});
+</script>
+ -->
 
 
 

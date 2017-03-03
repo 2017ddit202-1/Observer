@@ -29,12 +29,10 @@
 		if(chklen==undefined){
 			chklen=1;
 		}//폼의 전체길이
-		alert(chklen);
 		if(chklen != 1){
 
 		for(i=0; i<chklen; i++){
 			if(document.formm.mem_id[i].checked==true && chklen!=1){ //체크한 값이 있으면
-			 alert(mem_id[i].value); 
 				var message = {};
 				message.id = mem_id[i].value;  //->제이슨 형태로 {id: 체크한 곳의 아이디값}
 				wsocket.send(JSON.stringify(message));
@@ -42,11 +40,9 @@
 			}
 		}
 		}else if(chklen==1){
-			alert(document.formm.mem_id.value);
 			var message = {};
 			message.id = document.formm.mem_id.value;
 			wsocket.send(JSON.stringify(message));
-			alert('ffff');
 		}
 
 		document.formm.submit();

@@ -29,17 +29,51 @@ background-color: #1f2123;
 }
 </style>
 <html>
-
+<!-- jQuery -->
+    <script src="<%=request.getContextPath()%>/resources/vendor/jquery/jquery.min.js"></script>
 <script src="<%=request.getContextPath()%>/resources/js/jquery.js"></script>
     <script src="<%=request.getContextPath()%>/resources/js/jquery-3.1.1.js"></script>
     <script src="<%=request.getContextPath()%>/resources/js/jquery-3.1.1.min.js"></script>
+   
+    <script src="<%=request.getContextPath()%>/resources/alert/dist/sweetalert.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/alert/dist/sweetalert.css">
 
 
 <title>OBSERVER<decorator:title /></title>
 <decorator:head />
 
 <head>
+<script>
+   var wsocket;
 
+   $(document).ready(function() {
+	   var s = location.href;
+	   alert(s);
+      wsocket = new SockJS("http://"+document.domain+":8181/observer/test/authority");
+      wsocket.onopen;
+      wsocket.onmessage = function appendMessage(msg) {
+         
+      swal("member leave!", msg.data,"success"),
+    	   
+      $('.confirm').click(function(){
+    	  alert("확인클릭후");
+    	  alert(s);
+    	  if(s=="http://"+document.domain+":8181/observer/atrt/authorityReq?" || s=="http://"+document.domain+":8181/observer/user/mypage"){
+    		  alert("들어옴");
+    		  window.location.href="<%=request.getContextPath()%>/user/mypage";
+  		} 
+         <%--  window.location.href = "<%=request.getContextPath()%>/index"; --%>
+    });
+      
+      
+      
+      }
+      
+      
+      
+   });
+   
+</script>
 <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -281,8 +315,8 @@ background-color: #1f2123;
 
 
    
-    <!-- jQuery -->
-    <script src="<%=request.getContextPath()%>/resources/vendor/jquery/jquery.min.js"></script>
+    <%-- <!-- jQuery -->
+    <script src="<%=request.getContextPath()%>/resources/vendor/jquery/jquery.min.js"></script> --%>
 
     <!-- Bootstrap Core JavaScript -->
     <script src="<%=request.getContextPath()%>/resources/vendor/bootstrap/js/bootstrap.min.js"></script>
@@ -310,23 +344,4 @@ background-color: #1f2123;
 
    
 </head>
-
-
-
-<script>
-   var wsocket;
-
-   $(document).ready(function() {
-      wsocket = new SockJS("http://"+document.domain+":8181/observer/test/authority");
-      wsocket.onopen;
-   
-      wsocket.onmessage = function appendMessage(msg) {
-         alert(msg.data);
-      }
-      
-   });
-   
-</script>
-
-
 </html>

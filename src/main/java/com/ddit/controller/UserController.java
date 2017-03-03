@@ -135,7 +135,7 @@ public class UserController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		out.println("<script>alert('수정되었습니다.'); </script>");
+		out.println("<script>  swal('Good job!', '회원수정이 완료되었습니다!', 'success') </script>");
 
 		return url;
 	}

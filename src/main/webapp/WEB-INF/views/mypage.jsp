@@ -225,7 +225,6 @@ table {
 
 											<script>
  function autority_go(){
-   alert('신청하기 alert');
    document.formm.action="<%=request.getContextPath()%>/atrt/authorityReq";
    document.formm.submit();   
 } 
@@ -302,7 +301,7 @@ table {
 												style="margin-top: 7px; margin-left: 5.5px;"> <br>
 											<button class="btn btn-primary btn-sm" type="button" id="DeleteBtn" 
 												style="margin-top: 2%; border-color: #87adab;">탈퇴하기</button>
-											<br> <span id="resultId"></span>
+											<br><br> <span id="resultId" style="color:#e06969 "></span>
 										</form>
 									</div>
 
@@ -397,14 +396,23 @@ $(function(){
          data : $('#formmm').serialize(),
           success:function(data){
             if(data=="0"){ //일치하지 않으면
-               $('#resultId').text('비밀번호가 일치하지 않습니다.')
+               $('#resultId').text('*비밀번호가 일치하지 않습니다.');
             }else{
-               alert('탈퇴완료되었습니다.')
-               location.href="<%=request.getContextPath()%>/index";
-            }
+            
+               
+               swal("member leave!", "회원탈퇴가 완료되었습니다.","success"), 
+       
+               $('.confirm').click(function(){
+                   window.location.href = "<%=request.getContextPath()%>/index";
+             });
+               
+               
+          }
+                       
          },
          error:function(request,status,error){
              alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+             
             }
       });
       
