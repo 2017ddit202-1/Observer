@@ -324,9 +324,9 @@ background-color: #1f2123;
       wsocket.onopen;
    
       wsocket.onmessage = function appendMessage(msg) {
-          alert(msg.data); 
+           alert(msg.data);  
          
-        /*  swal("member leave!", "msg.data","success"); */
+        /* swal("member leave!", "msg.data","success"); */
       }
       
    });
