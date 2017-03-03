@@ -29,10 +29,13 @@ background-color: #1f2123;
 }
 </style>
 <html>
-
+<!-- jQuery -->
+    <script src="<%=request.getContextPath()%>/resources/vendor/jquery/jquery.min.js"></script>
 <script src="<%=request.getContextPath()%>/resources/js/jquery.js"></script>
     <script src="<%=request.getContextPath()%>/resources/js/jquery-3.1.1.js"></script>
     <script src="<%=request.getContextPath()%>/resources/js/jquery-3.1.1.min.js"></script>
+    <script src="<%=request.getContextPath()%>/resources/alert/dist/sweetalert.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/alert/dist/sweetalert.css">
 
 
 <title>OBSERVER<decorator:title /></title>
@@ -281,8 +284,8 @@ background-color: #1f2123;
 
 
    
-    <!-- jQuery -->
-    <script src="<%=request.getContextPath()%>/resources/vendor/jquery/jquery.min.js"></script>
+    <%-- <!-- jQuery -->
+    <script src="<%=request.getContextPath()%>/resources/vendor/jquery/jquery.min.js"></script> --%>
 
     <!-- Bootstrap Core JavaScript -->
     <script src="<%=request.getContextPath()%>/resources/vendor/bootstrap/js/bootstrap.min.js"></script>
@@ -321,7 +324,9 @@ background-color: #1f2123;
       wsocket.onopen;
    
       wsocket.onmessage = function appendMessage(msg) {
-         alert(msg.data);
+          alert(msg.data); 
+         
+        /*  swal("member leave!", "msg.data","success"); */
       }
       
    });

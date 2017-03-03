@@ -388,6 +388,8 @@ function test_go(){
 	<c:if test="${!empty userOK}">
 		<script>
 			alert('${column}');
+			
+			/* swal("고객님의 권한신청이", "${column}","success"); */
 		</script>
 	</c:if>
 
