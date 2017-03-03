@@ -173,37 +173,13 @@ function test_go(){
 						}
 					}
 				});
-	 
 	});
  			
-			////
-			 //인터벌 시작 
 			
-		
-	
-	/* 
-	//인터벌 주체
-	function refrech(){
-		$('#mm').load("serverMain #mm");
-	};
-
-	//인터벌 정지
-	function Stop(){
-		clearInterval(objRun);
-	};
-	
-			function run(){
-				objRun = setInterval("refresh()",5000);
-			};			
- */
 </script>
-
 
 </head>
 <body>
-
-	
-
 	<c:choose>
 		<c:when test="${loginUserPosl eq 'ROLE_USER' }">
 			<h1>user page</h1>
@@ -272,7 +248,32 @@ function test_go(){
             	  ${i.value.cpu_total_pcnt}
             	  <div id="testDiv"></div>
             	  </td>
-				  <td>${i.value.memory_total }</td>
+				  <td>
+				  	<c:set var="mom" value="${i.value.memory_total }" />
+					<fmt:parseNumber  value="${mom}" pattern="###.###" var="memoryTest"/>
+				  
+				   <c:choose>
+            		<c:when test="${ memoryTest<= 50.0}">
+            			<div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width:   ${i.value.memory_total }%">
+      							  ${i.value.memory_total }
+    					</div>
+            		</c:when>
+            		<c:when test="${memoryTest <=80.0}">
+            			<div class="progress-bar progress-bar-warning progress-bar-striped" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width:   ${i.value.memory_total }%">
+      							  ${i.value.memory_total }
+    					</div>
+            		</c:when>
+            		<c:otherwise>
+            			<div class="progress-bar progress-bar-danger progress-bar-striped" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width:   ${i.value.memory_total }%">
+      							  ${i.value.memory_total }
+    					</div>
+            		</c:otherwise>
+            	</c:choose>
+				  ${i.value.memory_total }
+				  
+				  
+				  
+				  </td>
 			 	</tr>
              </c:forEach>
       </table>
@@ -293,7 +294,7 @@ function test_go(){
  <button type="button" class="btn btn-info btn-sm" style="font-size:13px; padding:3px 5px;" onclick="serverRemove()">해제</button>
  <button type="button" class="btn btn-info btn-sm" style="font-size:13px; padding:3px 5px;" onclick="serverStart()">시작</button>
  <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal" style="font-size:13px; padding:3px 5px;"  data-backdrop="static" data-keyboard="false" onclick="ssss()" >추가</button>
-
+<div id="divTest">
     <table border=1 id="mm">
      
        		<tr>
@@ -384,6 +385,7 @@ function test_go(){
 
              </c:forEach>
       </table>
+      </div>
  </form>
    </c:otherwise>
 </c:choose>
