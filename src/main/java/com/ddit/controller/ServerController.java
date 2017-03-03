@@ -2,6 +2,8 @@ package com.ddit.controller;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -17,8 +19,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ddit.dto.CpuVO;
+import com.ddit.dto.DataVO;
 import com.ddit.dto.DiskVO;
 import com.ddit.dto.MemberGroupVO;
 import com.ddit.dto.MemberVO;
@@ -35,7 +39,6 @@ import com.ddit.service.MemberGroupServiceImpl;
 import com.ddit.service.MemberServiceImpl;
 import com.ddit.service.MemoryServiceImpl;
 import com.ddit.service.NoticeServiceImpl;
-import com.ddit.service.Notice_ArticleServiceImpl;
 import com.ddit.service.ServerServiceImpl;
 import com.ddit.service.TrafficServiceImpl;
 import com.ddit.service.VWmemPosServiceImpl;
@@ -713,6 +716,90 @@ public class ServerController {
 				e.printStackTrace();
 			}
 	}	
+	@RequestMapping(value="/summaryPage", method = RequestMethod.POST,produces="application/json;charset=UTF-8")
+	@ResponseBody
+	public Map<Object,Object> summaryPage(HttpSession session){
+		String ip = (String) session.getAttribute("ip");
+		DataVO cpuVO = new DataVO();
+		DataVO memoryVO = new DataVO();
+		DataVO diskVO = new DataVO();
+		DataVO trafficVO = new DataVO();
+		
+		DiskVO diVO = new DiskVO();
+		List<String> cpuList  = new ArrayList<String>();
+		List<String> memoryList  = new ArrayList<String>();
+		List<String> diskList  = new ArrayList<String>();
+		List<String> trafficList  = new ArrayList<String>();
+		List<Date> dateList  = new ArrayList<Date>();
+		
+		List<CpuVO> cpuVoList = null;
+		List<MemoryVO> memoryVoList = null;
+		List<DiskVO> diskVoList = null;
+		List<TrafficVO> trafficVoList = null;
+		List<TrafficVO> dateVoList = null;
+		
+		List<DiskVO> diVo = null;
+		
+		try {
+			diVo = diskServiceImpl.driverList(ip);
+			diVO.setDisk_ip(ip);
+			diVO.setDisk_nm(diVo.get(0).getDisk_nm());
+			
+			cpuVoList = cpuServiceImpl.listCpu(ip);
+			memoryVoList = memoryServiceImpl.listMemory(ip);
+			trafficVoList = trafficServiceImpl.listTra(ip);
+			diskVoList = diskServiceImpl.diskList(diVO);
+			
+			for (int i = 0; i < cpuVoList.size(); i++) {
+				cpuList.add(cpuVoList.get(i).getCpu_pcnt());
+				dateList.add(cpuVoList.get(i).getCpu_date());
+			}
+			for (int i = 0; i < memoryVoList.size(); i++) {
+				memoryList.add(memoryVoList.get(i).getMemory_total_used());
+			}
+			for (int i = 0; i < diskVoList.size(); i++) {
+				diskList.add(diskVoList.get(i).getDisk_using());
+			}
+			for (int i = 0; i < trafficVoList.size(); i++) {
+				trafficList.add(trafficVoList.get(i).getTraffic_use());
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		cpuVO.setData(cpuList);
+		cpuVO.setName("CPU 사용량");
+		cpuVO.setType("line");
+		cpuVO.setValueDecimal(1);
+		cpuVO.setUnit("%");
+		
+		diskVO.setData(diskList);
+		diskVO.setName("DISK 사용량");
+		diskVO.setType("area");
+		diskVO.setValueDecimal(0);
+		diskVO.setUnit("%");
+		
+		memoryVO.setData(memoryList);
+		memoryVO.setName("MEMORY 사용량");
+		memoryVO.setType("area");
+		memoryVO.setValueDecimal(1);
+		memoryVO.setUnit("%");
+		
+		trafficVO.setData(trafficList);
+		trafficVO.setName("TRAFFIC 사용량");
+		trafficVO.setType("line");
+		trafficVO.setValueDecimal(1);
+		trafficVO.setUnit("bps");
+		
+		
+		
+		Map<Object,Object> map = new HashMap<Object, Object>();
+		map.put("datasets", Arrays.asList(cpuVO,diskVO,memoryVO,trafficVO));
+		map.put("xData", dateList);
+		return map;
+	}
 	
 
 }

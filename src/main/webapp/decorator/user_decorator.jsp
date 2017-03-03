@@ -29,8 +29,9 @@ background-color: #1f2123;
 }
 </style>
 <html>
-
-<script src="<%=request.getContextPath()%>/resources/js/jquery.js"></script>
+<!-- jQuery -->
+    <script src="<%=request.getContextPath()%>/resources/vendor/jquery/jquery.min.js"></script>
+	<script src="<%=request.getContextPath()%>/resources/js/jquery.js"></script>
     <script src="<%=request.getContextPath()%>/resources/js/jquery-3.1.1.js"></script>
     <script src="<%=request.getContextPath()%>/resources/js/jquery-3.1.1.min.js"></script>
 
@@ -282,8 +283,8 @@ background-color: #1f2123;
 
 
    
-    <!-- jQuery -->
-    <script src="<%=request.getContextPath()%>/resources/vendor/jquery/jquery.min.js"></script>
+<!--     jQuery -->
+<%--     <script src="<%=request.getContextPath()%>/resources/vendor/jquery/jquery.min.js"></script> --%>
 
     <!-- Bootstrap Core JavaScript -->
     <script src="<%=request.getContextPath()%>/resources/vendor/bootstrap/js/bootstrap.min.js"></script>
