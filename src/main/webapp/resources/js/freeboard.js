@@ -1,13 +1,14 @@
-function fbList_go(){
-	document.formm.action = "fbList";
+function fbList_go(page){
+
+	document.formm.action = "fbList?tpage="+page;
 	document.formm.submit();
 }
 
-function go_fbWrite(){
-	document.formm.action = "fbUpdate";
+function go_fbWrite(page){
+	document.formm.action = "fbUpdate?tpage="+page;
     document.formm.submit();
 }
-function go_fbDelete(){
-	document.formm.action = "fbDelete";
+function go_fbDelete(page){
+	document.formm.action = "fbDelete?tpage="+page;
     document.formm.submit();
 }

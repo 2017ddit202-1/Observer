@@ -125,7 +125,7 @@
 					<tr>
 						<td>${fbList.fb_seq}</td>
 						<td>${fbList.fb_id}</td>
-						<td><a href="<%=request.getContextPath() %>/fb/fbDetail?fb_seq=${fbList.fb_seq}">${fbList.fb_subject}</a></td>
+						<td><a href="<%=request.getContextPath() %>/fb/fbDetail?fb_seq=${fbList.fb_seq}&tpage=${tpage}">${fbList.fb_subject}</a></td>
 						<td>${fbList.fb_content}</td>
 						<td><fmt:formatDate value="${fbList.fb_date}" pattern="yyyy-mm-dd"/></td>
 						<td>${fbList.fb_cnt}</td>
