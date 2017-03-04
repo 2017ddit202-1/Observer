@@ -7,8 +7,8 @@
 .highcharts-credits{
 display:none;
 }
-#btnZxc{
-	margin-left: 85%;
+#btnHo{
+	margin: 0 0 2% 90%;
 }	
 .raphael-group-124-creditgroup, .raphael-group-30-toolbar-group10{
 display:none;
@@ -63,4 +63,23 @@ display:none;
 	float:right;
 	margin-top: 4%;
     margin-right: 12%;	
+}
+
+#page-wrapper5 {
+	text-align:center;
+    position: inherit;
+    margin: 0 0 0 250px;
+    padding: 65px 30px;
+     box-shadow: 5px 5px 5px lightgray;
+     border-radius: 10px; 
+    padding: 0 15px;
+/*     min-height: 568px; */
+    background-color: white;
+    margin-left: 10%;
+    width: 79%;
+    height: 360px;
+    margin-bottom: 1.5%;
+}
+.highcharts-root {
+	margin-top:1%;
 }

@@ -99,11 +99,11 @@ function tt(){
         Highcharts.chart('container', {
             chart: {
                 type: 'spline',
-                height:400,
-                width:1000,
-                borderColor: '#EBBA95',
-                borderRadius: 20,
-                borderWidth: 5
+                height:350,
+                width:1200,
+//                borderColor: '#EBBA95',
+//                borderRadius: 20,
+//                borderWidth: 5
             },
             title: {
                 text: 'CPU Total'
@@ -118,6 +118,13 @@ function tt(){
                       align: 'center'
             	  }
             },
+            plotOptions: {
+		        series: {
+		            marker: {
+		                enabled: false
+		            }
+		        }
+		    },
             yAxis: {
                 title: {
                     text: 'Percent (%)'
@@ -169,11 +176,11 @@ function tt(){
     Highcharts.chart('container2', {
         chart: {
             type: 'area',
-            height:400,
-            width:1000,
-            borderColor: '#EBBA95',
-            borderRadius: 20,
-            borderWidth: 5
+            height:350,
+            width:1200,
+//            borderColor: '#EBBA95',
+//            borderRadius: 20,
+//            borderWidth: 5
         },
         title: {
             text: 'CPU 사용량'
@@ -242,11 +249,11 @@ function HighCharts3(data) {
       Highcharts.chart('container3', {
           chart: {
               type: 'spline',
-              height:400,
-              width:1000,
-              borderColor: '#EBBA95',
-              borderRadius: 20,
-              borderWidth: 5
+              height:350,
+              width:1200,
+//              borderColor: '#EBBA95',
+//              borderRadius: 20,
+//              borderWidth: 5
           },
           title: {
               text: 'CPU Idle'
@@ -261,6 +268,13 @@ function HighCharts3(data) {
                 align: 'center'
       	  }
           },
+          plotOptions: {
+		        series: {
+		            marker: {
+		                enabled: false
+		            }
+		        }
+		    },
           yAxis: {
               title: {
                   text: 'Percent (%)'

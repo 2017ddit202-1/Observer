@@ -27,6 +27,10 @@ color: white;
 #side-menu li a:FOCUS {
 background-color: #1f2123;
 }
+#page-wrapper{
+bottom:0 !important;
+height:auto !important;
+}
 </style>
 <html>
 <!-- jQuery -->
@@ -311,10 +315,6 @@ background-color: #1f2123;
 
 
 
-   
-
-    <%-- <!-- jQuery -->
-    <script src="<%=request.getContextPath()%>/resources/vendor/jquery/jquery.min.js"></script> --%>
 
     <!-- Bootstrap Core JavaScript -->
     <script src="<%=request.getContextPath()%>/resources/vendor/bootstrap/js/bootstrap.min.js"></script>
