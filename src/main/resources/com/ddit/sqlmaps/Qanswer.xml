@@ -16,7 +16,11 @@
 	<select id="selectQansVO" parameterClass="int" resultClass="qans">
 		select * from qanswer where qans_qseq=#qans_qseq#
 	</select>
-
-
+		
+		<update id="updateQansVO" parameterClass="qans">
+			update qanswer 
+	   		set qans_content=#qans_content#
+	   		where qans_qseq=#qans_qseq#
+		</update>
     
     </sqlMap>

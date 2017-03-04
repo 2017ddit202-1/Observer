@@ -30,7 +30,7 @@ public class QanswerDAO_iBatis implements QanswerDAO{
 	
 	@Override
 	public void updateQanswer(QanswerVO QanswerVO) throws SQLException {
-		// TODO Auto-generated method stub
+		client.update("updateQansVO", QanswerVO);
 		
 	}
 

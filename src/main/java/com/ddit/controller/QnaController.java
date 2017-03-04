@@ -263,9 +263,14 @@ public class QnaController {
 		qanswerVO.setQans_id(loginUser);
 		qanswerVO.setQans_content(content);
 		qanswerVO.setQans_qseq(Integer.parseInt(seqNum));
-
+		
 		try {
-			qanswerService.insertQanswer(qanswerVO);
+			QanswerVO qanswer = qanswerService.selectQanswer(Integer.parseInt(seqNum));
+			if(qanswer != null){
+				qanswerService.updateQanswer(qanswerVO);
+			}else{
+				qanswerService.insertQanswer(qanswerVO);
+			}
 
 			qnaVO = qnaService.getQna(Integer.parseInt(seqNum));
 			qnaVO.setQna_check(1);
@@ -275,9 +280,8 @@ public class QnaController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
-		System.out.println(loginUser);
-		System.out.println(content);
+		
+		
 		model.addAttribute("qansVO", qanswerVO2);
 		URLEncoder.encode(content);
 
