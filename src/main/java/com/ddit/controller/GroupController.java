@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.ddit.dto.MemberVO;
 import com.ddit.service.MemberServiceImpl;
 
-
 @Controller
 @RequestMapping("/group")
 public class GroupController {
@@ -26,43 +25,56 @@ public class GroupController {
 	public void setMemberService(MemberServiceImpl memberService) {
 		this.memberService = memberService;
 	}
-	
-	//라이선스가 1인 리스트만 보여주는 회원 등록하는 리스트 보여줌
+
+	// 라이선스가 1인 리스트만 보여주는 회원 등록하는 리스트 보여줌
 	@RequestMapping("/meminvalid")
-	public String groupList(HttpSession session, HttpServletRequest request){
-		String url="group/groupInvalid";
-		
+	public String groupList(HttpSession session, HttpServletRequest request) {
+		String url = "group/groupInvalid";
+
+		String key = "";
+		String tpage = request.getParameter("tpage");
+
+		if (tpage == null) {
+			tpage = "1";
+		} else if (tpage.equals("")) {
+			tpage = "1";
+		}
+
 		ArrayList<MemberVO> list = new ArrayList<MemberVO>();
-		ArrayList<MemberVO> LiceList = new ArrayList<MemberVO>();
+		String paging = null;
+
 		try {
-			list= memberService.selectMemberAll(); 
+			list = memberService.groupmember(Integer.parseInt(tpage), "1");
+			paging = memberService.pageNumberlice(Integer.parseInt(tpage), "1");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
-		if(list != null){
-			for(MemberVO member : list){
-				if((member.getMem_id().equals("SUADMIN1"))){
-					continue;
-				}
-				if((member.getMem_group_lice().equals("1"))){
-					LiceList.add(member);				}
-			}
-		}
-		
-		request.setAttribute("LiceList", LiceList);
-		
+
+		request.setAttribute("LiceList", list);
+		int n = list.size();
+		request.setAttribute("memberListSize", n);
+		request.setAttribute("paging", paging);
+
 		return url;
 	}
-	
-	//회원관리 리스트 보여줌
+
+	// 회원관리 리스트 보여줌
 	@RequestMapping("/groupList")
-	public String groupmemList(HttpSession session, HttpServletRequest request){
-		String url="group/groupList";
+	public String groupmemList(HttpSession session, HttpServletRequest request) {
+		String url = "group/groupList";
 		String adminid = (String) session.getAttribute("loginUser");
-		String Lice=null;
+		String Lice = null;
 		ArrayList<MemberVO> memberList = new ArrayList<MemberVO>();
-		
+
+		String key = "";
+		String tpage = request.getParameter("tpage");
+
+		if (tpage == null) {
+			tpage = "1";
+		} else if (tpage.equals("")) {
+			tpage = "1";
+		}
+
 		MemberVO adminVO = new MemberVO();
 		try {
 			adminVO = memberService.selectMember(adminid);
@@ -70,45 +82,65 @@ public class GroupController {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
-		
-		if(Lice !=null){
+		String paging = null;
+		String loginUser = (String) session.getAttribute("loginUser");
+		MemberVO mem = new MemberVO();
+		mem.setMem_group_lice(Lice);
+		mem.setMem_id(loginUser);
+		if (Lice != null) {
 			try {
-				memberList = memberService.groupmember(Lice);
+
+				memberList = memberService.groupmemberlist(
+						Integer.parseInt(tpage), mem);
+				paging = memberService.pageNumbergrlice(
+						Integer.parseInt(tpage), mem);
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
 		}
-		
+
 		request.setAttribute("groupList", memberList);
+		int n = memberList.size();
+		request.setAttribute("memberListSize", n);
+		request.setAttribute("paging", paging);
 		return url;
 	}
-	
-	//그룹에서 회원 해제
-	@RequestMapping(value="/memDelete",method=RequestMethod.POST)
-	public String memDelete(HttpSession session, HttpServletRequest request){
-		String url="group/groupList";
+
+	// 그룹에서 회원 해제
+	@RequestMapping(value = "/memDelete", method = RequestMethod.POST)
+	public String memDelete(HttpSession session, HttpServletRequest request) {
+		String url = "group/groupList";
 		String adminid = (String) session.getAttribute("loginUser");
 		String meminvalid = request.getParameter("member");
 		ArrayList<String> invalidList = new ArrayList<String>();
 		ArrayList<MemberVO> memberList = new ArrayList<MemberVO>();
-		StringTokenizer st = new StringTokenizer( meminvalid, "," );
+		StringTokenizer st = new StringTokenizer(meminvalid, ",");
 		MemberVO adminVO = new MemberVO();
 		MemberVO invalidVO = new MemberVO();
-		String Lice=null;
-		while( st.hasMoreTokens() ){
-			invalidList.add(st.nextToken());
+		String Lice = null;
+		
+		String key = "";
+		String tpage = request.getParameter("tpage");
+
+		if (tpage == null) {
+			tpage = "1";
+		} else if (tpage.equals("")) {
+			tpage = "1";
 		}
 		
+		while (st.hasMoreTokens()) {
+			invalidList.add(st.nextToken());
+		}
+
 		try {
 			adminVO = memberService.selectMember(adminid);
 			Lice = adminVO.getMem_group_lice();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
-		if(Lice !=null){
-			for(String member : invalidList){
+
+		if (Lice != null) {
+			for (String member : invalidList) {
 				invalidVO.setMem_id(member);
 				invalidVO.setMem_group_lice("1");
 				try {
@@ -119,44 +151,66 @@ public class GroupController {
 			}
 		}
 		
-		if(Lice !=null){
+		String paging = null;
+		String loginUser = (String) session.getAttribute("loginUser");
+		MemberVO mem = new MemberVO();
+		mem.setMem_group_lice(Lice);
+		mem.setMem_id(loginUser);
+		
+		if (Lice != null) {
 			try {
-				memberList = memberService.groupmember(Lice);
+				memberList = memberService.groupmemberlist(
+						Integer.parseInt(tpage), mem);
+				paging = memberService.pageNumbergrlice(
+						Integer.parseInt(tpage), mem);
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
+			
 		}
-		
 		request.setAttribute("groupList", memberList);
+		int n = memberList.size();
+		request.setAttribute("memberListSize", n);
+		request.setAttribute("paging", paging);
+		
 		return url;
 	}
-	
-	
-	//그룹에서 회원 등록
-	@RequestMapping(value="/memList",method=RequestMethod.POST)
-	public String groupInvalid(HttpSession session, HttpServletRequest request){
-		String url="group/groupList";
+
+	// 그룹에서 회원 등록
+	@RequestMapping(value = "/memList", method = RequestMethod.POST)
+	public String groupInvalid(HttpSession session, HttpServletRequest request) {
+		String url = "group/groupList";
 		String adminid = (String) session.getAttribute("loginUser");
 		String meminvalid = request.getParameter("member");
 		ArrayList<String> invalidList = new ArrayList<String>();
 		ArrayList<MemberVO> memberList = new ArrayList<MemberVO>();
-		StringTokenizer st = new StringTokenizer( meminvalid, "," );
+		StringTokenizer st = new StringTokenizer(meminvalid, ",");
 		MemberVO adminVO = new MemberVO();
 		MemberVO invalidVO = new MemberVO();
-		String Lice=null;
-		while( st.hasMoreTokens() ){
+		String Lice = null;
+
+		String key = "";
+		String tpage = request.getParameter("tpage");
+
+		if (tpage == null) {
+			tpage = "1";
+		} else if (tpage.equals("")) {
+			tpage = "1";
+		}
+
+		while (st.hasMoreTokens()) {
 			invalidList.add(st.nextToken());
 		}
-		
+
 		try {
 			adminVO = memberService.selectMember(adminid);
 			Lice = adminVO.getMem_group_lice();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
-		if(Lice !=null){
-			for(String member : invalidList){
+
+		if (Lice != null) {
+			for (String member : invalidList) {
 				invalidVO.setMem_id(member);
 				invalidVO.setMem_group_lice(Lice);
 				try {
@@ -166,17 +220,28 @@ public class GroupController {
 				}
 			}
 		}
+
+		String paging = null;
+		String loginUser = (String) session.getAttribute("loginUser");
+		MemberVO mem = new MemberVO();
+		mem.setMem_group_lice(Lice);
+		mem.setMem_id(loginUser);
 		
-		if(Lice !=null){
+		if (Lice != null) {
 			try {
-				memberList = memberService.groupmember(Lice);
+				memberList = memberService.groupmemberlist(
+						Integer.parseInt(tpage), mem);
+				paging = memberService.pageNumbergrlice(
+						Integer.parseInt(tpage), mem);
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
+			
 		}
-		
 		request.setAttribute("groupList", memberList);
-		
+		int n = memberList.size();
+		request.setAttribute("memberListSize", n);
+		request.setAttribute("paging", paging);
 		return url;
 	}
 

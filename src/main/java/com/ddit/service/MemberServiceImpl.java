@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import com.ddit.dto.MemberVO;
 import com.ddit.dto.PositionListVO;
+import com.ddit.dto.VWmemPosVO;
 import com.ddit.ibatis.MemberDAO_iBatis;
 
 public class MemberServiceImpl implements MemberService{
@@ -139,6 +140,28 @@ public class MemberServiceImpl implements MemberService{
 		int result = -1;
 		result = memberIbatis.joinKeyUp(mem_id);
 		return result;
+	}
+
+	public ArrayList<MemberVO> groupmember(int tpage, String lice)
+			throws SQLException {
+		return memberIbatis.groupmember(tpage, lice);
+	}
+
+	@Override
+	public String pageNumberlice(int tpage, String lice) throws SQLException {
+		return memberIbatis.pageNumberlice(tpage, lice);
+	}
+
+	@Override
+	public ArrayList<MemberVO> groupmemberlist(int tpage, MemberVO lice)
+			throws SQLException {
+		return memberIbatis.groupmemberlist(tpage, lice);
+	}
+
+	@Override
+	public String pageNumbergrlice(int tpage, MemberVO lice) throws SQLException {
+		return memberIbatis.pageNumbergrlice(tpage, lice);
+
 	}
 
 

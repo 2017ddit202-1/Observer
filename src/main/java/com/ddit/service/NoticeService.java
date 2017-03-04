@@ -16,5 +16,6 @@ public interface NoticeService {
 	public void insertNotice(NoticeVO noticeVO) throws SQLException;
 	
 	public ArrayList<NoticeVO> listAllNotice(String lice) throws SQLException;
-	
+	public ArrayList<NoticeVO> Noticelist(int tpage, String lice) throws SQLException; 
+	public String totalNoticelist(int tpage, String lice) throws SQLException;
 }

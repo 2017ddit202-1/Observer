@@ -3,6 +3,7 @@ package com.ddit.controller;
 import java.sql.SQLException;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,12 +47,24 @@ public class NoticeController {
 	
 	
 	@RequestMapping("noticeList")
-	public String noticeList(HttpSession session,Model model){
+	public String noticeList(HttpSession session,Model model,HttpServletRequest request){
+		
 		String url = "notice/notice";
 		String code = "";
 		String id = (String) session.getAttribute("loginUser");
 		String lice = null;
 		String memberGroup = null;
+		
+		String key = "";
+		String tpage = request.getParameter("tpage");
+
+		if (tpage == null) {
+			tpage = "1";
+		} else if (tpage.equals("")) {
+			tpage = "1";
+		}
+		
+		String paging = null;
 		
 		MemberVO memberVO = new MemberVO();
 		MemberGroupVO memberGroupVO = new MemberGroupVO();
@@ -62,7 +75,8 @@ public class NoticeController {
 			memberVO = memberService.selectMember(id);
 			lice = memberVO.getMem_group_lice();
 			if(!(lice.equals("1"))){
-				noticeList = noticeService.listAllNotice(lice);
+				noticeList = noticeService.Noticelist(Integer.parseInt(tpage), lice);
+				paging = noticeService.totalNoticelist(Integer.parseInt(tpage),lice);
 			}
 			
 		} catch (SQLException e) {
@@ -70,7 +84,11 @@ public class NoticeController {
 			e.printStackTrace();
 		}
 		
-		model.addAttribute("noticeList",noticeList);
+		request.setAttribute("noticeList", noticeList);
+		int n = noticeList.size();
+		request.setAttribute("memberListSize", n);
+		request.setAttribute("paging", paging);
+		
 		return url;
 	}
 	

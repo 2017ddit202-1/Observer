@@ -94,9 +94,22 @@
 
 	<select id="groupmember" parameterClass="str" resultClass="member">
 		select *
-		from member where mem_group_lice=#mem_group_lice#
+		from member where mem_group_lice=#mem_group_lice# and mem_id != 'SUADMIN1'
 	</select>
-
+	
+	<select id="totalgroupmember" parameterClass="str" resultClass="int">
+		select count(*) from member where mem_group_lice=#mem_group_lice# and mem_id != 'SUADMIN1'
+	</select>
+	
+	<select id="groupmemberlist" parameterClass="member" resultClass="member">
+		select *
+		from member where mem_group_lice=#mem_group_lice# and mem_id != 'SUADMIN1' and mem_id !=#mem_id#
+	</select>
+	
+	<select id="totalgroupmemberlist" parameterClass="member" resultClass="int">
+		select count(*) from member where mem_group_lice=#mem_group_lice# and mem_id != 'SUADMIN1' and mem_id !=#mem_id#
+	</select>
+		
 	<select id="memberCnt" resultClass="int">
 		select count(mem_id) from
 		member
@@ -122,6 +135,7 @@
 		select count(atrt_id) from
 		authority
 	</select>
+	
 
 </sqlMap>  
 

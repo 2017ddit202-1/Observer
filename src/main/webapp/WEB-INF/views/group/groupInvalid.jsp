@@ -24,7 +24,7 @@
     background-color: white;
     margin-left: 10%;
     width: 79%;
-    height: 700px;
+    height: 760px;
 }
 </style>
 
@@ -92,6 +92,9 @@
 						<td>${memList.mem_email}</td>
 					</tr>
 				</c:forEach>
+				<tr>
+					<td colspan="3" style="text-align: center;">${paging}</td>
+				</tr>
 			</tbody>
 		</table>
 		</form>
