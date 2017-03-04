@@ -5,7 +5,6 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
-<script src="<%=request.getContextPath()%>/resources/js/freeboard.js"></script>
 
 
 <style>
@@ -24,6 +23,7 @@ text-align: center;
 }
 </style>
 
+<script src="<%=request.getContextPath()%>/resources/js/freeboard.js"></script>
 
 <div style=" height: auto; ">
 
@@ -35,8 +35,7 @@ text-align: center;
 		<h4> FreeBoard WRITE</h4>
 	</div>
 	<br><br><br>
-	
-
+	 
 	
 	<form id="formm" name="formm" method="post">
 <table style="width: 1000px;" align="center">
@@ -59,6 +58,7 @@ text-align: center;
 </tr>
 
 
+
 </table>
 <div style="text-align: center;">
 <textarea name="fb_content" style="border:0; overflow-y:hidden; background:clear; resize: none; width: 1000px; height: 400px; outline: none;">${fbVO.fb_content}</textarea>
@@ -67,11 +67,12 @@ text-align: center;
 	<input type="hidden" name="fb_fbseq" value="${fbVO.fb_seq}" id="fb_fbseq">
 
 <div style="text-align: center;">
-        <button type="button" id="btnContactUs" onclick="fbList_go()">뒤로가기</button>
-		<button type="button" id="btnContactUs" onclick="go_fbWrite()">수정하기</button>
-		<button type="button" id="btnContactUs" onclick="go_fbDelete()">삭제하기</button>
+        <button type="button" id="btnContactUs" onclick="fbList_go(${tpage})">뒤로가기</button>
+		<button type="button" id="btnContactUs" onclick="go_fbWrite(${tpage})">수정하기</button>
+		<button type="button" id="btnContactUs" onclick="go_fbDelete(${tpage})">삭제하기</button>
 </div>
 <br><br><br>
+
 
 <div style="width: 1000px; background-color: #e4eaf2;  margin: auto; border-top: 2px solid #c3ced9;"> &nbsp;&nbsp;&nbsp;&nbsp;>>댓글  <span style="width: 50px; background-color: red;"> 1개</span>
 </div>

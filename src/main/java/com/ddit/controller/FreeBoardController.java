@@ -71,6 +71,7 @@ public class FreeBoardController {
 		model.addAttribute("fbList",fbList);
 		model.addAttribute("fbListSize",size);
 		model.addAttribute("paging",paging);
+		model.addAttribute("tpage",tpage);
 		session.getAttribute("loginUser");
 		
 		return url;		
@@ -107,7 +108,7 @@ public class FreeBoardController {
 	public String detailFb(HttpSession session , HttpServletRequest request , HttpServletResponse response,
 							Model model){
 		String url = "/fbDetail";
-	
+		String tpage = request.getParameter("tpage"); 
 		String fb_seq = request.getParameter("fb_seq");
 		FreeBoardVO fbVO = null;
 		
@@ -122,6 +123,7 @@ public class FreeBoardController {
 			e.printStackTrace();
 		}
 		model.addAttribute("fbVO",fbVO);
+		model.addAttribute("tpage",tpage);
 		return url;
 		
 	}
@@ -132,7 +134,7 @@ public class FreeBoardController {
 		int fb_seq = Integer.parseInt(request.getParameter("fb_fbseq"));
 		int result = 0;
 		ArrayList<FreeBoardVO> fbList = null;
-		
+		String tpage = request.getParameter("tpage"); 
 		try {
 			result = freeBoardServiceImpl.deleteFb(fb_seq);
 			fbList = freeBoardServiceImpl.listAllFb();
@@ -143,6 +145,7 @@ public class FreeBoardController {
 		
 //		request.setAttribute("fbList", fbList);
 		model.addAttribute("fbList",fbList);
+		model.addAttribute("tpage",tpage);
 		
 		return url;
 	}
@@ -152,7 +155,7 @@ public class FreeBoardController {
 		String url = "redirect:/fb/fbList";
 		
 		FreeBoardVO fbVO = new FreeBoardVO();
-		
+		String tpage = request.getParameter("tpage"); 
 		fbVO.setFb_id((String)session.getAttribute("loginUser"));
 		fbVO.setFb_subject(request.getParameter("fb_subject"));
 		fbVO.setFb_content(request.getParameter("fb_content"));
@@ -170,6 +173,7 @@ public class FreeBoardController {
 		}
 		
 		model.addAttribute("fbList",fbList);
+		model.addAttribute("tpage",tpage);
 //		session.getAttribute("loginUser");
 		
 		return url;
