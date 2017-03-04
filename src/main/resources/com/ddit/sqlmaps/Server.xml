@@ -59,6 +59,10 @@
  	<select id="serverCode" parameterClass="str" resultClass="server">
  		select * from server where server_ip=#server_ip#
  	</select>
+ 	
+ 	<select id="summaryServer" parameterClass="str" resultClass="server">
+ 		select * from server where server_ip=#server_ip#
+ 	</select>
  
  
  </sqlMap>   

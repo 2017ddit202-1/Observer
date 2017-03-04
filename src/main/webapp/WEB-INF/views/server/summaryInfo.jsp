@@ -16,18 +16,51 @@
       <input type="button" id="btntotal" class="btnAsd" value="1시간" onclick="ss()">
       <div id="loader"><img id="lodingImg" src="<%=request.getContextPath() %>/resources/img/loader.gif"></div>
 	</form>
+<div id="noticeInfo"></div>	
+<div id="serverInfo"></div>
 <div id="container"></div>
 <script type="text/javascript">
 var inter="";
 var inter2="";
 $(function(){
-	inter  = setInterval("tt()",3000);
+// 	inter  = setInterval("tt()",3000);
 	 $("#loader").show();
 	 $("#btnZxc").hide();
 	 $("#btntotal").hide();
-// 	tt();
+	tt();
+	serverInfo();
 	
 });
+
+function serverInfo(){
+		$.ajax({
+			url:"<%=request.getContextPath()%>/server/serverInfo",
+			type:'post',
+			dataType:'json',
+			success:function(data){
+				var tb = '<table>'
+							+'<tr style="border:1px solid red;">'
+							+'<td style="border:1px solid red;">운영체제</td>'
+							+'<td>'+data.server_os_name+'</td>'
+							+'</tr>'
+							+'<tr style="border:1px solid red;">'
+							+'<td style="border:1px solid red;">서버명</td>'
+							+'<td>'+data.server_host+'</td>'
+							+'</tr>'
+							+'<tr style="border:1px solid red;">'
+							+'<td style="border:1px solid red;">IP 주소 </td>'
+							+'<td>'+data.server_ip+'</td>'
+							+'</tr>'
+							+'<tr style="border:1px solid red;">'
+							+'<td style="border:1px solid red;">BIT</td>'
+							+'<td>'+data.server_os_support+'</td>'
+							+'</tr>'
+							+'</table>';
+					$('#serverInfo').html(tb);
+			}
+	});
+};
+
 
 $('#container').bind('mousemove touchmove touchstart', function (e) {
     var chart,
@@ -70,6 +103,7 @@ function syncExtremes(e) {
 }
 
 function tt() {
+	$('#container').empty();
 	$.ajax({
 		url:"<%=request.getContextPath()%>/server/summaryPage",
 		type:'post',

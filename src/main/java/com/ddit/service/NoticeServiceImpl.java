@@ -71,5 +71,4 @@ public class NoticeServiceImpl implements NoticeService {
 	public String totalNoticelist(int tpage, String lice) throws SQLException {	
 		return noticeDAO.totalNoticelist(tpage, lice);
 	}
-
 }

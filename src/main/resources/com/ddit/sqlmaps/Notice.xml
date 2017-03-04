@@ -21,7 +21,5 @@
 <select id="totalNoticelist" parameterClass="str" resultClass="int">
 		select count(*) from notice where notice_lice=#notice_lice#
 </select>
-
-
  </sqlMap>
  
