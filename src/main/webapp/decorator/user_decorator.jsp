@@ -48,7 +48,6 @@ background-color: #1f2123;
 
    $(document).ready(function() {
 	   var s = location.href;
-	 
       wsocket = new SockJS("http://"+document.domain+":8181/observer/test/authority");
       wsocket.onopen;
       wsocket.onmessage = function appendMessage(msg) {
@@ -56,7 +55,7 @@ background-color: #1f2123;
       swal("member leave!", msg.data,"success"),
     	   
       $('.confirm').click(function(){
-    	  
+    	  alert("확인클릭후");
     	  if(s=="http://"+document.domain+":8181/observer/atrt/authorityReq?" || s=="http://"+document.domain+":8181/observer/user/mypage"){
     		  window.location.href="<%=request.getContextPath()%>/user/mypage";
   		} 

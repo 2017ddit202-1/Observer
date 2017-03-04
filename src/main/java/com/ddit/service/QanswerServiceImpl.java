@@ -23,8 +23,7 @@ public class QanswerServiceImpl implements QanswerService{
 
 	@Override
 	public void updateQanswer(QanswerVO QanswerVO) throws SQLException {
-		// TODO Auto-generated method stub
-		
+		qanswerDAO.updateQanswer(QanswerVO);
 	}
 
 	@Override
@@ -33,6 +32,7 @@ public class QanswerServiceImpl implements QanswerService{
 		return 0;
 	}
 
+	
 	@Override
 	public QanswerVO selectQanswer(int qans_qseq) throws SQLException {
 		QanswerVO qnasVO = (QanswerVO)qanswerDAO.selectQansVO(qans_qseq);

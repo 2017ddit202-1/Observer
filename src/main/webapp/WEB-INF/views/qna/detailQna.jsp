@@ -92,7 +92,7 @@ text-align: center;
 
 
 
-<table style="width: 1000px;" align="center">
+		<table style="width: 1000px;" align="center">
 				<c:if test="${qansVO.qans_qseq != null }">
 					<tr id="detail_table_tr">
 						<td style="background-color: #e4eaf2; border-top: 1px solid #c3ced9; width: 90px;">답변 내용</td>
@@ -103,49 +103,15 @@ text-align: center;
 		<br>
 
 
-
-
-
-
-
-
-<%-- 
-<table style="width: 1000px;" align="center">
-<c:choose>
-				<c:when test="${qansVO.qans_qseq != null }">
-					<tr id="detail_table_tr">
-						<td style="background-color: #e4eaf2; border-top: 1px solid #c3ced9; width: 90px;">답변 내용</td>
-						<td><div id="sss">${qansVO.qans_content}</div></td>
-					</tr>
-				</c:when>
-				<c:otherwise>
-					<tr id="detail_table_tr">
-
-						<td style="background-color: #e4eaf2; border-top: 1px solid #c3ced9; width: 90px;">답변 내용</td>
-						<td>
-							<div id="sss"></div>
-						</td>
-					</tr>
-				</c:otherwise>
-			</c:choose>
-
-		</table>
- --%>
-
-
-
 		<!--  -->
 		<div class="container" id="hiddenDiv" style="display: none">
 			<form>
 				<div class="form-group">
-				<!-- 	<label for="email">답변내용:</label> -->
-				
-				
 				
 				<table style="width: 1000px;" align="center">
 					<tr id="detail_table_tr">
 						<td style="background-color: #e4eaf2; border-top: 1px solid #c3ced9; width: 90px;">답변 내용</td>
-						<td><textarea rows="10" cols="100" name="email"
+						<td><textarea rows="10" cols="100" name="textArea"
 						placeholder="답변 내용 작성하기" style="width: 901px; border:0; overflow-y:hidden; background:clear; resize: none; height: 200px; outline: none;"></textarea></td>
 					</tr> 
 				</table>
@@ -197,108 +163,8 @@ text-align: center;
 </div>
 
 
-
-
-
-
-
-
-
-
-
-
 <!-- ///////////////////////////////////////////////////////////////////////////////// -->
 
-
-	<%-- <h1>detail page</h1>
-	<h2>1:1 고객 게시판</h2>
-	<h3>고객님의 질문에 대해서 운영자가 1:1 답변을 드립니다.</h3>
-	<form name="formm" method="post">
-		<table id="notice">
-			<tr>
-				<th>제목</th>
-				<td>${qnaVO.qna_subject}</td>
-			</tr>
-			작성자 : ${qnaVO.qna_id}
-			<tr>
-				<th>등록일</th>
-				<td><fmt:formatDate value="${qnaVO.qna_date}" type="date" /></td>
-			</tr>
-			<tr>
-				<th>질문내용</th>
-				<td>${qnaVO.qna_content}
-				
-			</tr>
-			<!--  -->
-			<c:choose>
-				<c:when test="${qansVO.qans_qseq != null }">
-					<tr>
-						<th>답변 내용</th>
-						<td><div id="sss">${qansVO.qans_content}</div></td>
-					</tr>
-				</c:when>
-				<c:otherwise>
-					<tr>
-
-						<th>답변 내용</th>
-						<td>
-							<div id="sss"></div>
-						</td>
-					</tr>
-				</c:otherwise>
-			</c:choose>
-
-		</table>
-
-		<!--  -->
-		<div class="container" id="hiddenDiv" style="display: none">
-			<form>
-				<div class="form-group">
-					<label for="email">답변내용:</label>
-				
-					<textarea rows="10" cols="100" name="email"
-						placeholder="Enter answer"></textarea>
-				</div>
-				<button type="button" id="btn" class="btn btn-default btn-block"
-					onclick="qAnswer_go()">답변등록</button>
-			</form>
-		</div>
-		<!--  -->
-
-		<div class="clear"></div>
-
-		<div id="buttons" style="float: right">
-			<input type="button" value="목록보기" class="submit" onclick="list_go()">
-			<c:choose>
-				<c:when test="${loginUserVO.mem_id eq qnaVO.qna_id}">
-					<input type="button" value="수정" class="submit"
-						onclick="update_go()">
-					<input type="button" value="삭제" class="submit"
-						onclick="delete_go()">
-				</c:when>
-				<c:when
-					test="${loginUserVO.mem_group_lice eq qnaWriterVO.mem_group_lice}">
-							
-					<sec:authorize access="hasAnyRole('ROLE_ADMIN','ROLE_SUPER')">
-						<input type="button" value="답변하기" id="forget">
-					</sec:authorize>
-				</c:when>
-				
-				
-				<c:when
-					test="${loginUserVO.mem_id == 'SUADMIN1'}">
-							
-					<sec:authorize access="hasAnyRole('ROLE_ADMIN','ROLE_SUPER')">
-						<input type="button" value="답변하기" id="forget">
-					</sec:authorize>
-				</c:when>
-			</c:choose>
-
-
-
-		</div>
-	</form>
- --%>
 
 	<script>
 	function modify_go(){
@@ -324,10 +190,7 @@ text-align: center;
 		document.formm.submit();
 	}
 	
-	
-	
-	
-	   $(document).ready(function() {
+	$(document).ready(function() {
 		      $('#forget').click(function() {
 		          $("#hiddenDiv").show();
 		         })
@@ -343,10 +206,11 @@ text-align: center;
 			       	type : "post",
 			       	dataType:'text',
 			       	data : ({
-			       		content:$("textarea[name=email]").val(),
+			       		content:$("textarea[name=textArea]").val(),
 			       		seqNum:${param.qna_qseq} }),
 			       	success:function(data){
 			       		document.getElementById("sss").innerHTML = data;
+			       		$('#hiddenDiv2').show();
 			       	}
 			       	
 			});
