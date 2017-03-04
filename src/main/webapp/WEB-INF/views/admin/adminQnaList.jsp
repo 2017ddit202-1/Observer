@@ -71,7 +71,14 @@
     width: 79%;
     height: 870px;
 }
+#DeleteBtn:hover {
+	background-color: #789c99;
+	border-color: #789c99;
+}
 
+#DeleteBtn {
+	background-color: #87adab
+}
 
 </style>
 
@@ -132,17 +139,23 @@ function check() {
 	
 		<!-- 서치 -->
 	<div style="width: 1000px; float: right; text-align: center;">
-		<form name="search" method="post">
+		<form name="search" method="post" style="margin-left: 21%;">
 
 			<!-- //size="1"->1개만선택가능 -->
-			<select name="keyField" size="1" style="height: 22px;">
+			<select name="keyField" size="1" style="height: 22px; margin-top: 2px;">
 				<option value="admin_seq">게시글번호</option>
 				<option value="ad_id">작성자</option>
 				<option value="ad_subject">제목</option>
 			</select> <input type="text" size="16" name="keyWord" id="keyWord"
 				style="height: 24px;">
 
-			<button class="button button2" onClick="check()">검색</button>
+			<!-- <button class="button button2" onClick="check()">검색</button> -->
+			
+			
+			<button class="btn btn-primary btn-sm" type="button" id="DeleteBtn" onClick="check()"
+												style="border-color: #87adab; width: 64px;">검색</button>
+			
+			
 			<input type="hidden" name="page" value="0">
 		</form>
 	</div>
@@ -162,7 +175,7 @@ function check() {
 	
 	<sec:authorize access="hasRole('ROLE_SUPER')">
 	<div class="container">
-  <div class="btn-group">   
+  <div class="btn-group" style="margin-top: -25%;margin-left: 4%;">   
     <button type="button" class="btn btn-primary" onclick="location.href='<%=request.getContextPath()%>/admin/nswerN '">답변진행중</button>
     <button type="button" class="btn btn-primary" onclick="location.href='<%=request.getContextPath()%>/admin/nswerY '">답변처리완료</button>
   </div>
@@ -172,8 +185,10 @@ function check() {
 <br>
 	
 	
-	<div class="container">
-		<i class="fa fa-bullhorn" aria-hidden="true"></i> 총 게시글은
+	
+	
+	<div class="container" style="margin-top: -3%;">
+		<i class="fa fa-question" aria-hidden="true"></i> 총 게시글은
 		[${qnaListSize }]개 입니다.
 		<table class="table table-hover" style="width: 1000px;" align="center"
 			id="articleTable">

@@ -76,19 +76,17 @@
    
    function nameCheck(){
 	   
-		   var input = $("#id_mem").val();
-		   alert(input);
+		   var input = $("#id_mem").val().length;
+		
+		  if(input <2){
+			  document.getElementById("nameCheck").innerHTML = "* 이름을 2글자 이상 입력해주세요.";
+		  }else{
+			  document.getElementById("nameCheck").innerHTML = "";
+		  }
+   }
+   
+   function pwdCheck(){
 	   
-	   alert('탄다요');
-	   /*var nameCheck = document.getElementsByName('mem_nm')[0].value;*/
-	 /*  var input = $("#mem_nm").value();
-
-	  
-	   alert(input);*/
-	   
-	   if(nameCheck.length < 3){
-		   document.getElementById("nameCheck").innerHTML = "* 아이디를 6자 이상 입력해주세요.";
-	   }
    }
 
    

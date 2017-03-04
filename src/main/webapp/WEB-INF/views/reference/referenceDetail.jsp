@@ -13,16 +13,43 @@ border-top: 1px solid #c3ced9;
 border-bottom: 1px solid #c3ced9;
 text-align: center;
 }
+
+#page-wrapper3 {
+    position: inherit;
+    margin: 0 0 0 250px;
+    padding: 65px 30px;
+     box-shadow: 5px 5px 5px lightgray;
+     border-radius: 10px; 
+   
+} 
+#page-wrapper3 {
+    padding: 0 15px;
+    min-height: 568px;
+    background-color: white;
+    margin-left: 10%;
+    width: 79%;
+    height: 870px;
+}
 </style>
 
+<br>
+	
+	
 
-<br> <br>
-	<div style="text-align: center;">
-		<h2>자료 상세보기</h2>
+<div id="page-wrapper3" class="in">	
+	
+
+	<br><br>
+ 	<div style="text-align: center;">
+		<h2 style="color: #787878;"><i class="fa fa-file-text-o" aria-hidden="true"></i> 자료상세보기 </h2>
+		<h4 style="color: #aaaaaa"> REFERENCE VIEW</h4>
 	</div>
 	<br><br><br>
 	
-	<form id="formm" name="formm" enctype="multipart/form-data" method="post">
+	
+	
+	
+<form id="formm" name="formm" enctype="multipart/form-data" method="post">
 <table style="width: 1000px;" align="center">
 
 <tr id="detail_table_tr">
@@ -69,24 +96,24 @@ text-align: center;
 <div style="text-align: center;">
 
 	<sec:authorize access="hasRole('ROLE_SUPER')">
-	<button type="button" onclick="referenceUpDate_go()">수정하기</button>
+	<button type="button" class="btn btn-default" onclick="referenceUpDate_go()">수정하기</button>
 	</sec:authorize>
 	
 
 	<sec:authorize access="hasRole('ROLE_SUPER')">
-	<button type="button" onclick="referenceDelete_go()">삭제하기</button>
+	<button type="button" class="btn btn-default" onclick="referenceDelete_go()">삭제하기</button>
 	</sec:authorize>
 
 
       
      <a href="<%=request.getContextPath() %>/filee/${referenceVO.reli_seq}"> 
-     	<button type="button">다운로드하기</button></a> 
+     	<button type="button" class="btn btn-default">다운로드하기</button></a> 
      
-     <button type="button" onclick="history.go(-1)">취소</button>
+     <button type="button" onclick="history.go(-1)" class="btn btn-default">취소</button>
 </div>
 
 	</form>
-	
+	</div>
 
 <script>
 function referenceUpDate_go(){

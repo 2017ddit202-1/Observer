@@ -6,9 +6,31 @@
 
 
 <link href="<%=request.getContextPath()%>/resources/css/modal2.css"rel="stylesheet">
+
+
 <body>
+<style>
+#page-wrapper3 {
+    position: inherit;
+    margin: 0 0 0 250px;
+    padding: 65px 30px;
+     box-shadow: 5px 5px 5px lightgray;
+     border-radius: 10px; 
+   
+} 
+#page-wrapper3 {
+    padding: 0 15px;
+    min-height: 568px;
+    background-color: white;
+    margin-left: 10%;
+    width: 79%;
+   height: 860px;
+}
+</style>
 <br>
 <br>
+<div id="page-wrapper3" class="in">
+<br><br>
 <div class="container">
   <ul class="nav nav-tabs">
     <li class="active"><a href="#">SUPER ADMIN</a></li>
@@ -67,5 +89,26 @@
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
+</div>
 <script src="<%=request.getContextPath()%>/resources/js/report.js"></script>
+<style>
+#page-wrapper3 {
+    position: inherit;
+    margin: 0 0 0 250px;
+    padding: 65px 30px;
+     box-shadow: 5px 5px 5px lightgray;
+     border-radius: 10px; 
+   
+} 
+#page-wrapper3 {
+    padding: 0 15px;
+    min-height: 568px;
+    background-color: white;
+    margin-left: 10%;
+    width: 79%;
+   height: 860px;
+}
+</style>
+
 </body>
+
