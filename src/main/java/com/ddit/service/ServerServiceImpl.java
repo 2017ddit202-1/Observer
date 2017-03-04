@@ -86,9 +86,8 @@ public class ServerServiceImpl implements ServerService {
 	}
 
 	@Override
-	public ArrayList<ServerVO> listAllArticle() throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+	public ServerVO listAllSummary(String ip) throws SQLException {
+		return serverDAO.listAllSummary(ip);
 	}
 
 

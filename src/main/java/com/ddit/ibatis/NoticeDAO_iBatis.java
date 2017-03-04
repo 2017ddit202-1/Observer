@@ -50,4 +50,12 @@ public class NoticeDAO_iBatis implements NoticeDAO{
 	}
 
 
+
+	@Override
+	public ArrayList<NoticeVO> summaryNotice(String lice) throws SQLException {
+		ArrayList<NoticeVO> noticeList = (ArrayList<NoticeVO>) client.queryForList("summaryNotice", lice);
+		return noticeList;
+	}
+
+
 }

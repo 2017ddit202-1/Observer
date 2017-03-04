@@ -82,9 +82,9 @@ public class ServerDAO_iBatis implements ServerDAO{
 	}
 
 	@Override
-	public ArrayList<ServerVO> listAllArticle() throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+	public ServerVO listAllSummary(String ip) throws SQLException {
+		ServerVO listSummary =  (ServerVO) client.queryForObject("summaryServer", ip);
+		return listSummary;
 	}
 			
 		/**

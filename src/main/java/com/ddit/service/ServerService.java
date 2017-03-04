@@ -13,7 +13,7 @@ public interface ServerService {
 	public void updateServer(ServerVO ServerVO) throws SQLException;
 	public int deleteServer(int server_ip , int server_code) throws SQLException;
 	ServerVO selectServerVO(String server_ip) throws SQLException;
-	public ArrayList<ServerVO> listAllArticle() throws SQLException;
+	public ServerVO listAllSummary(String ip) throws SQLException;
 	
 	//
 	public String selectServerIP(String ip) throws SQLException;

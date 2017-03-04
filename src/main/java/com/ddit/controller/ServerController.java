@@ -801,5 +801,20 @@ public class ServerController {
 		return map;
 	}
 	
+	@RequestMapping(value="/serverInfo",method = RequestMethod.POST,produces="application/json;charset=UTF-8" )
+	@ResponseBody
+	public ServerVO summaryServer(HttpSession session){
+		String ip = (String) session.getAttribute("ip");
+		ServerVO serverVO = null;
+		
+		try {
+			serverVO = serverService.listAllSummary(ip);
+			System.out.println("ServerVO"+serverVO);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return serverVO;
+	}
 
 }

@@ -13,6 +13,10 @@
 	select * from notice where notice_lice=#notice_lice# order by notice_seq
 </select>
 
- 
+<select id="summaryNotice" parameterClass="str" resultClass="notice">
+		select * 
+		from(select * from notice order by notice_date desc) 
+		where notice_lice=#notice_lice# and <![CDATA[rownum<=5]]> order by notice_date asc
+</select> 
  </sqlMap>
  
