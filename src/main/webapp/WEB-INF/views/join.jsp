@@ -18,7 +18,7 @@
          <div class="form-group">
             <div class="col-md-1">
                <label class="col-md-4 control-label" for="id">ID</label>
-               <span id="idCheck" class="col-md-4 control-label"></span>
+               <span id="idCheck" class="col-md-4 control-label" style="color: #ff6459"></span>
                <input id="fn" type="text" name="mem_id" class="form-control input-md" onkeyup="checkDepulicateId()">
                <!-- <span id="idCheck"></span> -->
             </div>
@@ -29,17 +29,17 @@
          <div class="form-group">
             <div class="col-md-1">
                <label class="col-md-4 control-label" for="id">Name</label>
-               <span id="nameCheck" class="col-md-4 control-label"></span>
+               <span id="nameCheck" class="col-md-4 control-label" style="color: #ff6459"></span>
                <input id="id_mem" type="text" name="mem_nm" 
-                  class="form-control input-md" onkeyup="nameCheck()"><br/>
+                  class="form-control input-md" onkeyup="nameCheck()" style="border-radius:5px;"><br/>
             </div>
          </div>
          <!-- Text input-->
          <div class="form-group">
             <div class="col-md-2">
                <label class="col-md-4 control-label" for="id">Password</label>
-               <input id="fn" name="mem_pwd" type="password"
-                   class="form-control input-md"><br/>
+               <input id="pwd_mem" name="mem_pwd" type="password"
+                   class="form-control input-md" onkeyup="pwdCheck()" style="border-radius:5px;"><br/>
 
             </div>
          </div>

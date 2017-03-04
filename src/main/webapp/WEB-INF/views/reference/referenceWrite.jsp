@@ -18,6 +18,23 @@ border-top: 1px solid #c3ced9;
 border-bottom: 1px solid #c3ced9;
 text-align: center;
 }
+
+#page-wrapper3 {
+    position: inherit;
+    margin: 0 0 0 250px;
+    padding: 65px 30px;
+     box-shadow: 5px 5px 5px lightgray;
+     border-radius: 10px; 
+   
+} 
+#page-wrapper3 {
+    padding: 0 15px;
+    min-height: 568px;
+    background-color: white;
+    margin-left: 10%;
+    width: 79%;
+    height: 870px;
+}
 </style>
 
 
@@ -30,11 +47,13 @@ text-align: center;
 </script>
 
 <body>
+<br><br>
+<div id="page-wrapper3" class="in">	
 
-
-	<br> <br>
-	<div style="text-align: center;">
-		<h2>자료실 글쓰기</h2>
+	<br><br>
+ 	<div style="text-align: center;">
+		<h2 style="color: #787878;"><i class="fa fa-file-text-o" aria-hidden="true"></i> 자료실 글쓰기 </h2>
+		<h4 style="color: #aaaaaa"> REFERENCE WRITE</h4>
 	</div>
 	<br><br><br>
 	
@@ -62,7 +81,7 @@ text-align: center;
 
 <tr id="article_write_tr">
 <td style="background-color: #e4eaf2; width: 80px;">파일</td>
-<td> <input type="file" name="uploadfile" required="required"></td>
+<td> <input type="file" name="uploadfile" required="required" ></td>
 <td></td>
 <td></td>
 </tr>
@@ -72,13 +91,13 @@ text-align: center;
 
 <div style="text-align: center;">
 <hr style="border: solid 1px #c3ced9; width: 1000px;">
-<button type="submit">글쓰기</button>
-<button type="button" id="btnContactUs" onclick="history.go(-1);">취소</button>
+<button type="submit" class="btn btn-default">글쓰기</button>
+<button type="button" id="btnContactUs" class="btn btn-default" onclick="history.go(-1);">취소</button>
 
 </div>	
 
 </form>
-	
+	</div>
 
 
    <!-- //enctype 속성은 인코딩 타입(encoding type)을 지정한다. 

@@ -35,6 +35,31 @@
 	background-color: #337ab5;
 } 
 
+#page-wrapper3 {
+    position: inherit;
+    margin: 0 0 0 250px;
+    padding: 65px 30px;
+     box-shadow: 5px 5px 5px lightgray;
+     border-radius: 10px; 
+   
+} 
+#page-wrapper3 {
+    padding: 0 15px;
+    min-height: 568px;
+    background-color: white;
+    margin-left: 10%;
+    width: 79%;
+    height: 870px;
+}
+#DeleteBtn:hover {
+	background-color: #789c99;
+	border-color: #789c99;
+}
+
+#DeleteBtn {
+	background-color: #87adab
+}
+
 </style>
 
 
@@ -55,32 +80,52 @@
 </script>
 	
 	
-	<br><br><br>
+	<br><br>
+	<div id="page-wrapper3" class="in">	
+	
+	<div class="container">
+  <ul class="nav nav-tabs" style="margin-top: 3%;">
+    <li class="active" style="color: #7a7a7a;"><a href="#" style="background-color: #f7f7f7;
+    margin-left: 9%; text-align: center; width: 100%;">FREE BOARD</a></li>
+   
+  </ul>
+  <br>
+ 
+ <div class="media">
+    <div class="media-left">
+   <img src="<%=request.getContextPath()%>/resources/img/search.png" class="media-object" style="width:60px;margin-left: 39%;">
+    </div>
+    <div class="media-body">
+      <h4 class="media-heading" style="margin-left: 3%; margin-top: 1%;"><strong>자유게시판</strong></h4>
+      <p style="margin-left: 3%;">자유롭게 의견을 게시하고, 참여자 상호간에 의견을 공유할 수 있는 공간입니다.</p>
+    </div>
+  </div>
+  <hr>
+</div>
 
-	<div style="font-size: 30px; width: 1000px; text-align: left; margin-left: 242px;">
-		<img src="<%=request.getContextPath()%>/resources/img/arrow.png">자유게시판 
-	<span style="font-size: 15px; color: #7c7c7c">각종 안내, 서비스 또는 OBSERVER의 소식 버전안내 등의 정보를 확인할 수 있습니다.</span>
+<br><br>
 	
-	</div>
 
-	<br>
-	<br>
-	
-	
 	
 	
 		<!-- 서치 -->
 	<div style="width: 1000px; float: right; text-align: center;">
-		<form name="search" method="post">
+		<form name="search" method="post" style="margin-left: 24%;">
 
-			<select name="keyField" size="1" style="height: 22px;" id="keyField">
+			<select name="keyField" size="1" style="height: 22px; margin-top: 2px;" id="keyField">
 				<option value="fb_sub">제목</option>
 			    <option value="fb_con">내용</option>
 			    <option value="fb_id">작성자</option>
 			</select> <input type="text" size="16" name="keyWord" id="keyWord"
 				style="height: 24px;">
 
-			<button id="searchBtn" class="button button2" onClick="search_go()">검색</button>
+			<!-- <button id="searchBtn" class="button button2" onClick="search_go()">검색</button> -->
+			
+			
+			<button class="btn btn-primary btn-sm" type="button" id="DeleteBtn" onClick="search_go()"
+												style="border-color: #87adab; width: 64px;">검색</button>
+			
+			
 			<input type="hidden" name="page" value="0">
 		</form>
 	</div>
@@ -94,7 +139,7 @@
 
 	
 	<div class="container">
-	<i class="fa fa-bullhorn" aria-hidden="true"></i>
+	<i class="fa fa-comments-o" aria-hidden="true"></i>
 	총 게시글은 [${qnaListSize }]개 입니다.
 	<form id="writeForm" name="writeForm">
 		<table class="table table-hover" style="width: 1000px;" align="center"
@@ -147,12 +192,12 @@
 
 <div style="text-align: center;">
 	<sec:authorize access="isAuthenticated()">
-		<button type="button" onclick="fbWrite_go() ">글쓰기</button>
+		<button type="button" class="btn btn-default" onclick="fbWrite_go() ">글쓰기</button>
 		<!-- <button type="button" onclick="fbList_go() ">목록보기</button> -->
 	</sec:authorize> 
 	</div>
 
-
+</div>
 
 
 

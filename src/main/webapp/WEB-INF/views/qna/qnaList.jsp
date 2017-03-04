@@ -48,6 +48,14 @@
     width: 79%;
    height: 860px;
 }
+#DeleteBtn:hover {
+	background-color: #789c99;
+	border-color: #789c99;
+}
+
+#DeleteBtn {
+	background-color: #87adab
+}
 </style>
 </head>
 
@@ -81,9 +89,9 @@
 <br><br>
 
 		<div style="width: 1000px; float: right; text-align: center;">
-		<form name="formm" method="post">
+		<form name="formm" method="post" style="margin-left: 21%;">
 
-			<select name="keyField" size="1" style="height: 22px;">
+			<select name="keyField" size="1" style="height: 22px;  margin-top: 2px;">
 				 <option value="qna_seq">게시글번호</option>
       			 <option value="qna_seq">제목</option>
    				 <option value="qna_seq">내용</option>
@@ -91,9 +99,14 @@
 			</select> 
 			<input type="text" size="16" name="key" style="height: 24px;">
 
-			<!-- <button class="button button2" onClick="serachQna_go()">검색</button> -->
 			
-			<input type="button" class="btn btn-default" value="Search" onClick="serachQna_go()">
+			<!-- <input type="button" class="btn btn-default" value="Search" onClick="serachQna_go()"> -->
+		
+		
+		<button class="btn btn-primary btn-sm" type="button" id="DeleteBtn" onClick="serachQna_go()" value="Search"
+												style="border-color: #87adab; width: 64px;">검색</button>
+		
+		
 		</form>
 	</div>
 	<br>
