@@ -29,6 +29,9 @@
 			<td>${noticeList.notice_content}</td>
 		</tr>
 		</c:forEach>
+		<tr>
+			<td colspan="5" style="text-align: center;">${paging}</td>
+		</tr>
 	</table>
 </body>
 </html>

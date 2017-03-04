@@ -59,4 +59,17 @@ public class NoticeServiceImpl implements NoticeService {
 		return noticeDAO.listAllNotice(lice);
 	}
 
+
+	@Override
+	public ArrayList<NoticeVO> Noticelist(int tpage, String lice)
+			throws SQLException {	
+		return noticeDAO.Noticelist(tpage, lice);
+	}
+
+
+	@Override
+	public String totalNoticelist(int tpage, String lice) throws SQLException {	
+		return noticeDAO.totalNoticelist(tpage, lice);
+	}
+
 }

@@ -207,7 +207,7 @@ public class MemberDAO_iBatis implements MemberDAO{
 		
 		total_pages = (Integer) client.queryForObject("totalgroupmember",
 				mem_id);
-		return total_pages-1;
+		return total_pages;
 	}
 
 	@Override
@@ -253,6 +253,75 @@ public class MemberDAO_iBatis implements MemberDAO{
 					+ "&key=" + lice + "'> &gt; &gt; </a>&nbsp;&nbsp;";
 		}
 		return str;
+	}
+
+	@Override
+	public ArrayList<MemberVO> groupmemberlist(int tpage, MemberVO lice)
+			throws SQLException {
+		int startRow = -1;
+		int endRow = -1;
+		
+		int totalRecord = gpListPagingCon(lice);
+
+		startRow = (tpage - 1) * counts;
+		endRow = startRow + counts - 1;
+		if (endRow > totalRecord)
+			endRow = totalRecord;
+		ArrayList<MemberVO> memList = (ArrayList<MemberVO>) client.queryForList("groupmemberlist",lice,startRow,counts);
+		return memList;
+	}
+
+	@Override
+	public String pageNumbergrlice(int tpage, MemberVO lice) throws SQLException {
+		String str = "";
+
+		int total_pages = gpListPagingCon(lice);
+		int page_count = total_pages / counts + 1;
+
+		if (total_pages % counts == 0) {
+			page_count--;
+		}
+		if (tpage < 1) {
+			tpage = 1;
+		}
+
+		int start_page = tpage - (tpage % view_rows) + 1;
+		int end_page = start_page + (counts - 1);
+
+		if (end_page > page_count) {
+			end_page = page_count;
+		}
+		if (start_page > view_rows) {
+			str += "<a href='groupList?tpage=1&key=" + lice
+					+ "'>&lt;&lt;</a>&nbsp;&nbsp;";
+			str += "<a href='groupList?tpage=" + (start_page - 1);
+			str += "&key=<%=fb_id%>'>&lt;</a>&nbsp;&nbsp;";
+		}
+
+		for (int i = start_page; i <= end_page; i++) {
+			if (i == tpage) {
+				str += "<font color=red>[" + i + "]&nbsp;&nbsp;</font>";
+			} else {
+				str += "<a href='groupList?tpage=" + i + "&key="
+						+ lice + "'>[" + i + "]</a>&nbsp;&nbsp;";
+			}
+		}
+
+		if (page_count > end_page) {
+			str += "<a href='groupList?tpage=" + (end_page + 1)
+					+ "&key=" + lice + "'> &gt; </a>&nbsp;&nbsp;";
+			str += "<a href='groupList?tpage=" + page_count
+					+ "&key=" + lice + "'> &gt; &gt; </a>&nbsp;&nbsp;";
+		}
+		return str;
+	}
+	
+	public int gpListPagingCon(MemberVO mem_id) throws SQLException{
+		int total_pages = 0;
+		
+		total_pages = (Integer) client.queryForObject("totalgroupmemberlist",
+				mem_id);
+		return total_pages;
 	}
 	
 

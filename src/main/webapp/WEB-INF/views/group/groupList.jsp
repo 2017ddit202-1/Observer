@@ -23,7 +23,7 @@
     background-color: white;
     margin-left: 10%;
     width: 79%;
-    height: 700px;
+    height: 760px;
 }
 </style>
 
@@ -82,14 +82,12 @@
 			</thead>
 			<tbody>
 					<c:forEach items="${groupList}" var="memList" varStatus="status">
-					<c:if test="${ memList.mem_id ne loginUser}">
 					<tr>		
 						<th><input type="checkbox" name="mem_id" id="mem_id"
 						value="${memList.mem_id }"></th>
 						<td>${memList.mem_id}</td>
 						<td>${memList.mem_email}</td>
 					</tr>
-					</c:if>
 				</c:forEach>
 				<tr>
 					<td colspan="3" style="text-align: center;">${paging}</td>

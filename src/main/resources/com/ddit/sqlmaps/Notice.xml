@@ -14,5 +14,15 @@
 </select>
 
 
+<select id="Noticelist" parameterClass="str" resultClass="notice">
+		select *
+		from notice where notice_lice=#notice_lice#
+</select>
+	
+<select id="totalNoticelist" parameterClass="str" resultClass="int">
+		select count(*) from notice where notice_lice=#notice_lice#
+</select>
+
+
  </sqlMap>
  

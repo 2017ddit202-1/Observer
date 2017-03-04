@@ -3,6 +3,8 @@ package com.ddit.dao;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import org.apache.poi.ss.formula.ptg.MemErrPtg;
+
 import com.ddit.dto.MemberVO;
 import com.ddit.dto.PositionListVO;
 
@@ -33,6 +35,10 @@ public interface MemberDAO {
 	public ArrayList<MemberVO> groupmember(int tpage, String lice) throws SQLException; //그룹 리스트 검색(라이선스1)
 	public String pageNumberlice(int tpage, String lice) throws SQLException;
 	
+	public ArrayList<MemberVO> groupmemberlist(int tpage, MemberVO lice) throws SQLException; //그룹 리스트 검색(라이선스1)
+	public String pageNumbergrlice(int tpage, MemberVO lice) throws SQLException;
+	
+
 	public void updateLice(MemberVO memberVO)throws SQLException;
 	public void updatePositionList(PositionListVO positionListVO)throws SQLException;
 	public int memberCnt()throws SQLException;

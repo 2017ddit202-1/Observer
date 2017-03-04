@@ -146,6 +146,17 @@ public class MemberServiceImpl implements MemberService{
 		return memberIbatis.pageNumberlice(tpage, lice);
 	}
 
+	@Override
+	public ArrayList<MemberVO> groupmemberlist(int tpage, MemberVO lice)
+			throws SQLException {
+		return memberIbatis.groupmemberlist(tpage, lice);
+	}
+
+	@Override
+	public String pageNumbergrlice(int tpage, MemberVO lice) throws SQLException {
+		return memberIbatis.pageNumbergrlice(tpage, lice);
+	}
+
 
 	
 	
