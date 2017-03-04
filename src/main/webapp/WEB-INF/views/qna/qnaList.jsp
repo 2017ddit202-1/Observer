@@ -80,24 +80,6 @@
 
 <br><br>
 
-
-	
-<!-- 	 <form name="formm" method="post">
-      <div>
-      <select name="keyField" size="1">
-      <option value="qna_seq">게시글번호</option>
-      <option value="qna_seq">제목</option>
-      <option value="qna_seq">내용</option>
-      <option value="qna_seq">작성자</option>
-   </select> 
-         <input type="text" name="key" placeholder="Search...">
-         <button  type="button" onclick="serachQna_go()">
-            <i class="fa fa-search"></i>
-         </button>
-      </div> 
-	
-	 -->
-	
 		<div style="width: 1000px; float: right; text-align: center;">
 		<form name="formm" method="post">
 

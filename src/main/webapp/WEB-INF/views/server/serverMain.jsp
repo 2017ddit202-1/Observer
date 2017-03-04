@@ -156,7 +156,7 @@ function test_go(){
 
 				
  			 var bulhwi = setInterval(function(){
- 			 	$('#mm').load("serverMain #mm"); 
+ 				$('#mm').load("serverMain #mm"); 
  			},10000); 
 
 				
@@ -172,14 +172,50 @@ function test_go(){
 								
 						}
 					}
-				});
+			});
+				
 	});
  			
 			
 </script>
+<style>
+	#page-wrapper3 {
+    position: inherit;
+    margin: 0 0 0 250px;
+    padding: 65px 30px;
+     box-shadow: 5px 5px 5px lightgray;
+     border-radius: 10px; 
+   
+} 
+#page-wrapper3 {
+    padding: 0 15px;
+    min-height: 568px;
+    background-color: white;
+    margin-left: 10%;
+    width: 79%;
+    height: 870px;
+}
+
+#mm_tr td {
+   background-color: #e4eaf2;
+   border-top: 1px solid #c3ced9;
+   border-bottom: 1px solid #ffffff;
+   height: 50px;
+   padding-top: 1.5%;
+   text-align: center;
+}
+#mm{
+border-bottom:1px solid gray;
+}
+</style>
+
 
 </head>
 <body>
+<div id="page-wrapper3">
+	<div hidden="hidden" id="testTable">
+		
+	</div>
 	<c:choose>
 		<c:when test="${loginUserPosl eq 'ROLE_USER' }">
 			<h1>user page</h1>
@@ -192,8 +228,8 @@ function test_go(){
   <br><br>  
   
 </div>
-	<table border=1 id="mm">
-       		<tr>
+	<table id="mm" class="table table-hover table-bordered">
+       		<tr id="mm_tr">
 				<td >위험도</td>
 				<td>Host Name</td>
 				<td>IP</td>
@@ -270,9 +306,6 @@ function test_go(){
             		</c:otherwise>
             	</c:choose>
 				  ${i.value.memory_total }
-				  
-				  
-				  
 				  </td>
 			 	</tr>
              </c:forEach>
@@ -281,22 +314,21 @@ function test_go(){
 		</c:when>	
 		<c:otherwise>
 	<h1>전체목록</h1>
-		<div class="container">
+<div class="container">
   <span class="label label-success">&nbsp&nbsp</span> 정상
   <span class="label label-warning">&nbsp&nbsp</span> 경고
   <span class="label label-danger">&nbsp&nbsp</span> 위험
   <span class="label" style="background-color: black">&nbsp&nbsp</span> 정지
-  
-  <br><br>  
-  	</div>
+</div>
 <form id="formm" name="formm" method="post">
  <button type="button" class="btn btn-info btn-sm" style="font-size:13px; padding:3px 5px; margin:auto auto auto 423px;" onclick="serverStop()">정지</button>
  <button type="button" class="btn btn-info btn-sm" style="font-size:13px; padding:3px 5px;" onclick="serverRemove()">해제</button>
  <button type="button" class="btn btn-info btn-sm" style="font-size:13px; padding:3px 5px;" onclick="serverStart()">시작</button>
  <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal" style="font-size:13px; padding:3px 5px;"  data-backdrop="static" data-keyboard="false" onclick="ssss()" >추가</button>
-<div id="divTest">
-    <table border=1 id="mm">
-     
+<div id="divTest" class="container">
+    
+    <table id="mm"  class="table table-hover ">
+    		<thead style="background-color: #e4eaf2">
        		<tr>
        			<td>선택</td>
        			<td id="td1">위험도</td>
@@ -306,7 +338,9 @@ function test_go(){
 				<td>CPU 사용량(%)</td>
 				<td>MEMORY 사용량(%)</td>
 			</tr>
+			</thead>
          <c:forEach items="${serverMap}" var="i" varStatus="a">
+         	  <tbody>
           		  <tr>
             			<td><input type="checkbox" name="server_ip" class="server_ip" id='server_ip' value="${i.value.server_ip}"></td>
             		<c:set var="test" value="${i.value.cpu_total_pcnt}" />
@@ -314,18 +348,18 @@ function test_go(){
 			
 				<c:choose>
 					<c:when test="${i.value.server_saveyn eq '0'}">
-						<td style="background-color: black;"></td>
+						<td><span class="label" style="background-color: black; ">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</span></td>
 					</c:when>
 					<c:otherwise>
 					 <c:choose>
 	            		<c:when test="${cputest <= 50.0}">
-	            			<td style="background-color: green;"></td>
+	            			<td> <span class="label label-success">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</span></td>
 	            		</c:when>
 	            		<c:when test="${cputest <=80.0}">
-	            			<td style="background-color: yellow;"></td>
+	            			<td><span class="label label-warning">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</span></td>
 	            		</c:when>
 	            		<c:when test="${cputest <=100.0}">
-	            			<td style="background-color: red;"></td>
+	            			<td> <span class="label label-danger">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</span></td>
 	            		</c:when>
 	           		</c:choose>
 	           		</c:otherwise>
@@ -353,7 +387,7 @@ function test_go(){
     					</div>
             		</c:otherwise>
             	</c:choose>
-            	  ${i.value.cpu_total_pcnt}
+            	 	 ${i.value.cpu_total_pcnt}
             	  </td>
 				  <td>
 				  	<c:set var="mom" value="${i.value.memory_total }" />
@@ -377,12 +411,9 @@ function test_go(){
             		</c:otherwise>
             	</c:choose>
 				  ${i.value.memory_total }
-				  
-				  
-				  
 				  </td>
 			 	</tr>
-
+				  </tbody>
              </c:forEach>
       </table>
       </div>
@@ -408,32 +439,37 @@ function test_go(){
           <h4 class="modal-title">서버추가</h4>
         </div>
         <div class="modal-body">
-        리스트자리
         <form id="formm" name=" " method="post">
-      <table border=1>
+      <table class="table table-hover table-bordered">
+       		<thead style="background-color: #e4eaf2">
        		<tr>
-				<td>ip</td>
-				<td>hostName</td>
-				<td>OS 버전</td>
-				<td>OS 종류</td>
+				<th>IP</th>
+				<th>HOST NAME</th>
+				<th>OS 버전</th>
+				<th>OS 종류</th>
+				<th>선택</th>
+				
 			</tr>
+			</thead>
          <c:forEach items="${map}" var="i">
          <c:if test="${i.value.saveyn eq '0' }">
-            <tr>
-                <td>  ${i.key }</td>
+         <tbody>
+            <tr >
+                  <td>${i.key }</td>
              	  <td>${i.value.hostName }</td>
              	  <td>${i.value.os_version }</td>
              	  <td>${i.value.os_name }</td>
-             	 <%--  <input type = "hidden" id="${i.key }" name="${i.key }" value="${i.key }"/> --%>
-					<td><input type="button" id="addlist" value="등록" onclick="addlist_go('${i.key }')"/></td>
-               </tr>
-               </c:if>
+             	<td><input type="button" class="btn btn-success btn-xs" id="addlist" value="등록" onclick="addlist_go('${i.key }')"/></td>
+             </tr>
+         </tbody>
+          </c:if>
              </c:forEach>
       </table>
    </form>
-        </div>
+  </div>
 </div>
-</div></div></div>
+</div>
+</div></div>
 
 
 	<div id="chatMessage" style="overflow: auto; max-height: 500px;"></div>
@@ -449,4 +485,5 @@ function test_go(){
 	</c:if>
 
 </body>
+</div>
 </html>

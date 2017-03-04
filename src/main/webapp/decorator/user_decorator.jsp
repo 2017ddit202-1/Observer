@@ -48,7 +48,7 @@ background-color: #1f2123;
 
    $(document).ready(function() {
 	   var s = location.href;
-	   alert(s);
+	  
       wsocket = new SockJS("http://"+document.domain+":8181/observer/test/authority");
       wsocket.onopen;
       wsocket.onmessage = function appendMessage(msg) {
@@ -57,7 +57,6 @@ background-color: #1f2123;
     	   
       $('.confirm').click(function(){
     	  alert("확인클릭후");
-    	  alert(s);
     	  if(s=="http://"+document.domain+":8181/observer/atrt/authorityReq?" || s=="http://"+document.domain+":8181/observer/user/mypage"){
     		  alert("들어옴");
     		  window.location.href="<%=request.getContextPath()%>/user/mypage";
