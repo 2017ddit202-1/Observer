@@ -199,12 +199,35 @@ function test_go(){
 
 </head>
 <body>
+
+
+<br>
 <div id="page-wrapper3">
+<br>
+  <ul class="nav nav-tabs" style="margin-top: 3%;">
+    <li class="active"><a href="#">SERVER</a></li>
+   
+  </ul>
+  <br>
+ 
+ <div class="media">
+    <div class="media-left">
+   <img src="<%=request.getContextPath()%>/resources/img/settings.png" class="media-object" style="width:60px;margin-left: 39%;">
+    </div>
+    <div class="media-body">
+      <h4 class="media-heading" style="margin-left: 3%; margin-top: 1%;"><strong>SERVER 목록</strong></h4>
+      <p style="margin-left: 3%;">동일한 라이센스를 가지고 있는 SERVER의 목록을 보여줍니다.</p>
+    </div>
+  </div>
+  <hr>
+
+
+
 	
 	<c:choose>
 		<c:when test="${loginUserPosl eq 'ROLE_USER' }">
-			<h1>전체 목록</h1>
-			<div class="container">
+			
+			<div class="container" style="margin-left: 5%;">
   
 	  <span class="label label-success">&nbsp&nbsp</span> 정상
 	  <span class="label label-warning">&nbsp&nbsp</span> 경고
@@ -298,19 +321,21 @@ function test_go(){
 						
 		</c:when>	
 		<c:otherwise>
-	<h1>전체목록</h1>
-<div class="container">
+	
+<div class="container" style="margin-left: 5%;">
   <span class="label label-success">&nbsp&nbsp</span> 정상
   <span class="label label-warning">&nbsp&nbsp</span> 경고
   <span class="label label-danger">&nbsp&nbsp</span> 위험
   <span class="label" style="background-color: black">&nbsp&nbsp</span> 정지
 </div>
 <form id="formm" name="formm" method="post">
+<div style="margin-left: 54%;">
  <button type="button" class="btn btn-info btn-sm" style="font-size:13px; padding:3px 5px; margin:auto auto auto 423px;" onclick="serverStop()">정지</button>
  <button type="button" class="btn btn-info btn-sm" style="font-size:13px; padding:3px 5px;" onclick="serverRemove()">해제</button>
  <button type="button" class="btn btn-info btn-sm" style="font-size:13px; padding:3px 5px;" onclick="serverStart()">시작</button>
  <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal" style="font-size:13px; padding:3px 5px;"  data-backdrop="static" data-keyboard="false" onclick="ssss()" >추가</button>
-
+</div>
+<br>
     
     <table id="mm"  class="table table-striped">
     		
