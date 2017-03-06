@@ -76,27 +76,22 @@
          <input type="checkbox" name="check1" value="동의">이용약관에
          동의합니다.(필수)
          <!-- Trigger the modal with a button -->
-         <a href="#" data-toggle="modal" data-target="#myModal">[ 이용약관보기 ]</a>
+         <a href="#" data-toggle="modal" data-target="#myModal1">[ 이용약관보기 ]</a>
 
          <!-- Modal -->
-         <div class="modal fade" id="myModal" role="dialog">
+         <div class="modal fade" id="myModal1" role="dialog">
             <div class="modal-dialog">
 
                <!-- Modal content-->
                <div class="modal-content">
                   <div class="modal-header">
                      <button type="button" class="close" data-dismiss="modal">&times;</button>
-                     <h4 class="modal-title">Terms Of Use Info</h4>
+                     <h4 class="modal-title">이용약관 [필수]</h4>
                   </div>
                   <div class="modal-body">
-                     <p>이용약관 제 1 장 총칙 제1조 (목적) 본 약관은 ㈜와탭랩스(이하 “갑”이라 합니다)이 제공하는 각종
-                        서비스에 대한 고객(이하 “을”이라 합니다) 간의 이용조건 및 절차에 관한 제반사항의 규정을 목적으로 합니다.
-
-
-
-                        제2조 (약관의 효력 및 개정) 1. 본 약관은 전기통신사업법 규정에 의하여 제정한 것이며, 공시 함으로서 효력을
-                        발생합니다. 본 약관의 공시는 “갑”의 홈페이지를 통해 공시됩니다. (홈페이지 :
-                        http://www.whatap.io) 2. 본 약관은 “갑”의 서비스를 “을”이 이용 신청한 시점부터 서비스가
+                  
+                  <textarea name="textarea" style="width: 520px; height: 300px;">이용약관 제 1 장 총칙 제1조 (목적) 본 약관은 ㈜와탭랩스(이하 “갑”이라 합니다)이 제공하는 각종 서비스에 대한 고객(이하 “을”이라 합니다) 간의 이용조건 및 절차에 관한 제반사항의 규정을 목적으로 합니다.
+                  제2조 (약관의 효력 및 개정) 1. 본 약관은 전기통신사업법 규정에 의하여 제정한 것이며, 공시 함으로서 효력을 발생합니다. 본 약관의 공시는 “갑”의 홈페이지를 통해 공시됩니다. (홈페이지 : http://www.whatap.io) 2. 본 약관은 “갑”의 서비스를 “을”이 이용 신청한 시점부터 서비스가
                         종료된 후 이용 요금 정산이 완료된 시점까지 효력을 가집니다. 3. "갑”은 합리적인 사유가 발생할 경우 본 약관을
                         변경할 수 있으며, 약관이 변경된 경우에는 이를 즉시 공시합니다. 단, 요금 등 고객의 권리 또는 의무에 관련된
                         중요사항의 변경은 공시 후 7일이 경과한 후에 그 효력이 있습니다. 제3조 (약관의 적용) 본 약관에 명시되지
@@ -160,9 +155,9 @@
                         신청을 하고, “갑”이 “을”에게 사용권한을 부여하면 본 약관은 효력이 발생합니다. 제16조 (관할법원) ① 본
                         약관에 별도로 규정한 것을 제외하고는 일반 상관례 및 약관법에 따르며, 약관의 해석이나 이행에 관한 분쟁은 “갑”과
                         “을”의 합의에 의하여 해결합니다. ② ①의 합의가 성립되지 못할 때의 관할 법원은 “갑” 주소지 관할 지방
-                        법원으로 합니다. ο 본 약관은 : 2015년 4월 1일부터 시행됩니다.</p>
+                        법원으로 합니다. ο 본 약관은 : 2015년 4월 1일부터 시행됩니다.</textarea>
                   </div>
-                  <div class="modal-footer">
+                  <div class="modal-footer" style="text-align: center;">
                      <button type="button" class="btn btn-default"
                         data-dismiss="modal">Close</button>
                   </div>
@@ -186,10 +181,10 @@
             <div class="modal-content">
                <div class="modal-header">
                   <button type="button" class="close" data-dismiss="modal">&times;</button>
-                  <h4 class="modal-title">Privacy Policy Info</h4>
+                  <h4 class="modal-title">개인정보 보호정책 [필수]</h4>
                </div>
                <div class="modal-body">
-                  <p>개인정보 취급방침 “㈜와탭랩스”는(이하 “회사”는) 고객님의 개인정보를 중요시하며, “정보통신망 이용촉진
+                   <textarea name="textarea" style="width: 520px; height: 300px;">개인정보 취급방침 “㈜와탭랩스”는(이하 “회사”는) 고객님의 개인정보를 중요시하며, “정보통신망 이용촉진
                      및 정보보호”에 관한 법률을 준수하고 있습니다. 회사는 개인정보 취급방침을 통하여 고객님께서 제공하시는 개인정보가
                      어떠한 용도와 방식으로 이용되고 있으며, 개인정보 보호를 위해 어떠한 조치가 취해지고 있는지 알려드립니다. 회사는
                      개인정보취급방침을 개정하는 경우 웹사이트 공지사항(또는 개별공지)을 통하여 공지할 것입니다. 본 방침은 : 2015년
@@ -231,10 +226,10 @@
                      것입니다. 기타 개인정보침해에 대한 신고나 상담이 필요하신 경우에는 아래 기관에 문의하시기 바랍니다. 1. KISA
                      개인정보보호 (http://www.1336.or.kr) 2. 정보보호마크인증제도
                      (http://www.eprivacy.or.kr) 3. 경찰청 사이버테러대응센터
-                     (http://www.ctrc.go.kr)</p>
+                     (http://www.ctrc.go.kr)</textarea>
                </div>
                <div class="modal-footer">
-                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-default" data-dismiss="modal" style="text-align: center;">Close</button>
                </div>
             </div>
 
