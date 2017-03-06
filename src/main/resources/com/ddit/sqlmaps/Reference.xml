@@ -42,6 +42,19 @@
    <delete id="deleteReference" parameterClass="int">
    delete from reference_library where reli_seq=#reli_seq#
    </delete>
-
+	
+	<select id="ReferenceList" parameterClass="str" resultClass="reference">
+    select * from reference_library where reli_seq like '%'||#reli_seq#||'%'
+    order by
+    reli_date desc
+    </select>
+    
+    <select id="totalReferenceList" parameterClass="str" resultClass="int">
+		select count(*) from reference_library where reli_seq like '%'||#reli_seq#||'%'
+	</select>
+	
+	<select id="totalReference" resultClass="int">
+		select count(*) from reference_library
+	</select>
 
 </sqlMap>
