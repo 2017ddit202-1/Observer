@@ -17,17 +17,21 @@
       <input type="button" id="btnZxc" class="btnZxc" value="30분" onclick="vv()">
       <input type="button" id="btntotal" class="btnAsd" value="1시간" onclick="ss()">
       <div id="loader"><img id="lodingImg" src="<%=request.getContextPath() %>/resources/img/loader.gif"></div>
-      
-     <div id="container"></div>
-     <div id="container2"></div>
-     <div id="trafficNet">
+        <div id="page-wrapper00" class="in">
      	<table>
      		<tr>
      			<th id="card">네트워크 카드</th>
-     			<td id="net"></td>
-     			<td id="rxtx"></td>
      		</tr>
+     		<tr>
+     			<td id="net"></td>
+     		</tr>	
      	</table>
+     </div>	
+      <div id="page-wrapper88" class="in">
+     <div id="container"></div>
+     </div>
+     <div id="page-wrapper99" class="in">
+     <div id="container2"></div>
      </div>
    </form>
 </body>

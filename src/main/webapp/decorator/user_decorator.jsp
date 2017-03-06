@@ -296,7 +296,7 @@ height:auto !important;
 
 
 
-   <footer>
+   <footer id="foot">
       <div class="container" style="text-align: center; background-color: #f7f7f7; margin-left:13.1111%; width:86.6%; ">
       
          

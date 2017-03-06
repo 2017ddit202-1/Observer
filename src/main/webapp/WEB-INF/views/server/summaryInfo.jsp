@@ -2,21 +2,43 @@
     pageEncoding="UTF-8"%>
 <%@ page trimDirectiveWhitespaces="true" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html>
-<html>
-<head>
 <meta charset="UTF-8">
-<title></title>
-</head>
-<body>
+<style>
+	.chart{
+		width: 30%;
+	    height: 335px;
+	    display: inline-block;
+	    margin-left: 10%;
+	}
+	#summaryTb{
+		    width: 15%;
+   			 margin-left: 9%;
+	}
+	#page-wrapper6{
+		text-align:center;
+	    position: inherit;
+	    margin: 0 0 0 250px;
+	    padding: 65px 30px;
+	     box-shadow: 5px 5px 5px lightgray;
+	     border-radius: 10px; 
+	    padding: 0 15px;
+	    background-color: white;
+	    margin-left: 2%;
+	    width: 630px;
+	    height: 305px;
+	    margin-bottom: 1.5%;
+}
+#container{
+margin-left:8%;
+}
+	}
+</style>
+<article>
 
 	<h1>요약 페이지</h1>
 	<form id="formm" name="formm">
-      <input type="button" id="btnZxc" class="btnZxc" value="30분" onclick="vv()">
-      <input type="button" id="btntotal" class="btnAsd" value="1시간" onclick="ss()">
       <div id="loader"><img id="lodingImg" src="<%=request.getContextPath() %>/resources/img/loader.gif"></div>
 	</form>
-<div id="noticeInfo"></div>	
 <div id="serverInfo"></div>
 <div id="container"></div>
 <script type="text/javascript">
@@ -38,24 +60,22 @@ function serverInfo(){
 			type:'post',
 			dataType:'json',
 			success:function(data){
-				var tb = '<table>'
+				var tb = 	'<div id="summaryTb">'
+							+'<table>'
 							+'<tr style="border:1px solid red;">'
 							+'<td style="border:1px solid red;">운영체제</td>'
-							+'<td>'+data.server_os_name+'</td>'
-							+'</tr>'
-							+'<tr style="border:1px solid red;">'
 							+'<td style="border:1px solid red;">서버명</td>'
-							+'<td>'+data.server_host+'</td>'
-							+'</tr>'
-							+'<tr style="border:1px solid red;">'
 							+'<td style="border:1px solid red;">IP 주소 </td>'
-							+'<td>'+data.server_ip+'</td>'
+							+'<td style="border:1px solid red;">BIT</td>'
 							+'</tr>'
 							+'<tr style="border:1px solid red;">'
-							+'<td style="border:1px solid red;">BIT</td>'
-							+'<td>'+data.server_os_support+'</td>'
+							+'<td style="border:1px solid red;">'+data.server_host+'</td>'
+							+'<td style="border:1px solid red;">'+data.server_os_name+'</td>'
+							+'<td style="border:1px solid red;">'+data.server_ip+'</td>'
+							+'<td style="border:1px solid red;">'+data.server_os_support+'</td>'
 							+'</tr>'
-							+'</table>';
+							+'</table>'
+							+'</div>'
 					$('#serverInfo').html(tb);
 			}
 	});
@@ -137,23 +157,26 @@ function tt() {
 							total.push(parseInt(ff));
 						}
 					});
-					$('<div class="chart">').appendTo('#container').highcharts(
+					$('<div class="chart" id="page-wrapper6">').appendTo('#container').highcharts(
 							{
 								chart : {
 									marginLeft : 40, // Keep all charts left aligned
 									spacingTop : 20,
 									spacingBottom : 20,
-									height:200,
-						            width:300,
-						            borderColor: '#EBBA95',
-						            borderRadius: 20,
-						            borderWidth: 5
+									height:300,
+						            width:600,
+						            marginTop:60,
+						            marginLeft: 50
 								},
 								title : {
 									text : dataset.name,
 									align : 'left',
 									margin : 0,
-									x : 30
+									x : 30,
+									style:{
+										fontSize:'20px',
+										
+									}
 								},
 								credits : {
 									enabled : false
@@ -162,6 +185,7 @@ function tt() {
 									enabled : false
 								},
 								xAxis : {
+									gridLineColor:'#ffffff',
 									crosshair : true,
 									categories:time,
 									tickInterval: 4,
@@ -178,6 +202,7 @@ function tt() {
 							        }
 							    },
 								yAxis : {
+									  minorGridLineColor:'#ffffff',
 									title : {
 										text : null
 									},
@@ -204,5 +229,4 @@ function tt() {
 		});
 	};
 </script>
-</body>
-</html>
+</article>
