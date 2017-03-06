@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import com.ddit.dto.ReferenceLibrayVO;
+import com.ddit.dto.VWmemPosVO;
 
 public interface ReferenceLibrayService {
 
@@ -16,5 +17,10 @@ public interface ReferenceLibrayService {
 	public ReferenceLibrayVO detailReference(int reli_seq)throws SQLException; //자료실 상세보기
 	public void updateReference(ReferenceLibrayVO referenceVO)throws SQLException;//자료실수정하기
 	public void updateReferenceFileUp(ReferenceLibrayVO referenceVO)throws SQLException; //자료실수정하기->파일업로드
-	 public void deleteReference(int reli_seq)throws SQLException; //자료글 삭제하기
+	public void deleteReference(int reli_seq)throws SQLException; //자료글 삭제하기
+	 
+	public ArrayList<ReferenceLibrayVO> ReferenceList(String reli_seq,int tpage) throws SQLException;
+	public String totalReferenceList(String reli_seq,int tpage) throws SQLException;
+	public int totalReference() throws SQLException;
+
 }

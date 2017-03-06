@@ -181,7 +181,7 @@ public class SuperAdminController {
 		if (request.getParameter("key") != null) {
 			key = request.getParameter("key");
 		}
-		System.out.println("key@@@@@@: "+key);
+		
 		if (tpage == null) {
 			tpage = "1";
 		} else if (tpage.equals("")) {
