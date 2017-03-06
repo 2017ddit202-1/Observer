@@ -10,6 +10,9 @@ $(function(){
    $("#btnZxc").hide();
    $("#btntotal").hide();
    $("#diskTb").hide();
+   $('#page-wrapper8').hide();
+   $('#page-wrapper9').hide();
+   $('#page-wrapper0').hide();
 //   tt();
    	
 });
@@ -84,7 +87,10 @@ function tt(){
     	  $("#loader").hide();
     	  $("#btnZxc").show();
     	  $("#btntotal").show();
-    	  $("#diskTb").show();
+    	  $("#diskTb").show(); 
+    	  $('#page-wrapper8').show();
+    	  $('#page-wrapper9').show();
+    	  $('#page-wrapper0').show();
             HighCharts(data);
             HighCharts2(data);
             HighCharts3(data);
@@ -116,14 +122,15 @@ function HighCharts(data) {
 	Highcharts.chart('container', {
 		chart : {
 			type : 'area',
-			height : 400,
-			width : 1000,
-			borderColor : '#EBBA95',
-			borderRadius : 20,
-			borderWidth : 5
+			  height:350,
+		         width:1200
 		},
 		title : {
-			text : 'Disk TOTAL'
+			text : 'Disk TOTAL',
+            style:{
+      			 fontSize:'20px'
+      		 }
+
 		},
 		xAxis : {
 			categories : time,
@@ -190,14 +197,15 @@ function HighCharts(data) {
     Highcharts.chart('container2', {
         chart: {
             type: 'area',
-            height:400,
-            width:1000,
-            borderColor: '#EBBA95',
-            borderRadius: 20,
-            borderWidth: 5
+            height:350,
+            width:1200
         },
         title: {
-            text: 'DISK 사용량'
+            text: 'DISK 사용량',
+            style:{
+      			 fontSize:'20px'
+      		 }
+
         },
         xAxis: {
         	categories:time,
@@ -252,7 +260,7 @@ function HighCharts3(data) {
       if(i > 0){
     	  pcnt.push(parseInt(data[i].disk_pcnt));
          
-         date = new Date(data[i].cpu_date);
+         date = new Date(data[i].disk_date);
          hours = date.getHours();
          minutes = date.getMinutes();
          FullDate = hours +":"+minutes;
@@ -263,14 +271,15 @@ function HighCharts3(data) {
       Highcharts.chart('container3', {
           chart: {
               type: 'spline',
-              height:400,
-              width:1000,
-              borderColor: '#EBBA95',
-              borderRadius: 20,
-              borderWidth: 5
+              height:350,
+              width:1200,
           },
           title: {
-              text: 'DISK 사용률'
+              text: 'DISK 사용률',
+              style:{
+        			 fontSize:'20px'
+        		 }
+
           },
           xAxis: {
           	categories:time,

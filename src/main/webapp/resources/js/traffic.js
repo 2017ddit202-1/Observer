@@ -10,6 +10,9 @@ $(function(){
    $("#card").hide();
    $("#btnZxc").hide();
    $("#btntotal").hide();
+   $('#page-wrapper88').hide();
+   $('#page-wrapper99').hide();
+   $('#page-wrapper00').hide();
 //   tt();
    	
 });
@@ -71,7 +74,10 @@ function tt(){
     	  $("#loader").hide();
     	  $("#card").show();
     	  $("#btnZxc").show();
-    	  $("#btntotal").show();
+    	  $("#btntotal").show(); 
+    	  $('#page-wrapper88').show();
+    	  $('#page-wrapper99').show();
+    	  $('#page-wrapper00').show();
             HighCharts(data);
             HighCharts2(data);
             $("#net").html(data[0].traffic_net);
@@ -103,14 +109,15 @@ function HighCharts(data) {
  Highcharts.chart('container', {
      chart: {
          type: 'area',
-         height:400,
-         width:1000,
-         borderColor: '#EBBA95',
-         borderRadius: 20,
-         borderWidth: 5
+         height:350,
+         width:1200
      },
      title: {
-     	 text: 'TRAFFIC TOTAL'
+     	 text: 'TRAFFIC TOTAL',
+     	 style:{
+     		 fontSize:'20px'
+     	 }
+     		
      },
      xAxis: {
      	categories:time,
@@ -124,7 +131,7 @@ function HighCharts(data) {
      },
      yAxis: {
          title: {
-         	text: 'Kilobytes (K)'
+         	text: 'Kilobytes (K)',
          },
          labels: {
              formatter: function () {
@@ -177,14 +184,14 @@ function HighCharts(data) {
     Highcharts.chart('container2', {
         chart: {
             type: 'area',
-            height:400,
-            width:1000,
-            borderColor: '#EBBA95',
-            borderRadius: 20,
-            borderWidth: 5
+            height:350,
+	         width:1200
         },
         title: {
-        	 text: 'TRAFFIC I/O'
+        	 text: 'TRAFFIC I/O',
+        	 style:{
+      			 fontSize:'20px'
+      		 }
         },
         xAxis: {
         	categories:time,

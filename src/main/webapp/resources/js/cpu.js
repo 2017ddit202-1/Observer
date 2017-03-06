@@ -8,6 +8,10 @@ $(function(){
    $("#loader").show();
    $("#btnZxc").hide();
    $("#btntotal").hide();
+   $('#page-wrapper8').hide();
+   $('#page-wrapper9').hide();
+   $('#page-wrapper0').hide();
+   $('#foot').hide();
 //   tt();
    	
 });
@@ -68,6 +72,9 @@ function tt(){
     	  $("#loader").hide();
     	  $("#btnZxc").show();
     	  $("#btntotal").show();
+    	  $('#page-wrapper8').show();
+    	  $('#page-wrapper9').show();
+    	  $('#page-wrapper0').show();
             HighCharts(data);
             HighCharts2(data);
             HighCharts3(data);
@@ -106,7 +113,10 @@ function tt(){
 //                borderWidth: 5
             },
             title: {
-                text: 'CPU Total'
+                text: 'CPU Total',
+                style:{
+         			 fontSize:'20px'
+         		 }
             },
             xAxis: {
             	categories:time,
@@ -183,7 +193,10 @@ function tt(){
 //            borderWidth: 5
         },
         title: {
-            text: 'CPU 사용량'
+            text: 'CPU 사용량',
+            style:{
+     			 fontSize:'20px'
+     		 }
         },
         xAxis: {
         	categories:time,
@@ -197,7 +210,7 @@ function tt(){
         },
         yAxis: {
             title: {
-                text: 'Percent'
+                text: 'Percent(%)'
             },
             labels: {
                 formatter: function () {
@@ -256,7 +269,10 @@ function HighCharts3(data) {
 //              borderWidth: 5
           },
           title: {
-              text: 'CPU Idle'
+              text: 'CPU Idle',
+              style:{
+       			 fontSize:'20px'
+       		 }
           },
           xAxis: {
           	categories:time,

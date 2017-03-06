@@ -502,8 +502,9 @@ public class ServerController {
 		
 		String ip = request.getParameter("ip");
 		
-		session.setAttribute("ip", ip);
-		
+		if(ip!=null){
+			session.setAttribute("ip", ip);
+		}		
 		return url;
 	}
 	

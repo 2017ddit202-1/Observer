@@ -9,6 +9,9 @@ $(function(){
    $("#loader").show();
    $("#btnZxc").hide();
    $("#btntotal").hide();
+   $('#page-wrapper8').hide();
+   $('#page-wrapper9').hide();
+   $('#page-wrapper0').hide();
 //   tt();
    	
 });
@@ -69,6 +72,9 @@ function tt(){
     	  $("#loader").hide();
     	  $("#btnZxc").show();
     	  $("#btntotal").show();
+    	  $('#page-wrapper8').show();
+    	  $('#page-wrapper9').show();
+    	  $('#page-wrapper0').show();
             HighCharts(data);
             HighCharts2(data);
             HighCharts3(data);
@@ -100,14 +106,14 @@ function HighCharts(data) {
  Highcharts.chart('container', {
      chart: {
          type: 'area',
-         height:400,
-         width:1000,
-         borderColor: '#EBBA95',
-         borderRadius: 20,
-         borderWidth: 5
+         height:350,
+         width:1200,
      },
      title: {
-     	 text: 'MEMORY TOTAL'
+     	 text: 'MEMORY TOTAL',
+     	 style:{
+  			 fontSize:'20px'
+  		 }
      },
      xAxis: {
      	categories:time,
@@ -174,14 +180,14 @@ function HighCharts(data) {
     Highcharts.chart('container2', {
         chart: {
             type: 'area',
-            height:400,
-            width:1000,
-            borderColor: '#EBBA95',
-            borderRadius: 20,
-            borderWidth: 5
+            height:350,
+            width:1200
         },
         title: {
-        	 text: 'MEMORY 사용량'
+        	 text: 'MEMORY 사용량',
+        	 style:{
+      			 fontSize:'20px'
+      		 }
         },
         xAxis: {
         	categories:time,
@@ -247,14 +253,14 @@ function HighCharts3(data) {
 Highcharts.chart('container3', {
   chart: {
       type: 'area',
-      height:400,
-      width:1000,
-      borderColor: '#EBBA95',
-      borderRadius: 20,
-      borderWidth: 5
+      height:350,
+      width:1200,
   },
   title: {
-  	 text: 'MEMORY 전체 사용량 (%)'
+  	 text: 'MEMORY 전체 사용량 (%)',
+  		 style:{
+  			 fontSize:'20px'
+  		 }
   },
   xAxis: {
   	categories:time,
