@@ -88,20 +88,26 @@ text-align: center;
 </div>
 
 <!-- // -->
-
-
-
-
-		<table style="width: 1000px;" align="center">
-				<c:if test="${qansVO.qans_qseq != null }">
+		<c:choose>
+			<c:when test="${qansVO.qans_qseq != null}">
+				<table style="width:1000px;" align="center">
 					<tr id="detail_table_tr">
-						<td style="background-color: #e4eaf2; border-top: 1px solid #c3ced9; width: 90px;">답변 내용</td>
+						<td style="background-color: #e4eaf2; border-top:1px solid #c3ced9; width:90px;">답변내용</td>
 						<td><div id="sss">${qansVO.qans_content}</div></td>
 					</tr>
-				</c:if>
-		</table>
-		<br>
-
+				</table>
+			</c:when>
+			<c:otherwise>
+				<div class="container" id="hiddenDiv2" style="display : none">
+					<table style="width:1000px;" align="center">
+						<tr id="detail_table_tr">
+							<td style="background-color:#e4eaf2; border-top: 1px solid #c3ced9; width: 90px;">답변내용</td>
+							<td><div id="sss">${qansVO.qans_content}</div></td>
+						</tr>
+					</table>
+				</div>
+			</c:otherwise>
+		</c:choose>
 
 		<!--  -->
 		<div class="container" id="hiddenDiv" style="display: none">
