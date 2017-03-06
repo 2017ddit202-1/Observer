@@ -12,10 +12,20 @@
 }
 
 .image_text .text_img {
-	position: absolute;
+	/* position: absolute;
 	top: 250px;
 	left: 480px;
-	text-align: center;
+	text-align: center; */
+	position: absolute;
+    right: 15%;
+    bottom: 20px;
+    left: 15%;
+    z-index: 10;
+    padding-top: 20px;
+    padding-bottom: 41px;
+    color: #fff;
+    text-align: center;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
 }
 
 
@@ -43,7 +53,7 @@ float: left;
 }
 #detail_css_1{
 float: left;
-margin-top: 2%;
+margin-top: 5%;
 }
 
 
@@ -57,7 +67,7 @@ margin-top: 2%;
   text-align: center;
   font-size: 18px;
   padding: 1.5%;
-  width: 30%;
+  width: 14%;
   transition: all 0.5s;
   cursor: pointer;
   margin: 3%;
@@ -103,13 +113,10 @@ margin-top: 2%;
 		<p style="font-size: 70px; color: white; font-weight: bold; margin-top: -6%;">성능 모니터링</p>
 		<p style="font-size: 30px; color: white;">CPU, Memory, Disk, Traffic등 서버 성능을 나타내는 지표들을 모디터링 합니다.</p>
 			<button class="button" id="btnDetail"
-									style="vertical-align: middle">
+									style="vertical-align: middle"; onclick="location.href='file/installer'";>
 									<span>다운로드 </span>
 								</button>
-								<button class="button" id="btnDetail"
-									style="vertical-align: middle">
-									<span>다운로드 </span>
-								</button>
+								
 		
 	</div>
 </div>
@@ -160,7 +167,7 @@ margin-top: 2%;
 
 <div style="background-color: #2b2b2b; height: 250px; margin-top: 25%;  text-align: center;">
 <p style="color: white; font-size: 30px; padding-top: 4%;">사용자의 목적에 맞춰 특화된 모니터링을 이용해보세요.</p>
-<button class="button" style="vertical-align: middle;width: 13%;margin-top: 1%;height: 22%;padding-top: 0.8%;"><span>회원가입 </span></button>
+<button onclick="location.href='<%=request.getContextPath()%>/join'";  class="button" style="vertical-align: middle;width: 13%;margin-top: 1%;height: 22%;padding-top: 0.8%;";><span>회원가입 </span></button>
 
 </div>
 
