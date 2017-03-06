@@ -13,6 +13,7 @@ $(function(){
    $('#page-wrapper8').hide();
    $('#page-wrapper9').hide();
    $('#page-wrapper0').hide();
+   $('#foot').hide();
 //   tt();
    	
 });
@@ -91,6 +92,7 @@ function tt(){
     	  $('#page-wrapper8').show();
     	  $('#page-wrapper9').show();
     	  $('#page-wrapper0').show();
+    	  $('#foot').show();
             HighCharts(data);
             HighCharts2(data);
             HighCharts3(data);
@@ -301,6 +303,13 @@ function HighCharts3(data) {
                   }
               },
               minorGridLineColor:'#ffffff'
+      },
+      plotOptions: {
+          series: {
+              marker: {
+                  enabled: false
+              }
+          }
       },
           series: [{
               name: 'DISK PCNT',

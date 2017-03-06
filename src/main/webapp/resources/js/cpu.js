@@ -75,6 +75,7 @@ function tt(){
     	  $('#page-wrapper8').show();
     	  $('#page-wrapper9').show();
     	  $('#page-wrapper0').show();
+    	  $('#foot').show();
             HighCharts(data);
             HighCharts2(data);
             HighCharts3(data);

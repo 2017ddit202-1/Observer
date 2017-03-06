@@ -13,6 +13,7 @@ $(function(){
    $('#page-wrapper88').hide();
    $('#page-wrapper99').hide();
    $('#page-wrapper00').hide();
+   $('#foot').hide();
 //   tt();
    	
 });
@@ -78,6 +79,7 @@ function tt(){
     	  $('#page-wrapper88').show();
     	  $('#page-wrapper99').show();
     	  $('#page-wrapper00').show();
+    	  $('#foot').show();
             HighCharts(data);
             HighCharts2(data);
             $("#net").html(data[0].traffic_net);
