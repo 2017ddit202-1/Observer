@@ -13,17 +13,13 @@
 <title></title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script type="text/javascript"
 	src="<%=request.getContextPath()%>/resources/js/jquery-1.11.0.min.js"></script>
 <script type="text/javascript"
 	src="<%=request.getContextPath()%>/resources/js/sockjs-0.3.min.js"></script>
 <script type="text/javascript">
 
-/* function checkBox() {
-	$("input[name=server_id]").prop("checked", true);
 
-} */
 
 function serverStop(ip){
 	alert('전송정지합니다.');
@@ -172,13 +168,13 @@ function test_go(){
 								
 						}
 					}
-			});
+			}); 
 				
 	});
  			
 			
 </script>
-<style>
+ <style>
 	#page-wrapper3 {
     position: inherit;
     margin: 0 0 0 250px;
@@ -196,29 +192,18 @@ function test_go(){
     height: 870px;
 }
 
-#mm_tr td {
-   background-color: #e4eaf2;
-   border-top: 1px solid #c3ced9;
-   border-bottom: 1px solid #ffffff;
-   height: 50px;
-   padding-top: 1.5%;
-   text-align: center;
-}
-#mm{
-border-bottom:1px solid gray;
-}
-</style>
+
+
+</style> 
 
 
 </head>
 <body>
 <div id="page-wrapper3">
-	<div hidden="hidden" id="testTable">
-		
-	</div>
+	
 	<c:choose>
 		<c:when test="${loginUserPosl eq 'ROLE_USER' }">
-			<h1>user page</h1>
+			<h1>전체 목록</h1>
 			<div class="container">
   
 	  <span class="label label-success">&nbsp&nbsp</span> 정상
@@ -228,11 +213,11 @@ border-bottom:1px solid gray;
   <br><br>  
   
 </div>
-	<table id="mm" class="table table-hover table-bordered">
+	<table id="mm" class="table table-striped">
        		<tr id="mm_tr">
 				<td >위험도</td>
-				<td>Host Name</td>
-				<td>IP</td>
+				<td>HOST NAME</td>
+				<td>IP ADDRESS</td>
 				<td>OS VERSION</td>
 				<td>CPU 사용량(%)</td>
 				<td>MEMORY 사용량(%)</td>
@@ -243,18 +228,18 @@ border-bottom:1px solid gray;
 					<fmt:parseNumber  value="${test}" pattern="###.###" var="cputest"/>
 				<c:choose>
 					<c:when test="${i.value.server_saveyn eq '0'}">
-						<td style="background-color: black;"></td>
+						<td><span class="label" style="background-color: black; ">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</span></td>
 					</c:when>
 					<c:otherwise>
 					 <c:choose>
 	            		<c:when test="${cputest <= 50.0}">
-	            			<td style="background-color: green;"></td>
+	            			<td> <span class="label label-success">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</span></td>
 	            		</c:when>
 	            		<c:when test="${cputest <=80.0}">
-	            			<td style="background-color: yellow;"></td>
+	            			<td><span class="label label-warning">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</span></td>
 	            		</c:when>
 	            		<c:when test="${cputest <=100.0}">
-	            			<td style="background-color: red;"></td>
+	            			<td> <span class="label label-danger">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</span></td>
 	            		</c:when>
 	           		</c:choose>
 	           		</c:otherwise>
@@ -325,22 +310,22 @@ border-bottom:1px solid gray;
  <button type="button" class="btn btn-info btn-sm" style="font-size:13px; padding:3px 5px;" onclick="serverRemove()">해제</button>
  <button type="button" class="btn btn-info btn-sm" style="font-size:13px; padding:3px 5px;" onclick="serverStart()">시작</button>
  <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal" style="font-size:13px; padding:3px 5px;"  data-backdrop="static" data-keyboard="false" onclick="ssss()" >추가</button>
-<div id="divTest" class="container">
+
     
-    <table id="mm"  class="table table-hover ">
-    		<thead style="background-color: #e4eaf2">
-       		<tr>
+    <table id="mm"  class="table table-striped">
+    		
+       		<tr id="mm_tr">
        			<td>선택</td>
        			<td id="td1">위험도</td>
-				<td>Host Name</td>
-				<td>IP</td>
+				<td>HOST NAME</td>
+				<td>IP ADDRESS</td>
 				<td>OS VERSION</td>
 				<td>CPU 사용량(%)</td>
 				<td>MEMORY 사용량(%)</td>
 			</tr>
-			</thead>
+			
          <c:forEach items="${serverMap}" var="i" varStatus="a">
-         	  <tbody>
+         	  
           		  <tr>
             			<td><input type="checkbox" name="server_ip" class="server_ip" id='server_ip' value="${i.value.server_ip}"></td>
             		<c:set var="test" value="${i.value.cpu_total_pcnt}" />
@@ -362,32 +347,32 @@ border-bottom:1px solid gray;
 	            			<td> <span class="label label-danger">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</span></td>
 	            		</c:when>
 	           		</c:choose>
-	           		</c:otherwise>
+           		</c:otherwise> 
             	</c:choose>
-				
 				  <td>${i.value.server_host }</td>
              	  <td><a href="<%=request.getContextPath()%>/server/summary?summaryMenu=1&ip=${i.value.server_ip}">${i.value.server_ip}</a></td>
              	  <td>${i.value.server_os_name}</td>
             	  <td>
-            
-            	   <c:choose>
+            	  	  <c:choose>
             		<c:when test="${cputest <= 50.0}">
-            			<div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: ${i.value.cpu_total_pcnt}%">
+            			<div id="testDiv" class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: ${i.value.cpu_total_pcnt}%">
       							 ${i.value.cpu_total_pcnt}
     					</div>
+    					
             		</c:when>
             		<c:when test="${cputest <=80.0}">
-            			<div class="progress-bar progress-bar-warning progress-bar-striped" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: ${i.value.cpu_total_pcnt}%">
+            			<div id="testDiv" class="progress-bar progress-bar-warning progress-bar-striped" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: ${i.value.cpu_total_pcnt}%">
       							 ${i.value.cpu_total_pcnt}
     					</div>
             		</c:when>
             		<c:otherwise>
-            			<div class="progress-bar progress-bar-danger progress-bar-striped" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: ${i.value.cpu_total_pcnt}%">
+            			<div id="testDiv" class="progress-bar progress-bar-danger progress-bar-striped" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: ${i.value.cpu_total_pcnt}%">
       							 ${i.value.cpu_total_pcnt}
     					</div>
             		</c:otherwise>
             	</c:choose>
-            	 	 ${i.value.cpu_total_pcnt}
+            	  ${i.value.cpu_total_pcnt}
+            	  <div id="testDiv"></div>
             	  </td>
 				  <td>
 				  	<c:set var="mom" value="${i.value.memory_total }" />
@@ -413,10 +398,9 @@ border-bottom:1px solid gray;
 				  ${i.value.memory_total }
 				  </td>
 			 	</tr>
-				  </tbody>
              </c:forEach>
       </table>
-      </div>
+      
  </form>
    </c:otherwise>
 </c:choose>
@@ -484,6 +468,6 @@ border-bottom:1px solid gray;
 		</script>
 	</c:if>
 
-</body>
 </div>
+</body>
 </html>
