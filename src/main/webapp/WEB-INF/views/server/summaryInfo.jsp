@@ -13,7 +13,7 @@
    }
    #summaryTb{
           width: 15%;
-             margin-left: 9%;
+          margin-left: 9%;
    }
    #page-wrapper6{
       text-align:center;
@@ -29,9 +29,27 @@
        height: 305px;
        margin-bottom: 1.5%;
 }
+
+   #page-wrapper7{
+      text-align:center;
+       position: inherit;
+       margin: 0 0 0 250px;
+       padding: 65px 30px;
+        box-shadow: 5px 5height: 252px;ay;
+        border-radius: 10px; 
+       padding: 0 15px;
+       background-color: white;
+       margin-left: 4%;
+       width: 1300px;
+       height: 252px;
+       margin-bottom: 1.5%;
+}
+
+
 #container{
 margin-left:8%;
 }
+
 #loader {
    position: absolute; 
    left: 50%; 
@@ -41,13 +59,14 @@ margin-left:8%;
    height: 150px; 
    margin: -75px 0 0 -75px; 
 }
+
 </style>
 <article>
 
-   <h1>요약 페이지</h1>
    <form id="formm" name="formm">
       <div id="loader"><img id="lodingImg" src="<%=request.getContextPath() %>/resources/img/loader.gif"></div>
    </form>
 <div id="serverInfo"></div>
 <div id="container"></div>
+
 </article>
