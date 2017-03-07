@@ -4,7 +4,6 @@ package com.ddit.controller;
 import java.io.File;
 import java.io.UnsupportedEncodingException;
 import java.sql.SQLException;
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -32,18 +31,17 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.ServletContextResource;
 
-
 import com.ddit.dto.CpuVO;
-import com.ddit.dto.VwMemPosSerVO;
+import com.ddit.dto.DiskVO;
 import com.ddit.dto.MemberVO;
 import com.ddit.dto.PositionListVO;
 import com.ddit.dto.VWmemPosVO;
+import com.ddit.dto.VwMemPosSerVO;
 import com.ddit.dto.Vw_AuthorityVO;
 import com.ddit.service.AlertServiceImpl;
 import com.ddit.service.AuthorityServiceImpl;
-import com.ddit.service.ReportServiceImpl;
 import com.ddit.service.MemberServiceImpl;
-import com.ddit.service.PositionListServiceImpl;
+import com.ddit.service.ReportServiceImpl;
 import com.ddit.service.SuperAdminServiceImpl;
 
 @Controller
@@ -297,7 +295,7 @@ public class SuperAdminController {
 		String resultEmail = null;
 		ArrayList<VwMemPosSerVO> ipList = null;
 		ArrayList<CpuVO> cpuXls = null;
-		
+		ArrayList<DiskVO> driver = null;
 		String email = (String) reportMap.get("email");
 		String ip = (String) reportMap.get("ip");
 		Date date = new Date();
@@ -316,6 +314,7 @@ public class SuperAdminController {
 		
 		try {
 			// Mail 전송
+			driver = reportService.driverList(ip);
 			vwMpsVO = reportService.adminMail(email);
 			HSSFWorkbook book = reportService.CpuXls(ip);
 			String name = format.format(date)+"("+ip+")"+".xls";

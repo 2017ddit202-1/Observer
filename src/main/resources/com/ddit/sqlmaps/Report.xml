@@ -20,8 +20,40 @@
 		          ,CPU_USER_PCNT
 		          ,CPU_TOTAL_PCNT
 		          ,CPU_IDLE
+		          ,CPU_DATE
 				FROM   CPU 
 				WHERE CPU_IP = #str#
 				ORDER BY CPU_DATE ASC
   		</select>
+  		<select id="memoryReport" parameterClass="str" resultClass="memo">
+  			select memory_total
+  				  ,memory_using
+  				  ,memory_idle
+  				  ,memory_total_used
+  				  ,memory_date
+  			from memory
+  			where memory_ip = #str#
+  			order by memory_date desc	  
+  		</select>
+  		<select id="trafficReport" parameterClass="str" resultClass="traffic">
+  			select traffic_use
+  				  ,traffic_rece
+  				  ,traffic_trans
+  				  ,traffic_date
+  			from traffic
+  			where traffic_ip = #str#
+  			order by traffic_date desc	  
+  		</select>
+  		<select id="diskReport" parameterClass="disk" resultClass="disk">
+	  		select disk_total
+	  			,DISK_USING
+	  			,DISK_NM
+	            ,DISK_IDLE
+	            ,DISK_PCNT
+	  			,disk_date
+	  			from disk
+	  			where disk_ip =#disk_ip# and DISK_NM=#disk_nm#
+	  			order by disk_date desc	
+  		</select>
+  		
     </sqlMap>
