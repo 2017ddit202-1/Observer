@@ -50,7 +50,7 @@ public class DownloadController implements ApplicationContextAware {
 		String baseDir = context.getServletContext().getRealPath(
 				"/WEB-INF/files");
 		if (fileId.equals("menu")) {
-			return new File(baseDir, "observer.pdf");
+			return new File(baseDir, "OBSERVER사용자 가이드.pdf");
 
 		} else if (fileId.equals("installer")) {
 			return new File(baseDir, "InstallSetup.exe");
