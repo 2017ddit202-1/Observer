@@ -17,13 +17,9 @@
 <!DOCTYPE html>
 <html>
 <!-- jQuery -->
-<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script> -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<%-- <script src="<%=request.getContextPath()%>/resources/js/jquery.js"></script> --%>
-<%--     <script src="<%=request.getContextPath()%>/resources/js/jquery-3.1.1.js"></script> --%>
-<%--     <script src="<%=request.getContextPath()%>/resources/js/jquery-3.1.1.min.js"></script> --%>
+    <script src="<%=request.getContextPath()%>/resources/js/jquery-3.1.1.min.js"></script>
    
-<%--     <script src="<%=request.getContextPath()%>/resources/vendor/jquery/jquery.min.js"></script> --%>
+    <script src="<%=request.getContextPath()%>/resources/vendor/jquery/jquery.min.js"></script>
     <script src="<%=request.getContextPath()%>/resources/alert/dist/sweetalert.min.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
@@ -126,22 +122,7 @@ $('.dropdown-toggle').dropdown();
                      <sec:authorize access="isAuthenticated()">
                            <span>${sessionScope.loginUser }님 어서오세요.</span>
                         </sec:authorize>
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
                         <!-- /////////////// -->
-                        
                         
                          <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
@@ -205,33 +186,6 @@ $('.dropdown-toggle').dropdown();
                         
                         
                         <!-- /////////////// -->
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
                         
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
