@@ -74,5 +74,9 @@
      <select id="searchId" parameterClass="str" resultClass="freeBoard">
     select * from free_board where fb_id like '%'||#fb_id#||'%'
     </select>
+    
+     <select id="totalfrAnsercnt" parameterClass="str" resultClass="int">
+		select count(*) from fbanswer where fbans_fbseq=#fbans_fbseq#
+	</select>
 
 </sqlMap>	

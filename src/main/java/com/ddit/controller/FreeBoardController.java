@@ -111,10 +111,11 @@ public class FreeBoardController {
 		String tpage = request.getParameter("tpage"); 
 		String fb_seq = request.getParameter("fb_seq");
 		FreeBoardVO fbVO = null;
-		
+		int FbAnswercnt = 0;
 		try {
 			fbVO = freeBoardServiceImpl.fbDetail(Integer.parseInt(fb_seq));
 			freeBoardServiceImpl.fb_cnt(Integer.parseInt(fb_seq));
+			FbAnswercnt = freeBoardServiceImpl.totalfrAnsercnt(fb_seq);
 		} catch (NumberFormatException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -124,6 +125,7 @@ public class FreeBoardController {
 		}
 		model.addAttribute("fbVO",fbVO);
 		model.addAttribute("tpage",tpage);
+		model.addAttribute("FbAnswercnt",FbAnswercnt);
 		return url;
 		
 	}

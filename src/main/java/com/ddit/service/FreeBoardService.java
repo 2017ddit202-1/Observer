@@ -25,5 +25,5 @@ public interface FreeBoardService {
 	public ArrayList<FreeBoardVO> searchCon(String fb_con,int tpage) throws SQLException;
 	public String pageNumberCon(int tpage, String fb_con) throws SQLException;
 	public ArrayList<FreeBoardVO> searchId(String userId,int tpage) throws SQLException;
-	
+	public int totalfrAnsercnt(String fbans_fnseq) throws SQLException;
 }
