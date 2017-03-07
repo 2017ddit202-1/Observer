@@ -99,12 +99,13 @@ public class NoticeController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		
+		}
+		
 		request.setAttribute("noticeList", noticeList);
 		int n = noticeList.size();
 		request.setAttribute("memberListSize", n);
 		request.setAttribute("paging", paging);
 		
-	}
 		return url;
 	
 }
