@@ -1,5 +1,6 @@
 package com.ddit.controller;
 
+import java.io.UnsupportedEncodingException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -10,11 +11,18 @@ import java.util.List;
 import java.util.Map;
 import java.util.StringTokenizer;
 
+import javax.annotation.Resource;
+import javax.mail.MessagingException;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.MailSender;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -117,6 +125,14 @@ public class ServerController {
 
 	public void setAlertService(AlertServiceImpl alertService) {
 		this.alertService = alertService;
+	}
+	
+
+	@Resource(name = "mailSender")
+	private MailSender mailSender;
+	
+	public void setMailSender(MailSender mailSender){
+		this.mailSender = mailSender;
 	}
 	
 	
@@ -607,21 +623,27 @@ public class ServerController {
 //CPU사용량 초과되었을때
 	public void cpuNotice(String currentIp){
 	      ServerVO serverVO = new ServerVO();
+	      MemberVO memVO = new MemberVO();
 	      String lice="";
 	      String code="";
 	      String id = null;
 	      MemberGroupVO mgRroupVO = null;
+	      String email = null;
+			JavaMailSender jmailSender = (JavaMailSender) mailSender;
+			MimeMessage message = ((JavaMailSender) mailSender).createMimeMessage();
+			
 	      try {
 	    	  code = serverService.selectServercode_Info(currentIp);
 	    	  serverVO =  serverService.selectCode(currentIp);
 	    	  id = serverVO.getServer_id();
 	    	  mgRroupVO = memberGroupService.selectLice(id);
 	    	  lice = mgRroupVO.getMg_lice();
+	    	  
+	    	  memVO = memberService.selectMember(id);
+	    	  email = memVO.getMem_email();
 	      } catch (SQLException e) {
 	         e.printStackTrace();
 	      }
-	      
-	      
 	      
 	      //notice 테이블에 알림내역 insert
 	      NoticeVO noticeVO = new NoticeVO();
@@ -632,9 +654,30 @@ public class ServerController {
 			noticeVO.setNotice_ip(currentIp);
 			noticeVO.setServer_code(code);
 			noticeVO.setNotice_lice(lice);
+			
+			 String content = "<strong>안녕하세요. 관리자님<br>"
+						+"서버 CPU 사용량을 "+cpu+"% 만큼 사용하셔서 80% 이상 초과하였습니다.<br>"
+						+"서버상태를 확인해주시기 바랍니다.</strong>";
 			try {
 				noticeServiceImpl.insertNotice(noticeVO);
+				if(email != null){
+					MimeMessageHelper helper = new MimeMessageHelper(message, true,
+							"UTF-8");
+					helper.setSubject("[ 서버 사용량 초과 ]");
+					helper.setText(content, true);
+					helper.setFrom("observerddit202@gmail.com", "Observer");
+					helper.setTo(new InternetAddress(email));
+					
+					jmailSender.send(message);
+				}
+				
 			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (MessagingException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (UnsupportedEncodingException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
@@ -645,10 +688,20 @@ public class ServerController {
 	public void memoryNotice(String currentIp){
 		  ServerVO serverVO = new ServerVO();
 	      MemberVO memberVO = new MemberVO();
+	      MemberGroupVO mgRroupVO = null;
 	      String id ="";
 	      String lice="";
+	      String email = null;
+
+		  	JavaMailSender jmailSender = (JavaMailSender) mailSender;
+			MimeMessage message = ((JavaMailSender) mailSender).createMimeMessage();
 	      try {
-	         serverVO = serverService.SelectServerInfo(currentIp);
+	    	  serverVO =  serverService.selectCode(currentIp);
+	         id = serverVO.getServer_id();
+	         mgRroupVO = memberGroupService.selectLice(id);
+	         lice = mgRroupVO.getMg_lice();
+	         memberVO = memberService.selectMember(id);
+	    	  email = memberVO.getMem_email();
 	      } catch (SQLException e) {
 	         e.printStackTrace();
 	      }
@@ -657,16 +710,36 @@ public class ServerController {
 	      NoticeVO noticeVO = new NoticeVO();
 			
 	      
-	        String memory=classMap.get(currentIp).get("memory_total");
+	        String memory=classMap.get(currentIp).get("memory_total_used");
 			noticeVO.setNotice_server_nm(classMap.get(currentIp).get("hostName"));
 			noticeVO.setNotice_dng_lv("위험");
 			noticeVO.setNotice_content("현재 Memory 사용량은"+memory+"% 입니다. 80% 초과되었습니다. Memory를 점검하세요");
 			noticeVO.setNotice_ip(currentIp);
 			noticeVO.setServer_code(serverVO.getServer_code());
+			noticeVO.setNotice_lice(lice);
+		      String content = "<strong>안녕하세요. 관리자님<br>"
+							+"서버 MEMORY 사용량을 "+memory+"% 만큼 사용하셔서 80% 이상 초과하였습니다.<br>"
+							+"서버상태를 확인해주시기 바랍니다.</strong>";
 			
 			try {
 				noticeServiceImpl.insertNotice(noticeVO);
+				if(email != null){
+					MimeMessageHelper helper = new MimeMessageHelper(message, true,
+							"UTF-8");
+					helper.setSubject("[ 서버 사용량 초과 ]");
+					helper.setText(content, true);
+					helper.setFrom("observerddit202@gmail.com", "Observer");
+					helper.setTo(new InternetAddress(email));
+					
+					jmailSender.send(message);
+				}	
 			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (MessagingException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (UnsupportedEncodingException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
@@ -676,10 +749,20 @@ public class ServerController {
 	public void cpu_memory_Notice(String currentIp){
 		  ServerVO serverVO = new ServerVO();
 	      MemberVO memberVO = new MemberVO();
+	      MemberGroupVO mgRroupVO = new MemberGroupVO();
+	      String email = null;
 	      String id ="";
 	      String lice="";
+	      JavaMailSender jmailSender = (JavaMailSender) mailSender;
+		  MimeMessage message = ((JavaMailSender) mailSender).createMimeMessage();
+	      
 	      try {
-	         serverVO = serverService.SelectServerInfo(currentIp);
+	    	  serverVO =  serverService.selectCode(currentIp);
+	         id = serverVO.getServer_id();
+	         mgRroupVO = memberGroupService.selectLice(id);
+	         lice = mgRroupVO.getMg_lice();
+	         memberVO = memberService.selectMember(id);
+	    	  email = memberVO.getMem_email();
 	      } catch (SQLException e) {
 	         e.printStackTrace();
 	      }
@@ -689,16 +772,36 @@ public class ServerController {
 			
 	      
 	        String cpu=classMap.get(currentIp).get("cpu_total_pcnt");
-	        String memory=classMap.get(currentIp).get("memory_total");
+	        String memory=classMap.get(currentIp).get("memory_total_used");
 			noticeVO.setNotice_server_nm(classMap.get(currentIp).get("hostName"));
 			noticeVO.setNotice_dng_lv("위험");
 			noticeVO.setNotice_content("현재 Memory 사용량은"+memory+"% CPU 사용량은"+cpu+"입니다. 80% 초과되었습니다. Memory, CPU를 점검하세요");
 			noticeVO.setNotice_ip(currentIp);
 			noticeVO.setServer_code(serverVO.getServer_code());
+			noticeVO.setNotice_lice(lice);
+		      String content = "<strong>안녕하세요. 관리자님<br>"
+						+ "서버 CPU 사용량을 "+cpu+ " % ― MEMOMRY 사용량 "+memory+ " % 만큼 사용하셔서 80% 이상 초과하였습니다.<br>"
+						+"서버상태를 확인해주시기 바랍니다.</strong>";
 			
 			try {
 				noticeServiceImpl.insertNotice(noticeVO);
+				if(email != null){
+					MimeMessageHelper helper = new MimeMessageHelper(message, true,
+							"UTF-8");
+					helper.setSubject("[ 서버 사용량 초과 ]");
+					helper.setText(content, true);
+					helper.setFrom("observerddit202@gmail.com", "Observer");
+					helper.setTo(new InternetAddress(email));
+					
+					jmailSender.send(message);
+				}
 			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (MessagingException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (UnsupportedEncodingException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}

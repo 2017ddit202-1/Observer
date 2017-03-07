@@ -19,4 +19,8 @@ public interface ReferenceLibrayDAO {
 	public int deleteRef(int reli_seq) throws SQLException;
 	ReferenceLibrayVO selectRef(int reli_seq) throws SQLException;
 	
+	
+	public ArrayList<ReferenceLibrayVO> ReferenceList(String reli_seq,int tpage) throws SQLException;
+	public String totalReferenceList(String reli_seq,int tpage) throws SQLException;
+	public int totalReference() throws SQLException;
 }

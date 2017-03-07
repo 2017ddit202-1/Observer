@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import com.ddit.dao.ReferenceLibrayDAO;
 import com.ddit.dto.ReferenceLibrayVO;
+import com.ddit.dto.VWmemPosVO;
 
 public class ReferenceLibrayServiceImpl implements ReferenceLibrayService{
 
@@ -69,6 +70,23 @@ public class ReferenceLibrayServiceImpl implements ReferenceLibrayService{
 	public void deleteReference(int reli_seq) throws SQLException {
 		referenceDAO.deleteReference(reli_seq);
 		
+	}
+
+	@Override
+	public ArrayList<ReferenceLibrayVO> ReferenceList(String reli_seq, int tpage)
+			throws SQLException {
+		return referenceDAO.ReferenceList(reli_seq, tpage);
+	}
+
+	@Override
+	public String totalReferenceList(String reli_seq, int tpage)
+			throws SQLException {
+		return referenceDAO.totalReferenceList(reli_seq, tpage);
+	}
+
+	@Override
+	public int totalReference() throws SQLException {
+		return referenceDAO.totalReference();
 	}
 
 

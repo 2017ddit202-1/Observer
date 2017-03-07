@@ -37,18 +37,43 @@ public class ReferenceLibraryController {
 
    // 자료실리스트
    @RequestMapping("/rfList")
-   public String rfList(Model model) {
+   public String rfList(Model model,HttpServletRequest request) {
 
       String url = "reference/rfList";
+      
+      String key = "";
+		String tpage = request.getParameter("tpage");
+
+		if (request.getParameter("key") != null) {
+			key = request.getParameter("key");
+		}
+		
+		if (tpage == null) {
+			tpage = "1";
+		} else if (tpage.equals("")) {
+			tpage = "1";
+		}
+		
+		request.setAttribute("key", key);
+	    request.setAttribute("tpage",tpage);
+      
       ArrayList<ReferenceLibrayVO> referenceList = null;
+      String paging=null;
+      int listcount =0;
       try {
-         referenceList = referenceService.listAllReference();
+    	  referenceList= referenceService.ReferenceList(key,Integer.parseInt(tpage));
+		  paging = referenceService.totalReferenceList(key,Integer.parseInt(tpage));
+		  listcount = referenceService.totalReference();
       } catch (SQLException e) {
          // TODO Auto-generated catch block
          e.printStackTrace();
       }
-
-      model.addAttribute("referenceList", referenceList);
+      
+      request.setAttribute("referenceList", referenceList);
+      int n=referenceList.size();   
+	  request.setAttribute("memberListSize",n); 
+	  request.setAttribute("paging", paging);
+      request.setAttribute("qnaListSize", listcount);
       return url;
    }
 
@@ -68,7 +93,7 @@ public class ReferenceLibraryController {
 
       request.setCharacterEncoding("utf-8");
       response.setContentType("text/html;charset=utf-8");
-      String url = "reference/rfList";
+      String url = "redirect:/rf/rfList";
 
       String name = multipartFile.getOriginalFilename();// 파일이름
       Long size = multipartFile.getSize();// 파일사이즈
@@ -143,7 +168,7 @@ public class ReferenceLibraryController {
 	   
       request.setCharacterEncoding("utf-8");
       response.setContentType("text/html;charset=utf-8");
-      String url = "reference/rfList";
+      String url = "redirect:/rf/rfList";
 
       ReferenceLibrayVO referenceVO = new ReferenceLibrayVO();
 
@@ -209,7 +234,7 @@ public class ReferenceLibraryController {
    //자료글삭제하기
    @RequestMapping(value="/referenceDelete", method = RequestMethod.POST)
    public String referenceDelete(HttpServletRequest request, HttpServletResponse response){
-      String url ="reference/rfList";
+	   String url = "redirect:/rf/rfList";
       
    int reli_seq = Integer.parseInt(request.getParameter("reli_seq"));
    ArrayList<ReferenceLibrayVO> referenceList = null;
