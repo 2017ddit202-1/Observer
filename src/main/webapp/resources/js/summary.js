@@ -17,40 +17,25 @@ function serverInfo(){
          type:'post',
          dataType:'json',
          success:function(data){
-            var tb =   '<div id="page-wrapper7">'
+            var tb =   
+            	'<br/>'
+            	+'<div id="page-wrapper7">'
             
-            	+'<br>'
-            	+'<div class="media">'
-            	+'<div class="media-left">'
-            	+'<img src="<%=request.getContextPath()%>/resources/img/analysis .png" class="media-object" style="width:60px;margin-left: 39%;">'
-            	+'</div>'
-            	+'<div class="media-body">'
-            	+'<h4 class="media-heading" style="margin-left: 3%; margin-top: 1%; "><strong>요약정보</strong></h4>'
-            	+'<p style="margin-left: 3%;">SERVER의 CPU, 메모리의 과다사용 내역을 실시간으로 안내해주는 서비스.</p>'
-            	+'</div>'
-            	+'</div>'
-            	+'<hr>'
-            	+'<br>resources/img/analysis .png" class="media-object" style="width:60px;margin-left: 39%;">'
-            	+'</div>'
-            	+'<div class="media-body">'
-            	+'<h4 class="media-heading" style="margin-left: 3%; margin-top: 1%; "><strong>요약정보</strong></h4>'
-            	+'<p style="margin-left: 3%;">SERVER의 CPU, 메모리의 과다사용 내역을 실시간으로 안내해주는 서비스.</p>'
-            	+'</div>'
-            	+'</div>'
-            	+'<hr>'
-            	+'<br>'
-                   
                      +'<br/>'
-                     +'<table  style="width: 1000px;">'
+                     +'<table style="width: 1000px; height:30px; width:1200px; border-radius: 10px;">'
                      +'<tr>'
-                     +'<td>운영체제</td>'
-                     +'<td>'+data.server_host+'</td>'
-                     +'<td>서버명</td>'
-                     +'<td>'+data.server_os_name+'</td>'
-                     +'<td>IP 주소 </td>'
-                     +'<td>'+data.server_ip+'</td>'
-                     +'<td>BIT</td>'
-                     +'<td>'+data.server_os_support+'</td>'
+                     +'<td style="width: 176px; text-align: right;"><strong>운영체제</strong></td>'
+                     +'<td style="border-right: 4px solid #07C758; color: #989898;">'+data.server_host+'</td>'
+                 
+                     
+                     +'<td style="width: 89px;text-align: right;"><strong>서버명</strong></td>'
+                     +'<td style="text-align: center;width: 228px; border-right: 4px solid #07C758; color: #989898;">'+data.server_os_name+'</td>'
+                     
+                     +'<td style="width: 97px;text-align: right;"><strong>IP 주소 </strong></td>'
+                     +'<td style="width: 199px; border-right: 4px solid #07C758; color: #989898;">'+data.server_ip+'</td>'
+                     
+                     +'<td style="width: 113px;text-align: center;"><strong>BIT</strong></td>'
+                     +'<td style="width: 145px;text-align: left; color: #989898;">'+data.server_os_support+'</td>'
                      +'</tr>'
                      +'</table>'
                     

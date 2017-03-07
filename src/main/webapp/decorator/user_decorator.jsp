@@ -31,6 +31,18 @@ background-color: #1f2123;
 bottom:0 !important;
 height:auto !important;
 }
+#smsbtn:HOVER {
+	background-color: #05ba46;
+}
+#smsbtn{
+background: #07C758; 
+}
+
+
+
+
+
+
 </style>
 <html>
 <!-- jQuery -->
@@ -190,7 +202,7 @@ height:auto !important;
             <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse" style="padding-bottom:339%; background-color: #2b2e30;">
                     <ul class="nav" id="side-menu">
-                        <li class="sidebar-search">
+                        <!-- <li class="sidebar-search">
                             <div class="input-group custom-search-form">
                                 <input type="text" class="form-control" placeholder="Search...">
                                 <span class="input-group-btn">
@@ -199,11 +211,11 @@ height:auto !important;
                                 </button>
                             </span>
                             </div>
-                            <!-- /input-group -->
-                        </li>
-                     
+                            /input-group
+                        </li> -->
+                      <button id="smsbtn" style="margin-left: 15.5%; border-color:#07C758; margin-top: 6%; width: 168px;" type="button" class="btn btn-primary" >&nbsp;&nbsp;<i class="fa fa-line-chart" aria-hidden="true"></i>&nbsp;S M S&nbsp;&nbsp;</button>
                         <li>
-                            <a href="<%=request.getContextPath()%>/server/serverMain"><i class="fa fa-bar-chart-o fa-fw"></i> SERVER<span class="fa arrow"></span></a>
+                            <a style="margin-top: 5%;" href="<%=request.getContextPath()%>/server/serverMain"><i class="fa fa-bar-chart-o fa-fw"></i> SERVER<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 
                                 <li>

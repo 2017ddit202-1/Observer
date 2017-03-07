@@ -31,18 +31,19 @@
 }
 
    #page-wrapper7{
-      text-align:center;
+       text-align:center;
        position: inherit;
        margin: 0 0 0 250px;
        padding: 65px 30px;
-        box-shadow: 5px 5height: 252px;ay;
-        border-radius: 10px; 
+       box-shadow: 5px 5height: 252px;ay;
+       border-radius: 10px; 
        padding: 0 15px;
        background-color: white;
-       margin-left: 4%;
-       width: 1300px;
-       height: 252px;
+       margin-left: 9.8%;
+       width: 1295px;
+       height: 60px;
        margin-bottom: 1.5%;
+       
 }
 
 
