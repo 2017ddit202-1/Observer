@@ -15,46 +15,40 @@
 %>
 
 <!DOCTYPE html>
-<style>
-#side-menu li a{
-color:#888;
-}
-#side-menu li a:hover{
-background-color: #1f2123;
-border-left:5px solid #07C758;
-color: white;
-}
-#side-menu li a:FOCUS {
-background-color: #1f2123;
-}
-#page-wrapper{
-bottom:0 !important;
-height:auto !important;
-}
-#smsbtn:HOVER {
-	background-color: #05ba46;
-}
-#smsbtn{
-background: #07C758; 
-}
-
-
-
-
-
-
-</style>
 <html>
 <!-- jQuery -->
-    <script src="<%=request.getContextPath()%>/resources/vendor/jquery/jquery.min.js"></script>
-<script src="<%=request.getContextPath()%>/resources/js/jquery.js"></script>
-    <script src="<%=request.getContextPath()%>/resources/js/jquery-3.1.1.js"></script>
-    <script src="<%=request.getContextPath()%>/resources/js/jquery-3.1.1.min.js"></script>
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script> -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<%-- <script src="<%=request.getContextPath()%>/resources/js/jquery.js"></script> --%>
+<%--     <script src="<%=request.getContextPath()%>/resources/js/jquery-3.1.1.js"></script> --%>
+<%--     <script src="<%=request.getContextPath()%>/resources/js/jquery-3.1.1.min.js"></script> --%>
    
+<%--     <script src="<%=request.getContextPath()%>/resources/vendor/jquery/jquery.min.js"></script> --%>
     <script src="<%=request.getContextPath()%>/resources/alert/dist/sweetalert.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/alert/dist/sweetalert.css">
 
+    <!-- Bootstrap Core JavaScript -->
+    <script src="<%=request.getContextPath()%>/resources/vendor/bootstrap/js/bootstrap.min.js"></script>
 
+<!--     Metis Menu Plugin JavaScript -->
+    <script src="<%=request.getContextPath()%>/resources/vendor/metisMenu/metisMenu.min.js"></script>
+
+<!--     Morris Charts JavaScript -->
+    <script src="<%=request.getContextPath()%>/resources/vendor/raphael/raphael.min.js"></script>
+    <script src="<%=request.getContextPath()%>/resources/vendor/morrisjs/morris.min.js"></script>
+    <script src="<%=request.getContextPath()%>/resources/data/morris-data.js"></script>
+
+<!--     Custom Theme JavaScript -->
+    <script src="<%=request.getContextPath()%>/resources/dist/js/sb-admin-2.js"></script>
+    
+<!--      websocket -->
+   <script type="text/javascript" src="<%=request.getContextPath()%>/resources/js/sockjs-0.3.min.js"></script>
+
+<script>
+var bootstrapButton = $.fn.button.noConflict() // return $.fn.button to previously assigned value
+$.fn.bootstrapBtn = bootstrapButton            // give $().bootstrapBtn the Bootstrap functionality
+$('.dropdown-toggle').dropdown();
+
+</script>
 <title>OBSERVER<decorator:title /></title>
 <decorator:head />
 
@@ -63,27 +57,21 @@ background: #07C758;
    var wsocket;
 
    $(document).ready(function() {
-	   var s = location.href;
+      var s = location.href;
       wsocket = new SockJS("http://"+document.domain+":8181/observer/test/authority");
       wsocket.onopen;
       wsocket.onmessage = function appendMessage(msg) {
          
       swal("member leave!", msg.data,"success"),
-    	   
+          
       $('.confirm').click(function(){
-    	  alert("확인클릭후");
-    	  if(s=="http://"+document.domain+":8181/observer/atrt/authorityReq?" || s=="http://"+document.domain+":8181/observer/user/mypage"){
-    		  window.location.href="<%=request.getContextPath()%>/user/mypage";
-  		} 
+         alert("확인클릭후");
+         if(s=="http://"+document.domain+":8181/observer/atrt/authorityReq?" || s=="http://"+document.domain+":8181/observer/user/mypage"){
+            window.location.href="<%=request.getContextPath()%>/user/mypage";
+        } 
          <%--  window.location.href = "<%=request.getContextPath()%>/index"; --%>
     });
-      
-      
-      
       }
-      
-      
-      
    });
    
 </script>
@@ -109,6 +97,9 @@ background: #07C758;
 
     <!-- Custom Fonts -->
     <link href="<%=request.getContextPath()%>/resources/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <!-- alert -->
+    <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/alert/dist/sweetalert.css">
+    
     
       <!-- HighChart -->
     <script src="<%=request.getContextPath()%>/resources/js/highcharts.js"></script>
@@ -123,8 +114,6 @@ background: #07C758;
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <script>
-                </script>
                 <a class="navbar-brand" href="<%=request.getContextPath()%>/server/serverMain"><i class="fa fa-heartbeat" aria-hidden="true"></i>&nbsp;OBSERVER</a>
             </div>
             <!-- /.navbar-header -->
@@ -141,7 +130,108 @@ background: #07C758;
                         
                         
                         
-
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <!-- /////////////// -->
+                        
+                        
+                         <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <i class="fa fa-bell fa-fw"></i> <i class="fa fa-caret-down"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-alerts">
+                        <li>
+                            <a href="#">
+                                <div>
+                                    <i class="fa fa-comment fa-fw"></i> New Comment
+                                    <span class="pull-right text-muted small">4 minutes ago</span>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#">
+                                <div>
+                                    <i class="fa fa-twitter fa-fw"></i> 3 New Followers
+                                    <span class="pull-right text-muted small">12 minutes ago</span>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#">
+                                <div>
+                                    <i class="fa fa-envelope fa-fw"></i> Message Sent
+                                    <span class="pull-right text-muted small">4 minutes ago</span>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#">
+                                <div>
+                                    <i class="fa fa-tasks fa-fw"></i> New Task
+                                    <span class="pull-right text-muted small">4 minutes ago</span>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#">
+                                <div>
+                                    <i class="fa fa-upload fa-fw"></i> Server Rebooted
+                                    <span class="pull-right text-muted small">4 minutes ago</span>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a class="text-center" href="#">
+                                <strong>See All Alerts</strong>
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        </li>
+                    </ul>
+                    <!-- /.dropdown-alerts -->
+                </li>
+                        
+                        
+                        <!-- /////////////// -->
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
                         
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
@@ -309,7 +399,35 @@ background: #07C758;
         </nav>
         
          <div id="page-wrapper">
-               <decorator:body />
+	<style>
+#side-menu li a {
+	color: #888;
+}
+
+#side-menu li a:hover {
+	background-color: #1f2123;
+	border-left: 5px solid #07C758;
+	color: white;
+}
+
+#side-menu li a:FOCUS {
+	background-color: #1f2123;
+}
+
+#page-wrapper {
+	bottom: 0 !important;
+	height: auto !important;
+}
+
+#smsbtn:HOVER {
+	background-color: #05ba46;
+}
+
+#smsbtn {
+	background: #07C758;
+}
+</style>
+	<decorator:body />
          </div>
 
 
@@ -330,34 +448,5 @@ background: #07C758;
 
       </div>
    </footer>
-
-
-
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="<%=request.getContextPath()%>/resources/vendor/bootstrap/js/bootstrap.min.js"></script>
-
-    <!-- Metis Menu Plugin JavaScript -->
-    <script src="<%=request.getContextPath()%>/resources/vendor/metisMenu/metisMenu.min.js"></script>
-
-    <!-- Morris Charts JavaScript -->
-    <script src="<%=request.getContextPath()%>/resources/vendor/raphael/raphael.min.js"></script>
-    <script src="<%=request.getContextPath()%>/resources/vendor/morrisjs/morris.min.js"></script>
-    <script src="<%=request.getContextPath()%>/resources/data/morris-data.js"></script>
-
-    <!-- Custom Theme JavaScript -->
-    <script src="<%=request.getContextPath()%>/resources/dist/js/sb-admin-2.js"></script>
-    
-    <!--  websocket -->
-   <script type="text/javascript"
-   src="<%=request.getContextPath()%>/resources/js/sockjs-0.3.min.js"></script>
-
-
-
-
-
-   
-
-   
 </head>
 </html>
