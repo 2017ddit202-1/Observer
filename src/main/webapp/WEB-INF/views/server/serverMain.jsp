@@ -380,23 +380,23 @@ function test_go(){
             	  <td>
             	  	  <c:choose>
             		<c:when test="${cputest <= 50.0}">
-            			<div id="testDiv" class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: ${i.value.cpu_total_pcnt}%">
-      							 ${i.value.cpu_total_pcnt}
+            			<div id="testDiv" class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: ${i.value.cpu_total_pcnt}%; color:black;">
+      							 <b>${i.value.cpu_total_pcnt}(%)</b>
     					</div>
     					
             		</c:when>
             		<c:when test="${cputest <=80.0}">
-            			<div id="testDiv" class="progress-bar progress-bar-warning progress-bar-striped" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: ${i.value.cpu_total_pcnt}%">
-      							 ${i.value.cpu_total_pcnt}
+            			<div id="testDiv" class="progress-bar progress-bar-warning progress-bar-striped" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: ${i.value.cpu_total_pcnt}%; color:black;">
+      							 <b>${i.value.cpu_total_pcnt}(%)</b>
     					</div>
             		</c:when>
             		<c:otherwise>
-            			<div id="testDiv" class="progress-bar progress-bar-danger progress-bar-striped" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: ${i.value.cpu_total_pcnt}%">
-      							 ${i.value.cpu_total_pcnt}
+            			<div id="testDiv" class="progress-bar progress-bar-danger progress-bar-striped" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: ${i.value.cpu_total_pcnt}%; color:black;">
+      							 <b>${i.value.cpu_total_pcnt}(%)</b>
     					</div>
             		</c:otherwise>
             	</c:choose>
-            	  ${i.value.cpu_total_pcnt}
+            	 
             	  <div id="testDiv"></div>
             	  </td>
 				  <td>
@@ -405,22 +405,22 @@ function test_go(){
 				  
 				   <c:choose>
             		<c:when test="${ memoryTest<= 50.0}">
-            			<div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width:   ${i.value.memory_total }%">
-      							  ${i.value.memory_total }
+            			<div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width:${i.value.memory_total }%; color:black;">
+      							 <b>${i.value.memory_total }(%)</b>
     					</div>
             		</c:when>
             		<c:when test="${memoryTest <=80.0}">
-            			<div class="progress-bar progress-bar-warning progress-bar-striped" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width:   ${i.value.memory_total }%">
-      							  ${i.value.memory_total }
+            			<div class="progress-bar progress-bar-warning progress-bar-striped" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width:${i.value.memory_total }%; color:black;">
+      							  <b>${i.value.memory_total }(%)</b>
     					</div>
             		</c:when>
             		<c:otherwise>
-            			<div class="progress-bar progress-bar-danger progress-bar-striped" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width:   ${i.value.memory_total }%">
-      							  ${i.value.memory_total }
+            			<div class="progress-bar progress-bar-danger progress-bar-striped" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width:${i.value.memory_total }%; color:black;">
+      							  <b>${i.value.memory_total }(%)</b>
     					</div>
             		</c:otherwise>
             	</c:choose>
-				  ${i.value.memory_total }
+				
 				  </td>
 			 	</tr>
              </c:forEach>
