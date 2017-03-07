@@ -35,7 +35,7 @@
        position: inherit;
        margin: 0 0 0 250px;
        padding: 65px 30px;
-       box-shadow: 5px 5height: 252px;ay;
+       box-shadow: 5px 5px 5px lightgray;
        border-radius: 10px; 
        padding: 0 15px;
        background-color: white;

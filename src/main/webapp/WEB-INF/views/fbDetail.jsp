@@ -21,13 +21,30 @@ border-top: 1px solid #c3ced9;
 border-bottom: 1px solid #c3ced9;
 text-align: center;
 }
+
+#page-wrapper3 {
+    position: inherit;
+    margin: 0 0 0 250px;
+    padding: 65px 30px;
+     box-shadow: 5px 5px 5px lightgray;
+     border-radius: 10px; 
+   
+} 
+#page-wrapper3 {
+    padding: 0 15px;
+    min-height: 568px;
+    background-color: white;
+    margin-left: 10%;
+    width: 79%;
+   height: auto;
+}
 </style>
 
 <script src="<%=request.getContextPath()%>/resources/js/freeboard.js"></script>
 
 <div style=" height: auto; ">
-
-
+<br><br>
+<div id="page-wrapper3">
 
 	<br> <br>
 	<div style="text-align: center;">
@@ -67,9 +84,9 @@ text-align: center;
 	<input type="hidden" name="fb_fbseq" value="${fbVO.fb_seq}" id="fb_fbseq">
 
 <div style="text-align: center;">
-        <button type="button" id="btnContactUs" onclick="fbList_go(${tpage})">뒤로가기</button>
-		<button type="button" id="btnContactUs" onclick="go_fbWrite(${tpage})">수정하기</button>
-		<button type="button" id="btnContactUs" onclick="go_fbDelete(${tpage})">삭제하기</button>
+        <button type="button" id="btnContactUs" class="btn btn-default" onclick="fbList_go(${tpage})">뒤로가기</button>
+		<button type="button" id="btnContactUs" class="btn btn-default" onclick="go_fbWrite(${tpage})">수정하기</button>
+		<button type="button" id="btnContactUs" class="btn btn-default" onclick="go_fbDelete(${tpage})">삭제하기</button>
 </div>
 <br><br><br>
 
@@ -93,7 +110,7 @@ text-align: center;
 
 <tr id="detail_table_tr2">
 <td style="background-color: #e4eaf2; width: 90px; border-top: 1px solid #c3ced9;">내용</td>
-<td><textarea style="width: 500px; height: 50px;" name="fbAns_content" id ="fbAns_content"></textarea></td>
+<td><textarea style="width: 904px; height: 50px; border:0; overflow-y:hidden; background:clear; resize: none; outline: none;" name="fbAns_content" id ="fbAns_content"></textarea></td>
 </tr>
 
 <input type = "hidden" value="${loginUser}" id="loginUser">
@@ -103,9 +120,10 @@ text-align: center;
 </table>
 <br>
 <div style="text-align: center;">
-<button type="button" id="btnFbAnswer" class="btnFbAnwer"name="btnFbAnswer">댓글쓰기</button>
-</div>
+<button type="button" id="btnFbAnswer" class="btn btn-default" name="btnFbAnswer">댓글쓰기</button><br/><br/>
+</div><br>
 </form>
+</div>
 </div>
 <br><br><br>
 

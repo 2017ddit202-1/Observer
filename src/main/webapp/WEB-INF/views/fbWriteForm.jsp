@@ -23,11 +23,31 @@ border-top: 1px solid #c3ced9;
 border-bottom: 1px solid #c3ced9;
 text-align: center;
 }
+
+#page-wrapper3 {
+    position: inherit;
+    margin: 0 0 0 250px;
+    padding: 65px 30px;
+     box-shadow: 5px 5px 5px lightgray;
+     border-radius: 10px; 
+   
+} 
+#page-wrapper3 {
+    padding: 0 15px;
+    min-height: 568px;
+    background-color: white;
+    margin-left: 10%;
+    width: 79%;
+   height: 860px;
+}
 </style>
 
 </head>
 <body>
-
+<br><br>
+	
+	
+	<div id="page-wrapper3" class="in">
 
 
 <br> <br>
@@ -60,12 +80,12 @@ text-align: center;
 
 <div style="text-align: center;">
 <hr style="border: solid 1px #c3ced9; width: 1000px;">
- <input type="button"  value="작성"  onclick="write_go()"> 
- <button type="button" id="btnContactUs" onclick="history.go(-1);">취소</button>
+ <input type="button"  value="작성"  onclick="write_go()" class="btn btn-default"> 
+ <button type="button" id="btnContactUs" onclick="history.go(-1);" class="btn btn-default">취소</button>
 </div>	
 
-
-
+</form>
+</div>
 
 <%-- <h1>자유게시판 작성하기</h1>
 <form name="formm" method="post" 
