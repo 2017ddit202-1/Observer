@@ -329,8 +329,8 @@ function test_go(){
   <span class="label" style="background-color: black">&nbsp&nbsp</span> 정지
 </div>
 <form id="formm" name="formm" method="post">
-<div style="margin-left: 54%;">
- <button type="button" class="btn btn-info btn-sm" style="font-size:13px; padding:3px 5px; margin:auto auto auto 423px;" onclick="serverStop()">정지</button>
+<div style="margin-left: 83%;">
+ <button type="button" class="btn btn-info btn-sm" style="font-size:13px; padding:3px 5px;" onclick="serverStop()">정지</button>
  <button type="button" class="btn btn-info btn-sm" style="font-size:13px; padding:3px 5px;" onclick="serverRemove()">해제</button>
  <button type="button" class="btn btn-info btn-sm" style="font-size:13px; padding:3px 5px;" onclick="serverStart()">시작</button>
  <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal" style="font-size:13px; padding:3px 5px;"  data-backdrop="static" data-keyboard="false" onclick="ssss()" >추가</button>
