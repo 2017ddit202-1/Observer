@@ -26,6 +26,16 @@
     width: 79%;
    height: 860px;
 }
+.container2{
+	width: 70%;
+    margin: 2% 15%;
+    font-weight: bold;
+}
+#title1{
+    padding-top: 3%;
+    margin-left: 7%;
+}
+
 </style>
 <br>
 <br>
@@ -39,18 +49,19 @@
     <li><a href="<%=request.getContextPath()%>/superAdmin/reportList">보고서</a></li>
   </ul>
   <br>
-  <p><strong>Notice:</strong> OBSERVER의 회원관리, 회원의 권한신청을 관리 할 수 있습니다. </p>
+  <p id="title1"><strong>Report : </strong> Server정보를 Server관리자들에게 보고서를 보낼 수 있습니다.</p>
 </div><br><br>
 
 
 
-<div class="container">
+<div class="container2">
 
 	     <table class="table table-striped table-bordered">
   <thead>
     <tr>
       <th>Admin ID</th>
-      <th>비고</th>
+      <th>Server IP</th>
+      <th>ETC</th>
     </tr>
   </thead>
 <c:forEach var="adList" items="${plList}" varStatus="status">
@@ -58,6 +69,7 @@
     <!-- iteração -->
     <tr>
       <td>${adList.mem_id }<input type="hidden" name="${adList.server_ip}" value="${adList.mem_email}"></td>
+      <td>${adList.server_ip}</td>
       <td><button data-pedido="1321" data-toggle="modal" data-target="#myModal"  class="btn btn-primary hhh" id="${adList.server_ip }"><i class="glyphicon glyphicon-plus"></i></button></td>
     </tr>
     <!-- fim iteração-->
@@ -106,7 +118,7 @@
     background-color: white;
     margin-left: 10%;
     width: 79%;
-   height: 860px;
+   height: 730px;
 }
 </style>
 
