@@ -19,20 +19,21 @@ function serverInfo(){
          success:function(data){
             var tb =   
             	'<br/>'
+            	 +'<br/>'
             	+'<div id="page-wrapper7">'
             
                      +'<br/>'
                      +'<table style="width: 1000px; height:30px; width:1200px; border-radius: 10px;">'
                      +'<tr>'
-                     +'<td style="width: 176px; text-align: right;"><strong>운영체제</strong></td>'
-                     +'<td style="border-right: 4px solid #07C758; color: #989898;">'+data.server_host+'</td>'
+                     +'<td style="width: 176px; text-align: right;"><strong>서버명</strong></td>'
+                     +'<td style="border-right: 4px solid #f7f7f7; color: #989898;">'+data.server_host+'</td>'
                  
                      
-                     +'<td style="width: 89px;text-align: right;"><strong>서버명</strong></td>'
-                     +'<td style="text-align: center;width: 228px; border-right: 4px solid #07C758; color: #989898;">'+data.server_os_name+'</td>'
+                     +'<td style="width: 89px;text-align: right;"><strong>운영체제</strong></td>'
+                     +'<td style="text-align: center;width: 228px; border-right: 4px solid #f7f7f7; color: #989898;"><img src="/observer/resources/img/window.png" style="width:25px;">&nbsp;'+ data.server_os_name+'</td>'
                      
                      +'<td style="width: 97px;text-align: right;"><strong>IP 주소 </strong></td>'
-                     +'<td style="width: 199px; border-right: 4px solid #07C758; color: #989898;">'+data.server_ip+'</td>'
+                     +'<td style="width: 199px; border-right: 4px solid #f7f7f7; color: #989898;">'+data.server_ip+'</td>'
                      
                      +'<td style="width: 113px;text-align: center;"><strong>BIT</strong></td>'
                      +'<td style="width: 145px;text-align: left; color: #989898;">'+data.server_os_support+'</td>'
