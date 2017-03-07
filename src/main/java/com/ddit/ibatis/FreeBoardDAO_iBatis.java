@@ -312,4 +312,9 @@ public class FreeBoardDAO_iBatis implements FreeBoardDAO{
 		return fbList;
 	}
 
+	@Override
+	public int totalfrAnsercnt(String fbans_fnseq) throws SQLException {
+		return (int) client.queryForObject("totalfrAnsercnt",fbans_fnseq);
+	}
+
 }

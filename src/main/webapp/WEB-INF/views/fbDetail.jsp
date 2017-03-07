@@ -91,7 +91,7 @@ text-align: center;
 <br><br><br>
 
 
-<div style="width: 1000px; background-color: #e4eaf2;  margin: auto; border-top: 2px solid #c3ced9;"> &nbsp;&nbsp;&nbsp;&nbsp;>>댓글  <span style="width: 50px; background-color: red;"> 1개</span>
+<div style="width: 1000px; background-color: #e4eaf2;  margin: auto; border-top: 2px solid #c3ced9;"> &nbsp;&nbsp;&nbsp;&nbsp;>>댓글  <span id="fbcnt" style="width: 50px; background-color: red;"> ${FbAnswercnt}</span>
 </div>
 
 <table style="width: 1000px;">
@@ -176,14 +176,15 @@ $(document).ready(function() {
 				var fullDate = year + '-' + month + '-' + day;
 				var fbAnsList = '<div id = "'+data[i].fbans_seq+'">ID : '+ data[i].fbans_id
 							  + '&nbsp;&nbsp;&nbsp/&nbsp;&nbsp;&nbsp;'
-							  + '<span id="'+data[i].fbans_seq+'span">'+fullDate+ '</span>'
+							  + '<span class="'+ data[i].fbans_seq+ '">'
+							  + data[i].fbans_content
+							  + '</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp<span id="'
+							  + data[i].fbans_seq+'span">'+fullDate+ '</span>'
 							  + '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'
 							  + '<a href="" id="'+data[i].fbans_seq+'"class="nn" name="nn">수정</a>'
 							  + '&nbsp;&nbsp;&nbsp;'
-							  + '<a href="" id="'+ data[i].fbans_seq+'"class="mm" name="mm">삭제</a>'
-							  + '<div class="'+ data[i].fbans_seq+ '">'
-							  + data[i].fbans_content
-							  +'</div></div><br>';
+							  + '<a href="" id="'+ data[i].fbans_seq+'"class="mm" name="mm">삭제</a>' 
+							  +'</div><br>';
 				}else{
 					var date = new Date(data[i].fbans_date)
 					var year = date.getFullYear();
@@ -194,14 +195,14 @@ $(document).ready(function() {
 					var fullDate = year + '-' + month + '-' + day;
 					var fbAnsList = '<div id = "'+data[i].fbans_seq+'">ID : '+ data[i].fbans_id
 					  + '&nbsp;&nbsp;&nbsp/&nbsp;&nbsp;&nbsp;'
-					  + '<span id="'+data[i].fbans_seq+'span">'+fullDate+ '</span>'
-					  + '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'
-					  + '<div class="'+ data[i].fbans_seq+ '">'
+					  + '<sapn class="'+ data[i].fbans_seq+ '">'
 					  + data[i].fbans_content
-					  +'</div></div><br>';
+					  + '</sapn>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="'+data[i].fbans_seq+'span">'+fullDate+ '</span>'
+					  + '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'
+					  +'</div><br>';
 				}			  
 				$('div #answer').append(fbAnsList);			  
-			})
+			})		
 		}
 	});
 	
@@ -231,14 +232,16 @@ $(document).ready(function() {
 						day = day >= 10? day:'0'+day;
 						var fullDate = year + '-' + month + '-' + day;
 						var fbAnsList = '<div id = "'+data[i].fbans_seq+'">ID : '+ data[i].fbans_id
-										  + '&nbsp;&nbsp;&nbsp/&nbsp;&nbsp;&nbsp;'+ fullDate
+										  + '&nbsp;&nbsp;&nbsp/&nbsp;&nbsp;&nbsp;'
+										  + '<span class="'+ data[i].fbans_seq+ '"></span>'
+										  + data[i].fbans_content
+										  + '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'
+										  + fullDate
 										  + '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'
 										  + '<a href="" id="'+ data[i].fbans_seq+ '"class="nn" name="nn">수정</a>'
 										  + '&nbsp;&nbsp;&nbsp;'
 										  + '<a href="" id="'+ data[i].fbans_seq+ '"class="mm" name="mm">삭제</a>'
-										  + '<div class="'+ data[i].fbans_seq+ '">'
-										  + data[i].fbans_content
-										  +'</div></div><br>';
+										  +'</div><br>';
 						}else{
 								var date = new Date(data[i].fbans_date)
 								var year = date.getFullYear();
@@ -248,16 +251,22 @@ $(document).ready(function() {
 								day = day >= 10? day:'0'+day;
 								var fullDate = year + '-' + month + '-' + day;
 								var fbAnsList = '<div id = "'+data[i].fbans_seq+'">ID : '+ data[i].fbans_id
-								  + '&nbsp;&nbsp;&nbsp/&nbsp;&nbsp;&nbsp;'+ fullDate
-								  + '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'
-								  + '<div class="'+ data[i].fbans_seq+ '">'
+								  + '&nbsp;&nbsp;&nbsp/&nbsp;&nbsp;&nbsp;'
+								  + '<span class="'+ data[i].fbans_seq+ '">'
 								  + data[i].fbans_content
-								  +'</div></div><br>';
+								  + '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'
+								  + fullDate
+								  + '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'
+								  +'</span></div><br>';
 						}			  
 						$('div #answer').append(fbAnsList);	
 					})
 				}
 			});
+			var cnt = $('#fbcnt').text();
+			cnt = cnt*1;
+			cnt = cnt+1;
+			$('#fbcnt').text(cnt);
 	});
 	
 	/* 댓글 삭제 */	
@@ -274,6 +283,10 @@ $(document).ready(function() {
 					return a;
 				}) 
 				$('#'+fbAnsMap).remove();
+				var cnt = $('#fbcnt').text();
+				cnt = cnt*1;
+				cnt = cnt-1;
+				$('#fbcnt').text(cnt);
 			}
 		});
 	});

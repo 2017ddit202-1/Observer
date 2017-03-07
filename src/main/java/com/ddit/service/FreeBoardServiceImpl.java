@@ -90,5 +90,10 @@ public class FreeBoardServiceImpl implements FreeBoardService{
 		return freeBoardDAO_iBatis.searchId(userId,tpage);
 	}
 
+	@Override
+	public int totalfrAnsercnt(String fbans_fnseq) throws SQLException {
+		return freeBoardDAO_iBatis.totalfrAnsercnt(fbans_fnseq);
+	}
+
 
 }
