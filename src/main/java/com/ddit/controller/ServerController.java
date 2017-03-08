@@ -332,10 +332,13 @@ public class ServerController {
 		VWmemPosVO vWmemPosVO = new VWmemPosVO();
 		List<ServerVO> serverList = new ArrayList<ServerVO>();
 		List<ServerVO> serverListUser= new ArrayList<ServerVO>();
+		List<ServerVO> serverListSuper = new ArrayList<ServerVO>();
 		List<String> serverIpList= new ArrayList<String>();
 		
 		Map<String, Map> serverMap = new HashMap<String, Map>();
 		  Map<String, String> ipMap = new HashMap<String, String>();
+		  Map<String, Map> serverMapSuper = new HashMap<String, Map>();
+		  
 		try {
 			userOK = alertService.select_sessionID(loginUser); // alert테이블에 ID값이
 			column = alertService.authority_content(loginUser);
@@ -374,6 +377,32 @@ public class ServerController {
 			  }
 			serverList = serverService.selectServerList(loginUser);
 			
+			
+			if(loginUser.equals("SUADMIN1")){
+				/*serverListSuper = serverService.selectServerAll();*/
+				List<String> ipListAll = new ArrayList<>();
+				ipListAll = serverService.selectServerIpListAll();
+				for(String ip : ipListAll){
+					 ServerVO serverVOSuper = new ServerVO();
+					  ServerInfoVO serverInfoVOSuper = new ServerInfoVO();
+					  Map<String, String> infoMapSuper = new HashMap<String, String>();
+					  
+					  serverInfoVOSuper.setMemory_total(memoryServiceImpl.selectMemoryTotal(ip));
+					  serverInfoVOSuper.setCpu_total_pcnt(cpuServiceImpl.SelectCpuTotalpcnt(ip));
+					  serverVOSuper = serverService.selectServerVO(ip);
+					  serverInfoVOSuper.setServer_host(serverVOSuper.getServer_host());
+					  serverInfoVOSuper.setServer_os_name(serverVOSuper.getServer_os_name());
+					  serverInfoVOSuper.setServer_ip(serverVOSuper.getServer_ip());
+					  
+					  infoMapSuper.put("server_host", serverInfoVOSuper.getServer_host());
+					  infoMapSuper.put("server_os_name", serverInfoVOSuper.getServer_os_name());
+					  infoMapSuper.put("server_ip", serverInfoVOSuper.getServer_ip());
+					  infoMapSuper.put("cpu_total_pcnt", serverInfoVOSuper.getCpu_total_pcnt());
+					  infoMapSuper.put("memory_total", serverInfoVOSuper.getMemory_total());
+					  serverMapSuper.put(ip, infoMapSuper);
+				}
+			}
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -403,6 +432,7 @@ public class ServerController {
 		model.addAttribute("serverList", serverList);
 		model.addAttribute("loginUserPosl", vWmemPosVO.getPosl_pos());
 		model.addAttribute("map", classMap);
+		model.addAttribute("serverMapSuper", serverMapSuper);
 		/*model.addAttribute("ipMap", ipMap);*/
 		return url;
 
