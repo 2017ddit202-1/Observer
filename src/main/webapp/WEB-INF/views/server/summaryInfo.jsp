@@ -47,7 +47,7 @@
 }
 
 
-#container{
+#highchartContainer{
 margin-left:8%;
 }
 
@@ -68,6 +68,5 @@ margin-left:8%;
       <div id="loader"><img id="lodingImg" src="<%=request.getContextPath() %>/resources/img/loader.gif"></div>
    </form>
 <div id="serverInfo"></div>
-<div id="container"></div>
-
+<div id="highchartContainer" ></div>
 </article>

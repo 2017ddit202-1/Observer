@@ -149,7 +149,8 @@ function HighCharts(data) {
      },
      series: [{
          name: 'MEMORY TOTAL',
-         data: total
+         data: total,
+         color:'#619141'
      }]
  });
 };
@@ -226,7 +227,8 @@ function HighCharts(data) {
             data: using
         }, {
             name: 'MEMORY IDLE',
-            data: idle
+            data: idle,
+            color:'#686b70'	
         }]
     });
 };
@@ -296,7 +298,7 @@ Highcharts.chart('container3', {
   },
   series: [{
       name: 'MEMORY 전체 사용량(%)',
-      data: total_used
+      data: total_used,
   }]
 });
 };

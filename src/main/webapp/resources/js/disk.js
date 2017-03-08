@@ -241,7 +241,8 @@ function HighCharts(data) {
         },
         series: [{
             name: 'DISK USER',
-            data: diUser
+            data: diUser,
+            color:'#686b70'	
         }, {
             name: 'DISK IDLE',
             data: diIdle
