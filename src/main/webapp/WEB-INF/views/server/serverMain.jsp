@@ -422,8 +422,17 @@ function test_go(){
       </table>
       
  </form>
-   </c:otherwise>
+</c:otherwise>
+
 </c:choose>
+
+
+<sec:authorize access="hasAnyRole('ROLE_ADMIN','ROLE_SUPER')">
+	
+
+</sec:authorize>
+
+
 
 
 

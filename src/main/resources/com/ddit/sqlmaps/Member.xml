@@ -21,6 +21,13 @@
 		mem_pwd=#mem_pwd#,mem_nm=#mem_nm#,mem_email=#mem_email#,mem_phone=#mem_phone#
 		where mem_id=#mem_id#
 	</update>
+	
+		<update id="updateMemberLice" parameterClass="member">
+		update member
+		set
+		mem_group_lice=#mem_group_lice#
+		where mem_id=#mem_id#
+	</update>
 
 	<delete id="deleteMember" parameterClass="member">
 		delete from member
@@ -135,6 +142,7 @@
 		select count(atrt_id) from
 		authority
 	</select>
+	
 	
 
 </sqlMap>  

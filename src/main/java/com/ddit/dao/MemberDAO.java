@@ -3,8 +3,6 @@ package com.ddit.dao;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import org.apache.poi.ss.formula.ptg.MemErrPtg;
-
 import com.ddit.dto.MemberVO;
 import com.ddit.dto.PositionListVO;
 
@@ -48,5 +46,7 @@ public interface MemberDAO {
 	public int authorityCnt()throws SQLException;
 	
 	public int joinKeyUp(String mem_id)throws SQLException;
+	
+	public void updateMemberLice(MemberVO memVO)throws SQLException;
 
 }

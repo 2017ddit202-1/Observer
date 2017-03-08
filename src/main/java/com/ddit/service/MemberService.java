@@ -43,6 +43,8 @@ public interface MemberService {
 	public int adminCnt()throws SQLException;
 	public int authorityCnt()throws SQLException;
 	public int joinKeyUp(String mem_id)throws SQLException;
+	
+	public void updateMemberLice(MemberVO memVO)throws SQLException;
 
 	
 }

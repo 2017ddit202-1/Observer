@@ -373,6 +373,7 @@ public class ServerController {
 				  }			 
 			  }
 			serverList = serverService.selectServerList(loginUser);
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -473,7 +474,7 @@ public class ServerController {
 			memberGroupVO.setMem_id(memberVO.getMem_id());
 			memberGroupVO.setMg_nm(memberVO.getMem_nm());
 			memberGroupVO.setMg_lice(memberVO.getMem_group_lice());
-
+			
 			// serverVO 추가
 			serverVO.setServer_host(valueMap.get("hostName"));
 			serverVO.setServer_os_version(valueMap.get("os_version"));
@@ -483,11 +484,13 @@ public class ServerController {
 			serverVO.setServer_os_name(valueMap.get("os_name"));
 			serverVO.setServer_os_support(valueMap.get("os_support"));
 			serverVO.setServer_code("A" + a);
+			
+			memberVO.setMem_group_lice(result + "");
 			a++;
 			try {
 				// update
 				memberGroupService.insertMemberGroupVO(memberGroupVO);
-				memberService.updateMember(memberVO);
+				memberService.updateMemberLice(memberVO);
 				// 인설트이전에 currentIp로 테이블에 중복확인하여 중복이면 update
 				String ip = null;
 				ip = serverService.selectServerIP(currentIp);

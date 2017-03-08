@@ -11,7 +11,9 @@ import com.ibatis.sqlmap.client.SqlMapClient;
 
 public class MemberDAO_iBatis implements MemberDAO{
 	
-	 private SqlMapClient client;
+	
+
+	private SqlMapClient client;
 	 public void setClient(SqlMapClient client){
 		 this.client=client;
 	 }
@@ -36,6 +38,13 @@ public class MemberDAO_iBatis implements MemberDAO{
 		client.update("updateMember", memberVO);
 		
 	}
+	
+	 @Override
+		public void updateMemberLice(MemberVO memVO) throws SQLException {
+		 client.update("updateMemberLice", memVO);
+			
+		}
+	
 
 	@Override
 	public int deleteMember(String userid) throws SQLException {

@@ -10,6 +10,8 @@ import com.ddit.ibatis.MemberDAO_iBatis;
 
 public class MemberServiceImpl implements MemberService{
 
+	
+
 	private MemberDAO_iBatis memberIbatis;
 	public void setMemberIbatis(MemberDAO_iBatis memberIbatis){
 		this.memberIbatis = memberIbatis;
@@ -25,6 +27,13 @@ public class MemberServiceImpl implements MemberService{
 	public void updateMember(MemberVO memberVO) throws SQLException {
 		memberIbatis.updateMember(memberVO);
 	}
+	
+	@Override
+	public void updateMemberLice(MemberVO memVO) throws SQLException {
+		memberIbatis.updateMemberLice(memVO);
+		
+	}
+	
 
 	@Override
 	public int deleteMember(String userid) throws SQLException {
