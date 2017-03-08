@@ -30,7 +30,7 @@ public class GroupController {
 	@RequestMapping("/meminvalid")
 	public String groupList(HttpSession session, HttpServletRequest request) {
 		String url = "group/groupInvalid";
-
+		
 		String key = "";
 		String tpage = request.getParameter("tpage");
 
@@ -54,7 +54,7 @@ public class GroupController {
 		int n = list.size();
 		request.setAttribute("memberListSize", n);
 		request.setAttribute("paging", paging);
-
+		
 		return url;
 	}
 
@@ -118,6 +118,7 @@ public class GroupController {
 		MemberVO adminVO = new MemberVO();
 		MemberVO invalidVO = new MemberVO();
 		String Lice = null;
+		String groupOk="그룹해제에 실패 했습니다.";
 		
 		String key = "";
 		String tpage = request.getParameter("tpage");
@@ -145,6 +146,7 @@ public class GroupController {
 				invalidVO.setMem_group_lice("1");
 				try {
 					memberService.updateLice(invalidVO);
+					groupOk = "그룹해제에 성공 했습니다.";
 				} catch (SQLException e) {
 					e.printStackTrace();
 				}
@@ -172,6 +174,7 @@ public class GroupController {
 		int n = memberList.size();
 		request.setAttribute("memberListSize", n);
 		request.setAttribute("paging", paging);
+		request.setAttribute("groupOk", groupOk);
 		
 		return url;
 	}
@@ -188,6 +191,7 @@ public class GroupController {
 		MemberVO adminVO = new MemberVO();
 		MemberVO invalidVO = new MemberVO();
 		String Lice = null;
+		String groupOk="그룹등록에 실패 했습니다.";
 
 		String key = "";
 		String tpage = request.getParameter("tpage");
@@ -215,6 +219,7 @@ public class GroupController {
 				invalidVO.setMem_group_lice(Lice);
 				try {
 					memberService.updateLice(invalidVO);
+					groupOk = "그룹등록에 성공 했습니다.";
 				} catch (SQLException e) {
 					e.printStackTrace();
 				}
@@ -242,6 +247,7 @@ public class GroupController {
 		int n = memberList.size();
 		request.setAttribute("memberListSize", n);
 		request.setAttribute("paging", paging);
+		request.setAttribute("groupOk", groupOk);
 		return url;
 	}
 

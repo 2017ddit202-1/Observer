@@ -96,7 +96,11 @@
 		</table>
 		</form>
 </div>
-
+<c:if test="${!empty groupOk}">
+		<script>
+			  swal("", "${groupOk}","success");  
+		</script>
+	</c:if>
 
 
 </div>

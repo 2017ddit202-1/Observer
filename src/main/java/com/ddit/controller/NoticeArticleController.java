@@ -84,9 +84,6 @@ public class NoticeArticleController {
 
 			int date_new = Integer.parseInt(tempDate);
 
-			// 20170223
-			System.out.println(tempDate + "###########################!");
-
 			if (date_new == toDay) { // new 아이콘 생성
 
 				System.out
@@ -140,7 +137,7 @@ public class NoticeArticleController {
 		articleVO.setNoar_id(request.getParameter("noar_id"));
 		articleVO.setNoar_subject(request.getParameter("noar_subject"));
 		articleVO.setNoar_content(request.getParameter("noar_content"));
-
+		articleVO.setNoar_icon(1);
 		ArrayList<Notice_ArticleVO> articleList = null;
 		try {
 			articleService.insertArticle(articleVO);

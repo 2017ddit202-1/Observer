@@ -24,4 +24,8 @@ public interface ServerDAO {
     
     public ServerVO selectCode(String ip) throws SQLException; 
     
+    public List<ServerVO> selectServerAll() throws SQLException;
+    
+    public List<String> selectServerIpListAll() throws SQLException;
+    
 }

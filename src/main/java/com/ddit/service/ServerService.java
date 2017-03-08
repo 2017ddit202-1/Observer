@@ -25,4 +25,8 @@ public interface ServerService {
 	public String selectServercode_Info(String ip)throws SQLException;
 	
 	public ServerVO selectCode(String ip) throws SQLException; 
+	
+	public List<ServerVO> selectServerAll() throws SQLException;
+	
+	public List<String> selectServerIpListAll() throws SQLException;
 }

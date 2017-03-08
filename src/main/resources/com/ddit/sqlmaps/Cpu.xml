@@ -29,7 +29,7 @@
 	 
 	 
 	 <select id="selectTotalCpu" parameterClass="str" resultClass="str">
-			 	 SELECT *
+		 SELECT *
 		    FROM
 		    (
 		    SELECT CPU_TOTAL_PCNT
