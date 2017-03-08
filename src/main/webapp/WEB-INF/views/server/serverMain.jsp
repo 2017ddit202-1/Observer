@@ -3,6 +3,8 @@
 <%@ page trimDirectiveWhitespaces="true"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
 
 <!DOCTYPE html>
 <html>
@@ -315,7 +317,8 @@ function test_go(){
       </table>
 						
 		</c:when>	
-		<c:otherwise>
+		
+		<c:when test="${loginUserPosl eq 'ROLE_ADMIN' }">
 	
 <div class="container" style="margin-left: 5%;">
   <span class="label label-success">&nbsp&nbsp</span> 정상
@@ -413,6 +416,7 @@ function test_go(){
             			<div class="progress-bar progress-bar-danger progress-bar-striped" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width:${i.value.memory_total }%; color:black;">
       							  <b>${i.value.memory_total }(%)</b>
     					</div>
+    					
             		</c:otherwise>
             	</c:choose>
 				
@@ -422,19 +426,105 @@ function test_go(){
       </table>
       
  </form>
+ </c:when>
+<c:otherwise>
+	<div class="container" style="margin-left: 5%;">
+  	<span class="label label-success">&nbsp&nbsp</span> 정상
+  	<span class="label label-warning">&nbsp&nbsp</span> 경고
+      <span class="label label-danger">&nbsp&nbsp</span> 위험
+	  <span class="label" style="background-color: black">&nbsp&nbsp</span> 정지
+	</div>
+	
+	<form id="formm" name="formm" method="post">
+		<table id="mm"  class="table table-striped">
+			<tr>
+				<td id="td1">위험도</td>
+				<td>HOST NAME</td>
+				<td>IP ADDRESS</td>
+				<td>OS VERSION</td>
+				<td>CPU 사용량(%)</td>
+				<td>MEMORY 사용량(%)</td>
+			</tr>
+			<c:forEach items="${serverMapSuper}" var="i" varStatus="a">
+				<tr>
+				<c:set var="test" value="${i.value.cpu_total_pcnt}" />
+					<fmt:parseNumber  value="${test}" pattern="###.###" var="cputest"/>
+					
+					<c:choose>
+					<c:when test="${i.value.server_saveyn eq '0'}">
+						<td><span class="label" style="background-color: black; ">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</span></td>
+					</c:when>
+					<c:otherwise>
+					 <c:choose>
+	            		<c:when test="${cputest <= 50.0}">
+	            			<td> <span class="label label-success">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</span></td>
+	            		</c:when>
+	            		<c:when test="${cputest <=80.0}">
+	            			<td><span class="label label-warning">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</span></td>
+	            		</c:when>
+	            		<c:when test="${cputest <=100.0}">
+	            			<td> <span class="label label-danger">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</span></td>
+	            		</c:when>
+	           		</c:choose>
+           		</c:otherwise> 
+            	</c:choose>
+				  <td>${i.value.server_host }</td>
+             	  <td><a href="<%=request.getContextPath()%>/server/summary?summaryMenu=1&ip=${i.value.server_ip}">${i.value.server_ip}</a></td>
+             	  <td>${i.value.server_os_name}</td>
+            	  <td>
+            	  	  <c:choose>
+            		<c:when test="${cputest <= 50.0}">
+            			<div id="testDiv" class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: ${i.value.cpu_total_pcnt}%; color:black;">
+      							 <b>${i.value.cpu_total_pcnt}(%)</b>
+    					</div>
+    					
+            		</c:when>
+            		<c:when test="${cputest <=80.0}">
+            			<div id="testDiv" class="progress-bar progress-bar-warning progress-bar-striped" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: ${i.value.cpu_total_pcnt}%; color:black;">
+      							 <b>${i.value.cpu_total_pcnt}(%)</b>
+    					</div>
+            		</c:when>
+            		<c:otherwise>
+            			<div id="testDiv" class="progress-bar progress-bar-danger progress-bar-striped" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: ${i.value.cpu_total_pcnt}%; color:black;">
+      							 <b>${i.value.cpu_total_pcnt}(%)</b>
+    					</div>
+            		</c:otherwise>
+            	</c:choose>
+            	 
+            	  <div id="testDiv"></div>
+            	  </td>
+				  <td>
+				  	<c:set var="mom" value="${i.value.memory_total }" />
+					<fmt:parseNumber  value="${mom}" pattern="###.###" var="memoryTest"/>
+				  
+				   <c:choose>
+            		<c:when test="${ memoryTest<= 50.0}">
+            			<div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width:${i.value.memory_total }%; color:black;">
+      							 <b>${i.value.memory_total }(%)</b>
+    					</div>
+            		</c:when>
+            		<c:when test="${memoryTest <=80.0}">
+            			<div class="progress-bar progress-bar-warning progress-bar-striped" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width:${i.value.memory_total }%; color:black;">
+      							  <b>${i.value.memory_total }(%)</b>
+    					</div>
+            		</c:when>
+            		<c:otherwise>
+            			<div class="progress-bar progress-bar-danger progress-bar-striped" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width:${i.value.memory_total }%; color:black;">
+      							  <b>${i.value.memory_total }(%)</b>
+    					</div>
+            		</c:otherwise>
+            	</c:choose>
+				
+				  </td>
+			 	</tr>
+				
+			</c:forEach>
+		</table>
+	</form>
+	
 </c:otherwise>
 
 </c:choose>
-
-
-<sec:authorize access="hasAnyRole('ROLE_ADMIN','ROLE_SUPER')">
-	
-
-</sec:authorize>
-
-
-
-
 
 
 <div class="container">

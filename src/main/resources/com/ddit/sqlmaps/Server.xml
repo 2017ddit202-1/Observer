@@ -64,6 +64,14 @@
  		select * from server where server_ip=#server_ip#
  	</select>
  
+ 	<select id="selectServerAll"  resultClass="server">
+ 		select * from server 
+ 	</select>
+ 	
+ 	<select id="selectServerIpListAll" resultClass="str">
+ 		select server_ip from server
+ 	</select>
+ 
  
  </sqlMap>   
  

@@ -15,8 +15,21 @@ public class ServerDAO_iBatis implements ServerDAO{
 	public void setClient(SqlMapClient client){
 		this.client = client;
 	}
+
+	
+	@Override
+	public List<String> selectServerIpListAll() throws SQLException {
+		List<String> ipList = new ArrayList<String>();
+		ipList = client.queryForList("selectServerIpListAll");	
+		return ipList;
+	}
 	
 	
+	@Override
+	public List<ServerVO> selectServerAll() throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 	@Override
 	public void deleteServerIp(String ip) throws SQLException {

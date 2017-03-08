@@ -9,12 +9,25 @@ import com.ddit.dto.ServerVO;
 
 public class ServerServiceImpl implements ServerService {
 
-	
 
 	ServerDAO serverDAO;
 
 	public void setServerDAO(ServerDAO serverDAO) {
 		this.serverDAO = serverDAO;
+	}
+
+
+	@Override
+	public List<String> selectServerIpListAll() throws SQLException {
+		List<String> ipList = new ArrayList<String>();
+		ipList = serverDAO.selectServerIpListAll();
+		return ipList;
+	}
+
+	
+	@Override
+	public List<ServerVO> selectServerAll() throws SQLException {
+		return null;
 	}
 
 	
