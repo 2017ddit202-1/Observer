@@ -17,4 +17,5 @@ public interface DiskService {
 	ArrayList<DiskVO> diskListHo(DiskVO diskVO) throws SQLException;
 	List<DiskVO> driverList(String ip) throws SQLException;
 	
+	DiskVO pcntList(DiskVO diskVO) throws SQLException;
 }

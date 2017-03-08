@@ -33,6 +33,9 @@
      				</td>
      			</tr>
      		</c:forEach>
+     		<c:forEach var="pcntList" items="${pcntList}" varStatus="status">
+     								<div>${pcntList.disk_pcnt} %</div>
+     					</c:forEach>
      		
      		
      	</table> 
