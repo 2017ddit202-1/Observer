@@ -46,19 +46,16 @@ function serverInfo(){
          }
    });
 };
-
-
-$('#container').bind('mousemove touchmove touchstart', function (e) {
+$(function(){
+$('#highchartContainer').bind('mousemove touchmove touchstart',function (e) {
     var chart,
         point,
-        i,
-        event;
-
+        i,  
+        event;  
     for (i = 0; i < Highcharts.charts.length; i = i + 1) {
         chart = Highcharts.charts[i];
         event = chart.pointer.normalize(e.originalEvent); // Find coordinates within the chart
         point = chart.series[0].searchPoint(event, true); // Get the hovered point
-
         if (point) {
             point.highlight(e);
         }
@@ -76,7 +73,6 @@ Highcharts.Point.prototype.highlight = function (event) {
 
 function syncExtremes(e) {
     var thisChart = this.chart;
-
     if (e.trigger !== 'syncExtremes') { // Prevent feedback loop
         Highcharts.each(Highcharts.charts, function (chart) {
             if (chart !== thisChart) {
@@ -88,13 +84,15 @@ function syncExtremes(e) {
     }
 }
 
+});
+
 function tt() {
    $.ajax({
       url:"summaryPage",
       type:'post',
       dataType:'json',
       success:function(data){
-    	  $('#container').empty();
+    	  $('#highchartContainer').empty();
           $("#loader").hide();
           $("#btnZxc").show();
           $("#btntotal").show();
@@ -125,7 +123,7 @@ function tt() {
                      total.push(parseInt(ff));
                   }
                });
-               $('<div class="chart" id="page-wrapper6">').appendTo('#container').highcharts(
+               $('<div class="chart" id="page-wrapper6">').appendTo('#highchartContainer').highcharts(
                      {
                         chart : {
                            marginLeft : 40, // Keep all charts left aligned
@@ -164,6 +162,7 @@ function tt() {
                         },
                          plotOptions: {
                              series: {
+                            	 color:'#266eff',
                                  marker: {
                                      enabled: false
                                  }

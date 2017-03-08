@@ -153,7 +153,8 @@ function HighCharts(data) {
      },
      series: [{
          name: 'TRAFFIC TOTAL',
-         data: total
+         data: total,
+         color:'#619141'
      }]
  });
 };
@@ -227,10 +228,11 @@ function HighCharts(data) {
         },
         series: [{
             name: 'Received',
-            data: rece
+            data: rece,
         }, {
             name: 'Transmitted',
-            data: trans
+            data: trans,
+            color:'#686b70'	
         }]
     });
 };

@@ -226,7 +226,7 @@ function tt(){
                     enabled: false,
                     symbol: 'circle',
                     radius: 2,
-                }
+                },
             }
         },
         series: [{
@@ -234,7 +234,8 @@ function tt(){
             data: userPcnt
         }, {
             name: 'CPU System',
-            data: pcnt
+            data: pcnt,
+            color:'#686b70'	
         }]
     });
 };
