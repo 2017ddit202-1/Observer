@@ -61,8 +61,7 @@ $('.dropdown-toggle').dropdown();
       swal("member leave!", msg.data,"success"),
           
       $('.confirm').click(function(){
-         alert("확인클릭후");
-         if(s=="http://"+document.domain+":8181/observer/atrt/authorityReq?" || s=="http://"+document.domain+":8181/observer/user/mypage"){
+         if(s=="http://"+document.domain+":8181/observer/atrt/authorityReq" || s=="http://"+document.domain+":8181/observer/user/mypage" || s=="http://"+document.domain+":8181/observer/user/mypage?" || s=="http://"+document.domain+":8181/observer/atrt/authorityReq?"){
             window.location.href="<%=request.getContextPath()%>/user/mypage";
         } 
          <%--  window.location.href = "<%=request.getContextPath()%>/index"; --%>

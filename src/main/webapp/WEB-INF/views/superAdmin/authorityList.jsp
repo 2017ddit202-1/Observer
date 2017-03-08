@@ -44,10 +44,15 @@
 			message.id = document.formm.mem_id.value;
 			wsocket.send(JSON.stringify(message));
 		}
-
+		
+		sleep(1000);
 		document.formm.submit();
 		}
 	
+	function sleep(delay){
+		var start = new Date().getTime();
+		while(new Date().getTime() < start+delay);
+	}
 	
 	
 	function authorityAcceptNO_go(){

@@ -33,8 +33,8 @@
 
 	<insert id="insertArticle" parameterClass="article">
 		insert into
-		notice_article(noar_seq, noar_subject, noar_content, noar_id)
-		values(noar_seq.nextval, #noar_subject#, #noar_content#, #noar_id#)
+		notice_article(noar_seq, noar_subject, noar_content, noar_id, noar_icon)
+		values(noar_seq.nextval, #noar_subject#, #noar_content#, #noar_id#, #noar_icon#)
 	</insert>
 
 	<select id="detailArticle" parameterClass="int" resultClass="article">

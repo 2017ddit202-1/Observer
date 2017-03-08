@@ -184,7 +184,7 @@
 								<tr>
 									<td><label>LICENSE</label></td>
 									<td><input type="text" class="form-control"
-										name="editlice" id="editlice" placeholder="" required=""></td>
+										name="editlice" id="editlice" placeholder="" required="" readonly="readonly"></td>
 								</tr>
 								
 								<tr>
