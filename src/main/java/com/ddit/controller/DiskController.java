@@ -34,14 +34,24 @@ public class DiskController {
 		String url = "disk/disk";
 		String ip = (String) session.getAttribute("ip");
 		List<DiskVO> nmList = null;
+		List<DiskVO> pcntList = new ArrayList<DiskVO>();
+		DiskVO diskVO = new DiskVO();
+		DiskVO voList = new DiskVO();
 		
 		try {
 			nmList = diskService.driverList(ip);
+			for(DiskVO vo : nmList){
+				diskVO.setDisk_ip(ip);
+				diskVO.setDisk_nm(vo.getDisk_nm());
+				voList = diskService.pcntList(diskVO);
+				pcntList.add(voList);
+			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		model.addAttribute("nmList",nmList);
+		model.addAttribute("pcntList",pcntList);
 		
 		return url;
 	}

@@ -16,4 +16,7 @@ public interface DiskDAO {
 	List<DiskVO> driverList(String ip) throws SQLException;
 	ArrayList<DiskVO> diskList(DiskVO diskVO) throws SQLException;
 	ArrayList<DiskVO> diskListHo(DiskVO diskVO) throws SQLException;
+	
+	DiskVO pcntList(DiskVO diskVO) throws SQLException;
+	
 }

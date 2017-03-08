@@ -27,5 +27,8 @@
 	<select id="driverList" resultClass="disk">
 		select distinct disk_nm from disk where disk_ip=#disk_ip# order by disk_nm asc
 	</select>
+	<select id="pcntSelete" resultClass="disk" parameterClass="disk">
+		select disk_pcnt from disk where disk_ip=#disk_ip# and disk_nm=#disk_nm# and <![CDATA[rownum<=1]]>
+	</select>
 	
 </sqlMap> 

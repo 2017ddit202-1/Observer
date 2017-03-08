@@ -52,5 +52,10 @@ public class DiskServiceImpl implements DiskService{
 		return diskDAO_iBatis.diskListHo(diskVO);
 	}
 
+	@Override
+	public DiskVO pcntList(DiskVO diskVO) throws SQLException {
+		return diskDAO_iBatis.pcntList(diskVO);
+	}
+
 
 }

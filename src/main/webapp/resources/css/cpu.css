@@ -79,11 +79,12 @@ display:none;
     box-shadow: 5px 5px 5px lightgrey;
     border-radius: 10px;
     background-color: white;
-    width: 13%;
+    width: auto;
     height: auto;
     margin-bottom: 1.5%;
     padding-top: 0.9%;
     margin-top: 2%;
+    margin-left: 1%;
     
 }
 

@@ -62,5 +62,11 @@ public class DiskDAO_iBatis implements DiskDAO{
 		return listVO;
 	}
 
+	@Override
+	public DiskVO pcntList(DiskVO diskVO) throws SQLException {
+		DiskVO vo = (DiskVO) client.queryForObject("pcntSelete", diskVO);
+		return vo;
+	}
+
 
 }
