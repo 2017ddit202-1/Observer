@@ -15,8 +15,11 @@
    <br /><br /><br /><br /><br /><br />
    <br /><br /><br /><br /><br /><br />
    <form id="formm" name="formm">
-      <input type="button" id="btnZxc" class="btnZxc" value="30분" onclick="vv()">
-      <input type="button" id="btntotal" class="btnAsd" value="1시간" onclick="ss()">
+   <div id="btnHo">
+   <br>
+      <input type="button" id="btnZxc"  value="30분" class="btn btn-default" onclick="vv()">
+      <input type="button" id="btntotal"  value="1시간" class="btn btn-default" onclick="ss()">
+      </div>
       <div id="loader"><img id="lodingImg" src="<%=request.getContextPath() %>/resources/img/loader.gif"></div>
       <div id="page-wrapper8" class="in">
      <div id="container3"></div>

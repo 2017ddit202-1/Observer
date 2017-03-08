@@ -10,13 +10,15 @@ $(function(){
    $("#btnZxc").hide();
    $("#btntotal").hide();
    $("#diskTb").hide();
-   $('#page-wrapper8').hide();
-   $('#page-wrapper9').hide();
-   $('#page-wrapper0').hide();
+   $('#page-wrapper10').hide();
+   $('#page-wrapper11').hide();
+   $('#page-wrapper12').hide();
+   $('#trafficNet').hide();
    $('#foot').hide();
 //   tt();
    	
 });
+
 
 /* 새로고침 막기 */
 function LockF5(){
@@ -89,9 +91,10 @@ function tt(){
     	  $("#btnZxc").show();
     	  $("#btntotal").show();
     	  $("#diskTb").show(); 
-    	  $('#page-wrapper8').show();
-    	  $('#page-wrapper9').show();
-    	  $('#page-wrapper0').show();
+    	  $('#page-wrapper10').show();
+    	  $('#page-wrapper11').show();
+    	  $('#page-wrapper12').show();
+    	  $('#trafficNet').show();
     	  $('#foot').show();
             HighCharts(data);
             HighCharts2(data);

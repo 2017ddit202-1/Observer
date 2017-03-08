@@ -15,6 +15,8 @@
    <br /><br /><br /><br /><br /><br />
    <form id="formm" name="formm">
    	<div id="btnHo">
+   	
+   	<br>
       <input type="button" id="btnZxc" class="btn btn-default" value="30분" onclick="vv()">
       <input type="button" id="btntotal" class="btn btn-default" value="1시간" onclick="ss()">
      </div> 

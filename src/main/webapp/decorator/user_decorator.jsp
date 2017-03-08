@@ -121,112 +121,126 @@ $('.dropdown-toggle').dropdown();
                      <sec:authorize access="isAuthenticated()">
                            <span>${sessionScope.loginUser }님 어서오세요.</span>
                         </sec:authorize>
-                        <!-- /////////////// -->
-                        
-                         <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                       
+                       
+                    
+                       <sec:authorize access="hasAnyRole('ROLE_USER,ROLE_ADMIN')"> 
+                <li class="dropdown">
+                    <a class="dropdown-toggle" href="<%=request.getContextPath()%>/notice/noticeList">
                         <i class="fa fa-bell fa-fw"></i> <i class="fa fa-caret-down"></i>
                     </a>
-                    <ul class="dropdown-menu dropdown-alerts">
+       
+                </li>   
+                </sec:authorize>
+                
+                
+               
+                
+                
+                <sec:authorize access="hasAnyRole('ROLE_USER,ROLE_ADMIN')">
+                     <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="<%=request.getContextPath()%>/user/mypage">
+                        <i class="fa fa-tasks fa-fw"></i> <i class="fa fa-caret-down"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-alerts" style="width: 128px;">
                         <li>
-                            <a href="#">
+                            <a href="<%=request.getContextPath()%>/user/mypage">
                                 <div>
-                                    <i class="fa fa-comment fa-fw"></i> New Comment
-                                    <span class="pull-right text-muted small">4 minutes ago</span>
+                                    <i class="fa fa-hand-paper-o" aria-hidden="true"></i> &nbsp;권한신청
                                 </div>
                             </a>
                         </li>
                         <li class="divider"></li>
                         <li>
-                            <a href="#">
+                            <a href="<%=request.getContextPath()%>/user/update">
                                 <div>
-                                    <i class="fa fa-twitter fa-fw"></i> 3 New Followers
-                                    <span class="pull-right text-muted small">12 minutes ago</span>
+                                   <i class="fa fa-plus" aria-hidden="true"></i> &nbsp; 회원수정   
                                 </div>
                             </a>
                         </li>
                         <li class="divider"></li>
                         <li>
-                            <a href="#">
+                            <a href="<%=request.getContextPath()%>/user/mypage">
                                 <div>
-                                    <i class="fa fa-envelope fa-fw"></i> Message Sent
-                                    <span class="pull-right text-muted small">4 minutes ago</span>
+                                    <i class="fa fa-ban" aria-hidden="true"></i> &nbsp; 회원탈퇴
                                 </div>
                             </a>
                         </li>
+                       
+                       
                         <li class="divider"></li>
                         <li>
-                            <a href="#">
-                                <div>
-                                    <i class="fa fa-tasks fa-fw"></i> New Task
-                                    <span class="pull-right text-muted small">4 minutes ago</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#">
-                                <div>
-                                    <i class="fa fa-upload fa-fw"></i> Server Rebooted
-                                    <span class="pull-right text-muted small">4 minutes ago</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a class="text-center" href="#">
-                                <strong>See All Alerts</strong>
+                            <a class="text-center" href="<%=request.getContextPath()%>/user/mypage">
+                                <strong style="color: #3756b3;">MY PAGE</strong>
                                 <i class="fa fa-angle-right"></i>
                             </a>
                         </li>
                     </ul>
                     <!-- /.dropdown-alerts -->
                 </li>
-                        
-                        
-                        <!-- /////////////// -->
-                        
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <i class="fa fa-bell fa-fw"></i> <i class="fa fa-caret-down"></i>
-                    </a>
-       
-                </li>
-                
-                <sec:authorize access="hasAnyRole('ROLE_USER,ROLE_ADMIN')">
-                         <!-- /.dropdown -->
-                <li class="dropdown">
-                    <a class="dropdown-toggle" href="<%=request.getContextPath()%>/user/mypage">
-                    <%-- <a class="dropdown-toggle" data-toggle="dropdown" href="<%=request.getContextPath()%>/user/mypage"> --%>
-                        <i class="fa fa-tasks fa-fw"></i> <i class="fa fa-caret-down"></i>
-                    </a>
-                <ul class="dropdown-menu dropdown-user">
-                        <li class="divider"></li>
-                        <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> 회원정보 수정</a>
-                        </li>
-                    </ul>
-                    
-                        <ul class="dropdown-menu dropdown-user">
-                        <li class="divider"></li>
-                        <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> 권한요청</a>
-                        </li>
-                    </ul>
-                        <ul class="dropdown-menu dropdown-user">
-                        <li class="divider"></li>
-                        <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> 회원탈퇴</a>
-                        </li>
-         </ul> 
-                </li>
                 </sec:authorize>
-
-                <!-- /.dropdown -->
-                    <sec:authorize access="hasRole('ROLE_SUPER')">
-                <li class="dropdown">      
-                    <a class="dropdown-toggle" href="<%=request.getContextPath()%>/superAdmin/management">
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                 <sec:authorize access="hasRole('ROLE_SUPER')">
+                   <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="<%=request.getContextPath()%>/superAdmin/management">
                         <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
                     </a>
-                      </sec:authorize>
-                    
+                    <ul class="dropdown-menu dropdown-alerts" style="width: 163px;">
+                        <li>
+                            <a href="<%=request.getContextPath()%>/superAdmin/authorityMemberList">
+                                <div>
+                                    <i class="fa fa-hand-paper-o" aria-hidden="true"></i> &nbsp;회원 리스트
+                                </div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="<%=request.getContextPath()%>/superAdmin/authorityList">
+                                <div>
+                                   <i class="fa fa-plus" aria-hidden="true"></i> &nbsp;권한요청관리   
+                                </div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="<%=request.getContextPath()%>/superAdmin/reportList">
+                                <div>
+                                    <i class="fa fa-ban" aria-hidden="true"></i> &nbsp;주간 보고서
+                                </div>
+                            </a>
+                        </li>
+                       
+                       
+                        <li class="divider"></li>
+                        <li>
+                            <a class="text-center" href="<%=request.getContextPath()%>/superAdmin/management">
+                                <strong style="color: #3756b3;">SUPER ADMIN</strong>
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        </li>
+                    </ul>
+                    <!-- /.dropdown-alerts -->
+                </li>
+                </sec:authorize>
+                
+                
+                
+                
+              
+
+  
                     <!-- <ul class="dropdown-menu dropdown-user"> -->
                         <!-- <li class="divider"></li> -->
                         <%-- <sec:authorize access="isAuthenticated()">
@@ -291,9 +305,13 @@ $('.dropdown-toggle').dropdown();
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
+                       
+                       <sec:authorize access="hasAnyRole('ROLE_USER,ROLE_ADMIN')">
                         <li>
                             <a href="<%=request.getContextPath()%>/notice/noticeList"><i class="fa fa-edit fa-fw"></i> 알림내역</a>
                         </li>
+                        </sec:authorize>
+                        
                         <li>
                             <a href="#"><i class="fa fa-wrench fa-fw"></i> 게시판<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">

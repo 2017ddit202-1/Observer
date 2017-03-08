@@ -73,7 +73,7 @@
                                     <i class="fa fa-support fa-5x"></i>
                                 </div>
                                 <div class="col-xs-9 text-right">
-                                    <div style="font-size: 24px;" class="huge">총 권한 요청 ${authorityCnt }명</div>
+                                    <div style="font-size: 20px;" class="huge">총 권한 요청 ${authorityCnt }명</div>
                                     <div>authority list</div>
                                 </div>
                             </div>
