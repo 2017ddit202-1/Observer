@@ -14,8 +14,11 @@
    <br /><br /><br /><br /><br /><br />
    <br /><br /><br /><br /><br /><br />
    <form id="formm" name="formm">
+   <div id="btnHo1">
+   <br>
        <input type="button" id="btnZxc" class="btn btn-default" value="30분" onclick="vv()">
       <input type="button" id="btntotal" class="btn btn-default" value="1시간" onclick="ss()">
+      </div>
       <div id="loader"><img id="lodingImg" src="<%=request.getContextPath() %>/resources/img/loader.gif"></div>
       
      <div id="trafficNet">
@@ -25,7 +28,7 @@
      		</tr>
      		<c:forEach var="driList" items="${nmList}">
      			<tr>
-     				<td><input type="button" value="${driList.disk_nm}" class="hhh">
+     				<td><input type="button" value="${driList.disk_nm}" class="hhh">&nbsp;
      					<input type="hidden" name="${driList.disk_nm}" value="${driList.disk_nm}">
      				</td>
      			</tr>
@@ -34,13 +37,13 @@
      		
      	</table> 
      </div>
-     <div id="page-wrapper8" class="in">
+     <div id="page-wrapper10" class="in">
      <div id="container3"></div>
      </div>
-     <div id="page-wrapper9" class="in">
+     <div id="page-wrapper11" class="in">
      <div id="container"></div>
      </div>
-     <div id="page-wrapper0" class="in">
+     <div id="page-wrapper12" class="in">
      <div id="container2"></div>
      </div>
    </form>

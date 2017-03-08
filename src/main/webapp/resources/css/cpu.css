@@ -8,7 +8,11 @@
 display:none;
 }
 #btnHo{
-	margin: 0 0 2% 90%;
+	margin: 18px 0 1% 79%;
+}	
+
+#btnHo1{
+	margin: 18px 0 1% 75%;
 }	
 .raphael-group-124-creditgroup, .raphael-group-30-toolbar-group10{
 display:none;
@@ -63,7 +67,45 @@ display:none;
 	float:right;
 	margin-top: 4%;
     margin-right: 7%;	
+    
+    
 }
+
+#trafficNet{
+	text-align: center;
+    position: inherit;
+    margin: -57px 0 0 200px;
+    padding: 65px 30px;
+    box-shadow: 5px 5px 5px lightgrey;
+    border-radius: 10px;
+    background-color: white;
+    width: 13%;
+    height: auto;
+    margin-bottom: 1.5%;
+    padding-top: 0.9%;
+    margin-top: 2%;
+    
+}
+
+
+
+#page-wrapper10,#page-wrapper11,#page-wrapper12{
+	text-align:center;
+    position: inherit;
+    margin: 0 0 0 250px;
+    padding: 65px 30px;
+     box-shadow: 5px 5px 5px lightgray;
+     border-radius: 10px; 
+    padding: 0 15px;
+    background-color: white;
+    margin-left: 6%;
+    width: 79%;
+    height: 360px;
+    margin-bottom: 1.5%;
+}
+
+
+
 
 #page-wrapper8,#page-wrapper9,#page-wrapper0,#page-wrapper88,#page-wrapper99 {
 	text-align:center;
@@ -82,7 +124,7 @@ display:none;
 #page-wrapper00{
 		text-align:center;
     position: inherit;
-    margin: 0 0 0 250px;
+    margin: -57px 0 0 200px;
     padding: 65px 30px;
      box-shadow: 5px 5px 5px lightgray;
      border-radius: 10px; 
@@ -91,8 +133,26 @@ display:none;
     height: 70px;
     margin-bottom: 1.5%;
     padding-top: 0.9%;
+    
 }
 .highcharts-root {
 	margin-top:1%;
+}
+
+.hhh{
+	background-color: #546cc3;
+	border-color: red;
+	width: 367%;
+	color: white;
+	
+	display: inline-block;
+    padding: 6px 12px;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
 }
 
