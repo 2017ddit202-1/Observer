@@ -276,7 +276,8 @@ $('.dropdown-toggle').dropdown();
                             </div>
                             /input-group
                         </li> -->
-                      <button id="smsbtn" style="margin-left: 15.5%; border-color:#07C758; margin-top: 6%; width: 168px;" type="button" class="btn btn-primary" >&nbsp;&nbsp;<i class="fa fa-line-chart" aria-hidden="true"></i>&nbsp;S M S&nbsp;&nbsp;</button>
+                        <div id="smsbtn">&nbsp;&nbsp;<p class="p"><i class="fa fa-line-chart" aria-hidden="true"></i>&nbsp;S M S</p></div>
+                      <!-- <button id="smsbtn" style="margin-left: 15.5%; border-color:#07C758; margin-top: 6%; width: 168px;" type="button" class="btn btn-primary"  >&nbsp;&nbsp;<i class="fa fa-line-chart" aria-hidden="true"></i>&nbsp;S M S&nbsp;&nbsp;</button> -->
                         <li>
                             <a style="margin-top: 5%;" href="<%=request.getContextPath()%>/server/serverMain"><i class="fa fa-bar-chart-o fa-fw"></i> SERVER<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
@@ -395,8 +396,18 @@ $('.dropdown-toggle').dropdown();
 }
 
 #smsbtn {
-	background: #07C758;
+	background-color: #07C758;
+    color: white;
+    text-align: center;
+    width: 168px;
+    height: 39px;
+    border-radius: 5px;
+    margin-top: 9%;
+    margin-left: 15%;
+    display:table;
+
 }
+.p {display:table-cell; text-align:center; vertical-align:middle; width: 168px;}
 </style>
 	<decorator:body />
          </div>
