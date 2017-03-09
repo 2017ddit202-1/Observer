@@ -40,7 +40,7 @@ function serverStop(ip){
 	 }else if(chklen == 1){
 		 ipArray = document.formm.server_ip.value;
 	 }
-	 alert(ipArray);
+	
 	document.formm.action = "<%=request.getContextPath()%>"+"/server/serverStop?ipArray="+ipArray; 
 	document.formm.submit();
 
@@ -67,7 +67,7 @@ function serverStop(ip){
 	 }else if(chklen == 1){
 		 ipArray = document.formm.server_ip.value;
 	 }
-	 alert(ipArray);
+	
 	document.formm.action = "<%=request.getContextPath()%>"+"/server/serverStart?ipArray="+ipArray;
 	document.formm.submit();
 }
@@ -93,7 +93,6 @@ function serverRemove(ip){
 	 }else if(chklen == 1){
 		 ipArray = document.formm.server_ip.value;
 	 }
-	 alert(ipArray);
 	document.formm.action = "<%=request.getContextPath()%>"+"/server/serverRemove?ipArray="+ipArray;
 	document.formm.submit();
 }
@@ -449,7 +448,7 @@ function test_go(){
 				<tr>
 				<c:set var="test" value="${i.value.cpu_total_pcnt}" />
 					<fmt:parseNumber  value="${test}" pattern="###.###" var="cputest"/>
-					
+						
 					<c:choose>
 					<c:when test="${i.value.server_saveyn eq '0'}">
 						<td><span class="label" style="background-color: black; ">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</span></td>
@@ -542,7 +541,7 @@ function test_go(){
           <h4 class="modal-title">서버추가</h4>
         </div>
         <div class="modal-body">
-        <form id="formm" name=" " method="post">
+        <form id="formm" name=" " method="POST">
       <table class="table table-hover table-bordered">
        		<thead style="background-color: #e4eaf2">
        		<tr>
