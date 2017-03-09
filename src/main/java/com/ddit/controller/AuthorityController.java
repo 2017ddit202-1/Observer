@@ -30,7 +30,6 @@ public class AuthorityController {
 	@RequestMapping("/authorityReq")
 	public String authorityReq(HttpSession session, HttpServletRequest request){
 		String url="mypage";
-		System.out.println("권한신청 왔다!!!!!!!!!!!!!!!!!!!");
 		
 		String userid=(String)session.getAttribute("loginUser");
 		try {
@@ -42,12 +41,11 @@ public class AuthorityController {
 		
 		AuthorityVO authority= new AuthorityVO();
 		try {
-			authority=authorityService.authorityYN(userid);
+			authority=authorityService.authorityYN(userid);//권한신청 VO
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		System.out.println(authority);
 		request.setAttribute("authority", authority);
 		
 		return url;
