@@ -502,6 +502,7 @@ public class ServerController {
 				e.printStackTrace();
 			}
 			/*classMap.remove(currentIp);*/
+			
 		} else if (memberVO.getMem_group_lice().equals("1")) {
 			// 이부분에서 라이센스변경 후 서버테이블에 추가
 			int result = (int) (Math.floor(Math.random() * 1000000) + 100000);
@@ -545,8 +546,8 @@ public class ServerController {
 				e.printStackTrace();
 			}
 			/*classMap.remove(currentIp);*/
+			session.setAttribute("loginUserVO", memberVO);
 		}
-		session.setAttribute("loginUserVO", memberVO);
 		
 		
 		return url;
