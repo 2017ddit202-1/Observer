@@ -14,6 +14,7 @@ $(function(){
    $('#page-wrapper11').hide();
    $('#page-wrapper12').hide();
    $('#trafficNet').hide();
+   $('.col-lg-4').hide();
    $('#foot').hide();
 //   tt();
    	
@@ -96,6 +97,7 @@ function tt(){
     	  $('#page-wrapper12').show();
     	  $('#trafficNet').show();
     	  $('#foot').show();
+    	  $('.col-lg-4').show();
             HighCharts(data);
             HighCharts2(data);
             HighCharts3(data);
