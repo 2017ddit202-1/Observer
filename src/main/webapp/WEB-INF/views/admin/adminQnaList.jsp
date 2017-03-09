@@ -275,9 +275,11 @@ function check() {
 			<button type="button" class="btn btn-default" onclick="location.href='adminWrite' ">질문하기</button>
 		</sec:authorize>
 	</div>
+
 	
 	</div>
 	</div>
+	<br/>
 	
 
 </body>

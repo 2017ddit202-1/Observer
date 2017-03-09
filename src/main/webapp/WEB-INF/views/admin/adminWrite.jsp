@@ -17,6 +17,23 @@ border-top: 1px solid #c3ced9;
 border-bottom: 1px solid #c3ced9;
 text-align: center;
 }
+#page-wrapper3 {
+    position: inherit;
+    margin: 0 0 0 250px;
+    padding: 65px 30px;
+     box-shadow: 5px 5px 5px lightgray;
+     border-radius: 10px; 
+   
+} 
+#page-wrapper3 {
+    padding: 0 15px;
+    min-height: 568px;
+    background-color: white;
+    margin-left: 10%;
+    width: 79%;
+    height: 870px;
+}
+
 </style>
 <script>
 function go_adminWrite() {
@@ -30,6 +47,8 @@ function go_adminWrite() {
 </head>
 <body>
 	<br> <br>
+	<div id="page-wrapper3" class="in">	
+	<br>
 	<div style="text-align: center;">
 		<h2>ADMIN 글쓰기</h2>
 	</div>
@@ -62,7 +81,7 @@ function go_adminWrite() {
 </div>	
 
 </form>
-	
+	</div>
 </body>
 </html>
 

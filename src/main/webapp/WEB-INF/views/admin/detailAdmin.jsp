@@ -20,6 +20,22 @@
 	border-bottom: 1px solid #c3ced9;
 	text-align: center;
 }
+#page-wrapper3 {
+    position: inherit;
+    margin: 0 0 0 250px;
+    padding: 65px 30px;
+     box-shadow: 5px 5px 5px lightgray;
+     border-radius: 10px; 
+   
+} 
+#page-wrapper3 {
+    padding: 0 15px;
+    min-height: 568px;
+    background-color: white;
+    margin-left: 10%;
+    width: 79%;
+    height: 870px;
+}
 </style>
 
 
@@ -28,6 +44,8 @@
 <body>
 
 	<br>
+	
+	<div id="page-wrapper3" class="in">	
 	<br>
 	<div style="text-align: center;">
 		<h2>Admin 상세보기</h2>
@@ -156,10 +174,10 @@
 				onclick="adminlist_go()">
 			<c:choose>
 				<c:when test="${loginUserVO.mem_id eq adminVO.ad_id}">
-					<input type="button" value="수정" class="submit"
-						onclick="updateAdmin_go()">
-					<input type="button" value="삭제" class="submit"
-						onclick="deleteAdmin_go()">
+					<input type="button" value="수정" 
+						onclick="updateAdmin_go()" class="btn btn-default">
+					<input type="button" value="삭제" 
+						onclick="deleteAdmin_go()" class="btn btn-default">
 				</c:when>
 			</c:choose>
 			<sec:authorize access="hasRole('ROLE_SUPER')">
@@ -170,7 +188,7 @@
 
 			</table>
 	</form>
-
+</div>
 
 	<script>
 	function updateAdmin_go(){
