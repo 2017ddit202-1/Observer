@@ -203,24 +203,34 @@ public class ServerController {
 			double txrxTotal=0;
 			String total = "";
 			int k = 1000;
+			int m = 1000000;
 			if(rx.contains("K")){
 				rxTt = Double.parseDouble(rx.replaceAll("K", "").trim())*k;
+			}else if(rx.contains("M")){
+				rxTt = Double.parseDouble(rx.replaceAll("M", "").trim())*m;
 			}else{
 				rxTt = Double.parseDouble(rx);
 			}
 			
+			
 			if(tx.contains("K")){
 				txTt = Double.parseDouble(tx.replaceAll("K", "").trim())*k;
+			}else if(tx.contains("M")){
+				txTt = Double.parseDouble(tx.replaceAll("M", "").trim())*m;
 			}else{
 				txTt = Double.parseDouble(tx);
 			}
 			
+			
 			txrxTotal = rxTt + txTt;
-			if(txrxTotal >= 1000){
+			if(txrxTotal >= 1000 && txrxTotal < 1000000){
 				total = (txrxTotal/k+"K").trim();
+			}else if(txrxTotal >= 1000000){
+				total = (txrxTotal/m+"M").trim();
 			}else{
 				total = (txrxTotal+"").trim();
 			}
+			
 			trafficVO.setTraffic_ip(currentIp);
 			trafficVO.setTraffic_use(total.trim());
 			trafficVO.setTraffic_rece(classMap.get(currentIp).get("networkrx"));
