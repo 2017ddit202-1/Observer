@@ -17,6 +17,7 @@
     <http pattern="/pages/*" security="none"/>
     <http pattern="/vendor/*" security="none"/>
     <http pattern="/**/*.png" security="none"/>
+    <http pattern="/**/*.ttf" security="none"/>
 
 	<authentication-manager>
 		<authentication-provider>

@@ -43,12 +43,8 @@
 			<version>${org.springframework-version}</version>
 		</dependency>
 
-<!-- 		<dependency>
-			<groupId>javax.annoatation</groupId>
-			<artifactId>jsr250-api</artifactId>
-			<version>1.0</version>
-		</dependency>
- -->
+		<!-- <dependency> <groupId>javax.annoatation</groupId> <artifactId>jsr250-api</artifactId> 
+			<version>1.0</version> </dependency> -->
 
 
 
@@ -368,6 +364,10 @@
 					<mainClass>org.test.int1.Main</mainClass>
 				</configuration>
 			</plugin>
-		</plugins>
+			
+		</plugins> 
+		
 	</build>
+
+	
 </project>
