@@ -100,7 +100,7 @@ function serverRemove(ip){
 
  
 function addlist_go(ip){
-	alert("추가되었습니다."); 
+	alert("추가되었습니다.");
 	document.formm.action = "<%=request.getContextPath()%>"	+ "/server/serverHandling?currentIp="+ip;
 	document.formm.submit();
 } 
@@ -113,7 +113,7 @@ function test_go(){
 	var sock = null;
 	$(document).ready(
 			function() {
-
+				
 				
 				sock = new SockJS("http://" + document.domain + ":8181/observer/server/serverMain");
 
@@ -129,10 +129,6 @@ function test_go(){
 
 				});
 
-				/* sock.onmessage = function(evt){
-				  $("#chatMessage").append(evt.data + "<br/>");
-				 } */
-
 				sock.onclose = function() {
 					sock.send("퇴장");
 				}
@@ -145,9 +141,11 @@ function test_go(){
 								$("message").val("");
 							}
 						});
-
+			
 				
- 			 var bulhwi = setInterval(function(){
+				
+				
+ 			  var bulhwi = setInterval(function(){
  				$('#mm').load("serverMain #mm"); 
  			},10000); 
 
@@ -164,8 +162,9 @@ function test_go(){
 								
 						}
 					}
-			}); 
+			});  
 				
+			 	
 	});
  			
 			
@@ -352,25 +351,31 @@ function test_go(){
             			<td><input type="checkbox" name="server_ip" class="server_ip" id='server_ip' value="${i.value.server_ip}"></td>
             		<c:set var="test" value="${i.value.cpu_total_pcnt}" />
 					<fmt:parseNumber  value="${test}" pattern="###.###" var="cputest"/>
+			<td>
 			
 				<c:choose>
 					<c:when test="${i.value.server_saveyn eq '0'}">
-						<td><span class="label" style="background-color: black; ">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</span></td>
+						<span class="label" style="background-color: black;">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</span>
 					</c:when>
 					<c:otherwise>
 					 <c:choose>
+					 	<c:when test="${cputest == null}">
+					 		<b>loading...</b>
+					 	</c:when>
 	            		<c:when test="${cputest <= 50.0}">
-	            			<td> <span class="label label-success">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</span></td>
+	            			 <span class="label label-success">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</span>
 	            		</c:when>
 	            		<c:when test="${cputest <=80.0}">
-	            			<td><span class="label label-warning">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</span></td>
+	            			<span class="label label-warning">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</span>
 	            		</c:when>
 	            		<c:when test="${cputest <=100.0}">
-	            			<td> <span class="label label-danger">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</span></td>
+	            			 <span class="label label-danger">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</span>
 	            		</c:when>
 	           		</c:choose>
            		</c:otherwise> 
+           		
             	</c:choose>
+            	</td>
 				  <td>${i.value.server_host }</td>
              	  <td><a href="<%=request.getContextPath()%>/server/summary?summaryMenu=1&ip=${i.value.server_ip}">${i.value.server_ip}</a></td>
              	  <td>${i.value.server_os_name}</td>
@@ -573,10 +578,20 @@ function test_go(){
 </div>
 </div></div>
 
+	
+
+
 
 	<div id="chatMessage" style="overflow: auto; max-height: 500px;"></div>
 
-	
+	<script>
+		$(function(){
+			var a = '${serverMap}';
+			$.each(a,function(i){
+				alert(a.i);
+			})
+		})
+	</script>	
 
 	<c:if test="${!empty userOK}">
 		<script>
@@ -587,5 +602,7 @@ function test_go(){
 	</c:if>
 
 </div>
+
+
 </body>
 </html>

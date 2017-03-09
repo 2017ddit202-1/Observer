@@ -438,12 +438,14 @@ public class ServerController {
 		flag.setAttribute("summaryMenu", summaryMenu);
 		
 		model.addAttribute("serverMap",serverMap);
+		
 		model.addAttribute("serverListUser", serverListUser);
 		model.addAttribute("serverList", serverList);
 		model.addAttribute("loginUserPosl", vWmemPosVO.getPosl_pos());
 		model.addAttribute("map", classMap);
 		model.addAttribute("serverMapSuper", serverMapSuper);
 		/*model.addAttribute("ipMap", ipMap);*/
+		
 		return url;
 
 	}
@@ -548,8 +550,7 @@ public class ServerController {
 			/*classMap.remove(currentIp);*/
 			session.setAttribute("loginUserVO", memberVO);
 		}
-		
-		
+	
 		return url;
 	}
 	
