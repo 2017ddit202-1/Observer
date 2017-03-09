@@ -372,6 +372,10 @@ $('.dropdown-toggle').dropdown();
         
          <div id="page-wrapper">
 	<style>
+@import url(http://fonts.googleapis.com/earlyaccess/jejugothic.css);
+ 
+body, table, div, p {font-family: 'Jeju Gothic', serif;}
+	
 #side-menu li a {
 	color: #888;
 }
