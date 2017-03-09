@@ -72,19 +72,31 @@ display:none;
 }
 
 #trafficNet{
-	text-align: center;
+/* 	text-align: center;
     position: inherit;
     margin: -57px 0 0 200px;
     padding: 65px 30px;
     box-shadow: 5px 5px 5px lightgrey;
     border-radius: 10px;
     background-color: white;
-    width: auto;
+    width: 69%;
     height: auto;
     margin-bottom: 1.5%;
     padding-top: 0.9%;
     margin-top: 2%;
-    margin-left: 1%;
+    margin-left: 1%; */
+    text-align:center;
+    position: inherit;
+        margin: 0 71% 0 0;
+    padding: 65px 30px;
+     box-shadow: 5px 5px 5px lightgray;
+     border-radius: 10px; 
+    padding: 0 15px;
+    background-color: white;
+    margin-left: 6%;
+    width: auto;
+    height: 83px;
+    margin-bottom: 1.5%;
     
 }
 
@@ -142,11 +154,10 @@ display:none;
 
 .hhh{
 	background-color: #546cc3;
-	border-color: red;
-	width: 367%;
-	color: white;
-	
-	display: inline-block;
+    border-color: #838798;
+    width: 84px;
+    color: white;
+    display: inline-block;
     padding: 6px 12px;
     margin-bottom: 0;
     font-size: 14px;
@@ -155,5 +166,6 @@ display:none;
     text-align: center;
     white-space: nowrap;
     vertical-align: middle;
+    border-radius: 5px;
 }
 

@@ -14,6 +14,33 @@
    <br /><br /><br /><br /><br /><br />
    <br /><br /><br /><br /><br /><br />
    <form id="formm" name="formm">
+   
+   
+        <div id="trafficNet">
+     	<table id="diskTb">
+     		<tr>
+     			<th id="card">Disk</th>
+     		</tr>
+     		<tr>
+     		<c:forEach var="driList" items="${nmList}">
+     			
+     				<td><input type="button" value="${driList.disk_nm}" class="hhh">&nbsp;
+     					<input type="hidden" name="${driList.disk_nm}" value="${driList.disk_nm}">
+     				</td>
+     			
+     		</c:forEach>
+     		</tr>
+     		<tr>
+     		<c:forEach var="pcntList" items="${pcntList}" varStatus="status">
+     							<td>	<div>${pcntList.disk_pcnt} %</div></td>
+     					</c:forEach>
+     					</tr>
+     		
+     		
+     	</table> 
+     </div>
+   
+   
    <div id="btnHo1">
    <br>
        <input type="button" id="btnZxc" class="btn btn-default" value="30분" onclick="vv()">
@@ -21,7 +48,7 @@
       </div>
       <div id="loader"><img id="lodingImg" src="<%=request.getContextPath() %>/resources/img/loader.gif"></div>
       
-     <div id="trafficNet">
+<%--      <div id="trafficNet">
      	<table id="diskTb">
      		<tr>
      			<th id="card">Disk</th>
@@ -39,7 +66,7 @@
      		
      		
      	</table> 
-     </div>
+     </div> --%>
      <div id="page-wrapper10" class="in">
      <div id="container3"></div>
      </div>
