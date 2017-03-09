@@ -236,12 +236,12 @@ table.dataTable thead .sorting:after {
   font-size: 40px;
 }
 .panel-green {
-  border-color: #5cb85c;
+  border-color: #d65f5f;
 }
 .panel-green > .panel-heading {
-  border-color: #5cb85c;
-  color: white;
-  background-color: #5cb85c;
+ border-color: #d65f5f;
+    color: white;
+    background-color: #d65f5f;
 }
 .panel-green > a {
   color: #5cb85c;

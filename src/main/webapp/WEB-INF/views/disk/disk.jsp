@@ -9,18 +9,96 @@
 <title></title>
 <link href="<%=request.getContextPath()%>/resources/css/cpu.css"rel="stylesheet">
 <script src="<%=request.getContextPath()%>/resources/js/disk.js"></script>
+<script>
+/* $(document).ready(function(){
+    $(".hhh").hover(function(){
+        $(this).css("background-color", "gray");
+        }, function(){
+        $(this).css("background-color", "#546cc3");
+    });
+});
+ */
+/* $(document).ready(function(){
+    $(".hhh").hover(function(){
+        $(this).css("background-color", "orange");
+        }, function(){
+        $(this).css("background-color", "#546cc3");
+    });
+}); */
+</script>
+
 </head>
+
 <body onload="myFunction()" style="margin:0;">
    <br /><br /><br /><br /><br /><br />
    <br /><br /><br /><br /><br /><br />
    <form id="formm" name="formm">
    
    
-        <div id="trafficNet">
+   
+   
+   
+   
+   
+   
+   
+    <div class="col-lg-4" style="margin-left: 7%;">
+                    <div class="panel panel-green">
+                    <table id="diskTb">
+                        <div class="panel-heading"> <i class="fa fa-cogs" aria-hidden="true"></i>
+                            DISK >>
+                       </div><br>
+                        
+                          <tr>
+     		<c:forEach var="driList" items="${nmList}">
+     			
+     				<td>&nbsp;<input type="button" value="${driList.disk_nm}" class="hhh">&nbsp;
+     					<input type="hidden" name="${driList.disk_nm}" value="${driList.disk_nm}">
+     				</td>
+     			
+     		</c:forEach>
+     		</tr> 
+                                
+                    
+                      
+                            
+                            
+                            <tr style="text-align: center; font-weight: bold; color: #a2a2a2;">
+     		<c:forEach var="pcntList" items="${pcntList}" varStatus="status">
+     							<td>	<div>${pcntList.disk_pcnt} %</div></td>
+     					</c:forEach>
+     					</tr>
+                            
+                       
+                        </table>
+                    </div>
+                    <!-- /.col-lg-4 -->
+                </div>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+<%--         <div id="trafficNet">
+        <br>
      	<table id="diskTb">
-     		<tr>
+   <!--   		<tr>
      			<th id="card">Disk</th>
-     		</tr>
+     		</tr> -->
      		<tr>
      		<c:forEach var="driList" items="${nmList}">
      			
@@ -38,7 +116,7 @@
      		
      		
      	</table> 
-     </div>
+     </div> --%>
    
    
    <div id="btnHo1">
