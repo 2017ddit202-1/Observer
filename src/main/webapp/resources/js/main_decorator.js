@@ -35,7 +35,7 @@ function login_go(){
 			type : "post",
 			data : $('#register-form input').serialize(),
 			success:function(data){
-				$('#resultId').text(data);
+				$('#resultId').html('<span style="color:black;">'+data+'</span>');
 				$('#register-form #mem_nm').val("");
 				$('#register-form #mem_email').val("");
 			},

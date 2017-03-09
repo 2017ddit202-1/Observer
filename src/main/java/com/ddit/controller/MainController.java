@@ -199,7 +199,7 @@ public class MainController {
 		try {
 			member = memberService.idFind(name, email);
 			if(member != null){
-				data = member.getMem_id();
+				data = "회원님이 찾으시는 ID는 [ <span style='color:red;'>" + member.getMem_id() + "</span> ] 입니다";
 			}else{
 				data = "찾는 아이디가 없습니다.";
 			}
